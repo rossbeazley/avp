@@ -49,7 +49,7 @@ public class ProductionApplicationServices extends Application implements ReduxA
     @Override
     public EventBus getBus() {
         if(bus==null) {
-            bus = uk.co.rossbeazley.redux.eventbus.EventBusFactory.defaultEventBus();
+            bus = uk.co.rossbeazley.redux.eventbus.EventBusFactory.createEventBus();
         }
         return bus;
     }
