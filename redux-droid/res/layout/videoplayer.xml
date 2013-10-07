@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+
+        >
+
+    <FrameLayout  android:id="@+id/videocontainer"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_centerVertical="true"
+                  android:layout_centerHorizontal="true"
+                  android:background="#444444" />
+
+
+    <ImageView android:id="@+id/play"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:src="@android:drawable/ic_media_play"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:layout_alignParentBottom="true"
+            />
+
+
+    <ImageView android:id="@+id/pause"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:src="@android:drawable/ic_media_pause"
+               android:focusable="false"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:visibility="gone"
+               android:layout_alignParentBottom="true"
+            />
+
+    <TextView android:id="@+id/totaltime"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:layout_alignParentBottom="true"
+              android:text="--"
+              android:textSize="40dp"/>
+
+
+    <TextView android:id="@+id/currenttime"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:layout_toLeftOf="@id/totaltime"
+              android:layout_centerVertical="true"
+              android:layout_alignParentBottom="true"
+              android:text="--"
+              android:textSize="40dp"/>
+
+    <SeekBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/play"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+    <ProgressBar
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buffering"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+</RelativeLayout>
+

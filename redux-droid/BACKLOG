@@ -1,0 +1,7 @@
+the videoScreen in a fragment
+a fragment transaction manager to show a fragment
+inbound intent that converts URL intent to our domain thingy
+event bus?
+automated test
+
+--Consider an object that binds click listeners, shows and hides views

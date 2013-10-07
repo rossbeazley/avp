@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="uk.co.rossbeazley.redux.android"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="8"/>
+
+    <application android:label="@string/app_name" android:name=".application.ProductionApplicationServices">
+
+        <activity android:name=".activity.Main"
+                  android:label="@string/app_name"
+                  android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+                  android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" android:host="g.bbcredux.com" android:pathPattern=".*mp4" />
+            </intent-filter>
+        </activity>
+
+        <!--  http://g.bbcredux.com/programme/5853072339092421631/download/25155-1379939899-66b313370e8f9fbca2ef16de7f7f9a47/20130308_203000_bbcone_the_vicar_of_dibley-lo.mp4  -->
+        <!--activity-alias android:name="reduxurlreciever" android:targetActivity=".Main">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:host="g.bbcredux.com" />
+                <data android:pathPattern="*/download/*.mp4" />
+            </intent-filter>
+        </activity-alias-->
+    </application>
+</manifest> 
