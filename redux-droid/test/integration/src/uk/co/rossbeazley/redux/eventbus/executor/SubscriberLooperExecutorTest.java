@@ -16,51 +16,54 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class SubscriberLooperExecutorTest {
 
-    Looper actualLooper = null;
+    private Looper mainLooper = null;
+    Looper discoveredLooper = null;
+    Looper notMainLooper = null;
     boolean registered = false;
     private CanDiscoverExecutor looperExecutor;
 
     @Test
     public void aLooperCanBeDiscoveredByLooperExecutor() {
+        mainLooper = Looper.getMainLooper();
         looperExecutor = givenALooperExecutor();
-        Looper expectedLooper = andALooperThread();
-        whenTheLooperGetsTheExecutor(expectedLooper);
-        thenTheLooperIdentifiedByTheExecutorIsTheSameOne(expectedLooper);
-    }
-
-    private void thenTheLooperIdentifiedByTheExecutorIsTheSameOne(Looper expectedLooper) {
-        assertThat(registered, is(true));
-        assertThat(actualLooper, is(expectedLooper));
-    }
-
-    private void whenTheLooperGetsTheExecutor(Looper expectedLooper) {
-        Handler handler = new Handler(expectedLooper);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                looperExecutor.executor();
-                registered=true;
-            }
-        });
-        Robolectric.shadowOf(expectedLooper).runOneTask();
-    }
-
-    private Looper andALooperThread() {
-        HandlerThread thread = new HandlerThread("test thread");
-        thread.start();
-        Looper expectedLooper = thread.getLooper();
-        Robolectric.shadowOf(expectedLooper).pause();
-        return expectedLooper;
+        andALooperThread();
+        whenTheLooperGetsTheExecutor();
+        thenTheLooperIdentifiedByTheExecutorIsTheSameOne();
     }
 
     private CanDiscoverExecutor givenALooperExecutor() {
-        return new CanDiscoverExecutor() {
-
-            @Override
-            public Executor executor() {
-                actualLooper = Looper.myLooper();
+        return new CanDiscoverExecutor() { public Executor executor() {
+                discoveredLooper = Looper.myLooper();
                 return null;
             }
         };
     }
+
+    private void andALooperThread() {
+        HandlerThread thread = new HandlerThread("test thread");
+        thread.start();
+        notMainLooper = thread.getLooper();
+        Robolectric.shadowOf(notMainLooper).pause();
+    }
+
+    private void whenTheLooperGetsTheExecutor() {
+
+        // Think the handler is getting bound to the main looper, not the one im in
+        Handler handler = new Handler(notMainLooper);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                looperExecutor.executor();
+                registered = true;
+            }
+        });
+        Robolectric.shadowOf(notMainLooper).runOneTask();
+    }
+
+    private void thenTheLooperIdentifiedByTheExecutorIsTheSameOne() {
+        assertThat(registered, is(true));
+        assertThat(discoveredLooper, is(notMainLooper));
+    }
+
+
 }
