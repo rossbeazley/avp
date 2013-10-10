@@ -3,36 +3,27 @@ package uk.co.rossbeazley.redux.eventbus.executor;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import android.test.AndroidTestCase;
 
 import java.util.concurrent.Executor;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
 
-@RunWith(RobolectricTestRunner.class)
-public class SubscriberLooperExecutorTest {
-
-    private Looper mainLooper = null;
     Looper discoveredLooper = null;
     Looper notMainLooper = null;
     boolean registered = false;
     private CanDiscoverExecutor looperExecutor;
     private HandlerThread handlerThread;
 
-    @Test
-    public void aLooperCanBeDiscoveredByLooperExecutor() {
-        mainLooper = Looper.getMainLooper();
+    private final Object lock = new Object();
+
+    public void testLooperCanBeDiscoveredByLooperExecutor() {
         looperExecutor = givenAnExecutor();
         andALooperThread();
         whenTheExecutorIsCalledWithinTheLooper();
-        thenTheLooperIdentifiedByTheExecutorIsTheSameOne();
+        waitForLockToRelease();
+        assertTheLooperIdentifiedByTheExecutorIsTheSameOne();
     }
-
-
 
     private CanDiscoverExecutor givenAnExecutor() {
         return new CanDiscoverExecutor() { public Executor executor() {
@@ -46,7 +37,6 @@ public class SubscriberLooperExecutorTest {
         handlerThread = new HandlerThread("test thread");
         handlerThread.start();
         notMainLooper = handlerThread.getLooper();
-        Robolectric.shadowOf(notMainLooper).pause();
     }
 
     private void whenTheExecutorIsCalledWithinTheLooper() {
@@ -56,16 +46,30 @@ public class SubscriberLooperExecutorTest {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                looperExecutor.executor();
                 registered = true;
+                looperExecutor.executor();
+                releaseLock();
+            }
+
+            private void releaseLock() {
+                synchronized (lock) {
+                    lock.notifyAll();
+                }
             }
         });
-        Robolectric.shadowOf(notMainLooper).runOneTask();
     }
 
-    private void thenTheLooperIdentifiedByTheExecutorIsTheSameOne() {
-        assertThat(registered, is(true));
-        assertThat(discoveredLooper, is(notMainLooper));
+    private void waitForLockToRelease() {
+        synchronized (lock){
+            try {
+                lock.wait();
+            } catch (InterruptedException ignored) {        }
+        }
+    }
+
+    private void assertTheLooperIdentifiedByTheExecutorIsTheSameOne() {
+        assertEquals("executor not even run", true, registered);
+        assertEquals("discovered looper not the one from the handler thread", notMainLooper, discoveredLooper);
     }
 
 

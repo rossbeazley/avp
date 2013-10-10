@@ -37,7 +37,7 @@
         <jarDirectory url="file://$MODULE_DIR$/test/integration/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="redux-core" />
+    <orderEntry type="module" module-name="redux-core" exported="" />
     <orderEntry type="jdk" jdkName="Android 4.2 Platform" jdkType="Android SDK" />
   </component>
 </module>
