@@ -18,15 +18,15 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
     private final Object lock = new Object();
 
     public void testLooperCanBeDiscoveredByLooperExecutor() {
-        looperExecutor = givenAnExecutor();
+        givenAnExecutor();
         andALooperThread();
         whenTheExecutorIsCalledWithinTheLooper();
         waitForLockToRelease();
         assertTheLooperIdentifiedByTheExecutorIsTheSameOne();
     }
 
-    private CanDiscoverExecutor givenAnExecutor() {
-        return new CanDiscoverExecutor() {
+    private void givenAnExecutor() {
+        looperExecutor =  new CanDiscoverExecutor() {
             public Executor executor() {
                 discoveredLooper = Looper.myLooper();
                 return null;
