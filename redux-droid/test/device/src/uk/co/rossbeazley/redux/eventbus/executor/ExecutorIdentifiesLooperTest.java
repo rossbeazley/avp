@@ -26,7 +26,8 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
     }
 
     private CanDiscoverExecutor givenAnExecutor() {
-        return new CanDiscoverExecutor() { public Executor executor() {
+        return new CanDiscoverExecutor() {
+            public Executor executor() {
                 discoveredLooper = Looper.myLooper();
                 return null;
             }
@@ -40,8 +41,6 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
     }
 
     private void whenTheExecutorIsCalledWithinTheLooper() {
-
-        // Think the handler is getting bound to the main looper, not the one im in
         Handler handler = new Handler(notMainLooper);
         handler.post(new Runnable() {
             @Override
@@ -60,10 +59,12 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
     }
 
     private void waitForLockToRelease() {
-        synchronized (lock){
+        synchronized (lock) {
             try {
                 lock.wait();
-            } catch (InterruptedException ignored) {        }
+            } catch (InterruptedException ignored) {
+                throw new RuntimeException(ignored);
+            }
         }
     }
 
