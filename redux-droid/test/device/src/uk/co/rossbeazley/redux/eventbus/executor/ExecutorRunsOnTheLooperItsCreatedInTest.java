@@ -9,96 +9,108 @@ import java.util.concurrent.Executor;
 
 public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
 
-    Looper discoveredLooper = null;
+    public static final String THREAD_NAME = "test thread";
+
     Looper notMainLooper = null;
-    boolean registered = false;
     private CanDiscoverExecutor canDiscoverExecutor;
     private Executor looperExecutor;
     private HandlerThread handlerThread;
 
+    private String threadCalledOn = "WRONG THREAD";
+
     private final Object lock = new Object();
+    private boolean notCompleted;
 
     public void testLooperCanBeDiscoveredByLooperExecutor() {
         givenAnExecutor();
         andALooperThread();
         whenIGetAnExecutorInThatLooperThread();
-        //waitForLockToRelease();
         andPostAJobToThatExecutor();
-        assertTheLooperUsedForExecutionIsTheLoopThread();
+        assertTheThreadUsedForExecutionIsTheLooperThread();
     }
 
 
     private void givenAnExecutor() {
-        canDiscoverExecutor =  new CanDiscoverExecutor() {
+        canDiscoverExecutor = createExecutorThatFindsThreadLoopers();
+    }
 
+    //fake it, then make it
+    private CanDiscoverExecutor createExecutorThatFindsThreadLoopers() {
+        return new CanDiscoverExecutor() {
             public Executor executor() {
-                Executor result;
+                Executor result = createLooperExecutor();
+                return result;
+            }
 
-                result = new Executor() {
-
+            private Executor createLooperExecutor() {
+                return new Executor() {
                     Looper looper = Looper.myLooper();
                     Handler handler = new Handler(looper);
 
-                    @Override
                     public void execute(Runnable runnable) {
                         handler.post(runnable);
                     }
                 };
-
-                return result;
             }
         };
     }
 
     private void andALooperThread() {
-        handlerThread = new HandlerThread("test thread");
+        handlerThread = new HandlerThread(THREAD_NAME);
         handlerThread.start();
         notMainLooper = handlerThread.getLooper();
     }
 
     private void whenIGetAnExecutorInThatLooperThread() {
-        Handler handler = new Handler(notMainLooper);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
+        resetLock();
+        Runnable taskToGetExecutorInLooperThread = new Runnable() { public void run() {
                 looperExecutor = canDiscoverExecutor.executor();
                 releaseLock();
             }
+        };
 
-            private void releaseLock() {
-                synchronized (lock) {
-                    lock.notifyAll();
-                }
+        Handler handler = new Handler(notMainLooper);
+        handler.post(taskToGetExecutorInLooperThread);
+        waitForLockToRelease();
+    }
+
+
+    private void andPostAJobToThatExecutor() {
+        resetLock();
+        looperExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                 threadCalledOn = Thread.currentThread().getName();
+                releaseLock();
             }
         });
+        waitForLockToRelease();
+    }
+
+    private void resetLock() {
+        notCompleted = true;
+    }
+
+    private void releaseLock() {
+        synchronized (lock) {
+            notCompleted = false;
+            lock.notifyAll();
+        }
     }
 
     private void waitForLockToRelease() {
         synchronized (lock) {
             try {
-                lock.wait();
+                while(notCompleted) {
+                    lock.wait();
+                }
             } catch (InterruptedException ignored) {
                 throw new RuntimeException(ignored);
             }
         }
     }
 
-    private void assertTheLooperIdentifiedByTheExecutorIsTheSameOne() {
-        assertEquals("executor not even run", true, registered);
-        assertEquals("discovered looper not the one from the handler thread", notMainLooper, discoveredLooper);
-    }
-
-
-    private void andPostAJobToThatExecutor() {
-        looperExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-    }
-
-    private void assertTheLooperUsedForExecutionIsTheLoopThread() {
-        //To change body of created methods use File | Settings | File Templates.
+    private void assertTheThreadUsedForExecutionIsTheLooperThread() {
+        assertEquals(THREAD_NAME, threadCalledOn);
     }
 }
