@@ -5,6 +5,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.test.AndroidTestCase;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
 public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
@@ -14,14 +15,11 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
     Looper notMainLooper = null;
     private CanDiscoverExecutor canDiscoverExecutor;
     private Executor looperExecutor;
-    private HandlerThread handlerThread;
 
     private String threadCalledOn = "WRONG THREAD";
 
-    private final Object lock = new Object();
-    private boolean notCompleted;
 
-    public void testLooperCanBeDiscoveredByLooperExecutor() {
+    public void testLooperCanBeDiscoveredByLooperExecutor() throws InterruptedException {
         givenAnExecutor();
         andALooperThread();
         whenIGetAnExecutorInThatLooperThread();
@@ -56,58 +54,35 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
     }
 
     private void andALooperThread() {
-        handlerThread = new HandlerThread(THREAD_NAME);
+        HandlerThread handlerThread = new HandlerThread(THREAD_NAME);
         handlerThread.start();
         notMainLooper = handlerThread.getLooper();
     }
 
-    private void whenIGetAnExecutorInThatLooperThread() {
-        resetLock();
+    private void whenIGetAnExecutorInThatLooperThread() throws InterruptedException {
+        final CountDownLatch latch = new CountDownLatch(1);
         Runnable taskToGetExecutorInLooperThread = new Runnable() { public void run() {
                 looperExecutor = canDiscoverExecutor.executor();
-                releaseLock();
+            latch.countDown();
             }
         };
 
         Handler handler = new Handler(notMainLooper);
         handler.post(taskToGetExecutorInLooperThread);
-        waitForLockToRelease();
+        latch.await();
     }
 
 
-    private void andPostAJobToThatExecutor() {
-        resetLock();
+    private void andPostAJobToThatExecutor() throws InterruptedException {
+        final CountDownLatch latch = new CountDownLatch(1);
         looperExecutor.execute(new Runnable() {
             @Override
             public void run() {
                  threadCalledOn = Thread.currentThread().getName();
-                releaseLock();
+                latch.countDown();
             }
         });
-        waitForLockToRelease();
-    }
-
-    private void resetLock() {
-        notCompleted = true;
-    }
-
-    private void releaseLock() {
-        synchronized (lock) {
-            notCompleted = false;
-            lock.notifyAll();
-        }
-    }
-
-    private void waitForLockToRelease() {
-        synchronized (lock) {
-            try {
-                while(notCompleted) {
-                    lock.wait();
-                }
-            } catch (InterruptedException ignored) {
-                throw new RuntimeException(ignored);
-            }
-        }
+        latch.await();
     }
 
     private void assertTheThreadUsedForExecutionIsTheLooperThread() {
