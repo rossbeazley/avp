@@ -8,15 +8,15 @@ import java.util.concurrent.Executor;
 
 public class ExecutorEventBus implements EventBus {
 
-    private final CanDiscoverExecutor canDiscoverExecutor;
+    private final CanBuildExecutor canBuildExecutor;
     private EventSubscriptions eventSubscriptions = new EventSubscriptions();
 
     public ExecutorEventBus() {
-        canDiscoverExecutor = CanDiscoverExecutor.DEFAULT;
+        canBuildExecutor = CanBuildExecutor.DEFAULT;
     }
 
-    public ExecutorEventBus(CanDiscoverExecutor canDiscoverExecutor) {
-        this.canDiscoverExecutor = canDiscoverExecutor;
+    public ExecutorEventBus(CanBuildExecutor canBuildExecutor) {
+        this.canBuildExecutor = canBuildExecutor;
     }
 
 
@@ -33,7 +33,7 @@ public class ExecutorEventBus implements EventBus {
 
     @Override
     public EventSubscription whenEvent(Object event) {
-        Executor executor = canDiscoverExecutor.executor();
+        Executor executor = canBuildExecutor.executor();
         return eventSubscriptions.addSubscriberForEvent(event, new ExecutorEventSubscription(executor));
     }
 

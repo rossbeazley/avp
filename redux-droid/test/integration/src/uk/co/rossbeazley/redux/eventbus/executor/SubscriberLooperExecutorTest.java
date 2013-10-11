@@ -20,7 +20,7 @@ public class SubscriberLooperExecutorTest {
     Looper discoveredLooper = null;
     Looper notMainLooper = null;
     boolean registered = false;
-    private CanDiscoverExecutor looperExecutor;
+    private CanBuildExecutor looperExecutor;
     private HandlerThread handlerThread;
 
     @Test
@@ -34,8 +34,8 @@ public class SubscriberLooperExecutorTest {
 
 
 
-    private CanDiscoverExecutor givenAnExecutor() {
-        return new CanDiscoverExecutor() { public Executor executor() {
+    private CanBuildExecutor givenAnExecutor() {
+        return new CanBuildExecutor() { public Executor executor() {
                 discoveredLooper = Looper.myLooper();
                 return null;
             }

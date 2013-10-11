@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.redux.eventbus.EventBus;
 import uk.co.rossbeazley.redux.eventbus.Function;
-import uk.co.rossbeazley.redux.eventbus.executor.CanDiscoverExecutor;
+import uk.co.rossbeazley.redux.eventbus.executor.CanBuildExecutor;
 import uk.co.rossbeazley.redux.eventbus.executor.ExecutorEventBus;
 
 import java.util.concurrent.Executor;
@@ -48,7 +48,7 @@ public class EventBusAnnouncementWithoutPayload implements Function, Executor {
 
     private EventBus createExecutorEventBus() {
         return new ExecutorEventBus(
-                new CanDiscoverExecutor() {
+                new CanBuildExecutor() {
                     @Override
                     public Executor executor() {
                         return EventBusAnnouncementWithoutPayload.this;

@@ -11,12 +11,11 @@ import java.util.concurrent.Executor;
 public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
 
     public static final String THREAD_NAME = "test thread";
+    private String threadCalledOn = "WRONG THREAD";
 
     Looper notMainLooper = null;
-    private CanDiscoverExecutor canDiscoverExecutor;
+    private CanBuildExecutor canBuildExecutor;
     private Executor looperExecutor;
-
-    private String threadCalledOn = "WRONG THREAD";
 
 
     public void testLooperCanBeDiscoveredByLooperExecutor() throws InterruptedException {
@@ -27,9 +26,8 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
         assertTheThreadUsedForExecutionIsTheLooperThread();
     }
 
-
     private void givenAnExecutor() {
-        canDiscoverExecutor = new LooperExecutorFactory();
+        canBuildExecutor = new LooperExecutorFactory();
     }
 
     private void andALooperThread() {
@@ -41,7 +39,7 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
     private void whenIGetAnExecutorInThatLooperThread() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
         Runnable taskToGetExecutorInLooperThread = new Runnable() { public void run() {
-                looperExecutor = canDiscoverExecutor.executor();
+                looperExecutor = canBuildExecutor.executor();
             latch.countDown();
             }
         };
@@ -68,21 +66,4 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
         assertEquals(THREAD_NAME, threadCalledOn);
     }
 
-    private static class LooperExecutorFactory implements CanDiscoverExecutor {
-        public Executor executor() {
-            Executor result = createLooperExecutor();
-            return result;
-        }
-
-        private Executor createLooperExecutor() {
-            return new Executor() {
-                Looper looper = Looper.myLooper();
-                Handler handler = new Handler(looper);
-
-                public void execute(Runnable runnable) {
-                    handler.post(runnable);
-                }
-            };
-        }
-    }
 }

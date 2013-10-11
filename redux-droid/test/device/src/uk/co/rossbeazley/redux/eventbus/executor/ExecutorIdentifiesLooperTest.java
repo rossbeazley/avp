@@ -12,7 +12,7 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
     Looper discoveredLooper = null;
     Looper notMainLooper = null;
     boolean registered = false;
-    private CanDiscoverExecutor looperExecutor;
+    private CanBuildExecutor looperExecutor;
     private HandlerThread handlerThread;
 
     private final Object lock = new Object();
@@ -26,7 +26,7 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
     }
 
     private void givenAnExecutor() {
-        looperExecutor =  new CanDiscoverExecutor() {
+        looperExecutor =  new CanBuildExecutor() {
             public Executor executor() {
                 discoveredLooper = Looper.myLooper();
                 return null;

@@ -2,10 +2,10 @@ package uk.co.rossbeazley.redux.eventbus.executor;
 
 import java.util.concurrent.Executor;
 
-public interface CanDiscoverExecutor {
+public interface CanBuildExecutor {
     Executor executor();
 
-    CanDiscoverExecutor DEFAULT = new CanDiscoverExecutor() {
+    CanBuildExecutor DEFAULT = new CanBuildExecutor() {
         public Executor executor() {
             return new Executor() {
                 public void execute(Runnable runnable) {
