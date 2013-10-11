@@ -26,7 +26,7 @@ public class ProductionApplicationServices extends Application implements ReduxA
         registerActivityLifecycleCallbacks(new ActivityWiringAspect(this));
 
 
-        createApplicationServices();
+        createApplicationSecondaryThread();
     }
 
     private void createApplicationServices() {
@@ -42,6 +42,7 @@ public class ProductionApplicationServices extends Application implements ReduxA
         handler.post(new Runnable() {
             public void run() {
                 //construct application core
+                createApplicationServices();
             }
         });
     }
@@ -57,7 +58,7 @@ public class ProductionApplicationServices extends Application implements ReduxA
     @Override
     public IntentToEventDispatcher getIntentParser() {
          if(intentParser==null) {
-             intentParser = new IntentToEventDispatcher(bus);
+             intentParser = new IntentToEventDispatcher(getBus());
          }
 
         return intentParser;
