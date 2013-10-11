@@ -29,28 +29,7 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
 
 
     private void givenAnExecutor() {
-        canDiscoverExecutor = createExecutorThatFindsThreadLoopers();
-    }
-
-    //fake it, then make it
-    private CanDiscoverExecutor createExecutorThatFindsThreadLoopers() {
-        return new CanDiscoverExecutor() {
-            public Executor executor() {
-                Executor result = createLooperExecutor();
-                return result;
-            }
-
-            private Executor createLooperExecutor() {
-                return new Executor() {
-                    Looper looper = Looper.myLooper();
-                    Handler handler = new Handler(looper);
-
-                    public void execute(Runnable runnable) {
-                        handler.post(runnable);
-                    }
-                };
-            }
-        };
+        canDiscoverExecutor = new LooperExecutorFactory();
     }
 
     private void andALooperThread() {
@@ -87,5 +66,23 @@ public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
 
     private void assertTheThreadUsedForExecutionIsTheLooperThread() {
         assertEquals(THREAD_NAME, threadCalledOn);
+    }
+
+    private static class LooperExecutorFactory implements CanDiscoverExecutor {
+        public Executor executor() {
+            Executor result = createLooperExecutor();
+            return result;
+        }
+
+        private Executor createLooperExecutor() {
+            return new Executor() {
+                Looper looper = Looper.myLooper();
+                Handler handler = new Handler(looper);
+
+                public void execute(Runnable runnable) {
+                    handler.post(runnable);
+                }
+            };
+        }
     }
 }
