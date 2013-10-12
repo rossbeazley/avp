@@ -1,30 +1,33 @@
 package uk.co.rossbeazley.redux.android.application;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import uk.co.rossbeazley.redux.android.ReduxApplicationServices;
 import uk.co.rossbeazley.redux.android.activity.WireableActivity;
-import uk.co.rossbeazley.redux.android.activity.WireableMain;
+import uk.co.rossbeazley.redux.android.log.Logger;
 import uk.co.rossbeazley.redux.android.navigation.FragmentTransactionNavigationController;
 import uk.co.rossbeazley.redux.android.navigation.NavigationController;
 import uk.co.rossbeazley.redux.eventbus.EventBus;
 import uk.co.rossbeazley.redux.eventbus.Function;
 
-public class ActivityWiringAspect implements Application.ActivityLifecycleCallbacks {
+public class ActivityWiringAspect extends EmptyActivityLifecycleCallbacks {
 
     private final ReduxApplicationServices reduxApplicationServices;
     private ActivityWirer activityWirer;
+    private Logger logger;
 
-    ActivityWiringAspect(ReduxApplicationServices reduxApplicationServices) {
+    ActivityWiringAspect(ReduxApplicationServices reduxApplicationServices, Logger logger) {
         this.reduxApplicationServices = reduxApplicationServices;
+        this.logger = logger;
         activityWirer = new ActivityWirer(reduxApplicationServices);
+
     }
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        reduxApplicationServices.getLogger().debug("Wiring " + activity.getLocalClassName());
+
+        logger.debug("Wiring " + activity.getLocalClassName());
         if(activity instanceof WireableActivity) {
             ((WireableActivity)activity).wire(activityWirer);
         }
@@ -51,29 +54,4 @@ public class ActivityWiringAspect implements Application.ActivityLifecycleCallba
                 });
     }
 
-    public void onActivityStarted(Activity activity) {}
-    public void onActivityResumed(Activity activity) {}
-    public void onActivityPaused(Activity activity) {}
-    public void onActivityStopped(Activity activity) {}
-    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
-    public void onActivityDestroyed(Activity activity) {}
-
-    public static class ActivityWirer {
-
-        private final ReduxApplicationServices reduxApplicationServices;
-
-        public ActivityWirer(ReduxApplicationServices reduxApplicationServices) {
-            this.reduxApplicationServices = reduxApplicationServices;
-        }
-
-        public void wire(WireableMain activity) {
-            EventBus bus = reduxApplicationServices.getBus();
-            activity.setEventBus(bus);
-
-            activity.setIntentParser(reduxApplicationServices.getIntentParser());
-
-            activity.setLogger(reduxApplicationServices.getLogger());
-        }
-
-    }
 }

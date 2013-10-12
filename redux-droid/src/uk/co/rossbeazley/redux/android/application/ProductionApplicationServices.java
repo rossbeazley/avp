@@ -11,6 +11,8 @@ import uk.co.rossbeazley.redux.android.videoplayer.AndroidMediaPlayerVideoPrepar
 import uk.co.rossbeazley.redux.android.videoplayer.VideoPreparer;
 import uk.co.rossbeazley.redux.android.videoplayer.VideoPreparerEventDispatcher;
 import uk.co.rossbeazley.redux.eventbus.EventBus;
+import uk.co.rossbeazley.redux.eventbus.executor.ExecutorEventBus;
+import uk.co.rossbeazley.redux.eventbus.executor.LooperExecutorFactory;
 
 public class ProductionApplicationServices extends Application implements ReduxApplicationServices {
 
@@ -23,34 +25,38 @@ public class ProductionApplicationServices extends Application implements ReduxA
     public void onCreate() {
         super.onCreate();
 
-        registerActivityLifecycleCallbacks(new ActivityWiringAspect(this));
-
-
-        createApplicationSecondaryThread();
+        registerActivityLifecycleCallbacks(new ActivityWiringAspect(this, logger));
+        createApplicationInSecondaryThread();
     }
 
-    private void createApplicationServices() {
+    private void createApplicationInSecondaryThread() {
+
+        HandlerThread thread = new HandlerThread("NONE_UI_THREAD") {
+            {
+                Handler handler = new Handler(getLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+
+                        createApplication();
+                    }
+                });
+            }
+        };
+        thread.start();
+
+    }
+
+    private void createApplication() {
         VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
         VideoPreparerEventDispatcher videoPreparerEventDispatcher = new VideoPreparerEventDispatcher(getBus(), videoPreparer);
-    }
 
-    private void createApplicationSecondaryThread() {
 
-        HandlerThread thread = new HandlerThread("NONE_UI_THREAD");
-        thread.start();
-        Handler handler = new Handler(thread.getLooper());
-        handler.post(new Runnable() {
-            public void run() {
-                //construct application core
-                createApplicationServices();
-            }
-        });
     }
 
     @Override
     public EventBus getBus() {
         if(bus==null) {
-            bus = uk.co.rossbeazley.redux.eventbus.EventBusFactory.createEventBus();
+            bus = new ExecutorEventBus(new LooperExecutorFactory() );
         }
         return bus;
     }

@@ -1,7 +1,7 @@
 package uk.co.rossbeazley.redux.android.activity;
 
-import uk.co.rossbeazley.redux.android.application.ActivityWiringAspect;
+import uk.co.rossbeazley.redux.android.application.ActivityWirer;
 
 public interface WireableActivity {
-    void wire(ActivityWiringAspect.ActivityWirer activityWirer);
+    void wire(ActivityWirer activityWirer);
 }

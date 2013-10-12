@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import uk.co.rossbeazley.redux.android.application.ActivityWiringAspect;
+import uk.co.rossbeazley.redux.android.application.ActivityWirer;
 import uk.co.rossbeazley.redux.android.log.Logger;
 import uk.co.rossbeazley.redux.android.ui.videoplayer.VideoPlayerFragment;
 import uk.co.rossbeazley.redux.android.ui.videoplayer.VideoPlayerFragmentScreenFactory;
@@ -60,7 +60,7 @@ public class Main extends Activity implements WireableMain {
 
 
     @Override
-    public void wire(ActivityWiringAspect.ActivityWirer activityWirer) {
+    public void wire(ActivityWirer activityWirer) {
         activityWirer.wire(this);
     }
 
