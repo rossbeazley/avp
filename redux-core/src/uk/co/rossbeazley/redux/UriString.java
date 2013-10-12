@@ -13,4 +13,8 @@ public class UriString {
     public UriString(String uri) {
         this.uri = uri;
     }
+
+    public static UriString from(String url) {
+        return new UriString(url);
+    }
 }

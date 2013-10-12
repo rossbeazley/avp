@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.redux.android.mediaplayer;
 
+import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayer;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rdlb

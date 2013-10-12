@@ -3,6 +3,8 @@ package uk.co.rossbeazley.redux.android.mediaplayer;
 import android.content.Context;
 import android.net.Uri;
 import uk.co.rossbeazley.redux.UriString;
+import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayer;
+import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayerFactory;
 
 import java.io.IOException;
 

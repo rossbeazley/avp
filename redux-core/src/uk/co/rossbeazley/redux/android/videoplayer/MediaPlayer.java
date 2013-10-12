@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.redux.android.mediaplayer;
+package uk.co.rossbeazley.redux.android.videoplayer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,4 +8,5 @@ package uk.co.rossbeazley.redux.android.mediaplayer;
  * To change this template use File | Settings | File Templates.
  */
 public interface MediaPlayer {
+    void prepareAsync();
 }

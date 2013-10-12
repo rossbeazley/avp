@@ -5,14 +5,10 @@ import uk.co.rossbeazley.redux.UriString;
 /**
  * Created with IntelliJ IDEA.
  * User: rdlb
- * Date: 22/09/13
- * Time: 21:59
+ * Date: 25/09/13
+ * Time: 21:18
  * To change this template use File | Settings | File Templates.
  */
-public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
-
-    @Override
-    public void loadVideoUrl(UriString url) {
-
-    }
+public interface MediaPlayerFactory {
+    MediaPlayer createMediaPlayerForUri(UriString uri);
 }
