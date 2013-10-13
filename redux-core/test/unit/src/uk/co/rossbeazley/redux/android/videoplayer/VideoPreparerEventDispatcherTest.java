@@ -33,4 +33,8 @@ public class VideoPreparerEventDispatcherTest implements VideoPreparer {
     public void playVideoUrl(UriString url) {
         urlLoaded = url;
     }
+
+    @Override
+    public void addVideoLoadedListener(VideoLoadedListener videoLoadedListener) {
+    }
 }

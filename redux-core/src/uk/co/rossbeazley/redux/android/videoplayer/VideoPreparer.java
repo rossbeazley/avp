@@ -11,4 +11,6 @@ import uk.co.rossbeazley.redux.UriString;
  */
 public interface VideoPreparer {
     void playVideoUrl(UriString url);
+
+    void addVideoLoadedListener(VideoLoadedListener videoLoadedListener);
 }

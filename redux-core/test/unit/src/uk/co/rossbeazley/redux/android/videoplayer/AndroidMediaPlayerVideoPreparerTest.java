@@ -44,4 +44,9 @@ public class AndroidMediaPlayerVideoPreparerTest implements MediaPlayer {
     @Override
     public void start() {
     }
+
+    @Override
+    public VideoView videoView() {
+        return null;
+    }
 }

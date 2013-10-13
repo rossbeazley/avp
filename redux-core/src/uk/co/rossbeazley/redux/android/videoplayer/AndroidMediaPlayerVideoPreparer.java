@@ -2,6 +2,12 @@ package uk.co.rossbeazley.redux.android.videoplayer;
 
 import uk.co.rossbeazley.redux.UriString;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static uk.co.rossbeazley.redux.android.videoplayer.MediaPlayer.PreparedState;
+import static uk.co.rossbeazley.redux.android.videoplayer.MediaPlayer.StateChangeListener;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rdlb
@@ -14,11 +20,13 @@ public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
     private final MediaPlayerFactory mpFactory;
     private final MediaPlayerStateChangeListener stateChangeListener;
     private MediaPlayer mediaplayer;
+    private Collection<VideoLoadedListener> videoLoadedListeners;
 
     public AndroidMediaPlayerVideoPreparer(MediaPlayerFactory mpFactory) {
 
         this.mpFactory = mpFactory;
         stateChangeListener = new MediaPlayerStateChangeListener();
+        videoLoadedListeners = new ArrayList<VideoLoadedListener>(1);
     }
 
     @Override
@@ -28,15 +36,26 @@ public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
         mediaplayer.prepareAsync();
     }
 
+    @Override
+    public void addVideoLoadedListener(VideoLoadedListener videoLoadedListener) {
+        videoLoadedListeners.add(videoLoadedListener);
+    }
+
+    private void notifyVideoLoaded() {
+        VideoView videoView = mediaplayer.videoView();
+        for(VideoLoadedListener videoLoadedListener : videoLoadedListeners) videoLoadedListener.videoLoaded(videoView);
+    }
+
     private void startPlayBack() {
         mediaplayer.start();
     }
 
 
+    private class MediaPlayerStateChangeListener implements StateChangeListener {
 
-    private class MediaPlayerStateChangeListener implements MediaPlayer.StateChangeListener {
         @Override
-        public void state(MediaPlayer.PreparedState prepared) {
+        public void state(PreparedState prepared) {
+            notifyVideoLoaded();
             startPlayBack();
         }
 

@@ -17,6 +17,8 @@ public interface MediaPlayer {
 
     void start();
 
+    VideoView videoView();
+
     public interface StateChangeListener {
         void state(PreparedState prepared);
     }

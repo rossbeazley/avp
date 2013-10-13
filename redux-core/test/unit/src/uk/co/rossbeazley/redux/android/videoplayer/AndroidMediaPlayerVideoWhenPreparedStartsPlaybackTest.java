@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class AndroidMediaPlayerVideoPreparedStartsTest implements MediaPlayer {
+public class AndroidMediaPlayerVideoWhenPreparedStartsPlaybackTest implements MediaPlayer {
 
 
     public static final String STARTED = "STARTED";
@@ -32,7 +32,7 @@ public class AndroidMediaPlayerVideoPreparedStartsTest implements MediaPlayer {
         return new MediaPlayerFactory() {
             @Override
             public MediaPlayer createMediaPlayerForUri(UriString uri) {
-                return AndroidMediaPlayerVideoPreparedStartsTest.this;
+                return AndroidMediaPlayerVideoWhenPreparedStartsPlaybackTest.this;
             }
         };
     }
@@ -61,5 +61,10 @@ public class AndroidMediaPlayerVideoPreparedStartsTest implements MediaPlayer {
     @Override
     public void start() {
         this.state = STARTED;
+    }
+
+    @Override
+    public VideoView videoView() {
+        return null;
     }
 }
