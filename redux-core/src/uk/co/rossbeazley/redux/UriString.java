@@ -17,4 +17,9 @@ public class UriString {
     public static UriString from(String url) {
         return new UriString(url);
     }
+
+    @Override
+    public String toString() {
+        return uri;
+    }
 }

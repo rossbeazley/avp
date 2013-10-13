@@ -17,7 +17,7 @@ public class VideoPreparerEventDispatcher {
         bus.whenEvent("load_video").thenRun(new FunctionWithParameter<UriString>() {
             @Override
             public void invoke(UriString object) {
-                videoPreparer.loadVideoUrl(object);
+                videoPreparer.playVideoUrl(object);
             }
         });
     }

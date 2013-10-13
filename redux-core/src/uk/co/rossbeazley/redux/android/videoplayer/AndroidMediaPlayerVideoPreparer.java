@@ -19,7 +19,8 @@ public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
     }
 
     @Override
-    public void loadVideoUrl(UriString url) {
-
+    public void playVideoUrl(UriString url) {
+        MediaPlayer mediaplayer = mpFactory.createMediaPlayerForUri(url);
+        mediaplayer.prepareAsync();
     }
 }

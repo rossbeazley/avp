@@ -14,6 +14,10 @@ import static org.junit.Assert.assertThat;
 
 public class EventBusAnnouncementUsingExecutor implements Executor {
 
+    public static final Function NO_OP = new Function() {
+        public void invoke() { }
+    };
+
     private boolean executedByExecutor;
 
     @Before
@@ -23,16 +27,16 @@ public class EventBusAnnouncementUsingExecutor implements Executor {
 
     @Test
     public void aSubscriberToAnEventIsNotifiedOnAnExecutorsThread() {
-        String AN_EVENT = "event";
-        EventBus bus = anEventBusSubscribedToEvent(AN_EVENT);
-        bus.announce(AN_EVENT);
+        String ANY_EVENT = "event";
+        EventBus bus = anEventBusSubscribedToEvent(ANY_EVENT);
+        bus.announce(ANY_EVENT);
         assertThat(executedByExecutor,is(true));
     }
 
     private EventBus anEventBusSubscribedToEvent(String AN_EVENT) {
         EventBus bus = createExecutorEventBus();
         bus.whenEvent(AN_EVENT)
-           .thenRun(Function.NOOP);
+           .thenRun(NO_OP);
         return bus;
     }
 

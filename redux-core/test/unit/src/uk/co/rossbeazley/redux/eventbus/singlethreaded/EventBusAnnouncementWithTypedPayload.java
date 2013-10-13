@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.redux.eventbus.EventBus;
 import uk.co.rossbeazley.redux.eventbus.FunctionWithParameter;
+import uk.co.rossbeazley.redux.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -33,7 +34,7 @@ public class EventBusAnnouncementWithTypedPayload implements FunctionWithParamet
     }
 
     private EventBus anEventBusSubscribedToPayloadEvent(String AN_EVENT) {
-        EventBus bus = uk.co.rossbeazley.redux.eventbus.EventBusFactory.createEventBus();
+        EventBus bus = new ExecutorEventBus();
         bus.whenEvent(AN_EVENT)
            .thenRun(this);
         return bus;

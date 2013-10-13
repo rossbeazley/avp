@@ -16,14 +16,14 @@ public class AndroidMediaPlayerVideoPreparerTest implements MediaPlayer {
 
     @Test
     public void createsANewMediaPlayerAndPreparesAsync() throws Exception {
-        MediaPlayerFactory mpFactory = createStubMPFactory();
+        MediaPlayerFactory mpFactory = createFakeMPFactory();
 
         AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(mpFactory);
-        videoPreparer.loadVideoUrl(ANY_URL);
+        videoPreparer.playVideoUrl(ANY_URL);
         assertThat(status, is(status_prepared));
     }
 
-    private MediaPlayerFactory createStubMPFactory() {
+    private MediaPlayerFactory createFakeMPFactory() {
         return new MediaPlayerFactory() {
             @Override
             public MediaPlayer createMediaPlayerForUri(UriString uri) {

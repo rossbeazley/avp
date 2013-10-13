@@ -10,5 +10,5 @@ import uk.co.rossbeazley.redux.UriString;
  * To change this template use File | Settings | File Templates.
  */
 public interface VideoPreparer {
-    void loadVideoUrl(UriString url);
+    void playVideoUrl(UriString url);
 }
