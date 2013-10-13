@@ -9,4 +9,17 @@ package uk.co.rossbeazley.redux.android.videoplayer;
  */
 public interface MediaPlayer {
     void prepareAsync();
+
+    void addStateChangeListener(StateChangeListener stateChangeListener);
+
+
+    final PreparedState PREPARED = new PreparedState();
+
+    void start();
+
+    public interface StateChangeListener {
+        void state(PreparedState prepared);
+    }
+
+    public static class PreparedState { }
 }

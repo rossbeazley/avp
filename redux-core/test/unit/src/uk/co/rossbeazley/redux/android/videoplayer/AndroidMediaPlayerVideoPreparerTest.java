@@ -36,4 +36,12 @@ public class AndroidMediaPlayerVideoPreparerTest implements MediaPlayer {
     public void prepareAsync() {
         this.status = status_prepared;
     }
+
+    @Override
+    public void addStateChangeListener(StateChangeListener stateChangeListener) {
+    }
+
+    @Override
+    public void start() {
+    }
 }
