@@ -9,4 +9,5 @@ package uk.co.rossbeazley.redux;
  */
 public class Events {
     public static final String LOAD_VIDEO = "load_video";
+    public static final String VIDEO_LOADED = "video_loaded";
 }
