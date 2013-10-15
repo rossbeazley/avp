@@ -4,7 +4,9 @@ import android.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.util.ActivityController;
 import uk.co.rossbeazley.redux.android.ActivityForTestingViews;
 import uk.co.rossbeazley.redux.android.R;
 import uk.co.rossbeazley.redux.android.ui.videoplayer.AndroidVideoScreen;
@@ -23,10 +25,12 @@ public class ScreenShowPlayPauseTest {
     @Test
     public void showPlay() {
         videoScreen.showPlay();
-        playButton = getViewById(R.id.play).getVisibility();
+        View viewById = getViewById(R.id.play);
+        playButton = viewById.getVisibility();
         pauseButton = getViewById(R.id.pause).getVisibility();
         assertThat(playButton, is(View.VISIBLE));
         assertThat(pauseButton, is(not(View.VISIBLE)));
+        Robolectric.clickOn(viewById);
     }
 
 
@@ -42,7 +46,7 @@ public class ScreenShowPlayPauseTest {
 
     @Before
     public void setUp() throws Exception {
-        activity = new ActivityForTestingViews();
+        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
         videoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
         videoScreen.bind();
     }

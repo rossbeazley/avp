@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.util.ActivityController;
 import uk.co.rossbeazley.redux.android.ActivityForTestingViews;
 import uk.co.rossbeazley.redux.android.R;
 import uk.co.rossbeazley.redux.android.ui.videoplayer.AndroidVideoScreen;
@@ -28,7 +29,7 @@ public class ScreenPlayTest implements CanListenForUserPlayEvents {
 
     @Before
     public void setUp() throws Exception {
-        activity = new ActivityForTestingViews();
+        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
         AndroidVideoScreen lvideoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPlayEventListener(this);
         videoScreen=lvideoScreen;

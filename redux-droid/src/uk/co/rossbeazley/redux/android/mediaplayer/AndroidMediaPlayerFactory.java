@@ -8,13 +8,6 @@ import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayerFactory;
 
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rdlb
- * Date: 25/09/13
- * Time: 21:02
- * To change this template use File | Settings | File Templates.
- */
 public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
 
     private Context applicationContext;
@@ -26,13 +19,14 @@ public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
     @Override
     public MediaPlayer createMediaPlayerForUri(UriString uri) {
 
-        AndroidMediaPlayer androidMediaPlayer = new AndroidMediaPlayer();
+        android.media.MediaPlayer mediaPlayer = new android.media.MediaPlayer();
+        AndroidMediaPlayerAdapter androidMediaPlayerAdapter = new AndroidMediaPlayerAdapter(mediaPlayer);
         try {
-            androidMediaPlayer.setDataSource(applicationContext, Uri.parse(uri.uri));
+            androidMediaPlayerAdapter.setDataSource(applicationContext, Uri.parse(uri.uri));
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            return null;
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return androidMediaPlayer;
+        return androidMediaPlayerAdapter;
     }
 }

@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
+
 public class ScreenAttachVideoTest implements CanFindViewById {
 
     private ViewGroup viewGroupAttachedTo = new ViewGroup(Robolectric.application ) {

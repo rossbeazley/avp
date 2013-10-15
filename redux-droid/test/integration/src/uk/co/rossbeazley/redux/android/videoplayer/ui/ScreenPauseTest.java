@@ -1,10 +1,12 @@
 package uk.co.rossbeazley.redux.android.videoplayer.ui;
 
+import android.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.util.ActivityController;
 import uk.co.rossbeazley.redux.android.ActivityForTestingViews;
 import uk.co.rossbeazley.redux.android.R;
 import uk.co.rossbeazley.redux.android.ui.videoplayer.AndroidVideoScreen;
@@ -32,11 +34,15 @@ public class ScreenPauseTest implements CanListenForUserPauseEvents {
 
     @Before
     public void setUp() throws Exception {
-        activity = new ActivityForTestingViews();
+        activity = createVisibleActivity();
         AndroidVideoScreen lvideoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPauseEventListener((CanListenForUserPauseEvents)this);
         videoScreen = lvideoScreen;
         videoScreen.bind();
+    }
+
+    private ActivityForTestingViews createVisibleActivity() {
+        return Robolectric.buildActivity(ActivityForTestingViews.class).create().visible().get();
     }
 
     private VideoScreen videoScreen;
@@ -53,6 +59,7 @@ public class ScreenPauseTest implements CanListenForUserPauseEvents {
     }
 
     private void clickOnID(int id) {
-        Robolectric.clickOn(activity.findViewById(id));
+        View viewToClick = activity.findViewById(id);
+        Robolectric.clickOn(viewToClick);
     }
 }

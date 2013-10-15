@@ -77,7 +77,7 @@ public class ScreenShowVideoRenderSurfaceViewTest {
         surfaceDestroyed = NOT_CALLED;
         surfaceChanged = NOT_CALLED;
 
-        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().get();
+        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
         videoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
         videoScreen.bind();
         viewGroup = (ViewGroup) activity.findViewById(R.id.videocontainer);
