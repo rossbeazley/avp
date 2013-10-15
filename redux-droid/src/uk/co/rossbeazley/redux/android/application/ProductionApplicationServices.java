@@ -7,6 +7,7 @@ import uk.co.rossbeazley.redux.android.ReduxApplicationServices;
 import uk.co.rossbeazley.redux.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.redux.android.log.AndroidLogger;
 import uk.co.rossbeazley.redux.android.log.Logger;
+import uk.co.rossbeazley.redux.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.redux.android.videoplayer.AndroidMediaPlayerVideoPreparer;
 import uk.co.rossbeazley.redux.android.videoplayer.VideoPreparer;
 import uk.co.rossbeazley.redux.android.videoplayer.VideoPreparerEventDispatcher;
@@ -47,7 +48,8 @@ public class ProductionApplicationServices extends Application implements ReduxA
     }
 
     private void createApplication() {
-        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
+        AndroidMediaPlayerFactory mpFactory = new AndroidMediaPlayerFactory(this);
+        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(mpFactory);
         VideoPreparerEventDispatcher videoPreparerEventDispatcher = new VideoPreparerEventDispatcher(getBus(), videoPreparer);
 
 
