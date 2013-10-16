@@ -6,8 +6,6 @@ import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.videoplayer.MediaPlayer;
 import uk.co.rossbeazley.avp.android.videoplayer.MediaPlayerFactory;
 
-import java.io.IOException;
-
 public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
 
     private Context applicationContext;
@@ -18,15 +16,8 @@ public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
 
     @Override
     public MediaPlayer createMediaPlayerForUri(UriString uri) {
-
-        android.media.MediaPlayer mediaPlayer = new android.media.MediaPlayer();
+        android.media.MediaPlayer mediaPlayer = android.media.MediaPlayer.create(applicationContext, Uri.parse(uri.uri));
         AndroidMediaPlayerAdapter androidMediaPlayerAdapter = new AndroidMediaPlayerAdapter(mediaPlayer);
-        try {
-            androidMediaPlayerAdapter.setDataSource(applicationContext, Uri.parse(uri.uri));
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
         return androidMediaPlayerAdapter;
     }
 }
