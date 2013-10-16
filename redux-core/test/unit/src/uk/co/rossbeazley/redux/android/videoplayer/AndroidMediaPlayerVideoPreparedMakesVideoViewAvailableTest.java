@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-
+//TODO move view creation to android module and maybe respond to prepared event
 public class AndroidMediaPlayerVideoPreparedMakesVideoViewAvailableTest implements MediaPlayerFactory {
 
     private VideoView videoView;
