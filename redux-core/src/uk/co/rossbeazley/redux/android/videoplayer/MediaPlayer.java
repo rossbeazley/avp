@@ -6,12 +6,11 @@ public interface MediaPlayer {
 
     void addStateChangeListener(StateChangeListener stateChangeListener);
 
-
-    final PreparedState PREPARED = new PreparedState();
-
     void start();
 
     VideoView videoView();
+
+    final PreparedState PREPARED = new PreparedState();
 
     public interface StateChangeListener {
         void state(PreparedState prepared);
