@@ -22,7 +22,7 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
     }
 
     @Override
-    public VideoView videoView() {
+    public VideoView createVideoView() {
         return null;
     }
 

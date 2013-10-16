@@ -42,7 +42,7 @@ public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
     }
 
     private void notifyVideoLoaded() {
-        VideoView videoView = mediaplayer.videoView();
+        VideoView videoView = mediaplayer.createVideoView();
         for(VideoLoadedListener videoLoadedListener : videoLoadedListeners) videoLoadedListener.videoLoaded(videoView);
     }
 
