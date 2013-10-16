@@ -22,11 +22,6 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
 
     }
 
-    @Override
-    public VideoView createVideoView(MediaPlayerViewFactory mediaPlayer) {
-        return null;
-    }
-
     public void setDataSource(Context context, Uri uri) throws IOException, IllegalArgumentException, SecurityException, IllegalStateException {
         mediaPlayer.setDataSource(context, uri);
     }

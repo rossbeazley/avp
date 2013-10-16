@@ -5,6 +5,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.test.AndroidTestCase;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
 public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
@@ -17,11 +18,10 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
 
     private final Object lock = new Object();
 
-    public void testLooperCanBeDiscoveredByLooperExecutor() {
+    public void testLooperCanBeDiscoveredByLooperExecutor() throws InterruptedException {
         givenAnExecutor();
         andALooperThread();
         whenTheExecutorIsCalledWithinTheLooper();
-        waitForLockToRelease();
         assertTheLooperIdentifiedByTheExecutorIsTheSameOne();
     }
 
@@ -40,32 +40,21 @@ public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
         notMainLooper = handlerThread.getLooper();
     }
 
-    private void whenTheExecutorIsCalledWithinTheLooper() {
+    private void whenTheExecutorIsCalledWithinTheLooper() throws InterruptedException {
         Handler handler = new Handler(notMainLooper);
+
+        final CountDownLatch latch = new CountDownLatch(1);
+
         handler.post(new Runnable() {
             @Override
             public void run() {
                 registered = true;
                 looperExecutor.executor();
-                releaseLock();
-            }
-
-            private void releaseLock() {
-                synchronized (lock) {
-                    lock.notifyAll();
-                }
+                latch.countDown();
             }
         });
-    }
 
-    private void waitForLockToRelease() {
-        synchronized (lock) {
-            try {
-                lock.wait();
-            } catch (InterruptedException ignored) {
-                throw new RuntimeException(ignored);
-            }
-        }
+        latch.await();
     }
 
     private void assertTheLooperIdentifiedByTheExecutorIsTheSameOne() {
