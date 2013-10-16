@@ -3,6 +3,7 @@ package uk.co.rossbeazley.redux.android.mediaplayer;
 import android.content.Context;
 import android.net.Uri;
 import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayer;
+import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayerViewFactory;
 import uk.co.rossbeazley.redux.android.videoplayer.VideoView;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
     }
 
     @Override
-    public VideoView createVideoView() {
+    public VideoView createVideoView(MediaPlayerViewFactory mediaPlayer) {
         return null;
     }
 

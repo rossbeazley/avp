@@ -5,20 +5,9 @@ import java.util.Collection;
 
 class FakeMediaPlayer implements MediaPlayer {
 
-    private VideoView videoView;
-    private VideoView preparedVideoView;
-
     private Collection<StateChangeListener> stateChangeListeners = new ArrayList<StateChangeListener>();
 
-    public FakeMediaPlayer() {
-    }
-
-    private FakeMediaPlayer(VideoView videoView) {
-        this.videoView = videoView;
-    }
-
-    public static FakeMediaPlayer createFakeMediaPlayerThatReturnsVideoView(VideoView videoView) {
-        return new FakeMediaPlayer(videoView);
+    private FakeMediaPlayer() {
     }
 
     public static MediaPlayer createFakeMediaPlayer() {
@@ -30,7 +19,6 @@ class FakeMediaPlayer implements MediaPlayer {
     }
 
     private void changeStraightToPreparedState() {
-        preparedVideoView = videoView;
         for(StateChangeListener stateChangeListener : this.stateChangeListeners) {
             stateChangeListener.state(MediaPlayer.PREPARED);
         }
@@ -47,10 +35,6 @@ class FakeMediaPlayer implements MediaPlayer {
         // also, it shouldnt be called a createVideoView,
     }
 
-    @Override
-    public VideoView createVideoView() {
-        return this.preparedVideoView;
-    }
 
 
 }

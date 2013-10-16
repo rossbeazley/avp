@@ -15,7 +15,9 @@ public class AndroidMediaPlayerVideoPreparedMakesVideoViewAvailableTest implemen
 
     @Test
     public void whenMediaPlayerIsPreparedWeStartPlayback() {
-        AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(this);
+        MediaPlayerViewFactory mpViewFactory = new FakeMediaPlayerViewFactory(videoViewFromMP);
+
+        AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(this, mpViewFactory);
         videoPreparer.addVideoLoadedListener(new VideoLoadedListener() {
             @Override
             public void videoLoaded(VideoView view) {
@@ -30,6 +32,7 @@ public class AndroidMediaPlayerVideoPreparedMakesVideoViewAvailableTest implemen
 
     @Override
     public MediaPlayer createMediaPlayerForUri(UriString uri) {
-        return FakeMediaPlayer.createFakeMediaPlayerThatReturnsVideoView(videoViewFromMP);
+        return FakeMediaPlayer.createFakeMediaPlayer();
     }
+
 }

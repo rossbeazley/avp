@@ -12,6 +12,7 @@ public class AndroidMediaPlayerVideoWhenPreparedStartsPlaybackTest implements Me
 
     public static final String STARTED = "STARTED";
     public static final String NOT_STARTED = "NOT STARTED";
+    private static final VideoView UNUSED_VIEW = null;
 
     private String mediaPlayerPlaybackState = NOT_STARTED;
 
@@ -24,7 +25,7 @@ public class AndroidMediaPlayerVideoWhenPreparedStartsPlaybackTest implements Me
             }
         };
 
-        AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(this);
+        AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(this, new FakeMediaPlayerViewFactory(UNUSED_VIEW));
 
         videoPreparer.addVideoLoadedListener(new VideoLoadedListener() {
             @Override

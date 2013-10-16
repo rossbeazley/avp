@@ -8,8 +8,6 @@ public interface MediaPlayer {
 
     void start();
 
-    VideoView createVideoView();
-
     final PreparedState PREPARED = new PreparedState();
 
     public interface StateChangeListener {

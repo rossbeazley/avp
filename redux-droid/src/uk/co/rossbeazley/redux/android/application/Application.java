@@ -52,7 +52,7 @@ public class Application extends android.app.Application implements ReduxApplica
 
     protected void createApplication() {
         AndroidMediaPlayerFactory mpFactory = new AndroidMediaPlayerFactory(this);
-        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(mpFactory);
+        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(mpFactory, );
         VideoPreparerEventDispatcher videoPreparerEventDispatcher = new VideoPreparerEventDispatcher(getBus(), videoPreparer);
 
 

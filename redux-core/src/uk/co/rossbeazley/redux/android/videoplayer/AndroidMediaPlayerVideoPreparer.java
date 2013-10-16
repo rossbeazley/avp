@@ -18,15 +18,17 @@ import static uk.co.rossbeazley.redux.android.videoplayer.MediaPlayer.StateChang
 public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
 
     private final MediaPlayerFactory mpFactory;
+    private final MediaPlayerViewFactory mpViewFactory;
     private final MediaPlayerStateChangeListener stateChangeListener;
     private MediaPlayer mediaplayer;
     private Collection<VideoLoadedListener> videoLoadedListeners;
 
-    public AndroidMediaPlayerVideoPreparer(MediaPlayerFactory mpFactory) {
+    public AndroidMediaPlayerVideoPreparer(MediaPlayerFactory mpFactory, MediaPlayerViewFactory mpViewFactory) {
 
         this.mpFactory = mpFactory;
+        this.mpViewFactory = mpViewFactory;
         stateChangeListener = new MediaPlayerStateChangeListener();
-        videoLoadedListeners = new ArrayList<VideoLoadedListener>(1);
+        videoLoadedListeners = new ArrayList<VideoLoadedListener>();
     }
 
     @Override
@@ -42,7 +44,7 @@ public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
     }
 
     private void notifyVideoLoaded() {
-        VideoView videoView = mediaplayer.createVideoView();
+        VideoView videoView = mpViewFactory.createVideoView(mediaplayer);
         for(VideoLoadedListener videoLoadedListener : videoLoadedListeners) videoLoadedListener.videoLoaded(videoView);
     }
 
