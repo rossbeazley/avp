@@ -1,10 +1,11 @@
-package uk.co.rossbeazley.avp.android.player;
+package uk.co.rossbeazley.avp.android.player.preparer;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayerFactory;
+import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -21,9 +22,9 @@ public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
     @Test
     public void preparesMediaPlayerAndTellsEveryone() {
 
-        AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
+        AndroidMediaPlayerPreparer videoPreparer = new AndroidMediaPlayerPreparer();
 
-        videoPreparer.addPreparedListener(new VideoPreparer.PreparedListener() {
+        videoPreparer.addPreparedListener(new MediaPlayerPreparer.PreparedListener() {
             @Override
             public void prepared() {
                 mediaPlayerState = PREPARED;

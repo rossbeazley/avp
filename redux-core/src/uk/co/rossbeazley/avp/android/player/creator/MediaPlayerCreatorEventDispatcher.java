@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.player.creator;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
@@ -6,9 +6,9 @@ import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class VideoPlayerCreatorEventDispatcher {
+public class MediaPlayerCreatorEventDispatcher {
 
-    public VideoPlayerCreatorEventDispatcher(final EventBus bus, final MediaPlayerCreator videoCreator) {
+    public MediaPlayerCreatorEventDispatcher(final EventBus bus, final MediaPlayerCreator videoCreator) {
         bindMediaPlayerCreatedEventDispatcher(bus, videoCreator);
         bindCreateMediaPlayerEventHandler(bus, videoCreator);
     }

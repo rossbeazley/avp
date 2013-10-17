@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.player.creator;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-public class VideoPlayerCreatorEventDispatcherTest {
+public class MediaPlayerCreatorEventDispatcherTest {
 
     private final UriString expectedUri = UriString.from("ANY_URI");
     private UriString createdWithUri = UriString.from("NONE");
@@ -27,7 +27,7 @@ public class VideoPlayerCreatorEventDispatcherTest {
             }
         };
 
-        new VideoPlayerCreatorEventDispatcher(bus, videoCreator);
+        new MediaPlayerCreatorEventDispatcher(bus, videoCreator);
         bus.sendPayload(expectedUri).withEvent(Events.LOAD_VIDEO);
 
         assertThat(createdWithUri,is(expectedUri));

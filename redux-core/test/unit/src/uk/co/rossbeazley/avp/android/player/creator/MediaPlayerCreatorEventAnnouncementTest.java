@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class VideoPlayerCreatorEventAnnouncementTest {
+public class MediaPlayerCreatorEventAnnouncementTest {
 
     MediaPlayerCreator.CreatedListener registeredCreatedListener;
 
@@ -36,7 +36,7 @@ public class VideoPlayerCreatorEventAnnouncementTest {
             }
         });
 
-        new VideoPlayerCreatorEventDispatcher(bus, videoCreator);
+        new MediaPlayerCreatorEventDispatcher(bus, videoCreator);
         MediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
         registeredCreatedListener.created(expectedMediaPlayer);
         assertThat(mediaPlayer, is(expectedMediaPlayer));

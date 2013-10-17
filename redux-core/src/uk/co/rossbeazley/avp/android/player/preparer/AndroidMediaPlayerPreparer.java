@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.player;
+package uk.co.rossbeazley.avp.android.player.preparer;
 
 import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 
@@ -15,11 +15,11 @@ import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.Pr
  * Time: 21:59
  * To change this template use File | Settings | File Templates.
  */
-public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
+public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
 
     private Collection<PreparedListener> preparedListeners;
 
-    public AndroidMediaPlayerVideoPreparer() {
+    public AndroidMediaPlayerPreparer() {
         preparedListeners = new ArrayList<PreparedListener>();
     }
 
