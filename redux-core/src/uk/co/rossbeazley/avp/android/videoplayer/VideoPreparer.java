@@ -13,4 +13,8 @@ public interface VideoPreparer {
     void addPreparedListener(PreparedListener preparedListener);
 
     void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer);
+
+    interface PreparedListener {
+        void prepared();
+    }
 }

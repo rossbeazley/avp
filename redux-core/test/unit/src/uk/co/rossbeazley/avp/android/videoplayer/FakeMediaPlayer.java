@@ -33,8 +33,7 @@ class FakeMediaPlayer implements MediaPlayer {
 
     @Override
     public void start() {
-        // think i should send a started state change with the createVideoView in it
-        // also, it shouldnt be called a createVideoView,
+        // think i should send a started state change
     }
 
 

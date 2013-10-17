@@ -23,7 +23,7 @@ public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
 
         AndroidMediaPlayerVideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
 
-        videoPreparer.addPreparedListener(new PreparedListener() {
+        videoPreparer.addPreparedListener(new VideoPreparer.PreparedListener() {
             @Override
             public void prepared() {
                 mediaPlayerState = PREPARED;
