@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.mediaplayer;
 
 //REFACTOR, maybe i should segregate this interface
 public interface MediaPlayer extends CanPrepareMediaPlayer {

@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.avp.android.videoplayer;
 
+import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

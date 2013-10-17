@@ -1,12 +1,12 @@
 package uk.co.rossbeazley.avp.android.videoplayer;
 
-import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static uk.co.rossbeazley.avp.android.videoplayer.CanPrepareMediaPlayer.PreparedState;
-import static uk.co.rossbeazley.avp.android.videoplayer.CanPrepareMediaPlayer.PreparedStateChangeListener;
+import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.PreparedState;
+import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.PreparedStateChangeListener;
 
 /**
  * Created with IntelliJ IDEA.

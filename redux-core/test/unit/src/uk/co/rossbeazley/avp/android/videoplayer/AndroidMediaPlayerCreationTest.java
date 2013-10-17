@@ -2,6 +2,8 @@ package uk.co.rossbeazley.avp.android.videoplayer;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
+import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayerFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;

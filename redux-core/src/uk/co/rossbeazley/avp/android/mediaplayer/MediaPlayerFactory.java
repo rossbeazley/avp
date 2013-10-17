@@ -1,6 +1,7 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.mediaplayer;
 
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.mediaplayer;
 
 public interface CanPrepareMediaPlayer {
     void prepareAsync();

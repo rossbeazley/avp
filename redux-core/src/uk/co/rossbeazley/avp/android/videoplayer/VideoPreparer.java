@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.videoplayer;
 
-import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 
 /**
  * Created with IntelliJ IDEA.

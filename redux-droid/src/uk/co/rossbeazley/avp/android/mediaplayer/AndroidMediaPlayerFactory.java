@@ -3,8 +3,6 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.content.Context;
 import android.net.Uri;
 import uk.co.rossbeazley.avp.UriString;
-import uk.co.rossbeazley.avp.android.videoplayer.MediaPlayer;
-import uk.co.rossbeazley.avp.android.videoplayer.MediaPlayerFactory;
 
 public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
 
