@@ -8,6 +8,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class VideoPlayerCreatorEventDispatcherTest {
 
@@ -32,5 +33,8 @@ public class VideoPlayerCreatorEventDispatcherTest {
         bus.sendPayload(expectedUri).withEvent(Events.LOAD_VIDEO);
 
         assertThat(createdWithUri,is(expectedUri));
+
+
+        fail("need to refactor more");
     }
 }
