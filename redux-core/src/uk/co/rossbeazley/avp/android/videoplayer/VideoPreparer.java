@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.UriString;
  * To change this template use File | Settings | File Templates.
  */
 public interface VideoPreparer {
-    void playVideoUrl(UriString url);
+    void addPreparedListener(PreparedListener preparedListener);
 
-    void addVideoLoadedListener(VideoLoadedListener videoLoadedListener);
+    void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer);
 }

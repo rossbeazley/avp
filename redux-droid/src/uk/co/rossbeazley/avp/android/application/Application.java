@@ -56,7 +56,7 @@ public class Application extends android.app.Application implements ReduxApplica
                 return new VideoView() {};
             }
         };
-        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer(mpFactory, mpViewFactory);
+        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
         VideoPreparerEventDispatcher videoPreparerEventDispatcher = new VideoPreparerEventDispatcher(getBus(), videoPreparer);
 
 

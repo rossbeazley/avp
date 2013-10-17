@@ -5,7 +5,7 @@ import java.util.Collection;
 
 class FakeMediaPlayer implements MediaPlayer {
 
-    private Collection<StateChangeListener> stateChangeListeners = new ArrayList<StateChangeListener>();
+    private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
 
     private FakeMediaPlayer() {
     }
@@ -19,14 +19,14 @@ class FakeMediaPlayer implements MediaPlayer {
     }
 
     private void changeStraightToPreparedState() {
-        for(StateChangeListener stateChangeListener : this.stateChangeListeners) {
-            stateChangeListener.state(MediaPlayer.PREPARED);
+        for(PreparedStateChangeListener preparedStateChangeListener : this.preparedStateChangeListeners) {
+            preparedStateChangeListener.state(MediaPlayer.PREPARED);
         }
     }
 
     @Override
-    public void addStateChangeListener(StateChangeListener stateChangeListener) {
-        this.stateChangeListeners.add(stateChangeListener);
+    public void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener) {
+        this.preparedStateChangeListeners.add(preparedStateChangeListener);
     }
 
     @Override

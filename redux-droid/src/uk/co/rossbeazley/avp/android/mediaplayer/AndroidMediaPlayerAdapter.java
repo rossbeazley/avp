@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.content.Context;
 import android.net.Uri;
 import uk.co.rossbeazley.avp.android.videoplayer.MediaPlayer;
-import uk.co.rossbeazley.avp.android.videoplayer.VideoView;
 
 import java.io.IOException;
 
@@ -17,7 +16,7 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
     }
 
     @Override
-    public void addStateChangeListener(StateChangeListener stateChangeListener) {
+    public void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener) {
 
     }
 

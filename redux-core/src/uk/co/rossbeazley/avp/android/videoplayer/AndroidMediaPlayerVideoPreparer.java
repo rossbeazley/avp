@@ -5,8 +5,8 @@ import uk.co.rossbeazley.avp.UriString;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static uk.co.rossbeazley.avp.android.videoplayer.MediaPlayer.PreparedState;
-import static uk.co.rossbeazley.avp.android.videoplayer.MediaPlayer.StateChangeListener;
+import static uk.co.rossbeazley.avp.android.videoplayer.CanPrepareMediaPlayer.PreparedState;
+import static uk.co.rossbeazley.avp.android.videoplayer.CanPrepareMediaPlayer.PreparedStateChangeListener;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,49 +17,29 @@ import static uk.co.rossbeazley.avp.android.videoplayer.MediaPlayer.StateChangeL
  */
 public class AndroidMediaPlayerVideoPreparer implements VideoPreparer {
 
-    private final MediaPlayerFactory mpFactory;
-    private final MediaPlayerViewFactory mpViewFactory;
-    private final MediaPlayerStateChangeListener stateChangeListener;
-    private MediaPlayer mediaplayer;
-    private Collection<VideoLoadedListener> videoLoadedListeners;
+    private Collection<PreparedListener> preparedListeners;
 
-    public AndroidMediaPlayerVideoPreparer(MediaPlayerFactory mpFactory, MediaPlayerViewFactory mpViewFactory) {
-
-        this.mpFactory = mpFactory;
-        this.mpViewFactory = mpViewFactory;
-        stateChangeListener = new MediaPlayerStateChangeListener();
-        videoLoadedListeners = new ArrayList<VideoLoadedListener>();
+    public AndroidMediaPlayerVideoPreparer() {
+        preparedListeners = new ArrayList<PreparedListener>();
     }
 
     @Override
-    public void playVideoUrl(UriString url) {
-        mediaplayer = mpFactory.createMediaPlayerForUri(url);
-        mediaplayer.addStateChangeListener(stateChangeListener);
-        mediaplayer.prepareAsync();
+    public void addPreparedListener(PreparedListener preparedListener) {
+        preparedListeners.add(preparedListener);
     }
 
     @Override
-    public void addVideoLoadedListener(VideoLoadedListener videoLoadedListener) {
-        videoLoadedListeners.add(videoLoadedListener);
-    }
-
-    private void notifyVideoLoaded() {
-        VideoView videoView = mpViewFactory.createVideoView(mediaplayer);
-        for(VideoLoadedListener videoLoadedListener : videoLoadedListeners) videoLoadedListener.videoLoaded(videoView);
-    }
-
-    private void startPlayBack() {
-        mediaplayer.start();
-    }
-
-
-    private class MediaPlayerStateChangeListener implements StateChangeListener {
-
-        @Override
-        public void state(PreparedState prepared) {
-            notifyVideoLoaded();
-            startPlayBack();
-        }
+    public void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer) {
+        mediaPlayer.addPreparedStateChangeListener(new PreparedStateChangeListener() {
+            @Override
+            public void state(PreparedState prepared) {
+                for (PreparedListener preparedListener : preparedListeners) {
+                    preparedListener.prepared();
+                }
+            }
+        });
+        mediaPlayer.prepareAsync();
 
     }
+
 }
