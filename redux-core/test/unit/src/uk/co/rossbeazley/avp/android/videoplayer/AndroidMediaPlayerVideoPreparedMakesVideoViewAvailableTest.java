@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.videoplayer;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
-import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayerViewFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

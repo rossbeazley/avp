@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.videoplayer;
 
 import uk.co.rossbeazley.avp.UriString;
-import uk.co.rossbeazley.redux.android.videoplayer.MediaPlayerViewFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;

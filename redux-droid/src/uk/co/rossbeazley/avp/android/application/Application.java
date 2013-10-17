@@ -11,7 +11,6 @@ import uk.co.rossbeazley.avp.android.videoplayer.*;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.LooperExecutorFactory;
-import uk.co.rossbeazley.redux.android.videoplayer.*;
 
 public class Application extends android.app.Application implements ReduxApplicationServices {
 
