@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.redux.android.videoplayer;
+package uk.co.rossbeazley.avp.android.videoplayer;
 
 import java.util.ArrayList;
 import java.util.Collection;

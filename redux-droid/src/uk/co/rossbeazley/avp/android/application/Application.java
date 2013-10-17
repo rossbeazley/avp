@@ -2,15 +2,16 @@ package uk.co.rossbeazley.avp.android.application;
 
 import android.os.Handler;
 import android.os.HandlerThread;
-import uk.co.rossbeazley.redux.android.ReduxApplicationServices;
-import uk.co.rossbeazley.redux.android.activity.IntentToEventDispatcher;
-import uk.co.rossbeazley.redux.android.log.AndroidLogger;
-import uk.co.rossbeazley.redux.android.log.Logger;
-import uk.co.rossbeazley.redux.android.mediaplayer.AndroidMediaPlayerFactory;
+import uk.co.rossbeazley.avp.android.ReduxApplicationServices;
+import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
+import uk.co.rossbeazley.avp.android.log.AndroidLogger;
+import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
+import uk.co.rossbeazley.avp.android.videoplayer.*;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
+import uk.co.rossbeazley.avp.eventbus.executor.LooperExecutorFactory;
 import uk.co.rossbeazley.redux.android.videoplayer.*;
-import uk.co.rossbeazley.redux.eventbus.EventBus;
-import uk.co.rossbeazley.redux.eventbus.executor.ExecutorEventBus;
-import uk.co.rossbeazley.redux.eventbus.executor.LooperExecutorFactory;
 
 public class Application extends android.app.Application implements ReduxApplicationServices {
 
