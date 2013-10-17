@@ -5,9 +5,9 @@ import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class VideoPreparerEventDispatcher {
+public class VideoPlayerCreatorEventDispatcher {
 
-    public VideoPreparerEventDispatcher(final EventBus bus, final VideoPreparer videoPreparer) {
+    public VideoPlayerCreatorEventDispatcher(final EventBus bus, MediaPlayerCreator videoCreator) {
 
     }
 

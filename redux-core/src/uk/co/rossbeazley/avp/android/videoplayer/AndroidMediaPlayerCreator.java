@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayerFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 
-class AndroidMediaPlayerCreator implements MediaPlayerCreator {
+public class AndroidMediaPlayerCreator implements MediaPlayerCreator {
 
     private final MediaPlayerFactory mediaPlayerFactory;
     private Collection<CreatedListener> createdListeners;

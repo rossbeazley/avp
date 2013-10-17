@@ -7,7 +7,6 @@ import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.avp.android.log.AndroidLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
-import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 import uk.co.rossbeazley.avp.android.videoplayer.*;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -51,10 +50,9 @@ public class Application extends android.app.Application implements ReduxApplica
 
     protected void createApplication() {
         AndroidMediaPlayerFactory mpFactory = new AndroidMediaPlayerFactory(this);
-        VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
-        VideoPreparerEventDispatcher videoPreparerEventDispatcher = new VideoPreparerEventDispatcher(getBus(), videoPreparer);
-
-
+        //VideoPreparer videoPreparer = new AndroidMediaPlayerVideoPreparer();
+        MediaPlayerCreator creator = new AndroidMediaPlayerCreator(mpFactory);
+        VideoPlayerCreatorEventDispatcher videoPlayerCreatorEventDispatcher = new VideoPlayerCreatorEventDispatcher(getBus(),creator);
     }
 
     @Override
