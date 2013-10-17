@@ -1,45 +1,40 @@
-package uk.co.rossbeazley.avp.android.videoplayer.ui;
+package uk.co.rossbeazley.avp.android.player.ui;
 
 import android.view.View;
+import android.widget.TextView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreen;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenShowPlayPauseTest {
+public class ScreenShowTimeTest {
 
-    private Integer playButton;
-    private int pauseButton;
+
+    private static final CharSequence THREE_SECONDS_IN_MILLIS = "3000";
 
     @Test
-    public void showPlay() {
-        videoScreen.showPlay();
-        View viewById = getViewById(R.id.play);
-        playButton = viewById.getVisibility();
-        pauseButton = getViewById(R.id.pause).getVisibility();
-        assertThat(playButton, is(View.VISIBLE));
-        assertThat(pauseButton, is(not(View.VISIBLE)));
-        Robolectric.clickOn(viewById);
+    public void totalTimeUpdatedOnScreen() {
+        videoScreen.showTotalTime(new TimeInMilliseconds(3000));
+        CharSequence textFromView = ((TextView) getViewById(R.id.totaltime)).getText();
+        assertThat(textFromView, is(THREE_SECONDS_IN_MILLIS));
     }
 
 
     @Test
-    public void showPause() {
-        videoScreen.showPause();
-        playButton = getViewById(R.id.play).getVisibility();
-        pauseButton = getViewById(R.id.pause).getVisibility();
-        assertThat("play button visibility", playButton, is(not(View.VISIBLE)));
-        assertThat("pause button visibility", pauseButton, is(View.VISIBLE));
+    public void progressTimeUpdatedOnScreen() {
+        videoScreen.showProgressTime(new TimeInMilliseconds(3000));
+        CharSequence textFromView = ((TextView) getViewById(R.id.currenttime)).getText();
+        assertThat(textFromView, is(THREE_SECONDS_IN_MILLIS));
     }
 
 

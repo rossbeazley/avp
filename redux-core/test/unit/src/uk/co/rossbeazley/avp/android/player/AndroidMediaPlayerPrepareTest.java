@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.player;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;

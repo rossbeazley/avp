@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer.ui;
+package uk.co.rossbeazley.avp.android.player.ui;
 
 import org.junit.Before;
 import org.junit.Test;

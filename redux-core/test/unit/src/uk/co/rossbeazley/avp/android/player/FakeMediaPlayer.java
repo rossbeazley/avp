@@ -1,11 +1,11 @@
-package uk.co.rossbeazley.avp.android.videoplayer;
+package uk.co.rossbeazley.avp.android.player;
 
 import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-class FakeMediaPlayer implements MediaPlayer {
+public class FakeMediaPlayer implements MediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
 

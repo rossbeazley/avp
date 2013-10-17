@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer.ui;
+package uk.co.rossbeazley.avp.android.player.ui;
 
 import android.widget.SeekBar;
 import org.junit.Before;

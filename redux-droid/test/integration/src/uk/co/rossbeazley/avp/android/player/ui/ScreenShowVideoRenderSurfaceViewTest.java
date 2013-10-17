@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.videoplayer.ui;
+package uk.co.rossbeazley.avp.android.player.ui;
 
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
