@@ -41,7 +41,7 @@ public class EventBusAnnouncementWithPolymorphicPayload {
         bus.sendPayload(breakfast).withEvent(AN_EVENT);
 
         assertThat(sausages,is("Yum"));
-        assertThat(eggs,is("Sunny side up"));
+        assertThat(eggs,is("Yuk, sunny side up"));
     }
 
     private interface Sausages {
@@ -61,7 +61,7 @@ public class EventBusAnnouncementWithPolymorphicPayload {
 
         @Override
         public String eatEggs() {
-            return "Sunny side up";
+            return "Yuk, sunny side up";
         }
     }
 }
