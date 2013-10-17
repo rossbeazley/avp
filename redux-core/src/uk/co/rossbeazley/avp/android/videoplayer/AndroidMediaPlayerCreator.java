@@ -24,6 +24,8 @@ public class AndroidMediaPlayerCreator implements MediaPlayerCreator {
 
     @Override
     public void create(UriString any_uri_string) {
+        //TODO this whole class will get pulled into droid module when the view stuff arrives in it
+        // maybe the next line should just be inlined into this class
         MediaPlayer mediaplayer = this.mediaPlayerFactory.createMediaPlayerForUri(any_uri_string);
         for (CreatedListener createdListener : this.createdListeners) {
             createdListener.created(mediaplayer);

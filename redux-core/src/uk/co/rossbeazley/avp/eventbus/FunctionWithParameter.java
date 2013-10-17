@@ -1,5 +1,5 @@
 package uk.co.rossbeazley.avp.eventbus;
 
 public interface FunctionWithParameter<T> {
-    void invoke(T object);
+    void invoke(T payload);
 }

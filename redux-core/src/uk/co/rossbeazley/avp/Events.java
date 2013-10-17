@@ -10,4 +10,5 @@ package uk.co.rossbeazley.avp;
 public class Events {
     public static final String LOAD_VIDEO = "load_video";
     public static final String VIDEO_LOADED = "video_loaded";
+    public static final String MEDIA_PLAYER_CREATED = "media_player_created";
 }

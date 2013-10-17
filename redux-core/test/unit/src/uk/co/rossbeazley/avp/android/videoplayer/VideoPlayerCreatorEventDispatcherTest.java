@@ -19,12 +19,10 @@ public class VideoPlayerCreatorEventDispatcherTest {
     public void eventBusAnnouncmentCausesMediaPlayerCreation() {
         EventBus bus = new ExecutorEventBus();
         MediaPlayerCreator videoCreator = new MediaPlayerCreator() {
-            @Override
             public void create(UriString any_uri_string) {
                 createdWithUri = any_uri_string;
             }
 
-            @Override
             public void addCreatedListener(CreatedListener createdListener) {
             }
         };
