@@ -5,12 +5,12 @@ import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-import static uk.co.rossbeazley.avp.android.player.preparer.AndroidMediaPlayerPreparer.prepareMediaPlayer;
+import static uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer.prepareMediaPlayer;
 
 public class MediaPlayerPreparerEventDispatcher {
     public MediaPlayerPreparerEventDispatcher(final EventBus bus) {
 
-        final AndroidMediaPlayerPreparer.PreparedListener preparedListener = new AndroidMediaPlayerPreparer.PreparedListener() {
+        final MediaPlayerPreparer.PreparedListener preparedListener = new MediaPlayerPreparer.PreparedListener() {
             @Override
             public void prepared(CanPrepareMediaPlayer preparedMediaPlayer) {
                 bus.sendPayload(preparedMediaPlayer).withEvent(Events.VIDEO_LOADED);
