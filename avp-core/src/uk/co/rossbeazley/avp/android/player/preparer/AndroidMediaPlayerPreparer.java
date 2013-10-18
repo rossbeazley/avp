@@ -5,10 +5,10 @@ import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.PreparedState;
 import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.PreparedStateChangeListener;
 
-public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
+class AndroidMediaPlayerPreparer  {
 
-    @Override //Could I inline this whole method into the class above?
-    public void prepareMediaPlayer(final CanPrepareMediaPlayer mediaPlayer, final PreparedListener preparedListener) {
+    //Could I inline this whole method into the class above? does that make the interface redundant?
+    static public void prepareMediaPlayer(final CanPrepareMediaPlayer mediaPlayer, final PreparedListener preparedListener) {
         mediaPlayer.addPreparedStateChangeListener(new PreparedStateChangeListener() {
             @Override
             public void state(PreparedState prepared) {
@@ -18,4 +18,7 @@ public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
         mediaPlayer.prepareAsync();
     }
 
+    public static interface PreparedListener {
+        void prepared(CanPrepareMediaPlayer preparedMediaPlayer);
+    }
 }
