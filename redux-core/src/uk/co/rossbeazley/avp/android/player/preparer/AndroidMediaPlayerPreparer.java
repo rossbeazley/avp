@@ -30,16 +30,19 @@ public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
 
     @Override
     public void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer) {
-        mediaPlayer.addPreparedStateChangeListener(new PreparedStateChangeListener() {
+        mediaPlayer.addPreparedStateChangeListener(createListenerToNotifyOfPreparedState());
+        mediaPlayer.prepareAsync();
+    }
+
+    private PreparedStateChangeListener createListenerToNotifyOfPreparedState() {
+        return new PreparedStateChangeListener() {
             @Override
             public void state(PreparedState prepared) {
                 for (PreparedListener preparedListener : preparedListeners) {
                     preparedListener.prepared();
                 }
             }
-        });
-        mediaPlayer.prepareAsync();
-
+        };
     }
 
 }

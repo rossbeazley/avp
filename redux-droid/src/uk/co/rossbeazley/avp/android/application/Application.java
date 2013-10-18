@@ -10,12 +10,16 @@ import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.creator.AndroidMediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreatorEventDispatcher;
+import uk.co.rossbeazley.avp.android.player.preparer.AndroidMediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparerEventDispatcher;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.LooperExecutorFactory;
 
 public class Application extends android.app.Application implements ReduxApplicationServices {
 
+    private AndroidMediaPlayerFactory androidMediaPlayerFactory;
     private EventBus bus;
     private IntentToEventDispatcher intentParser;
     private AndroidLogger logger;
@@ -51,10 +55,20 @@ public class Application extends android.app.Application implements ReduxApplica
     }
 
     protected void createApplication() {
-        AndroidMediaPlayerFactory mpFactory = new AndroidMediaPlayerFactory(this);
-        //MediaPlayerPreparer videoPreparer = new AndroidMediaPlayerPreparer();
-        MediaPlayerCreator creator = new AndroidMediaPlayerCreator(mpFactory);
-        MediaPlayerCreatorEventDispatcher mediaPlayerCreatorEventDispatcher = new MediaPlayerCreatorEventDispatcher(getBus(),creator);
+
+        MediaPlayerCreator creator = new AndroidMediaPlayerCreator(getAndroidMediaPlayerFactory());
+        new MediaPlayerCreatorEventDispatcher(getBus(),creator);
+
+        MediaPlayerPreparer preparer = new AndroidMediaPlayerPreparer();
+        new MediaPlayerPreparerEventDispatcher(getBus(), preparer);
+
+    }
+
+    private AndroidMediaPlayerFactory getAndroidMediaPlayerFactory() {
+        if(androidMediaPlayerFactory==null) {
+            androidMediaPlayerFactory = new AndroidMediaPlayerFactory(this);
+        }
+        return androidMediaPlayerFactory;
     }
 
     @Override

@@ -31,8 +31,5 @@ public class MediaPlayerCreatorEventDispatcherTest {
         bus.sendPayload(expectedUri).withEvent(Events.LOAD_VIDEO);
 
         assertThat(createdWithUri,is(expectedUri));
-
-
-        fail("need to refactor more");
     }
 }
