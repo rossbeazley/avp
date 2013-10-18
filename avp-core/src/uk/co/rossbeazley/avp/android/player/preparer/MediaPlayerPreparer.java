@@ -15,6 +15,6 @@ public interface MediaPlayerPreparer {
     void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer);
 
     interface PreparedListener {
-        void prepared();
+        void prepared(CanPrepareMediaPlayer preparedMediaPlayer);
     }
 }

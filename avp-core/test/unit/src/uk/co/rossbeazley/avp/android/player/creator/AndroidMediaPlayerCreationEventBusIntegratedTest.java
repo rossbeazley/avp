@@ -32,9 +32,6 @@ public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPl
             }
         });
 
-
-        fakeMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
-
         bus.sendPayload(UriString.from("ANY"))
                 .withEvent(Events.LOAD_VIDEO);
 
@@ -43,6 +40,7 @@ public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPl
 
     @Override
     public MediaPlayer createMediaPlayerForUri(UriString uri) {
+        fakeMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
         return fakeMediaPlayer;
     }
 

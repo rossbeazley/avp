@@ -13,12 +13,7 @@ import static org.junit.Assert.assertThat;
 
 public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
 
-
-    public static final String PREPARED = "PREPARED";
-    public static final String NOT_PREPARED = "NOT PREPARED";
-
-    private String mediaPlayerState = NOT_PREPARED;
-
+    private CanPrepareMediaPlayer preparedMediaPlayer;
     @Test
     public void preparesMediaPlayerAndTellsEveryone() {
 
@@ -26,8 +21,8 @@ public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
 
         videoPreparer.addPreparedListener(new MediaPlayerPreparer.PreparedListener() {
             @Override
-            public void prepared() {
-                mediaPlayerState = PREPARED;
+            public void prepared(CanPrepareMediaPlayer payload) {
+                preparedMediaPlayer = payload;
             }
         });
 
@@ -35,7 +30,7 @@ public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
 
         videoPreparer.prepareMediaPlayer(mediaPlayer);
 
-        assertThat(mediaPlayerState,is(PREPARED));
+        assertThat(preparedMediaPlayer,is(mediaPlayer));
     }
 
     @Override

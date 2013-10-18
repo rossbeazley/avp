@@ -11,6 +11,7 @@ import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.Pr
 public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
 
     private Collection<PreparedListener> preparedListeners;
+    private CanPrepareMediaPlayer mediaPlayer;
 
     public AndroidMediaPlayerPreparer() {
         preparedListeners = new ArrayList<PreparedListener>();
@@ -23,6 +24,7 @@ public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
 
     @Override
     public void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer) {
+        this.mediaPlayer = mediaPlayer;
         mediaPlayer.addPreparedStateChangeListener(createListenerToNotifyOfPreparedState());
         mediaPlayer.prepareAsync();
     }
@@ -32,7 +34,7 @@ public class AndroidMediaPlayerPreparer implements MediaPlayerPreparer {
             @Override
             public void state(PreparedState prepared) {
                 for (PreparedListener preparedListener : preparedListeners) {
-                    preparedListener.prepared();
+                    preparedListener.prepared(mediaPlayer);
                 }
             }
         };
