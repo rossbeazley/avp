@@ -33,11 +33,11 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/test/integration/lib" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/test/integration/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/test/integration/lib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$DOCUMENTS$/avp/redux-droid/test/integration/lib" recursive="false" />
+        <jarDirectory url="file://$DOCUMENTS$/avp/redux-droid/test/integration/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="redux-core" exported="" />
+    <orderEntry type="module" module-name="avp-core" exported="" />
     <orderEntry type="jdk" jdkName="Android 4.2 Platform" jdkType="Android SDK" />
   </component>
 </module>
