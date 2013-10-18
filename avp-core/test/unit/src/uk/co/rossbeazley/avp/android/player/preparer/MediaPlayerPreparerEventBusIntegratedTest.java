@@ -19,7 +19,7 @@ public class MediaPlayerPreparerEventBusIntegratedTest {
     public void preparesMediaPlayerThenTellsEveryone() {
 
         EventBus bus = new ExecutorEventBus();
-        new MediaPlayerPreparerEventDispatcher(bus);
+        new MediaPlayerPreparer(bus);
         bus.whenEvent(Events.VIDEO_LOADED).thenRun(new FunctionWithParameter<MediaPlayer>() {
             @Override
             public void invoke(MediaPlayer payload) {

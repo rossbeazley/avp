@@ -1,23 +1,29 @@
 package uk.co.rossbeazley.avp.android.player.preparer;
 
+import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.PreparedState;
-import static uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer.PreparedStateChangeListener;
+import static uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparerDelegate.prepareMediaPlayer;
 
-class MediaPlayerPreparer {
-                                                                                   //is this really an out parameter
-    static public void prepareMediaPlayer(final CanPrepareMediaPlayer mediaPlayer, final PreparedListener preparedListener) {
-        mediaPlayer.addPreparedStateChangeListener(new PreparedStateChangeListener() {
+public class MediaPlayerPreparer {
+    public MediaPlayerPreparer(final EventBus bus) {
+
+        final MediaPlayerPreparerDelegate.PreparedListener preparedListener = new MediaPlayerPreparerDelegate.PreparedListener() {
             @Override
-            public void state(PreparedState prepared) {
-                preparedListener.prepared(mediaPlayer);
+            public void prepared(CanPrepareMediaPlayer preparedMediaPlayer) {
+                bus.sendPayload(preparedMediaPlayer).withEvent(Events.VIDEO_LOADED);
+            }
+        };
+
+        bus.whenEvent(Events.MEDIA_PLAYER_CREATED).thenRun(new FunctionWithParameter<CanPrepareMediaPlayer>() {
+            @Override
+            public void invoke(CanPrepareMediaPlayer payload) {
+                prepareMediaPlayer(payload, preparedListener);
             }
         });
-        mediaPlayer.prepareAsync();
-    }
 
-    public static interface PreparedListener {
-        void prepared(CanPrepareMediaPlayer preparedMediaPlayer);
+
     }
 }

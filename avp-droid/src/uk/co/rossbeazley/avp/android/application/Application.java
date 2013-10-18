@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.creator.AndroidMediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreatorEventDispatcher;
-import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparerEventDispatcher;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.LooperExecutorFactory;
@@ -57,7 +57,7 @@ public class Application extends android.app.Application implements ReduxApplica
         MediaPlayerCreator creator = new AndroidMediaPlayerCreator(getAndroidMediaPlayerFactory());
         new MediaPlayerCreatorEventDispatcher(getBus(),creator);
 
-        new MediaPlayerPreparerEventDispatcher(getBus());
+        new MediaPlayerPreparer(getBus());
 
     }
 

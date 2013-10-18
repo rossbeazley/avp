@@ -18,13 +18,13 @@ public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
     public void preparesMediaPlayerAndTellsEveryone() {
 
 
-        MediaPlayerPreparer.PreparedListener preparedListener = new MediaPlayerPreparer.PreparedListener() {
+        MediaPlayerPreparerDelegate.PreparedListener preparedListener = new MediaPlayerPreparerDelegate.PreparedListener() {
             @Override
             public void prepared(CanPrepareMediaPlayer payload) {
                 preparedMediaPlayer = payload;
             }
         };
-        MediaPlayerPreparer videoPreparer = new MediaPlayerPreparer();
+        MediaPlayerPreparerDelegate videoPreparer = new MediaPlayerPreparerDelegate();
 
         CanPrepareMediaPlayer mediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
 
