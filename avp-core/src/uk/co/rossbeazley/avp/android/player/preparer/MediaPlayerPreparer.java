@@ -10,9 +10,7 @@ import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
  * To change this template use File | Settings | File Templates.
  */
 public interface MediaPlayerPreparer {
-    void addPreparedListener(PreparedListener preparedListener);
-
-    void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer);
+    void prepareMediaPlayer(CanPrepareMediaPlayer mediaPlayer, PreparedListener preparedListener);
 
     interface PreparedListener {
         void prepared(CanPrepareMediaPlayer preparedMediaPlayer);
