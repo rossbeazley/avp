@@ -31,4 +31,9 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
     public void start() throws IllegalStateException {
         mediaPlayer.start();
     }
+
+    @Override
+    public boolean isPlaying() {
+        return mediaPlayer.isPlaying();
+    }
 }

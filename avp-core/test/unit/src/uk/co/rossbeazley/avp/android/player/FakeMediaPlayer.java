@@ -8,6 +8,7 @@ import java.util.Collection;
 public class FakeMediaPlayer implements MediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
+    private boolean playing;
 
     private FakeMediaPlayer() {
     }
@@ -33,9 +34,13 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     @Override
     public void start() {
-        // think i should send a started state change
+        playing=true;
     }
 
+    @Override
+    public boolean isPlaying() {
+        return playing;
+    }
 
 
 }
