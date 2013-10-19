@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class AndroidMediaPlayerPrepareTest implements MediaPlayerFactory {
+public class MediaPlayerPrepareDelegateTest implements MediaPlayerFactory {
 
     private CanPrepareMediaPlayer preparedMediaPlayer;
     @Test
