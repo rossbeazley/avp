@@ -39,17 +39,18 @@ public class Application extends android.app.Application implements ReduxApplica
     private void createApplicationInSecondaryThread() {
 
         HandlerThread thread = new HandlerThread("NONE_UI_THREAD") {
-            {
-                Handler handler = new Handler(getLooper());
-                handler.post(new Runnable() {
-                    public void run() {
 
-                        createApplication();
-                    }
-                });
-            }
         };
         thread.start();
+
+            Handler handler = new Handler(thread.getLooper());
+            handler.post(new Runnable() {
+                public void run() {
+
+                    createApplication();
+                }
+            });
+
 
     }
 
