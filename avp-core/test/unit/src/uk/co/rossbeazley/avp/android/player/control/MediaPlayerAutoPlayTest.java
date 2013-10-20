@@ -5,13 +5,12 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
-import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class MediaPlayerControlTest {
+public class MediaPlayerAutoPlayTest {
 
     @Test
     public void autoStartsTheMediaPlayerWhenVideoLoaded() {
@@ -28,18 +27,4 @@ public class MediaPlayerControlTest {
 
     }
 
-    private class MediaPlayerAutoPlay {
-        public MediaPlayerAutoPlay(EventBus bus) {
-            loadVideoEvent(bus);
-        }
-
-        private void loadVideoEvent(EventBus bus) {
-            bus.whenEvent(Events.VIDEO_LOADED).thenRun(new FunctionWithParameter<CanControlMediaPlayer>() {
-                @Override
-                public void invoke(CanControlMediaPlayer payload) {
-                    payload.start();
-                }
-            });
-        }
-    }
 }

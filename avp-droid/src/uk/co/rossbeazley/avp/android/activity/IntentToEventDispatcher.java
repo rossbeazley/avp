@@ -14,7 +14,7 @@ public class IntentToEventDispatcher {
     }
 
     public void onIntent(Intent intent) {
-        UriString uriString = new UriString("http://g.bbcredux.com/programme/5147705135610470298/download/25155-1380056370-333f6ae34f0224cf11176729f97ee935/20071225_004500_bbctwo_red_dwarf-lo.mp4");
+        UriString uriString = new UriString("http://g.bbcredux.com/programme/5148442151998464700/download/25155-1382302817-169fea1ba7c0ec48df9263e10c3975e8/20071227_002500_bbctwo_red_dwarf-lo.mp4");
         bus.sendPayload(uriString).withEvent(Events.LOAD_VIDEO);
     }
 }
