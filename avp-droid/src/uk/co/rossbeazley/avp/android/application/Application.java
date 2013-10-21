@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.application;
 
 import android.os.Handler;
 import android.os.HandlerThread;
-import uk.co.rossbeazley.avp.android.ReduxApplicationServices;
+import uk.co.rossbeazley.avp.android.ApplicationServices;
 import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.avp.android.log.AndroidLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
@@ -16,12 +16,15 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.LooperExecutorFactory;
 
-public class Application extends android.app.Application implements ReduxApplicationServices {
+import java.util.concurrent.CountDownLatch;
+
+public class Application extends android.app.Application implements ApplicationServices {
 
     private AndroidMediaPlayerFactory androidMediaPlayerFactory;
     private EventBus bus;
     private IntentToEventDispatcher intentParser;
     private AndroidLogger logger;
+    private CountDownLatch latch;
 
 
     @Override
@@ -37,21 +40,31 @@ public class Application extends android.app.Application implements ReduxApplica
     }
 
     private void createApplicationInSecondaryThread() {
-
-        HandlerThread thread = new HandlerThread("NONE_UI_THREAD") {
+        getLogger().debug("Creating application");
+        HandlerThread thread = new HandlerThread("NOT_MAIN_THREAD") {
 
         };
         thread.start();
 
-            Handler handler = new Handler(thread.getLooper());
-            handler.post(new Runnable() {
-                public void run() {
+        latch = new CountDownLatch(1);
 
-                    createApplication();
-                }
-            });
+        Handler handler = new Handler(thread.getLooper());
+        handler.post(new Runnable() {
+            public void run() {
 
+                createApplication();
+                latch.countDown();
+            }
+        });
 
+        //wait for app creation
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Major outage when waiting for app creation to complete", e);
+        }
+
+        getLogger().debug("APP STARTED");
     }
 
     protected void createApplication() {
@@ -62,11 +75,13 @@ public class Application extends android.app.Application implements ReduxApplica
         new MediaPlayerPreparer(getBus());
         new MediaPlayerAutoPlay(getBus());
 
+        getLogger().debug("APP CREATED");
+
     }
 
     private AndroidMediaPlayerFactory getAndroidMediaPlayerFactory() {
         if(androidMediaPlayerFactory==null) {
-            androidMediaPlayerFactory = new AndroidMediaPlayerFactory(this);
+            androidMediaPlayerFactory = new AndroidMediaPlayerFactory(this, getLogger());
         }
         return androidMediaPlayerFactory;
     }

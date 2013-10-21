@@ -4,7 +4,7 @@ import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public interface ReduxApplicationServices {
+public interface ApplicationServices {
     EventBus getBus();
 
     IntentToEventDispatcher getIntentParser();

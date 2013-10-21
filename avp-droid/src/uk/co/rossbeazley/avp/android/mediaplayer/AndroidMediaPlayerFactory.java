@@ -3,19 +3,30 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.content.Context;
 import android.net.Uri;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.log.Logger;
+
+import java.io.IOException;
 
 public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
 
     private Context applicationContext;
+    private final Logger logger;
 
-    public AndroidMediaPlayerFactory(Context applicationContext) {
+    public AndroidMediaPlayerFactory(Context applicationContext, Logger logger) {
         this.applicationContext = applicationContext;
+        this.logger = logger;
     }
 
     @Override
     public MediaPlayer createMediaPlayerForUri(UriString uri) {
-        android.media.MediaPlayer mediaPlayer = android.media.MediaPlayer.create(applicationContext, Uri.parse(uri.uri));
-        AndroidMediaPlayerAdapter androidMediaPlayerAdapter = new AndroidMediaPlayerAdapter(mediaPlayer);
-        return androidMediaPlayerAdapter;
+        MediaPlayer result;
+        try {
+            android.media.MediaPlayer mediaPlayer = new android.media.MediaPlayer();
+            mediaPlayer.setDataSource(applicationContext,Uri.parse(uri.uri));
+            result = new AndroidMediaPlayerAdapter(mediaPlayer, logger);
+        } catch (IOException e) {
+            result = MediaPlayer.NULL;
+        }
+        return result;
     }
 }

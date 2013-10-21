@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.application;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import uk.co.rossbeazley.avp.android.ReduxApplicationServices;
+import uk.co.rossbeazley.avp.android.ApplicationServices;
 import uk.co.rossbeazley.avp.android.activity.WireableActivity;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.navigation.FragmentTransactionNavigationController;
@@ -13,14 +13,14 @@ import uk.co.rossbeazley.avp.eventbus.Function;
 
 public class ActivityWiringAspect extends EmptyActivityLifecycleCallbacks {
 
-    private final ReduxApplicationServices reduxApplicationServices;
+    private final ApplicationServices applicationServices;
     private ActivityWirer activityWirer;
     private Logger logger;
 
-    ActivityWiringAspect(ReduxApplicationServices reduxApplicationServices, Logger logger) {
-        this.reduxApplicationServices = reduxApplicationServices;
+    ActivityWiringAspect(ApplicationServices applicationServices, Logger logger) {
+        this.applicationServices = applicationServices;
         this.logger = logger;
-        activityWirer = new ActivityWirer(reduxApplicationServices);
+        activityWirer = new ActivityWirer(applicationServices);
 
     }
 
@@ -44,7 +44,7 @@ public class ActivityWiringAspect extends EmptyActivityLifecycleCallbacks {
         final NavigationController navigationController = fragmentTransactionNavigationController;
 
         //TODO this maybe should be its own object that routes event bus events to method calls
-        EventBus bus = reduxApplicationServices.getBus();
+        EventBus bus = applicationServices.getBus();
         bus.whenEvent("load_video")
                 .thenRun(new Function() {
                     @Override
