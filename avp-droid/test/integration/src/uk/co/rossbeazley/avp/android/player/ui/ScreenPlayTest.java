@@ -17,8 +17,6 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class ScreenPlayTest implements CanListenForUserPlayEvents {
 
-
-
     @Test
     public void userPlayVideoEventWhenPlayClicked() {
         pressPlayButton();

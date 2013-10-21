@@ -4,6 +4,7 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
+//TODO    think we need to get rid of this class and implement directly in the video screen
 class VideoScreenEventDispatcher {
     private final EventBus bus;
 
