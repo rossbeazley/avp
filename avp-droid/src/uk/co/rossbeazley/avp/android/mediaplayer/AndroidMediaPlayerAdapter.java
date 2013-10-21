@@ -1,10 +1,7 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
-import android.content.Context;
-import android.net.Uri;
 import uk.co.rossbeazley.avp.android.log.Logger;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
