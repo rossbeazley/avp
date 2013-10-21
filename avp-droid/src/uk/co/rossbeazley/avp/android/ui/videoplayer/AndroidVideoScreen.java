@@ -40,12 +40,10 @@ public class AndroidVideoScreen implements VideoScreen {
         bindSeekBar();
     }
 
-    @Override
     public void inflateLayout() {
         canInflateLayout.inflateLayout(R.layout.videoplayer);
     }
 
-    @Override
     public void bindPauseButton() {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             public void onClick(View view) {
@@ -55,7 +53,6 @@ public class AndroidVideoScreen implements VideoScreen {
         viewFinder.setOnClickListener(onClickListener, R.id.pause);
     }
 
-    @Override
     public void bindPlayButton() {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             public void onClick(View view) {
@@ -65,7 +62,6 @@ public class AndroidVideoScreen implements VideoScreen {
         viewFinder.setOnClickListener(onClickListener, R.id.play);
     }
 
-    @Override
     public void bindSeekBar() {
         int id = R.id.seekBar;
         ((SeekBar) viewFinder.find(id)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

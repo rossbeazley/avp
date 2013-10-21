@@ -53,7 +53,7 @@ public class Main extends Activity implements WireableMain {
         super.onAttachFragment(fragment);
 
         if(fragment instanceof VideoPlayerFragment) {
-            ((VideoPlayerFragment) fragment).setVideoPlayerFragmentScreenFactory(new VideoPlayerFragmentScreenFactory());
+            ((VideoPlayerFragment) fragment).setVideoPlayerFragmentScreenFactory(new VideoPlayerFragmentScreenFactory(eventBus));
         }
     }
 

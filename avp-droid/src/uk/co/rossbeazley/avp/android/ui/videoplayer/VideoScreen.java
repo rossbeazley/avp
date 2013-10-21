@@ -5,14 +5,6 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 public interface VideoScreen {
     void bind();
 
-    void inflateLayout();
-
-    void bindPauseButton();
-
-    void bindPlayButton();
-
-    void bindSeekBar();
-
     void setPauseEventListener(CanListenForUserPauseEvents canListenForUserPauseEvents);
 
     void setPlayEventListener(CanListenForUserPlayEvents canListenForUserPlayEvents);

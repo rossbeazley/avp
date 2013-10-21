@@ -10,11 +10,12 @@ public class MediaPlayerAutoPlay {
         loadVideoEvent(bus);
     }
 
-    private void loadVideoEvent(EventBus bus) {
+    private void loadVideoEvent(final EventBus bus) {
         bus.whenEvent(Events.VIDEO_LOADED).thenRun(new FunctionWithParameter<CanControlMediaPlayer>() {
             @Override
             public void invoke(CanControlMediaPlayer payload) {
                 payload.start();
+                bus.announce(Events.PLAYER_PLAYING);
             }
         });
     }
