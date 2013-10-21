@@ -14,6 +14,10 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
     public AndroidMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
         this.mediaPlayer = mediaPlayer;
         this.logger = logger;
+        bindPreparedEventAdapter();
+    }
+
+    private void bindPreparedEventAdapter() {
         this.mediaPlayer.setOnPreparedListener(new android.media.MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(android.media.MediaPlayer mp) {
@@ -26,6 +30,7 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
 
     @Override
     public void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener) {
+        logger.debug("addPreparedStateChangeListener");
         preparedStateChangeListeners.add(preparedStateChangeListener);
     }
 
