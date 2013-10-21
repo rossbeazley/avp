@@ -44,4 +44,17 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
         logger.debug("isPlaying? " + mediaPlayer.isPlaying());
         return mediaPlayer.isPlaying();
     }
+
+
+
+    @Override
+    public boolean isStopped() {
+        return !mediaPlayer.isPlaying();
+    }
+
+    @Override
+    public void stop() {
+        mediaPlayer.stop();
+
+    }
 }

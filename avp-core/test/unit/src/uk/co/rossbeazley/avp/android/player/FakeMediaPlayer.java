@@ -42,5 +42,16 @@ public class FakeMediaPlayer implements MediaPlayer {
         return playing;
     }
 
+    @Override
+    public boolean isStopped() {
+        return !playing;
+    }
+
+    @Override
+    public void stop() {
+        playing=false;
+
+    }
+
 
 }

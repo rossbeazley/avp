@@ -13,6 +13,16 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
         }
 
         @Override
+        public boolean isStopped() {
+            return false;
+        }
+
+        @Override
+        public void stop() {
+
+        }
+
+        @Override
         public void prepareAsync() {}
 
         @Override

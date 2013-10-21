@@ -8,6 +8,7 @@ import uk.co.rossbeazley.avp.android.log.AndroidLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
+import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.AndroidMediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreatorEventDispatcher;
@@ -74,6 +75,7 @@ public class Application extends android.app.Application implements ApplicationS
 
         new MediaPlayerPreparer(getBus());
         new MediaPlayerAutoPlay(getBus());
+        new MediaPlayerControl(getBus());
 
         getLogger().debug("APP CREATED");
 

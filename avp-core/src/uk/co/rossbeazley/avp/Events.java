@@ -11,4 +11,7 @@ public class Events {
     public static final String LOAD_VIDEO = "load_video";
     public static final String VIDEO_LOADED = "video_loaded";
     public static final String MEDIA_PLAYER_CREATED = "media_player_created";
+    public static final String SHUTDOWN = "shutdown";
+    public static final String APP_HIDDEN = "hidden";
+    public static final String PLAYER_STOPPED = "stopped";
 }
