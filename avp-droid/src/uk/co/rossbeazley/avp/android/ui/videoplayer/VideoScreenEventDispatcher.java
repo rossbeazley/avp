@@ -14,6 +14,20 @@ class VideoScreenEventDispatcher {
 
     void registerOnEventBus(final VideoScreen videoScreen) {
 
+        bindPlayerPlayingEvent(videoScreen);
+        bindUserPauseEvent(videoScreen);
+    }
+
+    private void bindUserPauseEvent(VideoScreen videoScreen) {
+        videoScreen.setPauseEventListener(new CanListenForUserPauseEvents() {
+            @Override
+            public void userPressedPause() {
+                bus.announce(Events.PAUSE);
+            }
+        });
+    }
+
+    private void bindPlayerPlayingEvent(final VideoScreen videoScreen) {
         bus.whenEvent(Events.PLAYER_PLAYING).thenRun(new Function() {
             @Override
             public void invoke() {

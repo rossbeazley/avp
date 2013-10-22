@@ -15,4 +15,5 @@ public class Events {
     public static final String APP_HIDDEN = "hidden";
     public static final String PLAYER_STOPPED = "stopped";
     public static final String PLAYER_PLAYING = "playing";
+    public static final String PAUSE = "pause";
 }
