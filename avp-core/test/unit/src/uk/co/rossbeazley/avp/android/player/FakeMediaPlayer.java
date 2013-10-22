@@ -9,11 +9,12 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private boolean playing;
+    private boolean paused;
 
     private FakeMediaPlayer() {
     }
 
-    public static MediaPlayer createFakeMediaPlayer() {
+    public static FakeMediaPlayer createFakeMediaPlayer() {
         return new FakeMediaPlayer();
     }
     @Override
@@ -53,5 +54,13 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     }
 
+    @Override
+    public void pause() {
+        paused = true;
+        playing = false;
+    }
 
+    public boolean isPaused() {
+        return paused;  //To change body of created methods use File | Settings | File Templates.
+    }
 }

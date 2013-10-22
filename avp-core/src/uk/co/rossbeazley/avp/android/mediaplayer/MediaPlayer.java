@@ -23,9 +23,15 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
         }
 
         @Override
+        public void pause() {
+
+        }
+
+        @Override
         public void prepareAsync() {}
 
         @Override
         public void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener) {}
     };
+
 }

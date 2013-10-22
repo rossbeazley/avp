@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.player.control;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
+import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -41,4 +42,17 @@ public class MediaPlayerControlTest {
         assertThat(playerState, is(STOPPED));
     }
 
+    @Test
+    public void pausesTheMediaPlayerOnPauseEvent() {
+        FakeMediaPlayer mediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
+        mediaPlayer.start();
+
+        EventBus bus = new ExecutorEventBus();
+        new MediaPlayerControl(bus);
+        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+
+        bus.announce(Events.PAUSE);
+
+        assertThat(mediaPlayer.isPaused(),is(true));
+    }
 }
