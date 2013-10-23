@@ -13,4 +13,6 @@ public interface ApplicationServices {
     Logger getLogger();
 
     MediaPlayerFactory getAndroidMediaPlayerFactory();
+
+    void executeRunnable(Runnable runnable);
 }

@@ -23,5 +23,6 @@ public interface VideoScreen {
 
     void showPause();
 
+                    //This is the only thing keeping this class in the droid project
     void attachVideo(RenderedVideoOutput videoOutput);
 }

@@ -2,9 +2,13 @@ package uk.co.rossbeazley.avp.android.application;
 
 public class TestApplication extends Application {
 
-    @Override
-    protected void buildApplication() {
-        registerActivityLifecycleCallbacks(new ActivityWiringAspect(services, services.getLogger()));
-        createApplication();
+    public TestApplication() {
+        services = new ProductionApplicationServices(this) {
+            @Override
+            public void executeRunnable(Runnable runnable) {
+                runnable.run();
+            }
+        };
     }
+
 }
