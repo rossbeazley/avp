@@ -65,4 +65,10 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
         logger.debug("stop");
         mediaPlayer.stop();
     }
+
+    @Override
+    public void pause() {
+        logger.debug("pause");
+        mediaPlayer.pause();
+    }
 }

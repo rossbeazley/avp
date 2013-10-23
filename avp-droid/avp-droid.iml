@@ -25,7 +25,7 @@
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="avp-core" exported="" />
-    <orderEntry type="jdk" jdkName="Android 4.2 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android 4.3 Platform" jdkType="Android SDK" />
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
