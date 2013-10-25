@@ -3,9 +3,7 @@ package uk.co.rossbeazley.avp.android.application;
 import uk.co.rossbeazley.avp.android.ApplicationServices;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
-import uk.co.rossbeazley.avp.android.player.creator.AndroidMediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
-import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreatorEventDispatcher;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -35,8 +33,7 @@ public class Application extends android.app.Application {
 
         EventBus bus = services.getBus();
 
-        MediaPlayerCreator creator = new AndroidMediaPlayerCreator(services.getAndroidMediaPlayerFactory());
-        new MediaPlayerCreatorEventDispatcher(bus,creator);
+        new MediaPlayerCreator(bus,services.getAndroidMediaPlayerFactory());
         new MediaPlayerPreparer(bus);
         new MediaPlayerAutoPlay(bus);
         new MediaPlayerControl(bus);

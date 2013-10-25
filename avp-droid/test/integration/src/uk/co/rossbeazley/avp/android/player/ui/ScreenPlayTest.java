@@ -19,6 +19,7 @@ public class ScreenPlayTest implements CanListenForUserPlayEvents {
 
     @Test
     public void userPlayVideoEventWhenPlayClicked() {
+        videoScreen.showPlay();
         pressPlayButton();
         assertThat("play event", playEvent,is(RAISED));
     }

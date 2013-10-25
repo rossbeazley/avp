@@ -5,25 +5,32 @@ import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-import static uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparerDelegate.prepareMediaPlayer;
-
 public class MediaPlayerPreparer {
-    public MediaPlayerPreparer(final EventBus bus) {
+    private final EventBus bus;
 
-        final MediaPlayerPreparerDelegate.PreparedListener preparedListener = new MediaPlayerPreparerDelegate.PreparedListener() {
-            @Override
-            public void prepared(CanPrepareMediaPlayer preparedMediaPlayer) {
-                bus.sendPayload(preparedMediaPlayer).withEvent(Events.VIDEO_LOADED);
-            }
-        };
+    public MediaPlayerPreparer(final EventBus bus) {
+        this.bus = bus;
 
         bus.whenEvent(Events.MEDIA_PLAYER_CREATED).thenRun(new FunctionWithParameter<CanPrepareMediaPlayer>() {
             @Override
-            public void invoke(CanPrepareMediaPlayer payload) {
-                prepareMediaPlayer(payload, preparedListener);
+            public void invoke(final CanPrepareMediaPlayer payload) {
+                prepareMediaPlayer(payload);
             }
         });
+    }
 
+    private void prepareMediaPlayer(final CanPrepareMediaPlayer mediaplayer) {
+        CanPrepareMediaPlayer.PreparedStateChangeListener preparedStateChangeListener = createPreparedStateChangeListener(mediaplayer);
+        mediaplayer.addPreparedStateChangeListener(preparedStateChangeListener);
+        mediaplayer.prepareAsync();
+    }
 
+    private CanPrepareMediaPlayer.PreparedStateChangeListener createPreparedStateChangeListener(final CanPrepareMediaPlayer mediaplayer) {
+        return new CanPrepareMediaPlayer.PreparedStateChangeListener() {
+            @Override
+            public void state(CanPrepareMediaPlayer.PreparedState prepared) {
+                bus.sendPayload(mediaplayer).withEvent(Events.VIDEO_LOADED);
+            }
+        };
     }
 }

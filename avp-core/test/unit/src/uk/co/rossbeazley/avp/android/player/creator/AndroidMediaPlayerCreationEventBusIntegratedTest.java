@@ -22,9 +22,9 @@ public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPl
     public void createsMediaPlayerAndTellsEveryone() {
 
         EventBus bus = new ExecutorEventBus();
-        MediaPlayerCreator creator = new AndroidMediaPlayerCreator(this);
 
-        new MediaPlayerCreatorEventDispatcher(bus, creator);
+
+        new MediaPlayerCreator(bus, (MediaPlayerFactory)this);
 
         bus.whenEvent(Events.MEDIA_PLAYER_CREATED).thenRun(new FunctionWithParameter<MediaPlayer>() {
             public void invoke(MediaPlayer payload) {
