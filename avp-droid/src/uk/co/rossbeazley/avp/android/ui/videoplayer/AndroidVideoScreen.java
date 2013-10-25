@@ -84,7 +84,7 @@ public class AndroidVideoScreen implements VideoScreen {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (last_seek_position != null) {
-                    canListenForUserScrubEvents.userScrubbedTo(last_seek_position);
+                    canListenForUserScrubEvents.userScrubbedTo(new TimeInMilliseconds(last_seek_position));
                     last_seek_position = null;
                 }
             }

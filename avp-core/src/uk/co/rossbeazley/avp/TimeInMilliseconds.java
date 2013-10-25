@@ -13,4 +13,9 @@ public class TimeInMilliseconds {
     public TimeInMilliseconds(long i) {
         value=i;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((TimeInMilliseconds)obj).value==value;
+    }
 }

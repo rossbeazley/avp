@@ -6,17 +6,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.CanListenForUserScrubEvents;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenScrubTest implements CanListenForUserScrubEvents {
+public class ScreenScrubTest implements VideoScreen.CanListenForUserScrubEvents {
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
     private SeekBar sb;
@@ -26,7 +26,7 @@ public class ScreenScrubTest implements CanListenForUserScrubEvents {
         fingerDownOnScrubber();
         scrubTo(1000);
         fingerUpOnScrubber();
-        assertThat("scrub event", scrubEvent,is(1000));
+        assertThat("scrub event", scrubEvent,is(new TimeInMilliseconds(1000)));
     }
 
 
@@ -41,7 +41,7 @@ public class ScreenScrubTest implements CanListenForUserScrubEvents {
         scrubTo(1000);
         scrubTo(1200);
         fingerUpOnScrubber();
-        assertThat("scrub event", scrubEvent,is(1200));
+        assertThat("scrub event", scrubEvent,is(new TimeInMilliseconds(1200)));
     }
 
 
@@ -70,11 +70,11 @@ public class ScreenScrubTest implements CanListenForUserScrubEvents {
 
     private ActivityForTestingViews activity;
 
-    private final Integer NO_EVENT = null;
-    private Integer scrubEvent = NO_EVENT;
+    private final TimeInMilliseconds NO_EVENT = null;
+    private TimeInMilliseconds scrubEvent = NO_EVENT;
 
     @Override
-    public void userScrubbedTo(int time) {
+    public void userScrubbedTo(TimeInMilliseconds time) {
         scrubEvent = time;
     }
 
