@@ -1,17 +1,26 @@
-There is a factory that creates a MediaPlayer
+Messages:
 
-There is an object that prepares a media player, when prepared it lets the system know
+User wants to load a video at a url
+User wants to pause
+User wants to play (unpause)
+User wants to seek to a position
 
-There is an object that takes a prepared media player and wires up the view -- this is droid code
- - I can ask the media player if its audio and create a differnt view
+Media is ready to play (loaded)
+Media has started playing
+Media has started paused
+Media playback position (time) has changed
 
-There is an object that takes a prepared media player and auto starts it
+User leaves the app
+User returns to the app
+User exits the app
+User wants to restart the media
 
 
-Things to consider:
-the idea of multiple adapters for one media player object, what would that look like?
-The "factory" could actually keep a reference to the mediaplayer and can make multiple adapters
-when prepared it could create a control adapter and announce it to the world - handles play, pause etc
-sounds a bit like a singleton
+Objects:
+
+User
+Media player
+Rule - auto start media on load
+
 
 

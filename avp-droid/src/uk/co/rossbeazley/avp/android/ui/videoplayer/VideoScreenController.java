@@ -5,8 +5,6 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-//TODO    think we need to get rid of this class and implement directly in the video screen
-//TODO    nothing droid like in here, maybe shouldnt be in droid module?
 class VideoScreenController {
     private final EventBus bus;
 
