@@ -1,7 +1,9 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
+import uk.co.rossbeazley.avp.TimeInMilliseconds;
+
 //REFACTOR, maybe i should segregate this interface
-public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer {
+public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer {
 
     MediaPlayer NULL = new MediaPlayer(){
         @Override
@@ -32,6 +34,11 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
 
         @Override
         public void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener) {}
+
+        @Override
+        public TimeInMilliseconds getCurrentPosition() {
+            return new TimeInMilliseconds(0);
+        }
     };
 
 }

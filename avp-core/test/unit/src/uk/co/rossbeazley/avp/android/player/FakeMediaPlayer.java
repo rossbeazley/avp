@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.player;
 
+import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     private boolean playing;
     private boolean paused;
     private boolean prepared;
+    private TimeInMilliseconds currentPosition;
 
     private FakeMediaPlayer() {
     }
@@ -74,5 +76,14 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     public boolean isPrepared() {
         return prepared;
+    }
+
+    @Override
+    public TimeInMilliseconds getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(TimeInMilliseconds currentPosition) {
+        this.currentPosition = currentPosition;
     }
 }

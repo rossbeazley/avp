@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
+import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
 
 import java.util.ArrayList;
@@ -70,5 +71,13 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
     public void pause() {
         logger.debug("pause");
         mediaPlayer.pause();
+    }
+
+    @Override
+    public TimeInMilliseconds getCurrentPosition() {
+        TimeInMilliseconds result;
+        int millisecondsAsInt = mediaPlayer.getCurrentPosition();
+        result = new TimeInMilliseconds(millisecondsAsInt);
+        return result;
     }
 }

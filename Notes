@@ -2,13 +2,14 @@ Messages:
 
 User wants to load a video at a url
 User wants to pause
-User wants to play (unpause)
+User wants to play (un pause)
 User wants to seek to a position
 
 Media is ready to play (loaded)
 Media has started playing
 Media has started paused
 Media playback position (time) has changed
+Media has finished
 
 User leaves the app
 User returns to the app
