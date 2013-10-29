@@ -6,13 +6,13 @@ import uk.co.rossbeazley.avp.android.log.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class AndroidMediaPlayerAdapter implements MediaPlayer {
+class AndroidMediaPlayerAdapter implements MediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private final android.media.MediaPlayer mediaPlayer;
     private final Logger logger;
 
-    public AndroidMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
+    AndroidMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
         this.mediaPlayer = mediaPlayer;
         this.logger = logger;
         bindPreparedEventAdapter();
@@ -51,8 +51,6 @@ public class AndroidMediaPlayerAdapter implements MediaPlayer {
         logger.debug("isPlaying? " + result);
         return result;
     }
-
-
 
     @Override
     public boolean isStopped() {

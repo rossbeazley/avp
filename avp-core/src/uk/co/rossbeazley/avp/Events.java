@@ -18,4 +18,5 @@ public class Events {
     public static final String PAUSE = "pause";
     public static final String PLAY = "play";
     public static final String SCRUB = "scrub";
+    public static final String MEDIA_PLAYER_TIME_UPDATE = "mediaTimeUpdate";
 }

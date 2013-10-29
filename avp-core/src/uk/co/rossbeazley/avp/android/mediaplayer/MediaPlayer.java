@@ -6,6 +6,9 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer {
 
     MediaPlayer NULL = new MediaPlayer(){
+
+        private final TimeInMilliseconds noTime = new TimeInMilliseconds(0);
+
         @Override
         public void start() {}
 
@@ -37,7 +40,12 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
 
         @Override
         public TimeInMilliseconds getCurrentPosition() {
-            return new TimeInMilliseconds(0);
+            return noTime;
+        }
+
+        @Override
+        public TimeInMilliseconds getDuration() {
+            return noTime;
         }
     };
 

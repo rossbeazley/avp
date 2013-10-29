@@ -13,6 +13,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     private boolean paused;
     private boolean prepared;
     private TimeInMilliseconds currentPosition;
+    private TimeInMilliseconds duration;
 
     private FakeMediaPlayer() {
     }
@@ -23,6 +24,7 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     public static FakeMediaPlayer createStartedFakeMediaPlayer() {
         FakeMediaPlayer fakeMediaPlayer = createFakeMediaPlayer();
+        fakeMediaPlayer.setDuration(new TimeInMilliseconds(40000));
         fakeMediaPlayer.start();
         return fakeMediaPlayer;
     }
@@ -85,5 +87,14 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     public void setCurrentPosition(TimeInMilliseconds currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    @Override
+    public TimeInMilliseconds getDuration() {
+        return this.duration;
+    }
+
+    public void setDuration(TimeInMilliseconds duration) {
+        this.duration = duration;
     }
 }
