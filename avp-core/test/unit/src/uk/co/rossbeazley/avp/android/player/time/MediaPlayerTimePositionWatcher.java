@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.player.time;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanGetTimeFromMediaPlayer;
-import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 
@@ -13,7 +12,7 @@ public class MediaPlayerTimePositionWatcher {
     private final EventBus bus;
     private Runnable checkTimeCommand;
     private final TimeInMilliseconds everySecond;
-
+                                          //todo the media player should be passed in on a load video event
     public MediaPlayerTimePositionWatcher(CanGetTimeFromMediaPlayer aMediaPlayer, TimePositionEventsTest.CanExecuteCommandsAtFixedRate executor, EventBus bus) {
         this.mediaPlayer = aMediaPlayer;
         this.executor = executor;
