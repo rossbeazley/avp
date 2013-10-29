@@ -19,6 +19,7 @@ public class TimePositionEventsTest {
     private EventBus bus;
     private TimeInMilliseconds totalLength;
     private int numberOfEvents;
+    private FakeScheduledExecutor executor;
 
     @Before
     public void setup() {
@@ -26,6 +27,7 @@ public class TimePositionEventsTest {
         bus = new ExecutorEventBus();
         totalLength = mediaPlayer.getDuration();
         numberOfEvents = 0;
+        executor = new FakeScheduledExecutor();
     }
 
     @Test
@@ -43,15 +45,15 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        new MediaPlayerTimePositionWatcher(mediaPlayer, bus); //TODO this object will need to repeatable watch the media player, we need something to execute that task for the watcher
-
+        new MediaPlayerTimePositionWatcher(mediaPlayer, executor, bus); //TODO this object will need to repeatable watch the media player, we need something to execute that task for the watcher
+        executor.runOnce();
         assertThat(timeInEvent, is(expectedTime));
     }
 
 
     @Test
     public void whenTheTimeChangesOnTheMediaPlayerAnEventIsRaised() {
-        new MediaPlayerTimePositionWatcher(mediaPlayer, bus);
+        new MediaPlayerTimePositionWatcher(mediaPlayer, executor, bus);
         bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
@@ -59,9 +61,15 @@ public class TimePositionEventsTest {
                         timeInEvent = payload;
                     }
                 });
+
+        executor.runOnce();
+
         TimeInMilliseconds newPosition = new TimeInMilliseconds(2000);
         MediaTimePosition lExpectedTime = new MediaTimePosition(newPosition, totalLength);
         mediaPlayer.setCurrentPosition(newPosition);
+
+        executor.runOnce();
+
         assertThat(timeInEvent, is(lExpectedTime));
     }
 
@@ -69,8 +77,6 @@ public class TimePositionEventsTest {
     public void whenTheTimeDosntChangeNoEventIsGenerated() {
         TimeInMilliseconds currentPosition = new TimeInMilliseconds(1892);
         mediaPlayer.setCurrentPosition(currentPosition);
-
-        expectedTime = new MediaTimePosition(currentPosition, totalLength);
 
         bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
@@ -80,32 +86,33 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        new MediaPlayerTimePositionWatcher(mediaPlayer, bus);
-
+        new MediaPlayerTimePositionWatcher(mediaPlayer, executor, bus);
+        executor.runOnce();
+        executor.runOnce();
         assertThat(numberOfEvents, is(1));
     }
 
-    private class MediaTimePosition {
-        private final TimeInMilliseconds currentPosition;
-        private final TimeInMilliseconds totalLength;
+    public interface CanExecuteCommandsAtFixedRate {
+        public void schedule(Runnable command, TimeInMilliseconds period);
+        public void cancel();
+    }
 
-        public MediaTimePosition(TimeInMilliseconds currentPosition, TimeInMilliseconds totalLength) {
-            this.currentPosition = currentPosition;
-            this.totalLength = totalLength;
+    private class FakeScheduledExecutor implements CanExecuteCommandsAtFixedRate{
+
+        private Runnable taskToRun;
+
+        @Override
+        public void schedule(Runnable command, TimeInMilliseconds period) {
+            taskToRun = command;
         }
 
+        @Override
+        public void cancel() { }
 
-        private TimeInMilliseconds getCurrentPosition() {
-            return currentPosition;
-        }
-
-        private TimeInMilliseconds getTotalLength() {
-            return totalLength;
-        }
-
-        public boolean equals(Object o) {
-            return ((MediaTimePosition) o).currentPosition.equals(currentPosition) &&
-                    ((MediaTimePosition) o).totalLength.equals(totalLength);
+        public void runOnce() {
+            if (taskToRun != null) {
+                taskToRun.run();
+            }
         }
     }
 }
