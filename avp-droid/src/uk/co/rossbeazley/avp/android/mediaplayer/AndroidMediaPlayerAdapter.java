@@ -6,6 +6,9 @@ import uk.co.rossbeazley.avp.android.log.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * UNTESTED CLASS
+ */
 class AndroidMediaPlayerAdapter implements MediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
@@ -22,7 +25,7 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
         this.mediaPlayer.setOnPreparedListener(new android.media.MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(android.media.MediaPlayer mp) {
-                for(PreparedStateChangeListener preparedStateChangeListener : preparedStateChangeListeners) {
+                for (PreparedStateChangeListener preparedStateChangeListener : preparedStateChangeListeners) {
                     preparedStateChangeListener.state(MediaPlayer.PREPARED);
                 }
             }
@@ -75,6 +78,14 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     public TimeInMilliseconds getCurrentPosition() {
         TimeInMilliseconds result;
         int millisecondsAsInt = mediaPlayer.getCurrentPosition();
+        result = new TimeInMilliseconds(millisecondsAsInt);
+        return result;
+    }
+
+    @Override
+    public TimeInMilliseconds getDuration() {
+        TimeInMilliseconds result;
+        int millisecondsAsInt = mediaPlayer.getDuration();
         result = new TimeInMilliseconds(millisecondsAsInt);
         return result;
     }

@@ -9,6 +9,8 @@ class FakeVideoScreen implements VideoScreen {
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
+    public TimeInMilliseconds progressTime;
+    public TimeInMilliseconds totalTime;
 
     @Override
     public void bind() {
@@ -31,10 +33,12 @@ class FakeVideoScreen implements VideoScreen {
 
     @Override
     public void showTotalTime(TimeInMilliseconds time) {
+        totalTime = time;
     }
 
     @Override
     public void showProgressTime(TimeInMilliseconds time) {
+        progressTime = time;
     }
 
     @Override

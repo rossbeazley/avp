@@ -12,11 +12,11 @@ public class MediaTimePosition {
     }
 
 
-    private TimeInMilliseconds getCurrentPosition() {
+    public TimeInMilliseconds getCurrentPosition() {
         return currentPosition;
     }
 
-    private TimeInMilliseconds getTotalLength() {
+    public TimeInMilliseconds getTotalLength() {
         return totalLength;
     }
 

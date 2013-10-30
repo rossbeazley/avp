@@ -44,7 +44,7 @@
               android:layout_centerVertical="true"
               android:layout_alignParentBottom="true"
               android:text="--"
-              android:textSize="40dp"/>
+              android:textSize="12dp"/>
 
 
     <TextView android:id="@+id/currenttime"
@@ -54,7 +54,7 @@
               android:layout_centerVertical="true"
               android:layout_alignParentBottom="true"
               android:text="--"
-              android:textSize="40dp"/>
+              android:textSize="12dp"/>
 
     <SeekBar
             android:layout_width="fill_parent"

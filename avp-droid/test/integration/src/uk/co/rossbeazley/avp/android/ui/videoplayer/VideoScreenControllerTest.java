@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -74,6 +75,28 @@ public class VideoScreenControllerTest {
         TimeInMilliseconds expectedScrubTime = new TimeInMilliseconds(123456);
         fakeVideoScreen.scrubTo(expectedScrubTime);
         assertThat(scrubTime, is(expectedScrubTime));
+    }
+
+    @Test
+    public void whenTimeUpdateEventCurrentTimeUpdatedOnScreen() {
+
+        TimeInMilliseconds expectedTime = new TimeInMilliseconds(1000);
+        TimeInMilliseconds ANY_TIME = new TimeInMilliseconds(0);
+        MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(expectedTime, ANY_TIME);
+        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.MEDIA_PLAYER_TIME_UPDATE);
+
+        assertThat(fakeVideoScreen.progressTime, is(expectedTime));
+    }
+
+    @Test
+    public void whenTimeUpdateEventDurationTimeUpdatedOnScreen() {
+
+        TimeInMilliseconds expectedTime = new TimeInMilliseconds(1000);
+        TimeInMilliseconds ANY_TIME = new TimeInMilliseconds(0);
+        MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(ANY_TIME, expectedTime);
+        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.MEDIA_PLAYER_TIME_UPDATE);
+
+        assertThat(fakeVideoScreen.totalTime, is(expectedTime));
     }
 
 }

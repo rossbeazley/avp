@@ -2,8 +2,10 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
+import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 class VideoScreenController {
     private final EventBus bus;
@@ -18,6 +20,17 @@ class VideoScreenController {
         bindUserPauseEvent(videoScreen);
         bindUserPlayEvent(videoScreen);
         bindUserScrubEvent(videoScreen);
+        bindTimeUpdateEvent(videoScreen);
+    }
+
+    private void bindTimeUpdateEvent(final VideoScreen videoScreen) {
+        bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
+            @Override
+            public void invoke(MediaTimePosition payload) {
+                videoScreen.showProgressTime(payload.getCurrentPosition());
+                videoScreen.showTotalTime(payload.getTotalLength());
+            }
+        });
     }
 
     private void bindUserScrubEvent(VideoScreen videoScreen) {

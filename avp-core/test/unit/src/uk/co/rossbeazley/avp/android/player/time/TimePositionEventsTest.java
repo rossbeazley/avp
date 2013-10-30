@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.player.time;
 
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
@@ -90,8 +91,16 @@ public class TimePositionEventsTest {
 
         bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
         executor.runOnce();
-        executor.runOnce();
         assertThat(numberOfEvents, is(1));
+
+        executor.runOnce();
+        assertThat(numberOfEvents, is(still(1)));
+    }
+
+
+
+    private Matcher<Integer> still(int i) {
+        return is(i);
     }
 
 }
