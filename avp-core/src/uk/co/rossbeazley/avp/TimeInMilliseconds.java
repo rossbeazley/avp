@@ -1,12 +1,9 @@
 package uk.co.rossbeazley.avp;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rdlb
- * Date: 09/09/13
- * Time: 22:12
- * To change this template use File | Settings | File Templates.
- */
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class TimeInMilliseconds {
     final public long value;
 
@@ -17,5 +14,12 @@ public class TimeInMilliseconds {
     @Override
     public boolean equals(Object obj) {
         return ((TimeInMilliseconds)obj).value==value;
+    }
+
+    public String asMinutesAndSeconds() {
+        String result = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
+        result = sdf.format(new Date(value));
+        return result;
     }
 }
