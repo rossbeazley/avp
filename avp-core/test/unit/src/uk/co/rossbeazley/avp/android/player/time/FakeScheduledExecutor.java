@@ -4,7 +4,7 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 
 class FakeScheduledExecutor implements CanExecuteCommandsAtFixedRate{
 
-    private Runnable taskToRun;
+    private Runnable taskToRun = new Runnable() {public void run() {}};
 
     @Override
     public void schedule(Runnable command, TimeInMilliseconds period) {
@@ -12,8 +12,6 @@ class FakeScheduledExecutor implements CanExecuteCommandsAtFixedRate{
     }
 
     public void runOnce() {
-        if (taskToRun != null) {
-            taskToRun.run();
-        }
+        taskToRun.run();
     }
 }
