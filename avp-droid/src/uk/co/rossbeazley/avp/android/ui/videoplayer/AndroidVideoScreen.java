@@ -108,12 +108,12 @@ public class AndroidVideoScreen implements VideoScreen {
 
     @Override
     public void showTotalTime(TimeInMilliseconds time) {
-        viewFinder.setText(String.valueOf(time.value), R.id.totaltime);
+        viewFinder.setText(String.valueOf(time.asMinutesAndSeconds()), R.id.totaltime);
     }
 
     @Override
     public void showProgressTime(TimeInMilliseconds time) {
-        viewFinder.setText(String.valueOf(time.value), R.id.currenttime);
+        viewFinder.setText(String.valueOf(time.asMinutesAndSeconds()), R.id.currenttime);
     }
 
     @Override

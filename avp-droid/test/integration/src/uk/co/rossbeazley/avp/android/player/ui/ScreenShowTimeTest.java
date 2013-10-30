@@ -20,13 +20,13 @@ import static org.junit.Assert.assertThat;
 public class ScreenShowTimeTest {
 
 
-    private static final CharSequence THREE_SECONDS_IN_MILLIS = "3000";
+    private static final CharSequence THREE_SECONDS_ZERO_MINS = "00:03";
 
     @Test
     public void totalTimeUpdatedOnScreen() {
         videoScreen.showTotalTime(new TimeInMilliseconds(3000));
         CharSequence textFromView = ((TextView) getViewById(R.id.totaltime)).getText();
-        assertThat(textFromView, is(THREE_SECONDS_IN_MILLIS));
+        assertThat(textFromView, is(THREE_SECONDS_ZERO_MINS));
     }
 
 
@@ -34,7 +34,7 @@ public class ScreenShowTimeTest {
     public void progressTimeUpdatedOnScreen() {
         videoScreen.showProgressTime(new TimeInMilliseconds(3000));
         CharSequence textFromView = ((TextView) getViewById(R.id.currenttime)).getText();
-        assertThat(textFromView, is(THREE_SECONDS_IN_MILLIS));
+        assertThat(textFromView, is(THREE_SECONDS_ZERO_MINS));
     }
 
 

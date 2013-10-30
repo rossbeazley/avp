@@ -17,9 +17,8 @@
                android:layout_width="40dp"
                android:layout_height="40dp"
                android:src="@android:drawable/ic_media_play"
-               android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
-               android:layout_alignParentBottom="true"
+               android:layout_centerHorizontal="true"
                android:tag="play"
                android:visibility="gone"
             />
@@ -30,34 +29,14 @@
                android:layout_height="40dp"
                android:src="@android:drawable/ic_media_pause"
                android:focusable="false"
-               android:layout_alignParentLeft="true"
+               android:layout_centerHorizontal="true"
                android:layout_centerVertical="true"
                android:visibility="gone"
-               android:layout_alignParentBottom="true"
                android:tag="pause"
             />
 
-    <TextView android:id="@+id/totaltime"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_alignParentRight="true"
-              android:layout_centerVertical="true"
-              android:layout_alignParentBottom="true"
-              android:text="--"
-              android:textSize="12dp"/>
-
-
-    <TextView android:id="@+id/currenttime"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_toLeftOf="@id/totaltime"
-              android:layout_centerVertical="true"
-              android:layout_alignParentBottom="true"
-              android:text="--"
-              android:textSize="12dp"/>
-
     <SeekBar
-            android:layout_width="fill_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/seekBar"
             android:layout_centerHorizontal="true"
@@ -66,6 +45,33 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             />
+
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!---->
+
+    <TextView android:id="@+id/totaltime"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:gravity="center"
+              android:layout_alignParentBottom="true"
+              android:layout_alignParentRight="true"
+              android:text="--"
+              android:textColor="#aaaaaa"
+              android:textSize="12dp"
+              android:padding="4dp"/>
+
+
+    <TextView android:id="@+id/currenttime"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:gravity="center"
+              android:padding="4dp"
+              android:textColor="#aaaaaa"
+              android:layout_alignParentBottom="true"
+              android:layout_alignParentLeft="true"
+              android:text="--"
+              android:textSize="12dp"/>
 
     <ProgressBar
             android:layout_width="wrap_content"

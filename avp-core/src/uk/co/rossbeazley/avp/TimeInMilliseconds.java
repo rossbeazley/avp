@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.TimeZone;
 
 public class TimeInMilliseconds {
     final public long value;
@@ -18,7 +18,9 @@ public class TimeInMilliseconds {
 
     public String asMinutesAndSeconds() {
         String result = "";
+
         SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         result = sdf.format(new Date(value));
         return result;
     }
