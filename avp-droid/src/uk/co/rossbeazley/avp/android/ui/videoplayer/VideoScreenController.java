@@ -17,10 +17,22 @@ class VideoScreenController {
     void registerOnEventBus(final VideoScreen videoScreen) {
 
         bindPlayerPlayingEvent(videoScreen);
+        bindPlayerPausedEvent(videoScreen);
         bindUserPauseEvent(videoScreen);
         bindUserPlayEvent(videoScreen);
         bindUserScrubEvent(videoScreen);
         bindTimeUpdateEvent(videoScreen);
+    }
+
+    private void bindPlayerPausedEvent(final VideoScreen videoScreen) {
+        bus.whenEvent(Events.PLAYER_PAUSED)
+                .thenRun(new Function() {
+                    @Override
+                    public void invoke() {
+                        videoScreen.showPlay();
+                        videoScreen.hideBuffering();
+                    }
+                });
     }
 
     private void bindTimeUpdateEvent(final VideoScreen videoScreen) {

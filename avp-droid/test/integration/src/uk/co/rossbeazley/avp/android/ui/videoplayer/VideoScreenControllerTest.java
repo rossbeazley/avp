@@ -36,6 +36,13 @@ public class VideoScreenControllerTest {
     }
 
     @Test
+    public void whenPausedEventShowPlayHideBuffering() {
+        assertThat(fakeVideoScreen.showPlay,is(false));
+        bus.announce(Events.PLAYER_PAUSED);
+        assertThat(fakeVideoScreen.showPlay && fakeVideoScreen.hideBuffering, is(true));
+    }
+
+    @Test
     public void whenUserHitsPauseEventIsRaised() {
         bus.whenEvent(Events.PAUSE)
                 .thenRun(new Function() {

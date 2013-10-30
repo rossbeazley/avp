@@ -4,8 +4,9 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 
 class FakeVideoScreen implements VideoScreen {
 
-    public boolean showPause;
-    public boolean hideBuffering;
+    public boolean showPlay = false;
+    public boolean showPause = false;
+    public boolean hideBuffering = false;
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
@@ -52,7 +53,7 @@ class FakeVideoScreen implements VideoScreen {
 
     @Override
     public void showPlay() {
-
+        showPlay = true;
     }
 
     @Override

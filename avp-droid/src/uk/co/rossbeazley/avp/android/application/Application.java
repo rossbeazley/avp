@@ -2,6 +2,8 @@ package uk.co.rossbeazley.avp.android.application;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ApplicationServices;
+import uk.co.rossbeazley.avp.android.log.EventBusLogger;
+import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
@@ -39,13 +41,16 @@ public class Application extends android.app.Application {
     private void createApplication() {
 
         EventBus bus = services.getBus();
+        Logger logger = services.getLogger();
 
         new MediaPlayerCreator(bus, services.getAndroidMediaPlayerFactory());
         new MediaPlayerPreparer(bus);
         new MediaPlayerAutoPlay(bus);
         new MediaPlayerControl(bus);
         new MediaPlayerTimePositionWatcher(new ThreadPoolFixedRateExecutor(), bus);
-        services.getLogger().debug("APP CREATED");
+        new EventBusLogger(logger,bus);
+
+        logger.debug("APP CREATED");
 
     }
 

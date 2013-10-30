@@ -15,6 +15,7 @@ public class Events {
     public static final String APP_HIDDEN = "hidden";
     public static final String PLAYER_STOPPED = "stopped";
     public static final String PLAYER_PLAYING = "playing";
+    public static final String PLAYER_PAUSED = "player_paused";
     public static final String PAUSE = "pause";
     public static final String PLAY = "play";
     public static final String SCRUB = "scrub";

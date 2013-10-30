@@ -49,6 +49,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     @Override
     public void start() {
         playing=true;
+        paused=false;
     }
 
     @Override

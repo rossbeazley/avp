@@ -32,4 +32,9 @@ public class MediaTimePosition {
     private boolean checkCurrentPosition(MediaTimePosition other) {
         return currentPosition.equals(other.currentPosition);
     }
+
+    @Override
+    public String toString() {
+        return "MediaTimePosition{" + currentPosition + "/" + totalLength + '}';
+    }
 }

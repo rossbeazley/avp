@@ -30,6 +30,7 @@ public class MediaPlayerControl {
 
     private void pauseMediaPlayer() {
         mediaPlayer.pause();
+        bus.announce(Events.PLAYER_PAUSED);
     }
 
     private void handleAppHidden() {
