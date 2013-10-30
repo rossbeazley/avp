@@ -21,7 +21,15 @@ public class MediaTimePosition {
     }
 
     public boolean equals(Object o) {
-        return ((MediaTimePosition) o).currentPosition.equals(currentPosition) &&
-                ((MediaTimePosition) o).totalLength.equals(totalLength);
+        MediaTimePosition other = (MediaTimePosition) o;
+        return checkCurrentPosition(other) && checkTotalLength(other);
+    }
+
+    private boolean checkTotalLength(MediaTimePosition other) {
+        return totalLength.equals(other.totalLength);
+    }
+
+    private boolean checkCurrentPosition(MediaTimePosition other) {
+        return currentPosition.equals(other.currentPosition);
     }
 }

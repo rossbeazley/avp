@@ -28,6 +28,8 @@ public class TimePositionEventsTest {
         totalLength = mediaPlayer.getDuration();
         numberOfEvents = 0;
         executor = new FakeScheduledExecutor();
+        new MediaPlayerTimePositionWatcher(executor, bus);
+
     }
 
     @Test
@@ -44,8 +46,7 @@ public class TimePositionEventsTest {
                         timeInEvent = payload;
                     }
                 });
-
-        new MediaPlayerTimePositionWatcher(mediaPlayer, executor, bus); //TODO this object will need to repeatable watch the media player, we need something to execute that task for the watcher
+        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
         executor.runOnce();
         assertThat(timeInEvent, is(expectedTime));
     }
@@ -53,7 +54,6 @@ public class TimePositionEventsTest {
 
     @Test
     public void whenTheTimeChangesOnTheMediaPlayerAnEventIsRaised() {
-        new MediaPlayerTimePositionWatcher(mediaPlayer, executor, bus);
         bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
@@ -62,14 +62,16 @@ public class TimePositionEventsTest {
                     }
                 });
 
+        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+
         executor.runOnce();
 
         TimeInMilliseconds newPosition = new TimeInMilliseconds(2000);
-        MediaTimePosition lExpectedTime = new MediaTimePosition(newPosition, totalLength);
         mediaPlayer.setCurrentPosition(newPosition);
 
         executor.runOnce();
 
+        MediaTimePosition lExpectedTime = new MediaTimePosition(newPosition, totalLength);
         assertThat(timeInEvent, is(lExpectedTime));
     }
 
@@ -86,33 +88,10 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        new MediaPlayerTimePositionWatcher(mediaPlayer, executor, bus);
+        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
         executor.runOnce();
         executor.runOnce();
         assertThat(numberOfEvents, is(1));
     }
 
-    public interface CanExecuteCommandsAtFixedRate {
-        public void schedule(Runnable command, TimeInMilliseconds period);
-        public void cancel();
-    }
-
-    private class FakeScheduledExecutor implements CanExecuteCommandsAtFixedRate{
-
-        private Runnable taskToRun;
-
-        @Override
-        public void schedule(Runnable command, TimeInMilliseconds period) {
-            taskToRun = command;
-        }
-
-        @Override
-        public void cancel() { }
-
-        public void runOnce() {
-            if (taskToRun != null) {
-                taskToRun.run();
-            }
-        }
-    }
 }
