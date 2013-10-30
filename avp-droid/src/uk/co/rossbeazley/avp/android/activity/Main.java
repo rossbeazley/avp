@@ -67,7 +67,7 @@ public class Main extends Activity implements WireableMain {
     @Override
     protected void onStop() {
         super.onStop();
-        eventBus.announce(Events.SHUTDOWN);
+        eventBus.announce(Events.APP_SHUTDOWN);
     }
 
     @Override

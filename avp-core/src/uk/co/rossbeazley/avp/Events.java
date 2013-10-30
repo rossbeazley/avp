@@ -11,10 +11,10 @@ public class Events {
     public static final String LOAD_VIDEO = "load_video";
     public static final String VIDEO_LOADED = "video_loaded";
     public static final String MEDIA_PLAYER_CREATED = "media_player_created";
-    public static final String SHUTDOWN = "shutdown";
-    public static final String APP_HIDDEN = "hidden";
-    public static final String PLAYER_STOPPED = "stopped";
-    public static final String PLAYER_PLAYING = "playing";
+    public static final String APP_SHUTDOWN = "app_shutdown";
+    public static final String APP_HIDDEN = "app_hidden";
+    public static final String PLAYER_STOPPED = "player_stopped";
+    public static final String PLAYER_PLAYING = "player_playing";
     public static final String PLAYER_PAUSED = "player_paused";
     public static final String PAUSE = "pause";
     public static final String PLAY = "play";

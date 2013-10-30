@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 public class MediaPlayerControlTest {
 
     private static final boolean STOPPED = true;
-    private static final boolean STARTED = false;
+    private static final boolean PLAYING = false;
     private static final boolean PAUSED = true;
     private boolean playerState;
     private EventBus bus;
@@ -31,14 +31,13 @@ public class MediaPlayerControlTest {
 
     @Test
     public void stopsTheMediaPlayerWhenAppHidden() {
-
         bus.announce(Events.APP_HIDDEN);
         assertThat(mediaPlayer.isStopped(), is(true));
     }
 
     @Test
     public void announcesStopEventWhenTheMediaPlayerIsStopped() {
-        playerState = STARTED;
+        playerState = PLAYING;
         bus.whenEvent(Events.PLAYER_STOPPED).thenRun(new Function() {
             @Override
             public void invoke() {
@@ -46,7 +45,7 @@ public class MediaPlayerControlTest {
             }
         });
         bus.announce(Events.APP_HIDDEN);
-        assertThat(playerState, is(STOPPED)); //SMELL dont this this class is responsible for sending stop events, to be moved out
+        assertThat(playerState, is(STOPPED)); //SMELL this class is responsible for sending stop events, to be moved out into a mediaplayer state watcher thingy class
     }
 
     @Test
@@ -57,7 +56,7 @@ public class MediaPlayerControlTest {
 
     @Test
     public void whenPausedPlayerPausedEventRaised() {
-        playerState = STARTED;
+        playerState = PLAYING;
         bus.whenEvent(Events.PLAYER_PAUSED).thenRun(new Function() {
             @Override
             public void invoke() {
@@ -66,5 +65,27 @@ public class MediaPlayerControlTest {
         });
         bus.announce(Events.PAUSE);
         assertThat(playerState,is(PAUSED));
+    }
+
+    @Test
+    public void playsTheMediaPlayerOnPlayEvent() {
+        mediaPlayer.pause();
+        bus.announce(Events.PLAY);
+        assertThat(mediaPlayer.isPlaying(),is(true));
+    }
+
+    @Test
+    public void whenPlayingFromPausedPlayerPlayingEventRaised() {
+        mediaPlayer.pause();
+        playerState = PAUSED;
+        bus.whenEvent(Events.PLAYER_PLAYING).thenRun(new Function() {
+            @Override
+            public void invoke() {
+                playerState=PLAYING;
+            }
+        });
+
+        bus.announce(Events.PLAY);
+        assertThat(playerState, is(PLAYING));
     }
 }

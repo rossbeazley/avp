@@ -26,14 +26,14 @@ public class EventBusLogger {
         logEvent(Events.PAUSE);
         logEvent(Events.APP_HIDDEN);
 
-        logEvent(Events.SHUTDOWN);
+        logEvent(Events.APP_SHUTDOWN);
     }
 
     private void logEvent(final String event) {
         bus.whenEvent(event).thenRun(new FunctionWithParameter() {
             @Override
             public void invoke(Object payload) {
-                log.debug(event + " : " + payload);
+                log.debug("event: " + event + " : " + payload);
             }
         });
     }

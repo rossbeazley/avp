@@ -17,6 +17,21 @@ public class MediaPlayerControl {
         handleVideoLoaded();
         handleAppHidden();
         handleUserPause();
+        handleUserPlay();
+    }
+
+    private void handleUserPlay() {
+        bus.whenEvent(Events.PLAY).thenRun(new Function() {
+            @Override
+            public void invoke() {
+                playMediaPlayer();
+            }
+        });
+    }
+
+    private void playMediaPlayer() {
+        mediaPlayer.start();
+        bus.announce(Events.PLAYER_PLAYING);
     }
 
     private void handleUserPause() {
