@@ -9,14 +9,14 @@ import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoOutputScreenVideo;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenScrubTest implements ControlScreen.CanListenForUserScrubEvents {
+public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrubEvents {
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
     private SeekBar sb;
@@ -56,7 +56,7 @@ public class ScreenScrubTest implements ControlScreen.CanListenForUserScrubEvent
     public void setUp() throws Exception {
 
         activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
-        AndroidVideoScreen lvideoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
+        AndroidVideoOutputScreenVideo lvideoScreen = new AndroidVideoOutputScreenVideo(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setScrubEventListener(this);
         videoScreen = lvideoScreen;
         videoScreen.bind();
@@ -66,7 +66,7 @@ public class ScreenScrubTest implements ControlScreen.CanListenForUserScrubEvent
     }
 
 
-    private ControlScreen videoScreen;
+    private VideoControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

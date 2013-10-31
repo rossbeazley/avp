@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 
-public interface ControlScreen {
+public interface VideoControlScreen {
     void bind();
 
     void showTotalTime(TimeInMilliseconds time);

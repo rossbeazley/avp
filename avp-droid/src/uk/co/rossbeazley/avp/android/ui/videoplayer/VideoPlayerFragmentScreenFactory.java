@@ -18,7 +18,7 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
     @Override
     public FragmentLayoutInflater createScreenFromLayoutInflatorAndViewGroup(LayoutInflater inflater, ViewGroup container) {
         FragmentLayoutInflater screenInflater = new FragmentLayoutInflater(inflater, container);
-        final ControlScreen videoScreen = new AndroidVideoScreen(screenInflater, screenInflater);
+        final VideoControlScreen videoScreen = new AndroidVideoOutputScreenVideo(screenInflater, screenInflater);
         videoScreen.bind();
         videoScreenController.registerOnEventBus(videoScreen);
         return screenInflater;

@@ -9,9 +9,9 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoOutputScreenVideo;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.RenderedVideoOutput;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoOutputScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -39,7 +39,7 @@ public class ScreenAttachVideoTest implements CanFindViewById {
             }
         };
 
-        videoScreen.attachVideo(mockVideoOutput);
+        videoOutputScreen.attachVideo(mockVideoOutput);
         assertThat(viewGroupAttachedTo,is(VIEW_GROUP_TO_FIND));
     }
 
@@ -47,10 +47,10 @@ public class ScreenAttachVideoTest implements CanFindViewById {
     @Before
     public void setUp() throws Exception {
         CanInflateLayout UNUSED_LAYOUT_INFLATOR = null;
-        videoScreen = new AndroidVideoScreen(UNUSED_LAYOUT_INFLATOR, this);
+        videoOutputScreen = new AndroidVideoOutputScreenVideo(UNUSED_LAYOUT_INFLATOR, this);
     }
 
-    private VideoScreen videoScreen;
+    private VideoOutputScreen videoOutputScreen;
 
     @Override
     public View findViewById(int id) {

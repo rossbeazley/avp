@@ -8,14 +8,14 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoOutputScreenVideo;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPauseTest implements ControlScreen.CanListenForUserPauseEvents {
+public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPauseEvents {
 
     @Test
     public void userPauseVideoEventWhenPauseClicked() {
@@ -33,8 +33,8 @@ public class ScreenPauseTest implements ControlScreen.CanListenForUserPauseEvent
     @Before
     public void setUp() throws Exception {
         activity = createVisibleActivity();
-        AndroidVideoScreen lvideoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
-        lvideoScreen.setPauseEventListener((ControlScreen.CanListenForUserPauseEvents)this);
+        AndroidVideoOutputScreenVideo lvideoScreen = new AndroidVideoOutputScreenVideo(activity.layoutInflater(), activity.viewFinder());
+        lvideoScreen.setPauseEventListener((VideoControlScreen.CanListenForUserPauseEvents)this);
         videoScreen = lvideoScreen;
         videoScreen.bind();
     }
@@ -43,7 +43,7 @@ public class ScreenPauseTest implements ControlScreen.CanListenForUserPauseEvent
         return Robolectric.buildActivity(ActivityForTestingViews.class).create().visible().get();
     }
 
-    private ControlScreen videoScreen;
+    private VideoControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

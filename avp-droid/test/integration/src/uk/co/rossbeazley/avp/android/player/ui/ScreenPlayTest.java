@@ -7,14 +7,14 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoOutputScreenVideo;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPlayTest implements ControlScreen.CanListenForUserPlayEvents {
+public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEvents {
 
     @Test
     public void userPlayVideoEventWhenPlayClicked() {
@@ -27,14 +27,14 @@ public class ScreenPlayTest implements ControlScreen.CanListenForUserPlayEvents 
     @Before
     public void setUp() throws Exception {
         activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
-        AndroidVideoScreen lvideoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
+        AndroidVideoOutputScreenVideo lvideoScreen = new AndroidVideoOutputScreenVideo(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPlayEventListener(this);
         videoScreen=lvideoScreen;
         videoScreen.bind();
     }
 
 
-    private ControlScreen videoScreen;
+    private VideoControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

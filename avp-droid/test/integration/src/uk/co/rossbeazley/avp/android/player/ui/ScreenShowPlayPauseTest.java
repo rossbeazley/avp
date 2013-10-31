@@ -8,8 +8,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoOutputScreenVideo;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -46,12 +46,12 @@ public class ScreenShowPlayPauseTest {
     @Before
     public void setUp() throws Exception {
         activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
-        videoScreen = new AndroidVideoScreen(activity.layoutInflater(), activity.viewFinder());
+        videoScreen = new AndroidVideoOutputScreenVideo(activity.layoutInflater(), activity.viewFinder());
         videoScreen.bind();
     }
 
 
-    private ControlScreen videoScreen;
+    private VideoControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

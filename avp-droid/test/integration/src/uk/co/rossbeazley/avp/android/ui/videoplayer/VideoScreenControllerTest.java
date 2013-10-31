@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class VideoScreenControllerTest {
 
     private EventBus bus;
-    private FakeVideoScreen fakeVideoScreen;
+    private FakeVideoScreenVideo fakeVideoScreen;
     private boolean pausedEventDispatched;
     private boolean playEventDispatched;
     private TimeInMilliseconds scrubTime;
@@ -24,7 +24,7 @@ public class VideoScreenControllerTest {
     @Before
     public void setup() {
         bus = new ExecutorEventBus();
-        fakeVideoScreen = new FakeVideoScreen();
+        fakeVideoScreen = new FakeVideoScreenVideo();
         VideoScreenController controller = new VideoScreenController(bus);
         controller.registerOnEventBus(fakeVideoScreen);
     }
