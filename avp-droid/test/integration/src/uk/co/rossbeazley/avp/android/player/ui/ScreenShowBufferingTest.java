@@ -10,7 +10,7 @@ import org.robolectric.util.ActivityController;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -48,7 +48,7 @@ public class ScreenShowBufferingTest {
     }
 
 
-    private VideoScreen videoScreen;
+    private ControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

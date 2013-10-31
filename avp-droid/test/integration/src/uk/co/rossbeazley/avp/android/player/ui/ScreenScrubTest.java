@@ -10,13 +10,13 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenScrubTest implements VideoScreen.CanListenForUserScrubEvents {
+public class ScreenScrubTest implements ControlScreen.CanListenForUserScrubEvents {
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
     private SeekBar sb;
@@ -66,7 +66,7 @@ public class ScreenScrubTest implements VideoScreen.CanListenForUserScrubEvents 
     }
 
 
-    private VideoScreen videoScreen;
+    private ControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

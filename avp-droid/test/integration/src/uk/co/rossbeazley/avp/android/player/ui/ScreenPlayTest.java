@@ -8,13 +8,13 @@ import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.ControlScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPlayTest implements VideoScreen.CanListenForUserPlayEvents {
+public class ScreenPlayTest implements ControlScreen.CanListenForUserPlayEvents {
 
     @Test
     public void userPlayVideoEventWhenPlayClicked() {
@@ -34,7 +34,7 @@ public class ScreenPlayTest implements VideoScreen.CanListenForUserPlayEvents {
     }
 
 
-    private VideoScreen videoScreen;
+    private ControlScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class AndroidVideoScreen implements VideoScreen {
+public class AndroidVideoScreen implements ControlScreen, VideoScreen {
     private final CanInflateLayout canInflateLayout;
 
     private final ViewFinder viewFinder;

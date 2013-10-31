@@ -14,7 +14,7 @@ class VideoScreenController {
         this.bus = bus;
     }
 
-    void registerOnEventBus(final VideoScreen videoScreen) {
+    void registerOnEventBus(final ControlScreen videoScreen) {
 
         bindPlayerPlayingEvent(videoScreen);
         bindPlayerPausedEvent(videoScreen);
@@ -24,7 +24,7 @@ class VideoScreenController {
         bindTimeUpdateEvent(videoScreen);
     }
 
-    private void bindPlayerPausedEvent(final VideoScreen videoScreen) {
+    private void bindPlayerPausedEvent(final ControlScreen videoScreen) {
         bus.whenEvent(Events.PLAYER_PAUSED)
                 .thenRun(new Function() {
                     @Override
@@ -35,7 +35,7 @@ class VideoScreenController {
                 });
     }
 
-    private void bindTimeUpdateEvent(final VideoScreen videoScreen) {
+    private void bindTimeUpdateEvent(final ControlScreen videoScreen) {
         bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
             @Override
             public void invoke(MediaTimePosition payload) {
@@ -45,8 +45,8 @@ class VideoScreenController {
         });
     }
 
-    private void bindUserScrubEvent(VideoScreen videoScreen) {
-        videoScreen.setScrubEventListener(new VideoScreen.CanListenForUserScrubEvents() {
+    private void bindUserScrubEvent(ControlScreen videoScreen) {
+        videoScreen.setScrubEventListener(new ControlScreen.CanListenForUserScrubEvents() {
             @Override
             public void userScrubbedTo(TimeInMilliseconds time) {
                 bus.sendPayload(time)
@@ -55,8 +55,8 @@ class VideoScreenController {
         });
     }
 
-    private void bindUserPlayEvent(VideoScreen videoScreen) {
-        videoScreen.setPlayEventListener(new VideoScreen.CanListenForUserPlayEvents() {
+    private void bindUserPlayEvent(ControlScreen videoScreen) {
+        videoScreen.setPlayEventListener(new ControlScreen.CanListenForUserPlayEvents() {
             @Override
             public void userPressedPlay() {
                 bus.announce(Events.PLAY);
@@ -64,8 +64,8 @@ class VideoScreenController {
         });
     }
 
-    private void bindUserPauseEvent(VideoScreen videoScreen) {
-        videoScreen.setPauseEventListener(new VideoScreen.CanListenForUserPauseEvents() {
+    private void bindUserPauseEvent(ControlScreen videoScreen) {
+        videoScreen.setPauseEventListener(new ControlScreen.CanListenForUserPauseEvents() {
             @Override
             public void userPressedPause() {
                 bus.announce(Events.PAUSE);
@@ -73,7 +73,7 @@ class VideoScreenController {
         });
     }
 
-    private void bindPlayerPlayingEvent(final VideoScreen videoScreen) {
+    private void bindPlayerPlayingEvent(final ControlScreen videoScreen) {
         bus.whenEvent(Events.PLAYER_PLAYING)
                 .thenRun(new Function() {
                     @Override
