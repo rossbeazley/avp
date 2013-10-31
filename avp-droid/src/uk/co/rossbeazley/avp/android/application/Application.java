@@ -12,7 +12,6 @@ import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -47,7 +46,7 @@ public class Application extends android.app.Application {
         new MediaPlayerPreparer(bus);
         new MediaPlayerAutoPlay(bus);
         new MediaPlayerControl(bus);
-        new MediaPlayerTimePositionWatcher(new ThreadPoolFixedRateExecutor(), bus);
+        new MediaPlayerTimePositionWatcher(new ThreadPoolFixedRateExecutor(services.getExecutorService()), bus);
         new EventBusLogger(logger,bus);
 
         logger.debug("APP CREATED");
@@ -59,8 +58,8 @@ public class Application extends android.app.Application {
         private static final long NO_DELAY = 0;
         private final ScheduledExecutorService service;
 
-        private ThreadPoolFixedRateExecutor() {
-            this.service = Executors.newScheduledThreadPool(1);
+        private ThreadPoolFixedRateExecutor(ScheduledExecutorService executorService) {
+            this.service = executorService;
         }
 
         @Override

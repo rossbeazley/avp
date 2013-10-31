@@ -5,6 +5,8 @@ import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayerFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
+import java.util.concurrent.ScheduledExecutorService;
+
 public interface ApplicationServices {
     EventBus getBus();
 
@@ -15,4 +17,6 @@ public interface ApplicationServices {
     MediaPlayerFactory getAndroidMediaPlayerFactory();
 
     void executeRunnable(Runnable runnable);
+
+    ScheduledExecutorService getExecutorService();
 }

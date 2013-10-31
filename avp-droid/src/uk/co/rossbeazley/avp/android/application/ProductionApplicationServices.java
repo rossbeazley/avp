@@ -13,6 +13,8 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.LooperExecutorFactory;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 class ProductionApplicationServices implements ApplicationServices {
 
@@ -21,6 +23,8 @@ class ProductionApplicationServices implements ApplicationServices {
     private AndroidLogger logger;
     private AndroidMediaPlayerFactory androidMediaPlayerFactory;
     private Context applicationContext;
+    private ScheduledExecutorService scheduledExecutorService;
+    private static final int THREAD_POOL_SIZE_OF_ONE = 1;
 
     ProductionApplicationServices(Context applicationContext) {
         this.applicationContext = applicationContext;
@@ -83,5 +87,13 @@ class ProductionApplicationServices implements ApplicationServices {
         }
 
         logger.debug("APP STARTED");
+    }
+
+    @Override
+    public ScheduledExecutorService getExecutorService() {
+        if (scheduledExecutorService == null) {
+            scheduledExecutorService = Executors.newScheduledThreadPool(THREAD_POOL_SIZE_OF_ONE);
+        }
+        return scheduledExecutorService;
     }
 }
