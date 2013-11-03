@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.player.time;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 
-class FakeScheduledExecutor implements CanExecuteCommandsAtFixedRate{
+public class FakeScheduledExecutor implements CanExecuteCommandsAtFixedRate{
 
     private Runnable taskToRun = new Runnable() {public void run() {}};
 

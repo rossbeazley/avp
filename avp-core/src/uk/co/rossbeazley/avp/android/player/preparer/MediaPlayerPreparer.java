@@ -28,7 +28,7 @@ public class MediaPlayerPreparer {
     private CanPrepareMediaPlayer.PreparedStateChangeListener createPreparedStateChangeListener(final CanPrepareMediaPlayer mediaplayer) {
         return new CanPrepareMediaPlayer.PreparedStateChangeListener() {
             @Override
-            public void state(CanPrepareMediaPlayer.PreparedState prepared) {
+            public void prepared() {
                 bus.sendPayload(mediaplayer).withEvent(Events.VIDEO_LOADED);
             }
         };

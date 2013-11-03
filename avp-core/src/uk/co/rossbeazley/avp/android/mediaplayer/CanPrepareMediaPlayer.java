@@ -5,11 +5,7 @@ public interface CanPrepareMediaPlayer {
 
     void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener);
 
-    PreparedState PREPARED = new PreparedState();
-
     public interface PreparedStateChangeListener {
-        void state(PreparedState prepared);
+        void prepared();
     }
-
-    public static class PreparedState { }
 }

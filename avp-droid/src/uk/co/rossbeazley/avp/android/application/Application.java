@@ -5,6 +5,7 @@ import uk.co.rossbeazley.avp.android.log.EventBusLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
+import uk.co.rossbeazley.avp.android.player.control.MediaPlayerSateEventDispatcher;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
@@ -36,14 +37,15 @@ public class Application extends android.app.Application {
 
         EventBus bus = services.getBus();
         Logger logger = services.getLogger();
+        ThreadPoolFixedRateExecutor fixedRateExecutor = new ThreadPoolFixedRateExecutor(services.getExecutorService());
 
         new MediaPlayerCreator(bus, services.getAndroidMediaPlayerFactory());
         new MediaPlayerPreparer(bus);
         new MediaPlayerAutoPlay(bus);
         new MediaPlayerControl(bus);
-        ThreadPoolFixedRateExecutor fixedRateExecutor = new ThreadPoolFixedRateExecutor(services.getExecutorService());
         new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
         new EventBusLogger(logger,bus);
+        new MediaPlayerSateEventDispatcher(bus,fixedRateExecutor);
 
         logger.debug("APP CREATED");
 

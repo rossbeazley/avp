@@ -37,7 +37,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     private void changeStraightToPreparedState() {
         prepared=true;
         for(PreparedStateChangeListener preparedStateChangeListener : this.preparedStateChangeListeners) {
-            preparedStateChangeListener.state(MediaPlayer.PREPARED);
+            preparedStateChangeListener.prepared();
         }
     }
 
@@ -58,7 +58,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     }
 
     @Override
-    public boolean isStopped() {
+    public boolean isNotPlaying() {
         return !playing;
     }
 

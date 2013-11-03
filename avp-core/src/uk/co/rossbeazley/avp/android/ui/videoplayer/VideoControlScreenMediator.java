@@ -7,10 +7,10 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class VideoScreenController {
+class VideoControlScreenMediator {
     private final EventBus bus;
 
-    VideoScreenController(final EventBus bus) {
+    VideoControlScreenMediator(final EventBus bus) {
         this.bus = bus;
     }
 

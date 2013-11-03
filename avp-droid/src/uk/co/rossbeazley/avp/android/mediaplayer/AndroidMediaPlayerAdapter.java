@@ -26,7 +26,7 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
             @Override
             public void onPrepared(android.media.MediaPlayer mp) {
                 for (PreparedStateChangeListener preparedStateChangeListener : preparedStateChangeListeners) {
-                    preparedStateChangeListener.state(MediaPlayer.PREPARED);
+                    preparedStateChangeListener.prepared();
                 }
             }
         });
@@ -56,9 +56,9 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     }
 
     @Override
-    public boolean isStopped() {
+    public boolean isNotPlaying() {
         boolean result = !mediaPlayer.isPlaying();
-        logger.debug("isStopped? " + result);
+        logger.debug("isNotPlaying? " + result);
         return result;
     }
 

@@ -61,7 +61,6 @@ class FakeVideoScreenVideo implements VideoControlScreen {
         showPause = true;
     }
 
-    @Override
     public void attachVideo(RenderedVideoOutput videoOutput) {
     }
 

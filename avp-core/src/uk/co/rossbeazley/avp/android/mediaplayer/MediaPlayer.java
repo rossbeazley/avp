@@ -18,7 +18,7 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
         }
 
         @Override
-        public boolean isStopped() {
+        public boolean isNotPlaying() {
             return false;
         }
 

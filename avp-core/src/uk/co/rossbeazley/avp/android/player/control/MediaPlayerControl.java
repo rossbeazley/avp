@@ -31,7 +31,6 @@ public class MediaPlayerControl {
 
     private void playMediaPlayer() {
         mediaPlayer.start();
-        bus.announce(Events.PLAYER_PLAYING);
     }
 
     private void handleUserPause() {
@@ -45,7 +44,6 @@ public class MediaPlayerControl {
 
     private void pauseMediaPlayer() {
         mediaPlayer.pause();
-        bus.announce(Events.PLAYER_PAUSED);
     }
 
     private void handleAppHidden() {

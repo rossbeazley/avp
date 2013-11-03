@@ -4,9 +4,7 @@ public interface CanControlMediaPlayer {
     void start();
     boolean isPlaying();
 
-    boolean isStopped();
-
     void stop();
-
     void pause();
+    boolean isNotPlaying();
 }

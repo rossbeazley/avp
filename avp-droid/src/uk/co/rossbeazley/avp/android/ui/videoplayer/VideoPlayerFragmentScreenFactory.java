@@ -9,10 +9,10 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
 
-    private final VideoScreenController videoScreenController;
+    private final VideoControlScreenMediator videoControlScreenMediator;
 
     public VideoPlayerFragmentScreenFactory(final EventBus bus) {
-        videoScreenController = new VideoScreenController(bus);
+        videoControlScreenMediator = new VideoControlScreenMediator(bus);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
         FragmentLayoutInflater screenInflater = new FragmentLayoutInflater(inflater, container);
         final VideoControlScreen videoScreen = new AndroidVideoOutputScreenVideo(screenInflater, screenInflater);
         videoScreen.bind();
-        videoScreenController.registerOnEventBus(videoScreen);
+        videoControlScreenMediator.registerOnEventBus(videoScreen);
         return screenInflater;
     }
 }
