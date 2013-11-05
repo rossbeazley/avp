@@ -10,6 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class MediaPlayerScrubbingTest {
 
@@ -35,6 +36,23 @@ public class MediaPlayerScrubbingTest {
 
         assertThat(mediaPlayer.seekingTo(),is(expectedScrubPosition));
     }
+
+    @Test
+    public void whenScrubbingNotFinishedUserScrubEventNotProcessed() {
+        fail("not speced yet");
+    }
+
+    @Test
+    public void whenScrubbingFinishedUnprocessedUserScrubEventProcessed() {
+        fail("not speced yet");
+    }
+
+    @Test
+    public void whenScrubbingFinishedOnlyLastUnprocessedUserScrubEventProcessed() {
+        fail("not speced yet");
+    }
+
+
 
     private class MediaPlayerScrubber {
         public MediaPlayerScrubber(EventBus bus) {
