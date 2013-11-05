@@ -42,7 +42,7 @@ public class MediaPlayerStateEventDispatcherTest {
 
 
         fakeScheduledExecutor = new FakeScheduledExecutor();
-        new MediaPlayerSateEventDispatcher(bus, fakeScheduledExecutor);
+        new MediaPlayerStateEventDispatcher(bus, fakeScheduledExecutor);
 
     }
 

@@ -5,7 +5,7 @@ import uk.co.rossbeazley.avp.android.log.EventBusLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
-import uk.co.rossbeazley.avp.android.player.control.MediaPlayerSateEventDispatcher;
+import uk.co.rossbeazley.avp.android.player.control.MediaPlayerStateEventDispatcher;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
@@ -45,7 +45,7 @@ public class Application extends android.app.Application {
         new MediaPlayerControl(bus);
         new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
         new EventBusLogger(logger,bus);
-        new MediaPlayerSateEventDispatcher(bus,fixedRateExecutor);
+        new MediaPlayerStateEventDispatcher(bus,fixedRateExecutor);
 
         logger.debug("APP CREATED");
 

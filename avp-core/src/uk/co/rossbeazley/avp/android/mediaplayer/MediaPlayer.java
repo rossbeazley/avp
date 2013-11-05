@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 
 //REFACTOR, maybe i should segregate this interface
-public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScubMediaPlayer {
+public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer {
 
     MediaPlayer NULL = new MediaPlayer(){
 

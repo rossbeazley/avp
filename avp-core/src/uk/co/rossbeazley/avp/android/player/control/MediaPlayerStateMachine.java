@@ -4,7 +4,7 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class MediaPlayerStateMachine {
+class MediaPlayerStateMachine {
     private MediaPlayerState state;
     private EventBus bus;
 

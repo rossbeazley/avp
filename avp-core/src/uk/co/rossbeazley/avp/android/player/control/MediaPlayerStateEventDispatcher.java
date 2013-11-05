@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class MediaPlayerSateEventDispatcher {
+public class MediaPlayerStateEventDispatcher {
 
     public static final TimeInMilliseconds ONE_HUNDRED_MILLISECONDS = new TimeInMilliseconds(100);
     private final CanExecuteCommandsAtFixedRate scheduler;
@@ -20,7 +20,7 @@ public class MediaPlayerSateEventDispatcher {
         }
     };
 
-    public MediaPlayerSateEventDispatcher(EventBus bus, CanExecuteCommandsAtFixedRate scheduler) {
+    public MediaPlayerStateEventDispatcher(EventBus bus, CanExecuteCommandsAtFixedRate scheduler) {
         this.scheduler = scheduler;
         mediaPlayerStateMachine = new MediaPlayerStateMachine(bus);
         bindVideoLoadedEvent(bus);

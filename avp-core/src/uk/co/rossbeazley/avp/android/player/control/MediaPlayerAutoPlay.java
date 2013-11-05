@@ -15,7 +15,6 @@ public class MediaPlayerAutoPlay {
             @Override
             public void invoke(CanControlMediaPlayer mediaplayer) {
                 mediaplayer.start();
-                bus.announce(Events.PLAYER_PLAYING);
             }
         });
     }
