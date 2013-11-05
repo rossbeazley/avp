@@ -36,7 +36,7 @@ class VideoControlScreenMediator {
     }
 
     private void bindTimeUpdateEvent(final VideoControlScreen videoScreen) {
-        bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
+        bus.whenEvent(Events.PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
             @Override
             public void invoke(MediaTimePosition payload) {
                 videoScreen.showProgressTime(payload.getCurrentPosition());
@@ -50,7 +50,7 @@ class VideoControlScreenMediator {
             @Override
             public void userScrubbedTo(TimeInMilliseconds time) {
                 bus.sendPayload(time)
-                        .withEvent(Events.SCRUB);
+                        .withEvent(Events.USER_SCRUB);
             }
         });
     }
@@ -59,7 +59,7 @@ class VideoControlScreenMediator {
         videoScreen.setPlayEventListener(new VideoControlScreen.CanListenForUserPlayEvents() {
             @Override
             public void userPressedPlay() {
-                bus.announce(Events.PLAY);
+                bus.announce(Events.USER_PLAY);
             }
         });
     }
@@ -68,7 +68,7 @@ class VideoControlScreenMediator {
         videoScreen.setPauseEventListener(new VideoControlScreen.CanListenForUserPauseEvents() {
             @Override
             public void userPressedPause() {
-                bus.announce(Events.PAUSE);
+                bus.announce(Events.USER_PAUSE);
             }
         });
     }

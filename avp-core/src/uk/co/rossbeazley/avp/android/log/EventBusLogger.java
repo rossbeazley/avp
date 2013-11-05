@@ -13,17 +13,17 @@ public class EventBusLogger {
         this.log = log;
         this.bus = bus;
 
-        logEvent(Events.VIDEO_LOADED);
-        logEvent(Events.MEDIA_PLAYER_CREATED);
-        logEvent(Events.MEDIA_PLAYER_TIME_UPDATE);
+        logEvent(Events.PLAYER_VIDEO_LOADED);
+        logEvent(Events.PLAYER_CREATED);
+        logEvent(Events.PLAYER_TIME_UPDATE);
         logEvent(Events.PLAYER_PAUSED);
         logEvent(Events.PLAYER_PLAYING);
         logEvent(Events.PLAYER_STOPPED);
 
-        logEvent(Events.LOAD_VIDEO);
-        logEvent(Events.PLAY);
-        logEvent(Events.SCRUB);
-        logEvent(Events.PAUSE);
+        logEvent(Events.USER_LOAD_VIDEO);
+        logEvent(Events.USER_PLAY);
+        logEvent(Events.USER_SCRUB);
+        logEvent(Events.USER_PAUSE);
         logEvent(Events.APP_HIDDEN);
 
         logEvent(Events.APP_SHUTDOWN);

@@ -89,4 +89,9 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
         result = new TimeInMilliseconds(millisecondsAsInt);
         return result;
     }
+
+    @Override
+    public void seekTo(TimeInMilliseconds time) {
+        mediaPlayer.seekTo((int) time.value);
+    }
 }

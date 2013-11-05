@@ -27,7 +27,7 @@ public class MediaPlayerAutoPlayTest {
     @Test
     public void autoStartsTheMediaPlayerWhenVideoLoaded() {
         FakeMediaPlayer mediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
-        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
         assertThat(mediaPlayer.isPlaying(), is(true));
     }
 
@@ -43,7 +43,7 @@ public class MediaPlayerAutoPlayTest {
         });
 
         FakeMediaPlayer mediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
-        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
         assertThat(announcedPlayerState, is(PLAYING));   //SMELL this object should not send this event, responsibility to be moved to a different object
     }
 }

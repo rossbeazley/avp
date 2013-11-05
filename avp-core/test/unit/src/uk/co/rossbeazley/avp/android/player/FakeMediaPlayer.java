@@ -14,6 +14,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     private boolean prepared;
     private TimeInMilliseconds currentPosition;
     private TimeInMilliseconds duration;
+    private TimeInMilliseconds scrubToTime;
 
     private FakeMediaPlayer() {
     }
@@ -98,5 +99,14 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     public void setDuration(TimeInMilliseconds duration) {
         this.duration = duration;
+    }
+
+    public TimeInMilliseconds seekingTo() {
+        return scrubToTime;
+    }
+
+    @Override
+    public void seekTo(TimeInMilliseconds time) {
+        this.scrubToTime = time;
     }
 }

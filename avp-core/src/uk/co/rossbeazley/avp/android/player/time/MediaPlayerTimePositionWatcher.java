@@ -32,7 +32,7 @@ public class MediaPlayerTimePositionWatcher {
     }
 
     private void bindVideoLoadedEvent(EventBus bus) {
-        bus.whenEvent(Events.VIDEO_LOADED)
+        bus.whenEvent(Events.PLAYER_VIDEO_LOADED)
                 .thenRun(new FunctionWithParameter<CanGetTimeFromMediaPlayer>() {
 
                     @Override
@@ -58,7 +58,7 @@ public class MediaPlayerTimePositionWatcher {
     }
 
     private void sendAnnouncement(MediaTimePosition mediaTimePosition) {
-        bus.sendPayload(mediaTimePosition).withEvent(Events.MEDIA_PLAYER_TIME_UPDATE);
+        bus.sendPayload(mediaTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
     }
 
     private boolean notTheSamePositionAsLastTime(MediaTimePosition mediaTimePosition) {

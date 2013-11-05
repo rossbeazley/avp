@@ -49,7 +49,7 @@ public class MediaPlayerStateEventDispatcherTest {
     @Test
     public void whenTransitionsToPauseFromPlayingPauseEventRaised() {
         bus.sendPayload(mediaPlayer)
-                .withEvent(Events.VIDEO_LOADED);
+                .withEvent(Events.PLAYER_VIDEO_LOADED);
         mediaPlayer.pause();
         fakeScheduledExecutor.runOnce();
         assertThat(playerState, is(Events.PLAYER_PAUSED));
@@ -60,7 +60,7 @@ public class MediaPlayerStateEventDispatcherTest {
     public void whenTransitionsToPlayFromPausedPlayEventRaised() {
         mediaPlayer.pause();
         bus.sendPayload(mediaPlayer)
-                .withEvent(Events.VIDEO_LOADED);
+                .withEvent(Events.PLAYER_VIDEO_LOADED);
         mediaPlayer.start();
         fakeScheduledExecutor.runOnce();
         assertThat(playerState, is(Events.PLAYER_PLAYING));

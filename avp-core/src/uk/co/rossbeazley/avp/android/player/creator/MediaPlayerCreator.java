@@ -14,7 +14,7 @@ public class MediaPlayerCreator {
     }
 
     static private void bindCreateMediaPlayerEventHandler(final EventBus bus, final MediaPlayerFactory factory) {
-        bus.whenEvent(Events.LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
+        bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
             @Override
             public void invoke(final UriString payload) {
                 createMediaPlayer(bus, payload,factory);
@@ -24,7 +24,7 @@ public class MediaPlayerCreator {
 
     static private void createMediaPlayer(EventBus bus, UriString payload,MediaPlayerFactory factory) {
         MediaPlayer mediaplayer = factory.createMediaPlayerForUri(payload);
-        bus.sendPayload(mediaplayer).withEvent(Events.MEDIA_PLAYER_CREATED);
+        bus.sendPayload(mediaplayer).withEvent(Events.PLAYER_CREATED);
     }
 
 }

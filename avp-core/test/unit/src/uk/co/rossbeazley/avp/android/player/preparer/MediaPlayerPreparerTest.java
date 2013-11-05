@@ -21,7 +21,7 @@ public class MediaPlayerPreparerTest {
         EventBus bus = new ExecutorEventBus();
         new MediaPlayerPreparer(bus);
         FakeMediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
-        bus.sendPayload(expectedMediaPlayer).withEvent(Events.MEDIA_PLAYER_CREATED);
+        bus.sendPayload(expectedMediaPlayer).withEvent(Events.PLAYER_CREATED);
 
         assertThat(expectedMediaPlayer.isPrepared(), is(true));
     }
@@ -31,7 +31,7 @@ public class MediaPlayerPreparerTest {
 
         EventBus bus = new ExecutorEventBus();
         new MediaPlayerPreparer(bus);
-        bus.whenEvent(Events.VIDEO_LOADED).thenRun(new FunctionWithParameter<MediaPlayer>() {
+        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<MediaPlayer>() {
             @Override
             public void invoke(MediaPlayer payload) {
                 preparedMediaPlayer = payload;
@@ -39,7 +39,7 @@ public class MediaPlayerPreparerTest {
         });
 
         MediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
-        bus.sendPayload(expectedMediaPlayer).withEvent(Events.MEDIA_PLAYER_CREATED);
+        bus.sendPayload(expectedMediaPlayer).withEvent(Events.PLAYER_CREATED);
 
         assertThat(preparedMediaPlayer, is(expectedMediaPlayer));
     }

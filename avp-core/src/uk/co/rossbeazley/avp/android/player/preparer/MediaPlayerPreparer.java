@@ -11,7 +11,7 @@ public class MediaPlayerPreparer {
     public MediaPlayerPreparer(final EventBus bus) {
         this.bus = bus;
 
-        bus.whenEvent(Events.MEDIA_PLAYER_CREATED).thenRun(new FunctionWithParameter<CanPrepareMediaPlayer>() {
+        bus.whenEvent(Events.PLAYER_CREATED).thenRun(new FunctionWithParameter<CanPrepareMediaPlayer>() {
             @Override
             public void invoke(final CanPrepareMediaPlayer payload) {
                 prepareMediaPlayer(payload);
@@ -29,7 +29,7 @@ public class MediaPlayerPreparer {
         return new CanPrepareMediaPlayer.PreparedStateChangeListener() {
             @Override
             public void prepared() {
-                bus.sendPayload(mediaplayer).withEvent(Events.VIDEO_LOADED);
+                bus.sendPayload(mediaplayer).withEvent(Events.PLAYER_VIDEO_LOADED);
             }
         };
     }

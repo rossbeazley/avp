@@ -26,14 +26,14 @@ public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPl
 
         new MediaPlayerCreator(bus, (MediaPlayerFactory)this);
 
-        bus.whenEvent(Events.MEDIA_PLAYER_CREATED).thenRun(new FunctionWithParameter<MediaPlayer>() {
+        bus.whenEvent(Events.PLAYER_CREATED).thenRun(new FunctionWithParameter<MediaPlayer>() {
             public void invoke(MediaPlayer payload) {
                 announcedMediaPlayer=payload;
             }
         });
 
         bus.sendPayload(UriString.from("ANY"))
-                .withEvent(Events.LOAD_VIDEO);
+                .withEvent(Events.USER_LOAD_VIDEO);
 
         assertThat(fakeMediaPlayer, is(announcedMediaPlayer));
     }

@@ -21,7 +21,7 @@ public class MediaPlayerControl {
     }
 
     private void handleUserPlay() {
-        bus.whenEvent(Events.PLAY).thenRun(new Function() {
+        bus.whenEvent(Events.USER_PLAY).thenRun(new Function() {
             @Override
             public void invoke() {
                 playMediaPlayer();
@@ -34,7 +34,7 @@ public class MediaPlayerControl {
     }
 
     private void handleUserPause() {
-        bus.whenEvent(Events.PAUSE).thenRun(new Function() {
+        bus.whenEvent(Events.USER_PAUSE).thenRun(new Function() {
             @Override
             public void invoke() {
                 pauseMediaPlayer();
@@ -61,7 +61,7 @@ public class MediaPlayerControl {
     }
 
     private void handleVideoLoaded() {
-        bus.whenEvent(Events.VIDEO_LOADED).thenRun(new FunctionWithParameter<CanControlMediaPlayer>() {
+        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<CanControlMediaPlayer>() {
             @Override
             public void invoke(CanControlMediaPlayer payload) {
                 mediaPlayer = payload;

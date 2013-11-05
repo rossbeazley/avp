@@ -40,14 +40,14 @@ public class TimePositionEventsTest {
 
         expectedTime = new MediaTimePosition(currentPosition, totalLength);
 
-        bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE)
+        bus.whenEvent(Events.PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
                     public void invoke(MediaTimePosition payload) {
                         timeInEvent = payload;
                     }
                 });
-        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
         executor.runOnce();
         assertThat(timeInEvent, is(expectedTime));
     }
@@ -55,7 +55,7 @@ public class TimePositionEventsTest {
 
     @Test
     public void whenTheTimeChangesOnTheMediaPlayerAnEventIsRaised() {
-        bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE)
+        bus.whenEvent(Events.PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
                     public void invoke(MediaTimePosition payload) {
@@ -63,7 +63,7 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
 
         executor.runOnce();
 
@@ -81,7 +81,7 @@ public class TimePositionEventsTest {
         TimeInMilliseconds currentPosition = new TimeInMilliseconds(1892);
         mediaPlayer.setCurrentPosition(currentPosition);
 
-        bus.whenEvent(Events.MEDIA_PLAYER_TIME_UPDATE)
+        bus.whenEvent(Events.PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
                     public void invoke(MediaTimePosition payload) {
@@ -89,7 +89,7 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        bus.sendPayload(mediaPlayer).withEvent(Events.VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
         executor.runOnce();
         assertThat(numberOfEvents, is(1));
 

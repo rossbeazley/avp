@@ -44,7 +44,7 @@ public class VideoControlScreenMediatorTest {
 
     @Test
     public void whenUserHitsPauseEventIsRaised() {
-        bus.whenEvent(Events.PAUSE)
+        bus.whenEvent(Events.USER_PAUSE)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
@@ -58,7 +58,7 @@ public class VideoControlScreenMediatorTest {
 
     @Test
     public void whenUserHitsPlayEventIsRaised() {
-        bus.whenEvent(Events.PLAY)
+        bus.whenEvent(Events.USER_PLAY)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
@@ -72,7 +72,7 @@ public class VideoControlScreenMediatorTest {
 
     @Test
     public void whenUserScrubsScrubEventWithPayloadRaised() {
-        bus.whenEvent(Events.SCRUB)
+        bus.whenEvent(Events.USER_SCRUB)
                 .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
                     @Override
                     public void invoke(TimeInMilliseconds payload) {
@@ -90,7 +90,7 @@ public class VideoControlScreenMediatorTest {
         TimeInMilliseconds expectedTime = new TimeInMilliseconds(1000);
         TimeInMilliseconds ANY_TIME = new TimeInMilliseconds(0);
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(expectedTime, ANY_TIME);
-        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.MEDIA_PLAYER_TIME_UPDATE);
+        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
 
         assertThat(fakeVideoScreen.progressTime, is(expectedTime));
     }
@@ -101,7 +101,7 @@ public class VideoControlScreenMediatorTest {
         TimeInMilliseconds expectedTime = new TimeInMilliseconds(1000);
         TimeInMilliseconds ANY_TIME = new TimeInMilliseconds(0);
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(ANY_TIME, expectedTime);
-        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.MEDIA_PLAYER_TIME_UPDATE);
+        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
 
         assertThat(fakeVideoScreen.totalTime, is(expectedTime));
     }

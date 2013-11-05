@@ -8,16 +8,16 @@ package uk.co.rossbeazley.avp;
  * To change this template use File | Settings | File Templates.
  */
 public class Events {
-    public static final String LOAD_VIDEO = "load_video";
-    public static final String VIDEO_LOADED = "video_loaded";
-    public static final String MEDIA_PLAYER_CREATED = "media_player_created";
+    public static final String USER_LOAD_VIDEO = "load_video";
+    public static final String PLAYER_VIDEO_LOADED = "video_loaded";
+    public static final String PLAYER_CREATED = "media_player_created";
     public static final String APP_SHUTDOWN = "app_shutdown";
     public static final String APP_HIDDEN = "app_hidden";
     public static final String PLAYER_STOPPED = "player_stopped";
     public static final String PLAYER_PLAYING = "player_playing";
     public static final String PLAYER_PAUSED = "player_paused";
-    public static final String PAUSE = "pause";
-    public static final String PLAY = "play";
-    public static final String SCRUB = "scrub";
-    public static final String MEDIA_PLAYER_TIME_UPDATE = "mediaTimeUpdate";
+    public static final String USER_PAUSE = "pause";
+    public static final String USER_PLAY = "play";
+    public static final String USER_SCRUB = "scrub";
+    public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
 }
