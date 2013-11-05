@@ -29,7 +29,7 @@ public class MediaPlayerScrubbingTest {
     @Test
     public void scrubsMediaPlayerWhenUserScrubEventReceived() {
 
-        TimeInMilliseconds expectedScrubPosition = new TimeInMilliseconds(5000);
+        TimeInMilliseconds expectedScrubPosition = TimeInMilliseconds.fromLong(5000);
 
         bus.sendPayload(expectedScrubPosition)
             .withEvent(Events.USER_SCRUB);

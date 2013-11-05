@@ -8,10 +8,14 @@ public class TimeInMilliseconds {
     final public long value;
     private final SimpleDateFormat sdf;
 
-    public TimeInMilliseconds(long i) {
+    private TimeInMilliseconds(long i) {
         value=i;
         sdf = new SimpleDateFormat("mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+    }
+
+    public static TimeInMilliseconds fromLong(long i) {
+        return new TimeInMilliseconds(i);
     }
 
     @Override
@@ -28,5 +32,9 @@ public class TimeInMilliseconds {
     @Override
     public String toString() {
         return asMinutesAndSeconds();
+    }
+
+    public static TimeInMilliseconds fromInt(int millisecondsAsInt) {
+        return new TimeInMilliseconds(millisecondsAsInt);
     }
 }

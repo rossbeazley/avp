@@ -84,7 +84,7 @@ public class AndroidVideoOutputScreenVideo implements VideoControlScreen, VideoO
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (last_seek_position != null) {
-                    canListenForUserScrubEvents.userScrubbedTo(new TimeInMilliseconds(last_seek_position));
+                    canListenForUserScrubEvents.userScrubbedTo(TimeInMilliseconds.fromLong(last_seek_position));
                     last_seek_position = null;
                 }
             }

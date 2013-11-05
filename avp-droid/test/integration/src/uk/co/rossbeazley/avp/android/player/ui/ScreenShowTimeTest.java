@@ -24,7 +24,7 @@ public class ScreenShowTimeTest {
 
     @Test
     public void totalTimeUpdatedOnScreen() {
-        videoScreen.showTotalTime(new TimeInMilliseconds(3000));
+        videoScreen.showTotalTime(TimeInMilliseconds.fromLong(3000));
         CharSequence textFromView = ((TextView) getViewById(R.id.totaltime)).getText();
         assertThat(textFromView, is(THREE_SECONDS_ZERO_MINS));
     }
@@ -32,7 +32,7 @@ public class ScreenShowTimeTest {
 
     @Test
     public void progressTimeUpdatedOnScreen() {
-        videoScreen.showProgressTime(new TimeInMilliseconds(3000));
+        videoScreen.showProgressTime(TimeInMilliseconds.fromLong(3000));
         CharSequence textFromView = ((TextView) getViewById(R.id.currenttime)).getText();
         assertThat(textFromView, is(THREE_SECONDS_ZERO_MINS));
     }

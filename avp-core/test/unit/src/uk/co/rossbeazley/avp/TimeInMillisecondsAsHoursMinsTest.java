@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp;
 
-import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -10,7 +9,7 @@ public class TimeInMillisecondsAsHoursMinsTest {
 
     @Test
     public void oneMinuteTwenty() {
-        TimeInMilliseconds time = new TimeInMilliseconds(80000);
+        TimeInMilliseconds time = TimeInMilliseconds.fromLong(80000);
         String convertedMilliseconds = time.asMinutesAndSeconds();
         String ONE_MIN_TWENTY = "01:20";
         assertThat(convertedMilliseconds,is(ONE_MIN_TWENTY));

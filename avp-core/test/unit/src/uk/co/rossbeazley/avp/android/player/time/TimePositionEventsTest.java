@@ -35,7 +35,7 @@ public class TimePositionEventsTest {
 
     @Test
     public void theMediaPlayerTimeIsSentOnAnEvent() {
-        TimeInMilliseconds currentPosition = new TimeInMilliseconds(1892);
+        TimeInMilliseconds currentPosition = TimeInMilliseconds.fromLong(1892);
         mediaPlayer.setCurrentPosition(currentPosition);
 
         expectedTime = new MediaTimePosition(currentPosition, totalLength);
@@ -67,7 +67,7 @@ public class TimePositionEventsTest {
 
         executor.runOnce();
 
-        TimeInMilliseconds newPosition = new TimeInMilliseconds(2000);
+        TimeInMilliseconds newPosition = TimeInMilliseconds.fromLong(2000);
         mediaPlayer.setCurrentPosition(newPosition);
 
         executor.runOnce();
@@ -78,7 +78,7 @@ public class TimePositionEventsTest {
 
     @Test
     public void whenTheTimeDosntChangeNoEventIsGenerated() {
-        TimeInMilliseconds currentPosition = new TimeInMilliseconds(1892);
+        TimeInMilliseconds currentPosition = TimeInMilliseconds.fromLong(1892);
         mediaPlayer.setCurrentPosition(currentPosition);
 
         bus.whenEvent(Events.PLAYER_TIME_UPDATE)

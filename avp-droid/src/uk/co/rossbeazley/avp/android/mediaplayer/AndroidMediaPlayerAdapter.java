@@ -78,7 +78,7 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     public TimeInMilliseconds getCurrentPosition() {
         TimeInMilliseconds result;
         int millisecondsAsInt = mediaPlayer.getCurrentPosition();
-        result = new TimeInMilliseconds(millisecondsAsInt);
+        result = TimeInMilliseconds.fromLong(millisecondsAsInt);
         return result;
     }
 
@@ -86,7 +86,7 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     public TimeInMilliseconds getDuration() {
         TimeInMilliseconds result;
         int millisecondsAsInt = mediaPlayer.getDuration();
-        result = new TimeInMilliseconds(millisecondsAsInt);
+        result = TimeInMilliseconds.fromInt(millisecondsAsInt);
         return result;
     }
 

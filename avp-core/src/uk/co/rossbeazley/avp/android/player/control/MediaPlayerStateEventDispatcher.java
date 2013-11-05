@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 public class MediaPlayerStateEventDispatcher {
 
-    public static final TimeInMilliseconds ONE_HUNDRED_MILLISECONDS = new TimeInMilliseconds(100);
+    public static final TimeInMilliseconds ONE_HUNDRED_MILLISECONDS = TimeInMilliseconds.fromLong(100);
     private final CanExecuteCommandsAtFixedRate scheduler;
     MediaPlayerStateMachine mediaPlayerStateMachine;
     CanControlMediaPlayer mediaPlayer;

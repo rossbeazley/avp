@@ -26,7 +26,7 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
         fingerDownOnScrubber();
         scrubTo(1000);
         fingerUpOnScrubber();
-        assertThat("scrub event", scrubEvent,is(new TimeInMilliseconds(1000)));
+        assertThat("scrub event", scrubEvent,is(TimeInMilliseconds.fromLong(1000)));
     }
 
 
@@ -41,7 +41,7 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
         scrubTo(1000);
         scrubTo(1200);
         fingerUpOnScrubber();
-        assertThat("scrub event", scrubEvent,is(new TimeInMilliseconds(1200)));
+        assertThat("scrub event", scrubEvent,is(TimeInMilliseconds.fromLong(1200)));
     }
 
 

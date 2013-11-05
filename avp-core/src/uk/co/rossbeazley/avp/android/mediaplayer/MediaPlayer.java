@@ -7,7 +7,7 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
 
     MediaPlayer NULL = new MediaPlayer(){
 
-        private final TimeInMilliseconds noTime = new TimeInMilliseconds(0);
+        private final TimeInMilliseconds noTime = TimeInMilliseconds.fromLong(0);
 
         @Override
         public void start() {}

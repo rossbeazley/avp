@@ -25,8 +25,8 @@ public class FakeMediaPlayer implements MediaPlayer {
 
     public static FakeMediaPlayer createStartedFakeMediaPlayer() {
         FakeMediaPlayer fakeMediaPlayer = createFakeMediaPlayer();
-        fakeMediaPlayer.setCurrentPosition(new TimeInMilliseconds(0));
-        fakeMediaPlayer.setDuration(new TimeInMilliseconds(40000));
+        fakeMediaPlayer.setCurrentPosition(TimeInMilliseconds.fromLong(0));
+        fakeMediaPlayer.setDuration(TimeInMilliseconds.fromLong(40000));
         fakeMediaPlayer.start();
         return fakeMediaPlayer;
     }

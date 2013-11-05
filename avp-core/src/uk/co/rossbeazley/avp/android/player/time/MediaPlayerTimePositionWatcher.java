@@ -19,7 +19,7 @@ public class MediaPlayerTimePositionWatcher {
         this.executor = executor;
         this.bus = bus;
         rememberedTimePosition = null;
-        everySecond = new TimeInMilliseconds(1000);
+        everySecond = TimeInMilliseconds.fromLong(1000);
         checkTimeCommand = new Runnable() {
             @Override
             public void run() {

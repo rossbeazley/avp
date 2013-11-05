@@ -79,7 +79,7 @@ public class VideoControlScreenMediatorTest {
                         scrubTime = payload;
                     }
                 });
-        TimeInMilliseconds expectedScrubTime = new TimeInMilliseconds(123456);
+        TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(123456);
         fakeVideoScreen.scrubTo(expectedScrubTime);
         assertThat(scrubTime, is(expectedScrubTime));
     }
@@ -87,8 +87,8 @@ public class VideoControlScreenMediatorTest {
     @Test
     public void whenTimeUpdateEventCurrentTimeUpdatedOnScreen() {
 
-        TimeInMilliseconds expectedTime = new TimeInMilliseconds(1000);
-        TimeInMilliseconds ANY_TIME = new TimeInMilliseconds(0);
+        TimeInMilliseconds expectedTime = TimeInMilliseconds.fromLong(1000);
+        TimeInMilliseconds ANY_TIME = TimeInMilliseconds.fromLong(0);
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(expectedTime, ANY_TIME);
         bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
 
@@ -98,8 +98,8 @@ public class VideoControlScreenMediatorTest {
     @Test
     public void whenTimeUpdateEventDurationTimeUpdatedOnScreen() {
 
-        TimeInMilliseconds expectedTime = new TimeInMilliseconds(1000);
-        TimeInMilliseconds ANY_TIME = new TimeInMilliseconds(0);
+        TimeInMilliseconds expectedTime = TimeInMilliseconds.fromLong(1000);
+        TimeInMilliseconds ANY_TIME = TimeInMilliseconds.fromLong(0);
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(ANY_TIME, expectedTime);
         bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
 
