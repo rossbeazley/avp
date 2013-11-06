@@ -68,7 +68,13 @@ public class MediaPlayerScrubbingTest {
 
     private class MediaPlayerScrubber {
 
+
         CanScrubMediaPlayer mediaPlayer;
+        CanScrubMediaPlayer realMediaPlayer;
+        final CanScrubMediaPlayer nullMediaPlayer = new CanScrubMediaPlayer() {
+            @Override
+            public void seekTo(TimeInMilliseconds time) {}
+        };
 
         public MediaPlayerScrubber(EventBus bus) {
             bindVideoLoadedEvent(bus);
@@ -81,6 +87,7 @@ public class MediaPlayerScrubbingTest {
                         @Override
                         public void invoke(TimeInMilliseconds payload) {
                             mediaPlayer.seekTo(payload);
+                            mediaPlayer = nullMediaPlayer;
                         }
                     });
         }
@@ -91,6 +98,7 @@ public class MediaPlayerScrubbingTest {
                         @Override
                         public void invoke(CanScrubMediaPlayer payload) {
                             mediaPlayer = payload;
+                            realMediaPlayer = payload;
                         }
                     });
         }
