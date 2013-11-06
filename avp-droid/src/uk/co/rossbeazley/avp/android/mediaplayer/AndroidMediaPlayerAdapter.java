@@ -14,6 +14,7 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private final android.media.MediaPlayer mediaPlayer;
     private final Logger logger;
+    private Collection<ScrubCompleteListener> seekCompleteListeners = new ArrayList<ScrubCompleteListener>();
 
     AndroidMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
         this.mediaPlayer = mediaPlayer;
@@ -93,5 +94,10 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     @Override
     public void seekTo(TimeInMilliseconds time) {
         mediaPlayer.seekTo((int) time.value);
+    }
+
+    @Override
+    public void addScrubCompleteListener(ScrubCompleteListener listener) {
+        this.seekCompleteListeners.add(listener);
     }
 }

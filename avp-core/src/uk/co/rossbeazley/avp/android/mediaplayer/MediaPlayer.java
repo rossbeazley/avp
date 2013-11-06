@@ -52,6 +52,10 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
         public void seekTo(TimeInMilliseconds time) {
 
         }
+
+        @Override
+        public void addScrubCompleteListener(ScrubCompleteListener listener) {
+        }
     };
 
 }

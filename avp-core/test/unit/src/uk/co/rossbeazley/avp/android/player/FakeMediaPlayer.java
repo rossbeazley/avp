@@ -15,6 +15,7 @@ public class FakeMediaPlayer implements MediaPlayer {
     private TimeInMilliseconds currentPosition;
     private TimeInMilliseconds duration;
     private TimeInMilliseconds scrubToTime;
+    private Collection<ScrubCompleteListener> seekCompleteListeners = new ArrayList<ScrubCompleteListener>();
 
     private FakeMediaPlayer() {
     }
@@ -109,4 +110,18 @@ public class FakeMediaPlayer implements MediaPlayer {
     public void seekTo(TimeInMilliseconds time) {
         this.scrubToTime = time;
     }
+
+    public void announceScrubbingComplete() {
+        for (ScrubCompleteListener seekCompleteListener : seekCompleteListeners) {
+            seekCompleteListener.seekComplete();
+        }
+
+    }
+
+    @Override
+    public void addScrubCompleteListener(ScrubCompleteListener listener) {
+        this.seekCompleteListeners.add(listener);
+    }
+
+
 }

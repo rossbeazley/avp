@@ -55,8 +55,21 @@ public class MediaPlayerScrubbingTest {
     }
 
     @Test
-    public void whenScrubbingFinishedUnprocessedUserScrubEventProcessed() {
-        fail("not speced yet");
+    public void whenScrubbingFinishedPendingUserScrubEventProcessed() {
+
+        TimeInMilliseconds firstScrubPosition = TimeInMilliseconds.fromLong(300);
+
+        TimeInMilliseconds expectedScrubPosition = TimeInMilliseconds.fromLong(2300);
+
+        bus.sendPayload(firstScrubPosition)
+                .withEvent(Events.USER_SCRUB);
+
+        bus.sendPayload(expectedScrubPosition)
+                .withEvent(Events.USER_SCRUB);
+
+        mediaPlayer.announceScrubbingComplete();
+
+        assertThat(mediaPlayer.seekingTo(),is(expectedScrubPosition));
     }
 
     @Test
@@ -74,6 +87,10 @@ public class MediaPlayerScrubbingTest {
         final CanScrubMediaPlayer nullMediaPlayer = new CanScrubMediaPlayer() {
             @Override
             public void seekTo(TimeInMilliseconds time) {}
+
+            @Override
+            public void addScrubCompleteListener(ScrubCompleteListener listener) {
+            }
         };
 
         public MediaPlayerScrubber(EventBus bus) {
