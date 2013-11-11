@@ -1,12 +1,15 @@
 package uk.co.rossbeazley.avp.android.player;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanGetTimeFromMediaPlayer;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class FakeMediaPlayer implements MediaPlayer {
+public class FakeMediaPlayer implements CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private boolean playing;

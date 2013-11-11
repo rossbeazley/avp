@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.player.preparer;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayer;
 import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -13,7 +12,7 @@ import static org.junit.Assert.assertThat;
 
 public class MediaPlayerPreparerTest {
 
-    private MediaPlayer preparedMediaPlayer = null;
+    private FakeMediaPlayer preparedMediaPlayer = null;
 
     @Test
     public void preparesANewlyCreatedMediaPlayer() {
@@ -31,14 +30,14 @@ public class MediaPlayerPreparerTest {
 
         EventBus bus = new ExecutorEventBus();
         new MediaPlayerPreparer(bus);
-        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<MediaPlayer>() {
+        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<FakeMediaPlayer>() {
             @Override
-            public void invoke(MediaPlayer payload) {
+            public void invoke(FakeMediaPlayer payload) {
                 preparedMediaPlayer = payload;
             }
         });
 
-        MediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
+        FakeMediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
         bus.sendPayload(expectedMediaPlayer).withEvent(Events.PLAYER_CREATED);
 
         assertThat(preparedMediaPlayer, is(expectedMediaPlayer));

@@ -102,6 +102,7 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
         this.seekCompleteListeners.add(listener);
     }
 
+    @Override
     public void setDisplay(SurfaceHolder surfaceHolder) {
         mediaPlayer.setDisplay(surfaceHolder);
     }

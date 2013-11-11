@@ -35,7 +35,7 @@ public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPl
         bus.sendPayload(UriString.from("ANY"))
                 .withEvent(Events.USER_LOAD_VIDEO);
 
-        assertThat(fakeMediaPlayer, is(announcedMediaPlayer));
+        Assert.assertThat(fakeMediaPlayer, CoreMatchers.is(announcedMediaPlayer));
     }
 
     @Override

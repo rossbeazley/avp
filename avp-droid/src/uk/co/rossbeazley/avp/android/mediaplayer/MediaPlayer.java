@@ -1,9 +1,9 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
+import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 
-//REFACTOR, maybe i should segregate this interface
-public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer {
+public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer, CanAttachToAndroidView {
 
     MediaPlayer NULL = new MediaPlayer(){
 
@@ -56,6 +56,10 @@ public interface MediaPlayer extends CanPrepareMediaPlayer, CanControlMediaPlaye
         @Override
         public void addScrubCompleteListener(ScrubCompleteListener listener) {
         }
-    };
 
+        @Override
+        public void setDisplay(SurfaceHolder surfaceHolder) {
+
+        }
+    };
 }
