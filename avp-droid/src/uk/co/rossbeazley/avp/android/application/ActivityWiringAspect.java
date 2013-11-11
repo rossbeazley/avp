@@ -38,8 +38,7 @@ public class ActivityWiringAspect extends EmptyActivityLifecycleCallbacks {
 
     private void constructNavigationController(Activity activity) {
         FragmentManager fragmentManager = activity.getFragmentManager();
-        FragmentTransactionNavigationController fragmentTransactionNavigationController = new FragmentTransactionNavigationController();
-        fragmentTransactionNavigationController.attachFragmentManager(fragmentManager);
+        FragmentTransactionNavigationController fragmentTransactionNavigationController = new FragmentTransactionNavigationController(fragmentManager);
 
         final NavigationController navigationController = fragmentTransactionNavigationController;
 

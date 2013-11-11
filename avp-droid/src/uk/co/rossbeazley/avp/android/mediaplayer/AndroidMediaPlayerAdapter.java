@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
+import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
 
@@ -99,5 +100,9 @@ class AndroidMediaPlayerAdapter implements MediaPlayer {
     @Override
     public void addScrubCompleteListener(ScrubCompleteListener listener) {
         this.seekCompleteListeners.add(listener);
+    }
+
+    public void setDisplay(SurfaceHolder surfaceHolder) {
+        mediaPlayer.setDisplay(surfaceHolder);
     }
 }

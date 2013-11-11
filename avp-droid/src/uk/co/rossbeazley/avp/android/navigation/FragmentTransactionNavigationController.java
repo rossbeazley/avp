@@ -7,13 +7,9 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
 
 public class FragmentTransactionNavigationController implements NavigationController {
 
-    private FragmentManager fm;
+    final private FragmentManager fm;
 
-    public FragmentTransactionNavigationController() {
-        fm = null;
-    }
-
-    public void attachFragmentManager(FragmentManager fm) {
+    public FragmentTransactionNavigationController(FragmentManager fm) {
         this.fm = fm;
     }
 
@@ -24,11 +20,9 @@ public class FragmentTransactionNavigationController implements NavigationContro
     }
 
     public void showFragment(Fragment fragment) {
-        if (fm != null) {
             fm.beginTransaction()
                     .add(R.id.content, fragment)
                     .commit();
-        }
     }
 
 }
