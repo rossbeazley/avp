@@ -81,16 +81,11 @@ public class MediaPlayerScrubbingTest {
 
     private class MediaPlayerScrubber {
 
-
         CanScrubMediaPlayer mediaPlayer;
         CanScrubMediaPlayer realMediaPlayer;
         final CanScrubMediaPlayer nullMediaPlayer = new CanScrubMediaPlayer() {
-            @Override
             public void seekTo(TimeInMilliseconds time) {}
-
-            @Override
-            public void addScrubCompleteListener(ScrubCompleteListener listener) {
-            }
+            public void addScrubCompleteListener(ScrubCompleteListener listener) { }
         };
 
         public MediaPlayerScrubber(EventBus bus) {
