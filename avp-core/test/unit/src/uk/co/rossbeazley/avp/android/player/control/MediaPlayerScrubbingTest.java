@@ -7,6 +7,7 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -51,7 +52,7 @@ public class MediaPlayerScrubbingTest {
         bus.sendPayload(secondScrubPosition)
                 .withEvent(Events.USER_SCRUB);
 
-        assertThat(mediaPlayer.seekingTo(),is(expectedScrubPosition));
+        assertThat(mediaPlayer.seekingTo(), is(expectedScrubPosition));
     }
 
     @Test
@@ -69,7 +70,7 @@ public class MediaPlayerScrubbingTest {
 
         mediaPlayer.announceScrubbingComplete();
 
-        assertThat(mediaPlayer.seekingTo(),is(expectedScrubPosition));
+        assertThat(mediaPlayer.seekingTo(), is(expectedScrubPosition));
     }
 
     @Test
@@ -80,13 +81,21 @@ public class MediaPlayerScrubbingTest {
 
 
     private class MediaPlayerScrubber {
-
+        boolean scrubbing = false;
+        TimeInMilliseconds pendingScrub;
         CanScrubMediaPlayer mediaPlayer;
         CanScrubMediaPlayer realMediaPlayer;
-        final CanScrubMediaPlayer nullMediaPlayer = new CanScrubMediaPlayer() {
-            public void seekTo(TimeInMilliseconds time) {}
-            public void addScrubCompleteListener(ScrubCompleteListener listener) { }
-        };
+
+        CanScrubMediaPlayer.ScrubCompleteListener complete = new CanScrubMediaPlayer.ScrubCompleteListener() {
+            @Override
+            public void seekComplete() {
+                scrubbing = false;
+                if(pendingScrub != null) {
+                    mediaPlayer.seekTo(pendingScrub);
+                    pendingScrub = null;
+                }
+            }
+       };
 
         public MediaPlayerScrubber(EventBus bus) {
             bindVideoLoadedEvent(bus);
@@ -98,8 +107,14 @@ public class MediaPlayerScrubbingTest {
                     .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
                         @Override
                         public void invoke(TimeInMilliseconds payload) {
-                            mediaPlayer.seekTo(payload);
-                            mediaPlayer = nullMediaPlayer;
+                            if(!scrubbing) {
+                                scrubbing = true;
+                                mediaPlayer.seekTo(payload);
+                            }
+                            else
+                            {
+                                pendingScrub = payload;
+                            }
                         }
                     });
         }
@@ -111,6 +126,7 @@ public class MediaPlayerScrubbingTest {
                         public void invoke(CanScrubMediaPlayer payload) {
                             mediaPlayer = payload;
                             realMediaPlayer = payload;
+                            mediaPlayer.addScrubCompleteListener(complete);
                         }
                     });
         }
