@@ -18,14 +18,14 @@ public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
     }
 
     @Override
-    public MediaPlayer createMediaPlayerForUri(UriString uri) {
-        MediaPlayer result;
+    public Object createMediaPlayerForUri(UriString uri) {
+        Object result;
         try {
             android.media.MediaPlayer mediaPlayer = new android.media.MediaPlayer();
             mediaPlayer.setDataSource(applicationContext,Uri.parse(uri.uri));
             result = new AndroidMediaPlayerAdapter(mediaPlayer, logger);
         } catch (IOException e) {
-            result = MediaPlayer.NULL;
+            result = new NullMediaPlayerAdapter();
         }
         return result;
     }

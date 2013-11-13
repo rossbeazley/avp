@@ -10,7 +10,11 @@ import java.util.Collection;
 /**
  * UNTESTED CLASS
  */
-class AndroidMediaPlayerAdapter implements MediaPlayer {
+class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
+                                            CanControlMediaPlayer,
+                                            CanGetTimeFromMediaPlayer,
+                                            CanScrubMediaPlayer,
+                                            CanAttachToAndroidView {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private final android.media.MediaPlayer mediaPlayer;
