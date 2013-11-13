@@ -25,7 +25,7 @@ public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
             mediaPlayer.setDataSource(applicationContext,Uri.parse(uri.uri));
             result = new AndroidMediaPlayerAdapter(mediaPlayer, logger);
         } catch (IOException e) {
-            result = new NullMediaPlayerAdapter();
+            result = new NullMediaPlayerAdapter(logger);
         }
         return result;
     }
