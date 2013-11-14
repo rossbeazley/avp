@@ -1,0 +1,57 @@
+package uk.co.rossbeazley.avp.android.player.control;
+
+import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
+
+class MediaPlayerScrubber {
+    CanScrubMediaPlayer mediaPlayer;
+
+    private ScrubbingStateMachine stateMachine;
+
+    CanScrubMediaPlayer.ScrubCompleteListener completeListener = new CanScrubMediaPlayer.ScrubCompleteListener() {
+        @Override
+        public void seekComplete() {
+            stateMachine.seekComplete();
+        }
+    };
+
+    public MediaPlayerScrubber(EventBus bus) {
+        bindVideoLoadedEvent(bus);
+        bindScrubEvent(bus);
+    }
+
+    private void bindScrubEvent(EventBus bus) {
+        bus.whenEvent(Events.USER_SCRUB)
+                .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
+                    @Override
+                    public void invoke(TimeInMilliseconds payload) {
+                        stateMachine.scrub(payload);
+                    }
+                });
+    }
+
+    private void bindVideoLoadedEvent(EventBus bus) {
+        bus.whenEvent(Events.PLAYER_VIDEO_LOADED)
+                .thenRun(new FunctionWithParameter<CanScrubMediaPlayer>() {
+                    @Override
+                    public void invoke(CanScrubMediaPlayer payload) {
+                        mediaPlayer = payload;
+                        stateMachine = new ScrubbingStateMachineComposite(mediaPlayer);
+                        mediaPlayer.addScrubCompleteListener(completeListener);
+                    }
+                });
+    }
+
+
+
+
+
+    interface ScrubbingStateMachine {
+        void seekComplete();
+        void scrub(TimeInMilliseconds payload);
+    }
+
+}
