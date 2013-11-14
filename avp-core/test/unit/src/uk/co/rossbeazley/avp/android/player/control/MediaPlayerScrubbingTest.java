@@ -7,13 +7,11 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
-import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 public class MediaPlayerScrubbingTest {
 
@@ -75,7 +73,25 @@ public class MediaPlayerScrubbingTest {
 
     @Test
     public void whenScrubbingFinishedOnlyLastUnprocessedUserScrubEventProcessed() {
-        fail("not speced yet");
+
+        TimeInMilliseconds firstScrubPosition = TimeInMilliseconds.fromLong(300);
+
+        TimeInMilliseconds secondScrubPosition = TimeInMilliseconds.fromLong(300);
+
+        TimeInMilliseconds expectedScrubPosition = TimeInMilliseconds.fromLong(2300);
+
+        bus.sendPayload(firstScrubPosition)
+                .withEvent(Events.USER_SCRUB);
+
+        bus.sendPayload(secondScrubPosition)
+                .withEvent(Events.USER_SCRUB);
+
+        bus.sendPayload(expectedScrubPosition)
+                .withEvent(Events.USER_SCRUB);
+
+        mediaPlayer.announceScrubbingComplete();
+
+        assertThat(mediaPlayer.seekingTo(), is(expectedScrubPosition));
     }
 
 
