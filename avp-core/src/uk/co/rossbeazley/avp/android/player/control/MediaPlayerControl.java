@@ -13,6 +13,7 @@ public class MediaPlayerControl {
     private CanControlMediaPlayer mediaPlayer;
 
     public MediaPlayerControl(EventBus bus) {
+        mediaPlayer = CanControlMediaPlayer.NULL;
         this.bus = bus;
         handleVideoLoaded();
         handleAppHidden();
