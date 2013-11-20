@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class AndroidVideoOutputScreenVideo implements VideoControlScreen, VideoOutputScreen {
+public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputScreen {
     private final CanInflateLayout canInflateLayout;
 
     private final ViewFinder viewFinder;
@@ -19,7 +19,7 @@ public class AndroidVideoOutputScreenVideo implements VideoControlScreen, VideoO
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
 
 
-    public AndroidVideoOutputScreenVideo(CanInflateLayout canInflateLayout, CanFindViewById canFindViewById) {
+    public VideoScreenViewRenderer(CanInflateLayout canInflateLayout, CanFindViewById canFindViewById) {
         this.canInflateLayout = canInflateLayout;
         this.canListenForUserPlayEvents = CanListenForUserPlayEvents.NONE;
         this.canListenForUserPauseEvents = CanListenForUserPauseEvents.NONE;

@@ -14,16 +14,6 @@ public class MediaPlayerPreparerTest {
 
     private FakeMediaPlayer preparedMediaPlayer = null;
 
-    @Test
-    public void preparesANewlyCreatedMediaPlayer() {
-
-        EventBus bus = new ExecutorEventBus();
-        new MediaPlayerPreparer(bus);
-        FakeMediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
-        bus.sendPayload(expectedMediaPlayer).withEvent(Events.PLAYER_CREATED);
-
-        assertThat(expectedMediaPlayer.isPrepared(), is(true));
-    }
 
     @Test
     public void tellsEveryoneAboutPreparedMediaPlayer() {
@@ -40,7 +30,7 @@ public class MediaPlayerPreparerTest {
         FakeMediaPlayer expectedMediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
         bus.sendPayload(expectedMediaPlayer).withEvent(Events.PLAYER_CREATED);
 
-        assertThat(preparedMediaPlayer, is(expectedMediaPlayer));
+        assertThat(preparedMediaPlayer.isPrepared(), is(true));
     }
 
 }

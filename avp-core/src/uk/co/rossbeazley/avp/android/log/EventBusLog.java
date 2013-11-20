@@ -4,12 +4,12 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class EventBusLogger {
+public class EventBusLog {
 
     private final Logger log;
     private final EventBus bus;
 
-    public EventBusLogger(final Logger log, EventBus bus) {
+    public EventBusLog(final Logger log, EventBus bus) {
         this.log = log;
         this.bus = bus;
 

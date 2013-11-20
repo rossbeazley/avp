@@ -8,8 +8,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.AndroidVideoOutputScreenVideo;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRenderer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -33,7 +33,7 @@ public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPause
     @Before
     public void setUp() throws Exception {
         activity = createVisibleActivity();
-        AndroidVideoOutputScreenVideo lvideoScreen = new AndroidVideoOutputScreenVideo(activity.layoutInflater(), activity.viewFinder());
+        VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPauseEventListener((VideoControlScreen.CanListenForUserPauseEvents)this);
         videoScreen = lvideoScreen;
         videoScreen.bind();

@@ -20,4 +20,5 @@ public class Events {
     public static final String USER_PLAY = "play";
     public static final String USER_SCRUB = "scrub";
     public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
+    public static final String PLAYER_VIEW_CREATED = "player_view_created";
 }

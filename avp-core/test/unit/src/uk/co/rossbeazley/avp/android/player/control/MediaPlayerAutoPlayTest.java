@@ -12,9 +12,6 @@ import static org.junit.Assert.assertThat;
 
 public class MediaPlayerAutoPlayTest {
 
-    private static final boolean PLAYING = true;
-    private static final boolean STOPPED = false;
-    private boolean announcedPlayerState;
     private EventBus bus;
 
     @Before
