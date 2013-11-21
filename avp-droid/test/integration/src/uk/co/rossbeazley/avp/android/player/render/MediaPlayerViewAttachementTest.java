@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.player.render;
 
+import android.view.SurfaceHolder;
 import android.view.ViewGroup;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
@@ -35,7 +36,11 @@ public class MediaPlayerViewAttachementTest implements CanCreateAndroidMediaPlay
                 });
 
         new MediaPlayerViewAttachement(this, bus);
-
+        CanAttachToAndroidView mediaPlayer = new CanAttachToAndroidView() {
+            @Override
+            public void setDisplay(SurfaceHolder surfaceHolder) {}
+        };
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
         assertThat(announcedView, is(expectedView));
     }
 

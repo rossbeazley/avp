@@ -25,7 +25,7 @@ public class MediaPlayerControlTest {
         bus = new ExecutorEventBus();
         new MediaPlayerControl(bus);
         mediaPlayer = FakeMediaPlayer.createStartedFakeMediaPlayer();
-        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED); //thoughts, should these mediaplayer satalite objects be constructed with a media player rather that recieve one over the bus?
+        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED); //thoughts, should these mediaplayer satalite objects be constructed with a media player rather that receive one over the bus?
 
     }
 
