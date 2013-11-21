@@ -4,9 +4,6 @@ import android.view.SurfaceHolder;
 import android.view.ViewGroup;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanAttachToAndroidView;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.CanCreateAndroidMediaPlayerVideoOutput;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 

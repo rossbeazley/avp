@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -108,6 +109,7 @@ class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
 
     @Override
     public void setDisplay(SurfaceHolder surfaceHolder) {
+        logger.debug("Set Display");
         mediaPlayer.setDisplay(surfaceHolder);
     }
 }

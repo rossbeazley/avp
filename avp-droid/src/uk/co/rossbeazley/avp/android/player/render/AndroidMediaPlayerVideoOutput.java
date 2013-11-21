@@ -1,10 +1,9 @@
-package uk.co.rossbeazley.avp.android.ui.videoplayer;
+package uk.co.rossbeazley.avp.android.player.render;
 
 import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanAttachToAndroidView;
 
 public class AndroidMediaPlayerVideoOutput implements RenderedVideoOutput {
 

@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
 
 public class NullMediaPlayerAdapter implements CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer, CanAttachToAndroidView {
 

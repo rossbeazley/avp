@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.mediaplayer;
+package uk.co.rossbeazley.avp.android.player.render;
 
 import android.view.SurfaceHolder;
 

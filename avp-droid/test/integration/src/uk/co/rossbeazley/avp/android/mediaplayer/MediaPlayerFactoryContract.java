@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
 
 import static org.junit.Assert.assertTrue;
 

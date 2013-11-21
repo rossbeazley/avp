@@ -7,9 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoOutputScreen;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRenderer;
 

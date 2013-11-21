@@ -1,6 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.videoplayer;
-
-import uk.co.rossbeazley.avp.android.mediaplayer.CanAttachToAndroidView;
+package uk.co.rossbeazley.avp.android.player.render;
 
 public class AndroidMediaPlayerVideoOutputFactory implements CanCreateAndroidMediaPlayerVideoOutput {
 

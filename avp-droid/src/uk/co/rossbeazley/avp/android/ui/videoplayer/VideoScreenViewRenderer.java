@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.R;
+import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
