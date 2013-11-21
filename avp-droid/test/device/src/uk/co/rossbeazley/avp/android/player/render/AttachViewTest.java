@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.player.render;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
 import android.view.SurfaceHolder;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,11 +17,20 @@ public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> imple
     }
 
 
-    @UiThreadTest
     public void testAttachToViewGroupTest() {
-        ViewGroup linearLayout = (ViewGroup) act.findViewById(android.R.id.content);
-        RenderedVideoOutput view = new AndroidMediaPlayerVideoOutputFactory().createAndroidMediaPlayerVideoOutput(this);
-        view.attachToViewGroup(linearLayout);
+        final ViewGroup linearLayout = (ViewGroup) act.findViewById(android.R.id.content);
+        final RenderedVideoOutput view = new AndroidMediaPlayerVideoOutputFactory().createAndroidMediaPlayerVideoOutput(this);
+        act.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                view.attachToViewGroup(linearLayout);
+            }
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue(setDisplayCalled);
     }
 
