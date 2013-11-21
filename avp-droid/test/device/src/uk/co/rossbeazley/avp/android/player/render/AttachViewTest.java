@@ -3,13 +3,11 @@ package uk.co.rossbeazley.avp.android.player.render;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.SurfaceHolder;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import uk.co.rossbeazley.avp.android.activity.Main;
 
 public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> implements CanAttachToAndroidView {
 
     private boolean setDisplayCalled;
-    private LinearLayout LL;
     private Main act;
 
     public AttachViewTest() {
@@ -18,12 +16,14 @@ public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> imple
 
 
     public void testAttachToViewGroupTest() {
-        final ViewGroup linearLayout = (ViewGroup) act.findViewById(android.R.id.content);
         final RenderedVideoOutput view = new AndroidMediaPlayerVideoOutputFactory().createAndroidMediaPlayerVideoOutput(this);
+
+        final ViewGroup viewGroup = (ViewGroup) act.findViewById(android.R.id.content);
         act.runOnUiThread(new Runnable() {
             @Override
-            public void run() {
-                view.attachToViewGroup(linearLayout);
+            public void run()
+            {
+                view.attachToViewGroup(viewGroup);
             }
         });
         try {
@@ -31,6 +31,7 @@ public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> imple
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         assertTrue(setDisplayCalled);
     }
 
