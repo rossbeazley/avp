@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 
 class FakeVideoScreenVideo implements VideoControlScreen {
 
@@ -60,9 +59,6 @@ class FakeVideoScreenVideo implements VideoControlScreen {
     @Override
     public void showPause() {
         showPause = true;
-    }
-
-    public void attachVideo(RenderedVideoOutput videoOutput) {
     }
 
     public void pausePressed() {

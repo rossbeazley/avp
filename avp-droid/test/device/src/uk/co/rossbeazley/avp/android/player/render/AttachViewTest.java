@@ -5,6 +5,9 @@ import android.view.SurfaceHolder;
 import android.view.ViewGroup;
 import uk.co.rossbeazley.avp.android.activity.Main;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
 public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> implements CanAttachToAndroidView {
 
     private boolean setDisplayCalled;
@@ -15,23 +18,20 @@ public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> imple
     }
 
 
-    public void testAttachToViewGroupTest() {
+    public void testAttachToViewGroupTest() throws InterruptedException {
         final RenderedVideoOutput view = new AndroidMediaPlayerVideoOutputFactory().createAndroidMediaPlayerVideoOutput(this);
 
         final ViewGroup viewGroup = (ViewGroup) act.findViewById(android.R.id.content);
+        final CountDownLatch latch = new CountDownLatch(1);
         act.runOnUiThread(new Runnable() {
             @Override
             public void run()
             {
                 view.attachToViewGroup(viewGroup);
+                latch.countDown();
             }
         });
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        latch.await(1, TimeUnit.SECONDS);
         assertTrue(setDisplayCalled);
     }
 
