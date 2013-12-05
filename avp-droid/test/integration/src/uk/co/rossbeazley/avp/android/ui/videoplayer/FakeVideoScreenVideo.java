@@ -33,6 +33,10 @@ class FakeVideoScreenVideo implements VideoControlScreen {
     }
 
     @Override
+    public void showSeekBarPosition(int i) {
+    }
+
+    @Override
     public void showTotalTime(TimeInMilliseconds time) {
         totalTime = time;
     }

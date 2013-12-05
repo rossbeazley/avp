@@ -65,7 +65,9 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
 
     public void bindSeekBar() {
         int id = R.id.seekBar;
-        ((SeekBar) viewFinder.find(id)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar seekBar = (SeekBar) viewFinder.find(id);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 
             public Integer last_seek_position;
@@ -105,6 +107,12 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
     @Override
     public void setScrubEventListener(CanListenForUserScrubEvents canListenForUserScrubEvents) {
         this.canListenForUserScrubEvents = canListenForUserScrubEvents;
+    }
+
+    @Override
+    public void showSeekBarPosition(int i) {
+        SeekBar seekBar = (SeekBar) viewFinder.find(R.id.seekBar);
+        seekBar.setProgress(i);
     }
 
     @Override

@@ -39,8 +39,11 @@ class VideoControlScreenMediator {
         bus.whenEvent(Events.PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
             @Override
             public void invoke(MediaTimePosition payload) {
-                videoScreen.showProgressTime(payload.getCurrentPosition());
-                videoScreen.showTotalTime(payload.getTotalLength());
+                TimeInMilliseconds currentPosition = payload.getCurrentPosition();
+                videoScreen.showProgressTime(currentPosition);
+                TimeInMilliseconds totalLength = payload.getTotalLength();
+                videoScreen.showTotalTime(totalLength);
+                videoScreen.showSeekBarPosition( (int)(currentPosition.value / totalLength.value));
             }
         });
     }

@@ -19,8 +19,6 @@ public class VideoControlScreenMediatorScrubbingTest {
     public static final int END = 100;
     private EventBus bus;
     private FakeVideoScreenVideo fakeVideoScreen;
-    private boolean pausedEventDispatched;
-    private boolean playEventDispatched;
     private TimeInMilliseconds scrubTime;
 
     @Before

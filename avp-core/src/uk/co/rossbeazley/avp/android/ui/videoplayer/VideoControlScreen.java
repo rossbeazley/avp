@@ -24,6 +24,8 @@ public interface VideoControlScreen {
 
     void setScrubEventListener(CanListenForUserScrubEvents canListenForUserScrubEvents);
 
+    void showSeekBarPosition(int i);
+
     interface CanListenForUserPauseEvents {
         void userPressedPause();
         CanListenForUserPauseEvents NONE = new CanListenForUserPauseEvents() { public void userPressedPause() {} };
