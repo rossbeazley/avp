@@ -35,7 +35,7 @@ public interface VideoControlScreen {
     }
 
     interface CanListenForUserScrubEvents {
-        void userScrubbedTo(TimeInMilliseconds time);
-        CanListenForUserScrubEvents NONE = new CanListenForUserScrubEvents() { public void userScrubbedTo(TimeInMilliseconds time) {} };
+        void userScrubbedTo(long positionAsPercentage);
+        CanListenForUserScrubEvents NONE = new CanListenForUserScrubEvents() { public void userScrubbedTo(long positionAsPercentage) {} };
     }
 }

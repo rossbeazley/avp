@@ -85,7 +85,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (last_seek_position != null) {
-                    canListenForUserScrubEvents.userScrubbedTo(TimeInMilliseconds.fromLong(last_seek_position));
+                    canListenForUserScrubEvents.userScrubbedTo(last_seek_position);
                     last_seek_position = null;
                 }
             }

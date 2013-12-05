@@ -69,7 +69,7 @@ class FakeVideoScreenVideo implements VideoControlScreen {
         canListenForUserPlayEvents.userPressedPlay();
     }
 
-    public void scrubTo(TimeInMilliseconds expectedScrubTime) {
-        canListenForUserScrubEvents.userScrubbedTo(expectedScrubTime);
+    public void scrubTo(long positionAsPercentage) {
+        canListenForUserScrubEvents.userScrubbedTo(positionAsPercentage);
     }
 }
