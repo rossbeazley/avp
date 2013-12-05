@@ -6,24 +6,22 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 class MediaPlayerStateMachine {
     private MediaPlayerState state;
+    private final CanControlMediaPlayer mediaPlayer;
     private EventBus bus;
 
-    public MediaPlayerStateMachine(EventBus bus) {
+    public MediaPlayerStateMachine(CanControlMediaPlayer mediaPlayer, EventBus bus) {
+        this.mediaPlayer = mediaPlayer;
         this.bus = bus;
+        this.state = initialState;
     }
 
-    void setupInitialStateFor(CanControlMediaPlayer mediaPlayer) {
-        state = mediaPlayer.isPlaying() ? playingState : pausedState;
-    }
-
-    void check(CanControlMediaPlayer mediaPlayer) {
+    void tick() {
         state.check(mediaPlayer);
     }
 
     private void transitionToPaused() {
         state = pausedState;
         bus.announce(Events.PLAYER_PAUSED);
-
     }
 
     private void transitionToPlaying() {
@@ -34,6 +32,17 @@ class MediaPlayerStateMachine {
     private interface MediaPlayerState {
         void check(CanControlMediaPlayer mediaPlayer);
     }
+
+    MediaPlayerState initialState = new MediaPlayerState() {
+        @Override
+        public void check(CanControlMediaPlayer mediaPlayer) {
+            if (mediaPlayer.isPlaying() ) {
+                transitionToPlaying();
+            } else {
+                transitionToPaused();
+            }
+        }
+    };
 
     MediaPlayerState playingState = new MediaPlayerState() {
         @Override
