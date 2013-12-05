@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.player.control;
+package uk.co.rossbeazley.avp.android.player.state;
 
 import org.junit.Before;
 import org.junit.Test;

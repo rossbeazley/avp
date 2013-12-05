@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.player.control;
+package uk.co.rossbeazley.avp.android.player.scrub;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;

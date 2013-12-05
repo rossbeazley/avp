@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.player.control;
+package uk.co.rossbeazley.avp.android.player.state;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
