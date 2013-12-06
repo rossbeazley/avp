@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
+import android.media.MediaPlayer;
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
@@ -26,6 +27,7 @@ class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
         this.mediaPlayer = mediaPlayer;
         this.logger = logger;
         bindPreparedEventAdapter();
+        bindSeekCompleteAdapter();
     }
 
     private void bindPreparedEventAdapter() {
@@ -34,6 +36,17 @@ class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
             public void onPrepared(android.media.MediaPlayer mp) {
                 for (PreparedStateChangeListener preparedStateChangeListener : preparedStateChangeListeners) {
                     preparedStateChangeListener.prepared();
+                }
+            }
+        });
+    }
+
+    private void bindSeekCompleteAdapter() {
+        this.mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+            @Override
+            public void onSeekComplete(MediaPlayer mediaPlayer) {
+                for(ScrubCompleteListener listener : seekCompleteListeners) {
+                    listener.seekComplete();
                 }
             }
         });
@@ -99,6 +112,7 @@ class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
 
     @Override
     public void seekTo(TimeInMilliseconds time) {
+        logger.debug("seekTo " + time.value);
         mediaPlayer.seekTo((int) time.value);
     }
 
