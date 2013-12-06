@@ -14,9 +14,6 @@ import static org.junit.Assert.assertThat;
 
 public class VideoControlScreenMediatorScrubbingTest {
 
-    public static final int START = 0;
-    public static final int THIRTY_PERCENT = 30;
-    public static final int END = 100;
     private EventBus bus;
     private FakeVideoScreenVideo fakeVideoScreen;
     private TimeInMilliseconds scrubTime;
@@ -28,9 +25,22 @@ public class VideoControlScreenMediatorScrubbingTest {
         VideoControlScreenMediator controller = new VideoControlScreenMediator(bus);
         controller.registerOnEventBus(fakeVideoScreen);
 
-        MediaTimePosition TEN_SECOND_VIDEO = new MediaTimePosition(TimeInMilliseconds.fromInt(0), TimeInMilliseconds.fromInt(1000));
+        MediaTimePosition TEN_SECOND_VIDEO = new MediaTimePosition(TimeInMilliseconds.fromInt(0), TimeInMilliseconds.fromInt(10000));
         bus.sendPayload(TEN_SECOND_VIDEO)
            .withEvent(Events.PLAYER_TIME_UPDATE);
+    }
+
+    @Test
+    public void whenTimeUpdatedScrubBarMaxUpdated() {
+        assertThat(fakeVideoScreen.scrubBarMax(),is(10000l));
+    }
+
+    @Test
+    public void whenTimeUpdatedScrubBarPositionUpdated() {
+        MediaTimePosition TEN_SECOND_VIDEO_POSITION_FOUR = new MediaTimePosition(TimeInMilliseconds.fromInt(4000), TimeInMilliseconds.fromInt(10000));
+        bus.sendPayload(TEN_SECOND_VIDEO_POSITION_FOUR)
+                .withEvent(Events.PLAYER_TIME_UPDATE);
+        assertThat(fakeVideoScreen.scrubBarPosition(),is(4000l));
     }
 
     @Test
@@ -43,7 +53,7 @@ public class VideoControlScreenMediatorScrubbingTest {
                     }
                 });
         TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(0);
-        fakeVideoScreen.scrubTo(START);
+        fakeVideoScreen.scrubTo(0);
         assertThat(scrubTime, is(expectedScrubTime));
     }
 
@@ -57,8 +67,8 @@ public class VideoControlScreenMediatorScrubbingTest {
                         scrubTime = payload;
                     }
                 });
-        TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(300);
-        fakeVideoScreen.scrubTo(THIRTY_PERCENT);
+        TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(3000);
+        fakeVideoScreen.scrubTo(3000);
         assertThat(scrubTime, is(expectedScrubTime));
     }
 
@@ -73,8 +83,8 @@ public class VideoControlScreenMediatorScrubbingTest {
                         scrubTime = payload;
                     }
                 });
-        TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(1000);
-        fakeVideoScreen.scrubTo(END);
+        TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(10000);
+        fakeVideoScreen.scrubTo(10000);
         assertThat(scrubTime, is(expectedScrubTime));
     }
 

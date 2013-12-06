@@ -51,8 +51,16 @@ public class ScreenShowTimeTest {
             public void onStopTrackingTouch(SeekBar seekBar) { }
         });
 
-        videoScreen.showSeekBarPosition(40);
+        videoScreen.showSeekBarPosition(40, 1000);
         assertThat(seekBarPosition, is(40));
+    }
+
+
+    @Test
+    public void maxTimeUpdatedOnSeekBar() {
+        SeekBar seekbar = (SeekBar) getViewById(R.id.seekBar);
+        videoScreen.showSeekBarPosition(40, 1000);
+        assertThat(seekbar.getMax(), is(1000));
     }
 
 
