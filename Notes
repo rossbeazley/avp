@@ -1,6 +1,8 @@
 Messages:
 
 User wants to load a video at a url
+
+
 User wants to pause
 User wants to play (un pause)
 User wants to seek to a position
@@ -24,4 +26,14 @@ Media player
 Rule - auto start media on load
 
 
+
+next steps: 23/12/13
+implement a screen with a button and text box.
+text box is prepopulated with the video url but can be overwritten
+when the button is pressed the "User wants to load a video at url" event is dispatched
+attached to the event is the value from the text box as a payload
+
+The navigation controller will have to be changed,
+the default navigation now is to show this new screen
+the video player screen should be shown in response to the user load event
 

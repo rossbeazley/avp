@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.application.ActivityWirer;
@@ -21,31 +20,13 @@ public class Main extends Activity implements WireableMain {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        logger.debug("onCreate !! " + dataStringFromIntent(getIntent()));
-        dispatchIntent();
+        intentParser.onIntent(getIntent());
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        logger.debug("onNewIntent !! " + dataStringFromIntent(intent));
-        dispatchIntent();
-    }
-
-    private void dispatchIntent() {
         intentParser.onIntent(getIntent());
-    }
-
-    private String dataStringFromIntent(Intent intent) {
-        String dataString = "NONE'";
-        if (intent!=null) {
-            Uri data = intent.getData();
-
-            if(data!=null) {
-                dataString = data.toString();
-            }
-        }
-        return dataString;
     }
 
     @Override
@@ -70,9 +51,13 @@ public class Main extends Activity implements WireableMain {
         eventBus.announce(Events.APP_SHUTDOWN);
     }
 
+
+
+
+
     @Override
     public void wire(ActivityWirer activityWirer) {
-        activityWirer.wire(this);
+        activityWirer.wire(this); //TODO remove double dispatch
     }
 
     @Override

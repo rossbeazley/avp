@@ -41,7 +41,7 @@ class ProductionApplicationServices implements ApplicationServices {
     @Override
     public IntentToEventDispatcher getIntentParser() {
          if(intentParser==null) {
-             intentParser = new IntentToEventDispatcher(this.getBus());
+             intentParser = new IntentToEventDispatcher(this.getBus(),this.getLogger());
          }
 
         return intentParser;

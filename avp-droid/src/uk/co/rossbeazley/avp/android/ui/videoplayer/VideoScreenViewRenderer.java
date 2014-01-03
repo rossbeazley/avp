@@ -114,7 +114,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         SeekBar seekBar = (SeekBar) viewFinder.find(R.id.seekBar);
         seekBar.setProgress((int) position);
         seekBar.setMax((int) max);
-        //seekBar.setSecondaryProgress((int) (position*2));
+        seekBar.setSecondaryProgress((int) (position*2));
     }
 
     @Override
