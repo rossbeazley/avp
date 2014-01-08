@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.player.scrub;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
 
 class ScrubbingStateMachineComposite implements MediaPlayerScrubber.ScrubbingStateMachine {
 

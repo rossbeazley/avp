@@ -1,10 +1,10 @@
 package uk.co.rossbeazley.avp.android.player;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanGetTimeFromMediaPlayer;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.control.CanControlMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.time.CanGetTimeFromMediaPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.player.control;
 
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;

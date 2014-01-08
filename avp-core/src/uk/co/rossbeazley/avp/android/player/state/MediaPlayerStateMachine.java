@@ -1,7 +1,7 @@
 package uk.co.rossbeazley.avp.android.player.state;
 
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.control.CanControlMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 class MediaPlayerStateMachine {

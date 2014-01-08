@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android;
 
 import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.avp.android.log.Logger;
-import uk.co.rossbeazley.avp.android.mediaplayer.MediaPlayerFactory;
+import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 import java.util.concurrent.ScheduledExecutorService;
