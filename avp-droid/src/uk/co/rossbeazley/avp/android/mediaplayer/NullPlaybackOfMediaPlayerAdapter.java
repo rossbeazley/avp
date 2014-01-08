@@ -7,9 +7,10 @@ import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPla
 import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
 import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.state.CanDiscoverPlayingStateOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.time.CanGetTimeFromMediaPlayer;
 
-public class NullPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer, CanControlPlaybackOfMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer, CanAttachToAndroidView {
+public class NullPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer, CanControlPlaybackOfMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer, CanAttachToAndroidView, CanDiscoverPlayingStateOfMediaPlayer {
 
     private final TimeInMilliseconds noTime = TimeInMilliseconds.fromLong(0);
 

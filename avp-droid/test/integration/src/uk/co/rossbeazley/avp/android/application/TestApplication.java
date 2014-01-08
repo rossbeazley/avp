@@ -1,11 +1,13 @@
 package uk.co.rossbeazley.avp.android.application;
 
+import android.app.Application;
+
 public class TestApplication extends Application {
 
     public TestApplication() {
-        services = new ProductionApplicationServices(this) {
+        ProductionApplicationServices services = new ProductionApplicationServices(this) {
             @Override
-            public void executeRunnable(Runnable runnable) {
+            public void executeRunnableNotOnMainThread(Runnable runnable) {
                 runnable.run();
             }
         };

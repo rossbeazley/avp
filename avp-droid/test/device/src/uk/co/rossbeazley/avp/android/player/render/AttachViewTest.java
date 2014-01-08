@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.player.render;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.SurfaceHolder;
 import android.view.ViewGroup;
-import uk.co.rossbeazley.avp.android.activity.Main;
+import uk.co.rossbeazley.avp.android.application.Main;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

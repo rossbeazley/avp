@@ -1,6 +1,5 @@
-package uk.co.rossbeazley.avp.android;
+package uk.co.rossbeazley.avp.android.application;
 
-import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -8,15 +7,15 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import java.util.concurrent.ScheduledExecutorService;
 
 public interface ApplicationServices {
-    EventBus getBus();
+    EventBus eventbus();
 
-    IntentToEventDispatcher getIntentParser();
+    IntentToEventDispatcher intentParser();
 
     Logger getLogger();
 
     MediaPlayerFactory getAndroidMediaPlayerFactory();
 
-    void executeRunnable(Runnable runnable);
+    void executeRunnableNotOnMainThread(Runnable runnable);
 
     ScheduledExecutorService getExecutorService();
 }

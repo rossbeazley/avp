@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.activity;
+package uk.co.rossbeazley.avp.android.application;
 
 import android.content.Intent;
 import android.net.Uri;
