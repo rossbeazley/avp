@@ -9,10 +9,10 @@ public class MediaPlayerControl {
 
 
     private final EventBus bus;
-    private CanControlMediaPlayer mediaPlayer;
+    private CanControlPlaybackOfMediaPlayer mediaPlayer;
 
     public MediaPlayerControl(EventBus bus) {
-        mediaPlayer = CanControlMediaPlayer.NULL;
+        mediaPlayer = CanControlPlaybackOfMediaPlayer.NULL;
         this.bus = bus;
         handleVideoLoaded();
         handleAppHidden();
@@ -61,9 +61,9 @@ public class MediaPlayerControl {
     }
 
     private void handleVideoLoaded() {
-        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<CanControlMediaPlayer>() {
+        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<CanControlPlaybackOfMediaPlayer>() {
             @Override
-            public void invoke(CanControlMediaPlayer payload) {
+            public void invoke(CanControlPlaybackOfMediaPlayer payload) {
                 mediaPlayer = payload;
             }
         });

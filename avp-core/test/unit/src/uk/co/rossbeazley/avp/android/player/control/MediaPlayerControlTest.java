@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.player.control;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -18,13 +18,13 @@ public class MediaPlayerControlTest {
     private static final boolean PAUSED = true;
     private boolean playerState;
     private EventBus bus;
-    private FakeMediaPlayer mediaPlayer;
+    private FakePlaybackOfMediaPlayer mediaPlayer;
 
     @Before
     public void setup() {
         bus = new ExecutorEventBus();
         new MediaPlayerControl(bus);
-        mediaPlayer = FakeMediaPlayer.createStartedFakeMediaPlayer();
+        mediaPlayer = FakePlaybackOfMediaPlayer.createStartedFakeMediaPlayer();
         bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED); //thoughts, should these mediaplayer satalite objects be constructed with a media player rather that receive one over the bus?
 
     }

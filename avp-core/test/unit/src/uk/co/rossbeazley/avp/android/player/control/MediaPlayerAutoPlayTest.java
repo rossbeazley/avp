@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.player.control;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -22,7 +22,7 @@ public class MediaPlayerAutoPlayTest {
 
     @Test
     public void autoStartsTheMediaPlayerWhenVideoLoaded() {
-        FakeMediaPlayer mediaPlayer = FakeMediaPlayer.createFakeMediaPlayer();
+        FakePlaybackOfMediaPlayer mediaPlayer = FakePlaybackOfMediaPlayer.createFakeMediaPlayer();
         bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
         assertThat(mediaPlayer.isPlaying(), is(true));
     }

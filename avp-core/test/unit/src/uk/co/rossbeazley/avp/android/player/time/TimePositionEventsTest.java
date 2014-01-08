@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class TimePositionEventsTest {
     private MediaTimePosition timeInEvent;
     private MediaTimePosition expectedTime;
-    private FakeMediaPlayer mediaPlayer;
+    private FakePlaybackOfMediaPlayer mediaPlayer;
     private EventBus bus;
     private TimeInMilliseconds totalLength;
     private int numberOfEvents;
@@ -24,7 +24,7 @@ public class TimePositionEventsTest {
 
     @Before
     public void setup() {
-        mediaPlayer = FakeMediaPlayer.createStartedFakeMediaPlayer();
+        mediaPlayer = FakePlaybackOfMediaPlayer.createStartedFakeMediaPlayer();
         bus = new ExecutorEventBus();
         totalLength = mediaPlayer.getDuration();
         numberOfEvents = 0;

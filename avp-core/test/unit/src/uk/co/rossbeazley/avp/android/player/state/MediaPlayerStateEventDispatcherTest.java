@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.player.state;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.player.FakeMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.time.FakeScheduledExecutor;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -15,13 +15,13 @@ import static org.junit.Assert.assertThat;
 public class MediaPlayerStateEventDispatcherTest {
 
     private String playerState = "UNKNOWN";
-    private FakeMediaPlayer mediaPlayer;
+    private FakePlaybackOfMediaPlayer mediaPlayer;
     private EventBus bus;
     private FakeScheduledExecutor fakeScheduledExecutor;
 
     @Before
     public void setup() {
-        mediaPlayer = FakeMediaPlayer.createStartedFakeMediaPlayer();
+        mediaPlayer = FakePlaybackOfMediaPlayer.createStartedFakeMediaPlayer();
 
         bus = new ExecutorEventBus();
         bus.whenEvent(Events.PLAYER_PAUSED)

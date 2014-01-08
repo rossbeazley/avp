@@ -3,23 +3,23 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
-import uk.co.rossbeazley.avp.android.player.control.CanControlMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
 import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.time.CanGetTimeFromMediaPlayer;
 
-public class NullMediaPlayerAdapter implements CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer, CanAttachToAndroidView {
+public class NullPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer, CanControlPlaybackOfMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer, CanAttachToAndroidView {
 
     private final TimeInMilliseconds noTime = TimeInMilliseconds.fromLong(0);
 
     private Logger logger;
 
-    public NullMediaPlayerAdapter() {
+    public NullPlaybackOfMediaPlayerAdapter() {
         logger = Logger.NULL;
     }
 
-    public NullMediaPlayerAdapter(Logger logger) {
+    public NullPlaybackOfMediaPlayerAdapter(Logger logger) {
         this.logger = logger;
     }
 
