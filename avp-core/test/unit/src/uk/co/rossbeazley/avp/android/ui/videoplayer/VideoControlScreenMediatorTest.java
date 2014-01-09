@@ -37,7 +37,7 @@ public class VideoControlScreenMediatorTest {
 
     @Test
     public void whenPausedEventShowPlayHideBuffering() {
-        assertThat(fakeVideoScreen.showPlay,is(false));
+        assertThat(fakeVideoScreen.showPlay, is(false));
         bus.announce(Events.PLAYER_PAUSED);
         assertThat(fakeVideoScreen.showPlay && fakeVideoScreen.hideBuffering, is(true));
     }
