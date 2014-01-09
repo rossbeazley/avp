@@ -1,12 +1,11 @@
-package uk.co.rossbeazley.avp.android.player.control;
+package uk.co.rossbeazley.avp.android.player.scrub;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class MediaPlayerScrubber {
+public class MediaPlayerScrubber {
     CanScrubMediaPlayer mediaPlayer;
 
     private ScrubbingStateMachine stateMachine;

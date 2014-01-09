@@ -39,17 +39,21 @@ class VideoControlScreenMediator {
         bus.whenEvent(Events.PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
             @Override
             public void invoke(MediaTimePosition payload) {
-                videoScreen.showProgressTime(payload.getCurrentPosition());
-                videoScreen.showTotalTime(payload.getTotalLength());
+                TimeInMilliseconds currentPosition = payload.getCurrentPosition();
+                videoScreen.showProgressTime(currentPosition);
+                TimeInMilliseconds totalLength = payload.getTotalLength();
+                videoScreen.showTotalTime(totalLength);
+                videoScreen.showSeekBarPosition( currentPosition.value, totalLength.value );
             }
         });
     }
 
     private void bindUserScrubEvent(VideoControlScreen videoScreen) {
         videoScreen.setScrubEventListener(new VideoControlScreen.CanListenForUserScrubEvents() {
-            @Override
-            public void userScrubbedTo(TimeInMilliseconds time) {
-                bus.sendPayload(time)
+        @Override
+            public void userScrubbedTo(long positionAsMillis) {
+                TimeInMilliseconds positionAsMilliseconds = TimeInMilliseconds.fromLong(positionAsMillis);
+                bus.sendPayload(positionAsMilliseconds)
                         .withEvent(Events.USER_SCRUB);
             }
         });

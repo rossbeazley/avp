@@ -10,17 +10,20 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
 
     private final VideoControlScreenMediator videoControlScreenMediator;
+    private final EventBus bus;
 
     public VideoPlayerFragmentScreenFactory(final EventBus bus) {
+        this.bus = bus;
         videoControlScreenMediator = new VideoControlScreenMediator(bus);
     }
 
     @Override
     public FragmentLayoutInflater createScreenFromLayoutInflatorAndViewGroup(LayoutInflater inflater, ViewGroup container) {
         FragmentLayoutInflater screenInflater = new FragmentLayoutInflater(inflater, container);
-        final VideoControlScreen videoScreen = new VideoScreenViewRenderer(screenInflater, screenInflater);
+        final VideoScreenViewRenderer videoScreen = new VideoScreenViewRenderer(screenInflater, screenInflater);
         videoScreen.bind();
         videoControlScreenMediator.registerOnEventBus(videoScreen);
+        new VideoOutputScreenMediator(videoScreen, bus);
         return screenInflater;
     }
 }

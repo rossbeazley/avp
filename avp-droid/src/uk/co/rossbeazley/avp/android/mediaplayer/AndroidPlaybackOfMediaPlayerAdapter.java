@@ -1,9 +1,15 @@
 package uk.co.rossbeazley.avp.android.mediaplayer;
 
+import android.media.MediaPlayer;
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
+import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.state.CanDiscoverPlayingStateOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.time.CanGetTimeFromMediaPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,21 +17,23 @@ import java.util.Collection;
 /**
  * UNTESTED CLASS
  */
-class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
-                                            CanControlMediaPlayer,
-                                            CanGetTimeFromMediaPlayer,
-                                            CanScrubMediaPlayer,
-                                            CanAttachToAndroidView {
+class AndroidPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer,
+                                                    CanControlPlaybackOfMediaPlayer,
+                                                    CanGetTimeFromMediaPlayer,
+                                                    CanScrubMediaPlayer,
+                                                    CanDiscoverPlayingStateOfMediaPlayer,
+                                                    CanAttachToAndroidView {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private final android.media.MediaPlayer mediaPlayer;
     private final Logger logger;
     private Collection<ScrubCompleteListener> seekCompleteListeners = new ArrayList<ScrubCompleteListener>();
 
-    AndroidMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
+    AndroidPlaybackOfMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
         this.mediaPlayer = mediaPlayer;
         this.logger = logger;
         bindPreparedEventAdapter();
+        bindSeekCompleteAdapter();
     }
 
     private void bindPreparedEventAdapter() {
@@ -34,6 +42,17 @@ class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
             public void onPrepared(android.media.MediaPlayer mp) {
                 for (PreparedStateChangeListener preparedStateChangeListener : preparedStateChangeListeners) {
                     preparedStateChangeListener.prepared();
+                }
+            }
+        });
+    }
+
+    private void bindSeekCompleteAdapter() {
+        this.mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+            @Override
+            public void onSeekComplete(MediaPlayer mediaPlayer) {
+                for(ScrubCompleteListener listener : seekCompleteListeners) {
+                    listener.seekComplete();
                 }
             }
         });
@@ -99,6 +118,7 @@ class AndroidMediaPlayerAdapter implements  CanPrepareMediaPlayer,
 
     @Override
     public void seekTo(TimeInMilliseconds time) {
+        logger.debug("seekTo " + time.value);
         mediaPlayer.seekTo((int) time.value);
     }
 

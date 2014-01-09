@@ -6,12 +6,12 @@ import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-class ThreadPoolFixedRateExecutor implements CanExecuteCommandsAtFixedRate {
+public class ThreadPoolFixedRateExecutor implements CanExecuteCommandsAtFixedRate {
 
     private static final long NO_DELAY = 0;
     private final ScheduledExecutorService service;
 
-    ThreadPoolFixedRateExecutor(ScheduledExecutorService executorService) {
+    public ThreadPoolFixedRateExecutor(ScheduledExecutorService executorService) {
         this.service = executorService;
     }
 

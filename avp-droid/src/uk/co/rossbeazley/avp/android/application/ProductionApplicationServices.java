@@ -3,8 +3,6 @@ package uk.co.rossbeazley.avp.android.application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
-import uk.co.rossbeazley.avp.android.ApplicationServices;
-import uk.co.rossbeazley.avp.android.activity.IntentToEventDispatcher;
 import uk.co.rossbeazley.avp.android.log.AndroidLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
@@ -16,7 +14,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-class ProductionApplicationServices implements ApplicationServices {
+public class ProductionApplicationServices implements ApplicationServices {
 
     private EventBus bus;
     private IntentToEventDispatcher intentParser;
@@ -26,12 +24,12 @@ class ProductionApplicationServices implements ApplicationServices {
     private ScheduledExecutorService scheduledExecutorService;
     private static final int THREAD_POOL_SIZE_OF_ONE = 1;
 
-    ProductionApplicationServices(Context applicationContext) {
+    public ProductionApplicationServices(Context applicationContext) {
         this.applicationContext = applicationContext;
     }
 
     @Override
-    public EventBus getBus() {
+    public EventBus eventbus() {
         if(bus==null) {
             bus = new ExecutorEventBus(new LooperExecutorFactory() );
         }
@@ -39,9 +37,9 @@ class ProductionApplicationServices implements ApplicationServices {
     }
 
     @Override
-    public IntentToEventDispatcher getIntentParser() {
+    public IntentToEventDispatcher intentParser() {
          if(intentParser==null) {
-             intentParser = new IntentToEventDispatcher(this.getBus());
+             intentParser = new IntentToEventDispatcher(this.eventbus(),this.getLogger());
          }
 
         return intentParser;
@@ -64,7 +62,7 @@ class ProductionApplicationServices implements ApplicationServices {
     }
 
     @Override
-    public void executeRunnable(final Runnable runnable) {
+    public void executeRunnableNotOnMainThread(final Runnable runnable) {
         final CountDownLatch latch = new CountDownLatch(1);
 
         Logger logger = getLogger();

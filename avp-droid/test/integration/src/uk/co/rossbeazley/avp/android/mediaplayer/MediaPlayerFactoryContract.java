@@ -2,7 +2,11 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
+import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.time.CanGetTimeFromMediaPlayer;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,7 +14,7 @@ public abstract class MediaPlayerFactoryContract {
 
     @Test
     public void testCreateMediaPlayerFactoryCreatesSomethingThatCanControlMediaPlayer() throws Exception {
-        assertTrue(getMediaPlayerFactory().createMediaPlayerForUri(ANY_URI) instanceof CanControlMediaPlayer);
+        assertTrue(getMediaPlayerFactory().createMediaPlayerForUri(ANY_URI) instanceof CanControlPlaybackOfMediaPlayer);
     }
 
     @Test

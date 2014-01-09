@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.player.render;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
-import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 public class MediaPlayerViewAttachement {
 

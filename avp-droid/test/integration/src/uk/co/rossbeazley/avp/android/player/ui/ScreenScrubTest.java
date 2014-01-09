@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
@@ -24,30 +23,30 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
     @Test
     public void userSeekToMSEventWhenScrubBarDragged() {
         fingerDownOnScrubber();
-        scrubTo(1000);
+        scrubTo(100);
         fingerUpOnScrubber();
-        assertThat("scrub event", scrubEvent,is(TimeInMilliseconds.fromLong(1000)));
+        assertThat("scrub event", scrubEvent,is(100l));
     }
 
 
     @Test
     public void onlyLastUserSeekToMSEventWhenScrubBarDraggedBackAndForth() {
         fingerDownOnScrubber();
-        scrubTo(1000);
-        scrubTo(900);
-        scrubTo(800);
+        scrubTo(100);
+        scrubTo(90);
+        scrubTo(80);
         assertThat("scrub event", scrubEvent,is(NO_EVENT));
-        scrubTo(900);
-        scrubTo(1000);
-        scrubTo(1200);
+        scrubTo(90);
+        scrubTo(100);
+        scrubTo(120);
         fingerUpOnScrubber();
-        assertThat("scrub event", scrubEvent,is(TimeInMilliseconds.fromLong(1200)));
+        assertThat("scrub event", scrubEvent,is(120l));
     }
 
 
     @Test
     public void noEventWhenScrubSetProgramaticly() {
-        setScrubTo(1000);
+        setScrubTo(100);
         assertThat("scrub event", scrubEvent,is(NO_EVENT));
     }
 
@@ -70,12 +69,12 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
 
     private ActivityForTestingViews activity;
 
-    private final TimeInMilliseconds NO_EVENT = null;
-    private TimeInMilliseconds scrubEvent = NO_EVENT;
+    private final long NO_EVENT = -1;
+    private long scrubEvent = NO_EVENT;
 
     @Override
-    public void userScrubbedTo(TimeInMilliseconds time) {
-        scrubEvent = time;
+    public void userScrubbedTo(long positionAsPercentage) {
+        scrubEvent = positionAsPercentage;
     }
 
     private void scrubTo(int AMOUNT_OF_PROGRESS) {

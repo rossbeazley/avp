@@ -7,7 +7,6 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
-import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -69,21 +68,6 @@ public class VideoControlScreenMediatorTest {
         fakeVideoScreen.playPressed();
         assertThat(playEventDispatched, is(true));
     }
-
-    @Test
-    public void whenUserScrubsScrubEventWithPayloadRaised() {
-        bus.whenEvent(Events.USER_SCRUB)
-                .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
-                    @Override
-                    public void invoke(TimeInMilliseconds payload) {
-                        scrubTime = payload;
-                    }
-                });
-        TimeInMilliseconds expectedScrubTime = TimeInMilliseconds.fromLong(123456);
-        fakeVideoScreen.scrubTo(expectedScrubTime);
-        assertThat(scrubTime, is(expectedScrubTime));
-    }
-
     @Test
     public void whenTimeUpdateEventCurrentTimeUpdatedOnScreen() {
 

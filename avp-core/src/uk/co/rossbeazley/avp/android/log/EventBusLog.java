@@ -19,6 +19,7 @@ public class EventBusLog {
         logEvent(Events.PLAYER_PAUSED);
         logEvent(Events.PLAYER_PLAYING);
         logEvent(Events.PLAYER_STOPPED);
+        logEvent(Events.PLAYER_VIEW_CREATED);
 
         logEvent(Events.USER_LOAD_VIDEO);
         logEvent(Events.USER_PLAY);
@@ -33,7 +34,7 @@ public class EventBusLog {
         bus.whenEvent(event).thenRun(new FunctionWithParameter() {
             @Override
             public void invoke(Object payload) {
-                log.debug("event: " + event + " : " + payload);
+                log.debug("___EVENT: " + event + " : " + payload);
             }
         });
     }

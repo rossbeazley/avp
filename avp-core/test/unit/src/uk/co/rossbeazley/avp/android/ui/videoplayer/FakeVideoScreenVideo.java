@@ -12,6 +12,8 @@ class FakeVideoScreenVideo implements VideoControlScreen {
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
     public TimeInMilliseconds progressTime;
     public TimeInMilliseconds totalTime;
+    private long scrubBarMax;
+    private long scrubBarPosition;
 
     @Override
     public void bind() {
@@ -30,6 +32,12 @@ class FakeVideoScreenVideo implements VideoControlScreen {
     @Override
     public void setScrubEventListener(CanListenForUserScrubEvents canListenForUserScrubEvents) {
         this.canListenForUserScrubEvents = canListenForUserScrubEvents;
+    }
+
+    @Override
+    public void showSeekBarPosition(long position, long max) {
+        scrubBarMax = max;
+        scrubBarPosition = position;
     }
 
     @Override
@@ -69,7 +77,15 @@ class FakeVideoScreenVideo implements VideoControlScreen {
         canListenForUserPlayEvents.userPressedPlay();
     }
 
-    public void scrubTo(TimeInMilliseconds expectedScrubTime) {
-        canListenForUserScrubEvents.userScrubbedTo(expectedScrubTime);
+    public void scrubTo(long positionAsPercentage) {
+        canListenForUserScrubEvents.userScrubbedTo(positionAsPercentage);
+    }
+
+    public long scrubBarMax() {
+        return scrubBarMax;
+    }
+
+    public long scrubBarPosition() {
+        return scrubBarPosition;
     }
 }

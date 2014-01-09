@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
 
 import java.io.IOException;
 
@@ -23,9 +24,9 @@ public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
         try {
             android.media.MediaPlayer mediaPlayer = new android.media.MediaPlayer();
             mediaPlayer.setDataSource(applicationContext,Uri.parse(uri.uri));
-            result = new AndroidMediaPlayerAdapter(mediaPlayer, logger);
+            result = new AndroidPlaybackOfMediaPlayerAdapter(mediaPlayer, logger);
         } catch (IOException e) {
-            result = new NullMediaPlayerAdapter(logger);
+            result = new NullPlaybackOfMediaPlayerAdapter(logger);
         }
         return result;
     }

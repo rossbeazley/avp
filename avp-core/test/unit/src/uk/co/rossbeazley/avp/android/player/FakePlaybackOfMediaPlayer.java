@@ -1,15 +1,20 @@
 package uk.co.rossbeazley.avp.android.player;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanControlMediaPlayer;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanGetTimeFromMediaPlayer;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanPrepareMediaPlayer;
-import uk.co.rossbeazley.avp.android.mediaplayer.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.state.CanDiscoverPlayingStateOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.time.CanGetTimeFromMediaPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class FakeMediaPlayer implements CanPrepareMediaPlayer, CanControlMediaPlayer, CanGetTimeFromMediaPlayer, CanScrubMediaPlayer {
+public class FakePlaybackOfMediaPlayer implements CanPrepareMediaPlayer,
+                                                  CanControlPlaybackOfMediaPlayer,
+                                                  CanGetTimeFromMediaPlayer,
+                                                  CanScrubMediaPlayer,
+                                                  CanDiscoverPlayingStateOfMediaPlayer {
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private boolean playing;
@@ -20,15 +25,15 @@ public class FakeMediaPlayer implements CanPrepareMediaPlayer, CanControlMediaPl
     private TimeInMilliseconds scrubToTime;
     private Collection<ScrubCompleteListener> seekCompleteListeners = new ArrayList<ScrubCompleteListener>();
 
-    private FakeMediaPlayer() {
+    private FakePlaybackOfMediaPlayer() {
     }
 
-    public static FakeMediaPlayer createFakeMediaPlayer() {
-        return new FakeMediaPlayer();
+    public static FakePlaybackOfMediaPlayer createFakeMediaPlayer() {
+        return new FakePlaybackOfMediaPlayer();
     }
 
-    public static FakeMediaPlayer createStartedFakeMediaPlayer() {
-        FakeMediaPlayer fakeMediaPlayer = createFakeMediaPlayer();
+    public static FakePlaybackOfMediaPlayer createStartedFakeMediaPlayer() {
+        FakePlaybackOfMediaPlayer fakeMediaPlayer = createFakeMediaPlayer();
         fakeMediaPlayer.setCurrentPosition(TimeInMilliseconds.fromLong(0));
         fakeMediaPlayer.setDuration(TimeInMilliseconds.fromLong(40000));
         fakeMediaPlayer.start();
