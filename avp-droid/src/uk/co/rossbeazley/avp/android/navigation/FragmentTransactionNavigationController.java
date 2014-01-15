@@ -16,10 +16,10 @@ public class FragmentTransactionNavigationController implements NavigationContro
     @Override
     public void showVideoPlayScreen() {
         Fragment fragment = new VideoPlayerFragment();
-        showFragment(fragment);
+        pushFragment(fragment);
     }
 
-    public void showFragment(Fragment fragment) {
+    public void pushFragment(Fragment fragment) {
             fm.beginTransaction()
                     .add(R.id.content, fragment)
                     .commit();
