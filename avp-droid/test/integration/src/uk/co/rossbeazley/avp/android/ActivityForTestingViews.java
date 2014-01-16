@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.view.View;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
@@ -13,6 +14,8 @@ import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 * To change this template use File | Settings | File Templates.
 */
 public class ActivityForTestingViews extends Activity  {
+
+    public Fragment lastFragmentAttached;
 
     public CanInflateLayout layoutInflater() {
         return new CanInflateLayout() {
@@ -32,4 +35,10 @@ public class ActivityForTestingViews extends Activity  {
         };
     }
 
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        this.lastFragmentAttached = fragment;
+    }
 }

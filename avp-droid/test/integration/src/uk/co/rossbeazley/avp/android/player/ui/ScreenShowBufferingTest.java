@@ -4,9 +4,7 @@ import android.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.util.ActivityController;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
@@ -41,8 +39,7 @@ public class ScreenShowBufferingTest {
 
     @Before
     public void setUp() throws Exception {
-        activity = new ActivityController<ActivityForTestingViews>(ActivityForTestingViews.class).create().get();
-        Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
+        activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         videoScreen.bind();
     }

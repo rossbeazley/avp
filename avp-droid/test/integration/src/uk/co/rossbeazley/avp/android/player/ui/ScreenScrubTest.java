@@ -54,7 +54,7 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
     @Before
     public void setUp() throws Exception {
 
-        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
+        activity = ActivityTestSupport.createVisibleActivity();
         VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setScrubEventListener(this);
         videoScreen = lvideoScreen;

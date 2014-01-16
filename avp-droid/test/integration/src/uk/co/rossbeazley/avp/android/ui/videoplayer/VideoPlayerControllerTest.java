@@ -10,29 +10,31 @@ import uk.co.rossbeazley.avp.android.ui.FragmentStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 public class VideoPlayerControllerTest implements FragmentStack {
 
-    private Fragment fragment;
+    private Class actualClass;
 
     @Test
     public void pushesVideoPlayerFragmentOnVideoLoadEvent() {
         //Events.USER_LOAD_VIDEO
-        UriString uriString = new UriString("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4");
+        UriString anyUriString = new UriString("ANY");
         EventBus bus = new ExecutorEventBus();
-        bus.sendPayload(uriString).withEvent(Events.USER_LOAD_VIDEO);
 
         new VideoPlayerController(this, bus);
 
-        assertThat(fragment.getClass(), is(VideoPlayerFragment.class));
+        bus.sendPayload(anyUriString).withEvent(Events.USER_LOAD_VIDEO);
+        Class expectedClass = VideoPlayerFragment.class;
+        assertThat(actualClass, is(equalTo(expectedClass)));
 
     }
 
     @Override
-    public void pushFragment(Fragment fragment) {
-        this.fragment = fragment;
+    public void pushFragment(Class<? extends Fragment> fragmentClass) {
+        this.actualClass = fragmentClass;
     }
 }

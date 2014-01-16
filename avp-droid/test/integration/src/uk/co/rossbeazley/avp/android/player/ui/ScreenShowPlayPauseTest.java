@@ -45,7 +45,7 @@ public class ScreenShowPlayPauseTest {
 
     @Before
     public void setUp() throws Exception {
-        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
+        activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         videoScreen.bind();
     }

@@ -6,7 +6,6 @@ import android.widget.TextView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
@@ -66,7 +65,7 @@ public class ScreenShowTimeTest {
 
     @Before
     public void setUp() throws Exception {
-        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
+        activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         videoScreen.bind();
     }
