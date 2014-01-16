@@ -69,7 +69,6 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-
             public Integer last_seek_position;
 
             @Override
@@ -148,7 +147,6 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         viewFinder.setVisibility(View.GONE, R.id.play);
         viewFinder.setVisibility(View.VISIBLE, R.id.pause);
     }
-
 
     @Override
     public void attachVideo(RenderedVideoOutput videoOutput) {
