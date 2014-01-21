@@ -47,7 +47,6 @@ public class ScreenShowPlayPauseTest {
     public void setUp() throws Exception {
         activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
-        videoScreen.bind();
     }
 
 

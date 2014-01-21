@@ -24,6 +24,7 @@ public class RobolectricLooperLearningTest {
         thenTheMessageIsNotRun();
         butWhenILetTheLooperRun(otherLooper);
         thenTheMessageIsRun();
+        Robolectric.shadowOf(otherLooper).quit();
     }
 
     private void thenTheMessageIsRun() {

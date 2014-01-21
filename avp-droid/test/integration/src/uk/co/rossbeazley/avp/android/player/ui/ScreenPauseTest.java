@@ -36,7 +36,6 @@ public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPause
         VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPauseEventListener((VideoControlScreen.CanListenForUserPauseEvents)this);
         videoScreen = lvideoScreen;
-        videoScreen.bind();
     }
 
     private VideoControlScreen videoScreen;

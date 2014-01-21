@@ -10,11 +10,12 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 class VideoControlScreenMediator {
     private final EventBus bus;
 
-    VideoControlScreenMediator(final EventBus bus) {
+    VideoControlScreenMediator(final EventBus bus, final VideoControlScreen videoScreen) {
         this.bus = bus;
+        registerOnEventBus(videoScreen);
     }
 
-    void registerOnEventBus(final VideoControlScreen videoScreen) {
+    private void registerOnEventBus(final VideoControlScreen videoScreen) {
 
         bindPlayerPlayingEvent(videoScreen);
         bindPlayerPausedEvent(videoScreen);

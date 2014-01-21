@@ -30,7 +30,6 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
         VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPlayEventListener(this);
         videoScreen=lvideoScreen;
-        videoScreen.bind();
     }
 
 

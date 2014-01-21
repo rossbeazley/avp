@@ -58,7 +58,6 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
         VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setScrubEventListener(this);
         videoScreen = lvideoScreen;
-        videoScreen.bind();
 
         sb = (SeekBar) activity.findViewById(R.id.seekBar);
         onSeekBarChangeListener = Robolectric.shadowOf(sb).getOnSeekBarChangeListener();

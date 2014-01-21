@@ -41,7 +41,6 @@ public class ScreenShowBufferingTest {
     public void setUp() throws Exception {
         activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
-        videoScreen.bind();
     }
 
 

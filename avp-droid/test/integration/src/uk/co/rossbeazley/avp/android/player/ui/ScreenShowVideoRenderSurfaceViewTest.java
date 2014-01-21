@@ -78,7 +78,6 @@ public class ScreenShowVideoRenderSurfaceViewTest {
 
         activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
-        videoScreen.bind();
         viewGroup = (ViewGroup) activity.findViewById(R.id.videocontainer);
     }
 

@@ -24,8 +24,7 @@ public class VideoControlScreenMediatorTest {
     public void setup() {
         bus = new ExecutorEventBus();
         fakeVideoScreen = new FakeVideoScreenVideo();
-        VideoControlScreenMediator controller = new VideoControlScreenMediator(bus);
-        controller.registerOnEventBus(fakeVideoScreen);
+        VideoControlScreenMediator controller = new VideoControlScreenMediator(bus, fakeVideoScreen);
     }
 
     @Test
