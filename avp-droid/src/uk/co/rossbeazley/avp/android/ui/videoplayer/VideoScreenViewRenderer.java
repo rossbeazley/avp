@@ -19,6 +19,15 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
 
+    /**
+     *
+     * I think i should change this class so it takes an "InflatedView"
+     * It should probably be the ViewFinder class thats in the constructor
+     * An InfatedView knows about reasource IDs and keeps a reference to the view from the inflator?
+     *
+     * @param canInflateLayout
+     * @param canFindViewById
+     */
 
     public VideoScreenViewRenderer(CanInflateLayout canInflateLayout, CanFindViewById canFindViewById) {
         this.canInflateLayout = canInflateLayout;

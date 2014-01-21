@@ -33,6 +33,7 @@ public class VideoPlayerFragment extends Fragment {
     public View onCreateView2(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int layoutResID = R.layout.videoplayer;
         View inflatedView = inflater.inflate(layoutResID, container, false);
+        fragmentScreenFactory.createScreenFromLayoutInflatorAndViewGroup(inflater, container);
         return inflatedView;
     }
 
