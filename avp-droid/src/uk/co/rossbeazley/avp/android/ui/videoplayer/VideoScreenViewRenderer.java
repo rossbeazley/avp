@@ -23,7 +23,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
      *
      * I think i should change this class so it takes an "InflatedView"
      * It should probably be the ViewFinder class thats in the constructor
-     * An InfatedView knows about reasource IDs and keeps a reference to the view from the inflator?
+     * An InflatedView knows about resource IDs and keeps a reference to the view from the inflator?
      *
      * @param canInflateLayout
      * @param canFindViewById
