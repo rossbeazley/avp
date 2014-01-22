@@ -9,23 +9,14 @@ import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputScreen {
+public class VideoScreenViewRendererAndEventAdapter implements VideoControlScreen, VideoOutputScreen {
     private final ViewFinder viewFinder;
 
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
 
-    /**
-     *
-     * I think i should change this class so it takes an "InflatedView"
-     * It should probably be the ViewFinder class thats in the constructor
-     * An InflatedView knows about resource IDs and keeps a reference to the view from the inflator?
-     *
-     * @param canFindViewById
-     */
-
-    public VideoScreenViewRenderer(CanFindViewById canFindViewById) {
+    public VideoScreenViewRendererAndEventAdapter(CanFindViewById canFindViewById) {
         this.canListenForUserPlayEvents = CanListenForUserPlayEvents.NONE;
         this.canListenForUserPauseEvents = CanListenForUserPauseEvents.NONE;
         this.canListenForUserScrubEvents = CanListenForUserScrubEvents.NONE;
@@ -34,6 +25,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
 
         bind();
     }
+    /// ---------- Event adapter
 
     private void bind() {
 
@@ -45,7 +37,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         //and then we expose more view style logic, how to show stuff
     }
 
-    public void bindPauseButton() {
+    private void bindPauseButton() {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             public void onClick(View view) {
                 canListenForUserPauseEvents.userPressedPause();
@@ -54,7 +46,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         viewFinder.setOnClickListener(onClickListener, R.id.pause);
     }
 
-    public void bindPlayButton() {
+    private void bindPlayButton() {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             public void onClick(View view) {
                 canListenForUserPlayEvents.userPressedPlay();
@@ -63,10 +55,8 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         viewFinder.setOnClickListener(onClickListener, R.id.play);
     }
 
-    public void bindSeekBar() {
-        int id = R.id.seekBar;
-        SeekBar seekBar = (SeekBar) viewFinder.find(id);
-
+    private void bindSeekBar() {
+        SeekBar seekBar = (SeekBar) viewFinder.find(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new ScrubEventAdapter());
     }
 
@@ -84,6 +74,9 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
     public void setScrubEventListener(CanListenForUserScrubEvents canListenForUserScrubEvents) {
         this.canListenForUserScrubEvents = canListenForUserScrubEvents;
     }
+
+
+    /// ---------- End of event adapter
 
     @Override
     public void showSeekBarPosition(long position, long max) {

@@ -9,7 +9,7 @@ import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRenderer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRendererAndEventAdapter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -55,7 +55,7 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
     public void setUp() throws Exception {
 
         activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
-        VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.viewFinder());
+        VideoScreenViewRendererAndEventAdapter lvideoScreen = new VideoScreenViewRendererAndEventAdapter(activity.viewFinder());
         lvideoScreen.setScrubEventListener(this);
         videoScreen = lvideoScreen;
 

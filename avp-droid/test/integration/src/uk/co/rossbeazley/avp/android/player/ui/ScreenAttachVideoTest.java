@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoOutputScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRenderer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRendererAndEventAdapter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -50,7 +50,7 @@ public class ScreenAttachVideoTest implements CanFindViewById {
     @Before
     public void setUp() throws Exception {
         activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
-        videoOutputScreen = new VideoScreenViewRenderer(this);
+        videoOutputScreen = new VideoScreenViewRendererAndEventAdapter(this);
     }
 
     @Override

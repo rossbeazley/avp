@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRenderer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRendererAndEventAdapter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -77,7 +77,7 @@ public class ScreenShowVideoRenderSurfaceViewTest {
         surfaceChanged = NOT_CALLED;
 
         activity = ActivityTestSupport.createVisibleActivity();
-        videoScreen = new VideoScreenViewRenderer(activity.viewFinder());
+        videoScreen = new VideoScreenViewRendererAndEventAdapter(activity.viewFinder());
         viewGroup = (ViewGroup) activity.findViewById(R.id.videocontainer);
     }
 
