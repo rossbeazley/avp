@@ -15,7 +15,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class VideoPlayerControllerTest implements FragmentStack {
+public class VideoPlayerNavigationControllerTest implements FragmentStack {
 
     private Class actualClass;
 
@@ -25,7 +25,7 @@ public class VideoPlayerControllerTest implements FragmentStack {
         UriString anyUriString = new UriString("ANY");
         EventBus bus = new ExecutorEventBus();
 
-        new VideoPlayerController(this, bus);
+        new VideoPlayerNavigationController(this, bus);
 
         bus.sendPayload(anyUriString).withEvent(Events.USER_LOAD_VIDEO);
         Class expectedClass = VideoPlayerFragment.class;

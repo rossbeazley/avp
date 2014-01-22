@@ -5,11 +5,11 @@ import uk.co.rossbeazley.avp.android.ui.FragmentStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-public class VideoPlayerController {
+public class VideoPlayerNavigationController {
 
     private final FragmentStack fragmentStack;
 
-    public VideoPlayerController(FragmentStack fragmentStack, EventBus bus) {
+    public VideoPlayerNavigationController(FragmentStack fragmentStack, EventBus bus) {
         this.fragmentStack = fragmentStack;
         bindEventListeners(bus);
     }
