@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class VideoScreenControlsPresenter {
+class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuff, player screen
     private final EventBus bus;
 
     VideoScreenControlsPresenter(final EventBus bus, final VideoControlScreen videoScreen) {
