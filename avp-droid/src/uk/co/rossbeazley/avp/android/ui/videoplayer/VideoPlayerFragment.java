@@ -19,7 +19,6 @@ public class VideoPlayerFragment<T extends VideoPlayerFragmentScreenFactory> ext
 
     @Override     // a generic method that could maybe be pulled into a superclass?
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         InflatedView screenInflater = getFragmentScreenFactory().buildScreenFromLayoutInflatorAndViewGroup(inflater, container);
         return screenInflater.androidView();
     }
