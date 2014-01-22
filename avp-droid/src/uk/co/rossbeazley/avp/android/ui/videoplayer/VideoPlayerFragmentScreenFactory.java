@@ -24,7 +24,7 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
         final VideoScreenViewRendererAndEventAdapter videoScreen = new VideoScreenViewRendererAndEventAdapter(screenInflater);
 
-        new VideoControlScreenPresenter(bus, videoScreen);
+        new VideoScreenControlsPresenter(bus, videoScreen);
 
         new VideoOutputScreenMediator(videoScreen, bus);
 

@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class VideoControlScreenPresenterTest {
+public class VideoScreenControlsPresenterTest {
 
     private EventBus bus;
     private FakeVideoScreenVideo fakeVideoScreen;
@@ -24,7 +24,7 @@ public class VideoControlScreenPresenterTest {
     public void setup() {
         bus = new ExecutorEventBus();
         fakeVideoScreen = new FakeVideoScreenVideo();
-        VideoControlScreenPresenter controller = new VideoControlScreenPresenter(bus, fakeVideoScreen);
+        VideoScreenControlsPresenter controller = new VideoScreenControlsPresenter(bus, fakeVideoScreen);
     }
 
     @Test
