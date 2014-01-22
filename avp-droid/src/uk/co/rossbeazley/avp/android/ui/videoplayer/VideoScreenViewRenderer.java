@@ -7,7 +7,6 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
-import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
 public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputScreen {
@@ -68,30 +67,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         int id = R.id.seekBar;
         SeekBar seekBar = (SeekBar) viewFinder.find(id);
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-            public Integer last_seek_position;
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean user_event) {
-                if (user_event) {
-                    last_seek_position = i;
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                last_seek_position = null;
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (last_seek_position != null) {
-                    canListenForUserScrubEvents.userScrubbedTo(last_seek_position);
-                    last_seek_position = null;
-                }
-            }
-        });
+        seekBar.setOnSeekBarChangeListener(new ScrubEventAdapter());
     }
 
     @Override
@@ -153,5 +129,30 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
     public void attachVideo(RenderedVideoOutput videoOutput) {
         ViewGroup container = (ViewGroup) viewFinder.find(R.id.videocontainer);
         videoOutput.attachToViewGroup(container);
+    }
+
+    private class ScrubEventAdapter implements SeekBar.OnSeekBarChangeListener {
+
+        public Integer last_seek_position;
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int i, boolean user_event) {
+            if (user_event) {
+                last_seek_position = i;
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            last_seek_position = null;
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            if (last_seek_position != null) {
+                canListenForUserScrubEvents.userScrubbedTo(last_seek_position);
+                last_seek_position = null;
+            }
+        }
     }
 }
