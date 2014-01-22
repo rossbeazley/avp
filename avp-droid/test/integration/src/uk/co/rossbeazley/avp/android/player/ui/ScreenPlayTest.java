@@ -26,8 +26,8 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
 
     @Before
     public void setUp() throws Exception {
-        activity = ActivityTestSupport.createVisibleActivity();
-        VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
+        activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
+        VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.viewFinder());
         lvideoScreen.setPlayEventListener(this);
         videoScreen=lvideoScreen;
     }

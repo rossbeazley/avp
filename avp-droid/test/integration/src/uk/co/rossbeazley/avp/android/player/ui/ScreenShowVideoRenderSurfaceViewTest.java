@@ -77,7 +77,7 @@ public class ScreenShowVideoRenderSurfaceViewTest {
         surfaceChanged = NOT_CALLED;
 
         activity = ActivityTestSupport.createVisibleActivity();
-        videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
+        videoScreen = new VideoScreenViewRenderer(activity.viewFinder());
         viewGroup = (ViewGroup) activity.findViewById(R.id.videocontainer);
     }
 

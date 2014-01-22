@@ -20,17 +20,22 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createAppServices();
-        createControllers(getFragmentManager());
-        createApp(services);
-        services.intentParser().onIntent(getIntent());
+        createNavigationViewControllers(getFragmentManager());
+        createCoreApp(services);
+
+        parseIntent(getIntent());
     }
 
-    private void createControllers(FragmentManager fragmentManager) {
+    private void parseIntent(Intent intent) {
+        services.intentParser().onIntent(intent);
+    }
+
+    private void createNavigationViewControllers(FragmentManager fragmentManager) {
         FragmentStack fragmentStack = new FragmentManagerFragmentStack(fragmentManager);
         new VideoPlayerController(fragmentStack,  services.eventbus());
     }
 
-    private void createApp(final ApplicationServices services) {
+    private void createCoreApp(final ApplicationServices services) {
         AVPApplication = new AVPApplication(services);
     }
 
@@ -42,7 +47,7 @@ public class Main extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        services.intentParser().onIntent(getIntent());
+        parseIntent(getIntent());
     }
 
     @Override

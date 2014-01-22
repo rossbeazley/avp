@@ -11,8 +11,6 @@ import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
 public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputScreen {
-    private final CanInflateLayout canInflateLayout;
-
     private final ViewFinder viewFinder;
 
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
@@ -25,12 +23,10 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
      * It should probably be the ViewFinder class thats in the constructor
      * An InflatedView knows about resource IDs and keeps a reference to the view from the inflator?
      *
-     * @param canInflateLayout
      * @param canFindViewById
      */
 
-    public VideoScreenViewRenderer(CanInflateLayout canInflateLayout, CanFindViewById canFindViewById) {
-        this.canInflateLayout = canInflateLayout;
+    public VideoScreenViewRenderer(CanFindViewById canFindViewById) {
         this.canListenForUserPlayEvents = CanListenForUserPlayEvents.NONE;
         this.canListenForUserPauseEvents = CanListenForUserPauseEvents.NONE;
         this.canListenForUserScrubEvents = CanListenForUserScrubEvents.NONE;
@@ -41,20 +37,13 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
     }
 
     private void bind() {
-        // im thinking this is suggesting there is a split in responsibility here
-        // this is about showing a screen
-        inflateLayout();
 
-        //once we have shown a screen we need our buttons to be bound for control
+        //we need our buttons to be bound for control - as in classic mvc
         bindPlayButton();
         bindPauseButton();
         bindSeekBar();
 
         //and then we expose more view style logic, how to show stuff
-    }
-
-    public void inflateLayout() {
-        canInflateLayout.inflateLayout(R.layout.videoplayer);
     }
 
     public void bindPauseButton() {

@@ -2,7 +2,8 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import uk.co.rossbeazley.avp.android.ui.FragmentLayoutInflater;
+import uk.co.rossbeazley.avp.android.R;
+import uk.co.rossbeazley.avp.android.ui.InflatedView;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -17,10 +18,11 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
     }
 
     @Override
-    public FragmentLayoutInflater createScreenFromLayoutInflatorAndViewGroup(LayoutInflater inflater, ViewGroup container) {
+    public InflatedView buildScreenFromLayoutInflatorAndViewGroup(LayoutInflater inflater, ViewGroup container) {
 
-        FragmentLayoutInflater screenInflater = new FragmentLayoutInflater(inflater, container);
-        final VideoScreenViewRenderer videoScreen = new VideoScreenViewRenderer(screenInflater, screenInflater);
+        InflatedView screenInflater = new InflatedView(inflater, container, R.layout.videoplayer);
+
+        final VideoScreenViewRenderer videoScreen = new VideoScreenViewRenderer(screenInflater);
 
         new VideoControlScreenMediator(bus, videoScreen);
 

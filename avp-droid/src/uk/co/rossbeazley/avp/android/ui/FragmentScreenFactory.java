@@ -4,5 +4,5 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 public interface FragmentScreenFactory {
-    FragmentLayoutInflater createScreenFromLayoutInflatorAndViewGroup(LayoutInflater inflater, ViewGroup container);
+    InflatedView buildScreenFromLayoutInflatorAndViewGroup(LayoutInflater inflater, ViewGroup container);
 }

@@ -4,10 +4,10 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class MediaPlayerViewAttachement {
+public class MediaPlayerViewCreator {
 
 
-    public MediaPlayerViewAttachement(final CanCreateAndroidMediaPlayerVideoOutput canCreateAndroidMediaPlayerVideoOutput, final EventBus bus) {
+    public MediaPlayerViewCreator(final CanCreateAndroidMediaPlayerVideoOutput canCreateAndroidMediaPlayerVideoOutput, final EventBus bus) {
         bus.whenEvent(Events.PLAYER_VIDEO_LOADED)
                 .thenRun(new FunctionWithParameter<CanAttachToAndroidView>() {
                     @Override

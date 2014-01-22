@@ -12,8 +12,10 @@ public class DependenciesService {
     }
 
     void injectDependencies(Object fragment) {
+
         if (fragment instanceof VideoPlayerFragment) {
-            ((VideoPlayerFragment) fragment).setVideoPlayerFragmentScreenFactory(new VideoPlayerFragmentScreenFactory(eventBus));
+            VideoPlayerFragmentScreenFactory fragmentScreenFactory = new VideoPlayerFragmentScreenFactory(eventBus);
+            ((VideoPlayerFragment) fragment).setVideoPlayerFragmentScreenFactory(fragmentScreenFactory);
         }
     }
 }

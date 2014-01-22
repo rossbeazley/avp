@@ -25,10 +25,12 @@ public class ScreenAttachVideoTest implements CanFindViewById {
         protected void onLayout(boolean changed, int l, int t, int r, int b) {}
         public String toString() { return "NOTHING ATTACHED";}
     };
+
     private ViewGroup VIEW_GROUP_TO_FIND = new ViewGroup(Robolectric.application) {
         protected void onLayout(boolean changed, int l, int t, int r, int b) {}
         public String toString() { return "ATTACHED TO VIEWGROUP"; }
     };
+
     private ActivityForTestingViews activity;
     private VideoOutputScreen videoOutputScreen;
 
@@ -47,8 +49,8 @@ public class ScreenAttachVideoTest implements CanFindViewById {
 
     @Before
     public void setUp() throws Exception {
-        activity = ActivityTestSupport.createVisibleActivity();
-        videoOutputScreen = new VideoScreenViewRenderer(activity.layoutInflater(), this);
+        activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
+        videoOutputScreen = new VideoScreenViewRenderer(this);
     }
 
     @Override

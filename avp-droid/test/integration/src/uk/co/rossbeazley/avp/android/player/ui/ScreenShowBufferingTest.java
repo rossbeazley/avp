@@ -39,8 +39,8 @@ public class ScreenShowBufferingTest {
 
     @Before
     public void setUp() throws Exception {
-        activity = ActivityTestSupport.createVisibleActivity();
-        videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
+        activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
+        videoScreen = new VideoScreenViewRenderer(activity.viewFinder());
     }
 
 

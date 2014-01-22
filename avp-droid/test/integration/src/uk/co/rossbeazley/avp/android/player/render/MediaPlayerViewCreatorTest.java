@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class MediaPlayerViewAttachementTest implements CanCreateAndroidMediaPlayerVideoOutput {
+public class MediaPlayerViewCreatorTest implements CanCreateAndroidMediaPlayerVideoOutput {
 
     private RenderedVideoOutput expectedView = new RenderedVideoOutput() {
         @Override
@@ -32,7 +32,7 @@ public class MediaPlayerViewAttachementTest implements CanCreateAndroidMediaPlay
                     }
                 });
 
-        new MediaPlayerViewAttachement(this, bus);
+        new MediaPlayerViewCreator(this, bus);
         CanAttachToAndroidView mediaPlayer = new CanAttachToAndroidView() {
             @Override
             public void setDisplay(SurfaceHolder surfaceHolder) {}
