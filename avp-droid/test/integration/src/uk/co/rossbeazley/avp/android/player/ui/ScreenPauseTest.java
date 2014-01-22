@@ -32,15 +32,10 @@ public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPause
 
     @Before
     public void setUp() throws Exception {
-        activity = createVisibleActivity();
+        activity = ActivityTestSupport.createVisibleActivity();
         VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPauseEventListener((VideoControlScreen.CanListenForUserPauseEvents)this);
         videoScreen = lvideoScreen;
-        videoScreen.bind();
-    }
-
-    private ActivityForTestingViews createVisibleActivity() {
-        return Robolectric.buildActivity(ActivityForTestingViews.class).create().visible().get();
     }
 
     private VideoControlScreen videoScreen;

@@ -7,9 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
+import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
-import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoOutputScreen;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRenderer;
 
@@ -24,11 +25,12 @@ public class ScreenAttachVideoTest implements CanFindViewById {
         protected void onLayout(boolean changed, int l, int t, int r, int b) {}
         public String toString() { return "NOTHING ATTACHED";}
     };
-
-    private ViewGroup VIEW_GROUP_TO_FIND = new ViewGroup(Robolectric.application ) {
+    private ViewGroup VIEW_GROUP_TO_FIND = new ViewGroup(Robolectric.application) {
         protected void onLayout(boolean changed, int l, int t, int r, int b) {}
-        public String toString() { return "ATTACHED TO VIEWGROUP";}
+        public String toString() { return "ATTACHED TO VIEWGROUP"; }
     };
+    private ActivityForTestingViews activity;
+    private VideoOutputScreen videoOutputScreen;
 
     @Test
     public void videoIsAddedToContainerViewGroup() {
@@ -40,20 +42,20 @@ public class ScreenAttachVideoTest implements CanFindViewById {
         };
 
         videoOutputScreen.attachVideo(mockVideoOutput);
-        assertThat(viewGroupAttachedTo,is(VIEW_GROUP_TO_FIND));
+        assertThat(viewGroupAttachedTo, is(VIEW_GROUP_TO_FIND));
     }
-
 
     @Before
     public void setUp() throws Exception {
-        CanInflateLayout UNUSED_LAYOUT_INFLATOR = null;
-        videoOutputScreen = new VideoScreenViewRenderer(UNUSED_LAYOUT_INFLATOR, this);
+        activity = ActivityTestSupport.createVisibleActivity();
+        videoOutputScreen = new VideoScreenViewRenderer(activity.layoutInflater(), this);
     }
-
-    private VideoOutputScreen videoOutputScreen;
 
     @Override
     public View findViewById(int id) {
-        return VIEW_GROUP_TO_FIND;  //To change body of implemented methods use File | Settings | File Templates.
+        if (id == R.id.videocontainer)
+            return VIEW_GROUP_TO_FIND;
+        else
+            return activity.viewFinder().findViewById(id);
     }
 }

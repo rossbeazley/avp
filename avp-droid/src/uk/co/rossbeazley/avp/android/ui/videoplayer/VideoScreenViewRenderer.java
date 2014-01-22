@@ -19,6 +19,15 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
 
+    /**
+     *
+     * I think i should change this class so it takes an "InflatedView"
+     * It should probably be the ViewFinder class thats in the constructor
+     * An InflatedView knows about resource IDs and keeps a reference to the view from the inflator?
+     *
+     * @param canInflateLayout
+     * @param canFindViewById
+     */
 
     public VideoScreenViewRenderer(CanInflateLayout canInflateLayout, CanFindViewById canFindViewById) {
         this.canInflateLayout = canInflateLayout;
@@ -27,18 +36,21 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         this.canListenForUserScrubEvents = CanListenForUserScrubEvents.NONE;
 
         viewFinder = new ViewFinder(canFindViewById);
+
+        bind();
     }
 
-    @Override
-    public void bind() {
+    private void bind() {
         // im thinking this is suggesting there is a split in responsibility here
         // this is about showing a screen
         inflateLayout();
 
-        //once we have shown a screen we need our buttons to be bound to the event bus
+        //once we have shown a screen we need our buttons to be bound for control
         bindPlayButton();
         bindPauseButton();
         bindSeekBar();
+
+        //and then we expose more view style logic, how to show stuff
     }
 
     public void inflateLayout() {
@@ -113,7 +125,7 @@ public class VideoScreenViewRenderer implements VideoControlScreen, VideoOutputS
         SeekBar seekBar = (SeekBar) viewFinder.find(R.id.seekBar);
         seekBar.setProgress((int) position);
         seekBar.setMax((int) max);
-        seekBar.setSecondaryProgress((int) (position*2));
+//        seekBar.setSecondaryProgress((int) (position*2));
     }
 
     @Override

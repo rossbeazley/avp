@@ -13,9 +13,37 @@ public class FragmentManagerFragmentStack implements FragmentStack {
     }
 
     @Override
-    public void pushFragment(Fragment fragment) {
+    public void pushFragment(Class<? extends Fragment> fragmentClass) {
+
+        try {
+
+            attemptToPushFragment(fragmentClass);
+
+        } catch (InstantiationException e) {
+            processException(e);
+        } catch (IllegalAccessException e) {
+            processException(e);
+        }
+
+    }
+
+    private void attemptToPushFragment(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
+        Fragment fragment = createFragment(fragmentClass);
+        addFragmentToBackStack(fragment);
+    }
+
+    private Fragment createFragment(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
+        return fragmentClass.newInstance();
+    }
+
+    private void addFragmentToBackStack(Fragment fragment) {
         fm.beginTransaction()
                 .add(R.id.content, fragment)
                 .commit();
+    }
+
+
+    private void processException(Exception e) {
+        e.printStackTrace();
     }
 }

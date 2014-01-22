@@ -21,9 +21,8 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
         FragmentLayoutInflater screenInflater = new FragmentLayoutInflater(inflater, container);
         final VideoScreenViewRenderer videoScreen = new VideoScreenViewRenderer(screenInflater, screenInflater);
-        videoScreen.bind();
 
-        new VideoControlScreenMediator(bus).registerOnEventBus(videoScreen);
+        new VideoControlScreenMediator(bus, videoScreen);
 
         new VideoOutputScreenMediator(videoScreen, bus);
 

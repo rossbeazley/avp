@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.FragmentLayoutInflater;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 
@@ -27,6 +28,13 @@ public class VideoPlayerFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentLayoutInflater screenInflater = fragmentScreenFactory.createScreenFromLayoutInflatorAndViewGroup(inflater, container);
         return screenInflater.getInflatedView();
+    }
+
+    public View onCreateView2(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        int layoutResID = R.layout.videoplayer;
+        View inflatedView = inflater.inflate(layoutResID, container, false);
+        fragmentScreenFactory.createScreenFromLayoutInflatorAndViewGroup(inflater, container);
+        return inflatedView;
     }
 
 }

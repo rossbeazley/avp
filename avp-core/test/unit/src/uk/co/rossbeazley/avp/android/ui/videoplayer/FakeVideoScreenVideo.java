@@ -16,10 +16,6 @@ class FakeVideoScreenVideo implements VideoControlScreen {
     private long scrubBarPosition;
 
     @Override
-    public void bind() {
-    }
-
-    @Override
     public void setPauseEventListener(CanListenForUserPauseEvents canListenForUserPauseEvents) {
         this.canListenForUserPauseEvents = canListenForUserPauseEvents;
     }

@@ -26,11 +26,10 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
 
     @Before
     public void setUp() throws Exception {
-        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
+        activity = ActivityTestSupport.createVisibleActivity();
         VideoScreenViewRenderer lvideoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
         lvideoScreen.setPlayEventListener(this);
         videoScreen=lvideoScreen;
-        videoScreen.bind();
     }
 
 

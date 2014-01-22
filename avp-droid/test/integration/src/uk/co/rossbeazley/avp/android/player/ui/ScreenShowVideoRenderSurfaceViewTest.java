@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
@@ -77,9 +76,8 @@ public class ScreenShowVideoRenderSurfaceViewTest {
         surfaceDestroyed = NOT_CALLED;
         surfaceChanged = NOT_CALLED;
 
-        activity = Robolectric.buildActivity(ActivityForTestingViews.class).create().start().visible().get();
+        activity = ActivityTestSupport.createVisibleActivity();
         videoScreen = new VideoScreenViewRenderer(activity.layoutInflater(), activity.viewFinder());
-        videoScreen.bind();
         viewGroup = (ViewGroup) activity.findViewById(R.id.videocontainer);
     }
 
