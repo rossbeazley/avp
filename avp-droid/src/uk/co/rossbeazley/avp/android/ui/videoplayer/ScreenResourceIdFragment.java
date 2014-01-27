@@ -33,7 +33,7 @@ public abstract class ScreenResourceIdFragment extends Fragment {
     }
 
     private InflatedView inflateLayoutResource(LayoutInflater inflater, ViewGroup container) {
-        return new InflatedView(inflater, container, resourceId());
+        return InflatedView.createInflatedView(inflater, container, resourceId());
     }
 
     @Override
