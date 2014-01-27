@@ -26,4 +26,8 @@ public class ViewFinder {
     public void setOnClickListener(View.OnClickListener onClickListener, int id) {
         canFindViewById.findViewById(id).setOnClickListener(onClickListener);
     }
+
+    public void clearOnClickListener(int id) {
+        setOnClickListener(null,id); //wouldnt it be nice if there were no click listeners etc, just viewEvent. so click and longclick etc collapse into one interface but we still call setClickListener(<Listener>l)
+    }
 }

@@ -8,4 +8,5 @@ package uk.co.rossbeazley.avp.android.ui;
  * To change this template use File | Settings | File Templates.
  */
 public interface Screen {
+    void tearDown();
 }

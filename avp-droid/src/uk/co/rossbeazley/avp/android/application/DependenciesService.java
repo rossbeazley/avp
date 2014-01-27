@@ -15,7 +15,7 @@ public class DependenciesService {
 
         if (fragment instanceof VideoPlayerFragment) {
             VideoPlayerFragmentScreenFactory fragmentScreenFactory = new VideoPlayerFragmentScreenFactory(eventBus);
-            ((VideoPlayerFragment) fragment).setVideoPlayerFragmentScreenFactory(fragmentScreenFactory);
+            ((VideoPlayerFragment) fragment).setFragmentScreenFactory(fragmentScreenFactory);
         }
     }
 }

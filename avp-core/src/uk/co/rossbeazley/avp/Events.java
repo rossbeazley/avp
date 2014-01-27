@@ -13,6 +13,7 @@ public class Events {
     public static final String PLAYER_CREATED = "media_player_created";
     public static final String APP_SHUTDOWN = "app_shutdown";
     public static final String APP_HIDDEN = "app_hidden";
+    public static final String APP_START = "app_start";
     public static final String PLAYER_STOPPED = "player_stopped";
     public static final String PLAYER_PLAYING = "player_playing";
     public static final String PLAYER_PAUSED = "player_paused";

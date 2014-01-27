@@ -125,6 +125,18 @@ public class VideoScreenViewRendererAndEventAdapter implements Screen, VideoCont
         videoOutput.attachToViewGroup(container);
     }
 
+    @Override
+    public void tearDown() {
+
+        viewFinder.clearOnClickListener(R.id.play);
+
+        viewFinder.clearOnClickListener(R.id.pause);
+
+        SeekBar seekBar = (SeekBar) viewFinder.find(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(null);
+
+    }
+
     private class ScrubEventAdapter implements SeekBar.OnSeekBarChangeListener {
 
         public Integer last_seek_position;
