@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.android.ui.InflatedView;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 
-public class VideoPlayerFragment<T extends VideoPlayerFragmentScreenFactory> extends Fragment {
+public class VideoPlayerFragment extends Fragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
     private Screen screen;
