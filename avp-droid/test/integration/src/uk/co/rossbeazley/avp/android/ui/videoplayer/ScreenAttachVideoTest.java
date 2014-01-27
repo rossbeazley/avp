@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.player.ui;
+package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import android.view.View;
 import android.view.ViewGroup;

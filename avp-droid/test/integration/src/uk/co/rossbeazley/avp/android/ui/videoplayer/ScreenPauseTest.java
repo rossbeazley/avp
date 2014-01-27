@@ -1,5 +1,6 @@
-package uk.co.rossbeazley.avp.android.player.ui;
+package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
+import android.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +15,18 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEvents {
+public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPauseEvents {
 
     @Test
-    public void userPlayVideoEventWhenPlayClicked() {
-        videoScreen.showPlay();
-        pressPlayButton();
-        assertThat("play event", playEvent,is(RAISED));
+    public void userPauseVideoEventWhenPauseClicked() {
+        videoScreen.showPause();
+        pressPauseButton();
+        assertThat("pause event", pauseEvent,is(RAISED));
+    }
+
+    @Override
+    public void userPressedPause() {
+        pauseEvent = RAISED;
     }
 
 
@@ -28,10 +34,9 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
     public void setUp() throws Exception {
         activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
         VideoScreenViewRendererAndEventAdapter lvideoScreen = new VideoScreenViewRendererAndEventAdapter(activity.viewFinder());
-        lvideoScreen.setPlayEventListener(this);
-        videoScreen=lvideoScreen;
+        lvideoScreen.setPauseEventListener((VideoControlScreen.CanListenForUserPauseEvents)this);
+        videoScreen = lvideoScreen;
     }
-
 
     private VideoControlScreen videoScreen;
 
@@ -40,17 +45,14 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
     private static final Object RAISED = new Object() { public String toString() { return "Event Raised";} };
 
     private final Object NO_EVENT = new Object() { public String toString() { return "no event"; } };
-    private Object playEvent = NO_EVENT;
+    private Object pauseEvent = NO_EVENT;
 
-    public void userPressedPlay() {
-        playEvent = RAISED;
-    }
-
-    private void pressPlayButton() {
-        clickOnID(R.id.play);
+    private void pressPauseButton() {
+        clickOnID(R.id.pause);
     }
 
     private void clickOnID(int id) {
-        Robolectric.clickOn(activity.findViewById(id));
+        View viewToClick = activity.findViewById(id);
+        Robolectric.clickOn(viewToClick);
     }
 }

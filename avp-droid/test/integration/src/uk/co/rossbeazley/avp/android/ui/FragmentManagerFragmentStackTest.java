@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
-import uk.co.rossbeazley.avp.android.player.ui.ActivityTestSupport;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.ActivityTestSupport;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

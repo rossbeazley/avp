@@ -1,10 +1,9 @@
-package uk.co.rossbeazley.avp.android.player.ui;
+package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import android.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
@@ -16,30 +15,25 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenShowPlayPauseTest {
+public class ScreenShowBufferingTest {
 
-    private Integer playButton;
-    private int pauseButton;
+    private Integer bufferingIndicator;
 
     @Test
-    public void showPlay() {
-        videoScreen.showPlay();
-        View viewById = getViewById(R.id.play);
-        playButton = viewById.getVisibility();
-        pauseButton = getViewById(R.id.pause).getVisibility();
-        assertThat(playButton, is(View.VISIBLE));
-        assertThat(pauseButton, is(not(View.VISIBLE)));
-        Robolectric.clickOn(viewById);
+    public void buffering() {
+        videoScreen.hideBuffering();
+        videoScreen.showBuffering();
+        bufferingIndicator = getViewById(R.id.buffering).getVisibility();
+        assertThat(bufferingIndicator, is(View.VISIBLE));
     }
 
 
     @Test
-    public void showPause() {
-        videoScreen.showPause();
-        playButton = getViewById(R.id.play).getVisibility();
-        pauseButton = getViewById(R.id.pause).getVisibility();
-        assertThat("play button visibility", playButton, is(not(View.VISIBLE)));
-        assertThat("pause button visibility", pauseButton, is(View.VISIBLE));
+    public void stopBuffering() {
+        videoScreen.showBuffering();
+        videoScreen.hideBuffering();
+        bufferingIndicator = getViewById(R.id.buffering).getVisibility();
+        assertThat(bufferingIndicator, is(not(View.VISIBLE)));
     }
 
 
