@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.InflatedView;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
+import uk.co.rossbeazley.avp.android.ui.Screen;
 
 public class VideoPlayerFragment<T extends VideoPlayerFragmentScreenFactory> extends Fragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
+    private Screen screen;
+
     public void setVideoPlayerFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
         this.fragmentScreenFactory = fragmentScreenFactory;
     }
@@ -19,8 +22,27 @@ public class VideoPlayerFragment<T extends VideoPlayerFragmentScreenFactory> ext
 
     @Override     // a generic method that could maybe be pulled into a superclass?
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        InflatedView screenInflater = getFragmentScreenFactory().buildScreenFromLayoutInflatorAndViewGroup(inflater, container);
-        return screenInflater.androidView();
+        InflatedView inflatedView = inflateLayoutResource(inflater, container);
+        buildScreen(inflatedView);
+        return inflatedView.androidView();
+    }
+
+    private void buildScreen(InflatedView inflatedView) {
+        screen = getFragmentScreenFactory().buildScreenWithInflatedView(inflatedView);
+    }
+
+    private InflatedView inflateLayoutResource(LayoutInflater inflater, ViewGroup container) {
+        return new InflatedView(inflater, container, resourceId());
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    private int resourceId() {
+        return R.layout.videoplayer;
     }
 
     private FragmentScreenFactory getFragmentScreenFactory() {
