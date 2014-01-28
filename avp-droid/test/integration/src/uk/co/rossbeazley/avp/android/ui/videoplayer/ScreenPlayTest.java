@@ -7,8 +7,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRendererAndEventAdapter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -38,8 +36,8 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
     private ActivityForTestingViews activity;
 
     private static final Object RAISED = new Object() { public String toString() { return "Event Raised";} };
+    private static final Object NO_EVENT = new Object() { public String toString() { return "no event"; } };
 
-    private final Object NO_EVENT = new Object() { public String toString() { return "no event"; } };
     private Object playEvent = NO_EVENT;
 
     public void userPressedPlay() {
