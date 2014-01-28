@@ -15,7 +15,7 @@ public class HomeNavigationController {
     }
 
     private void bindEventListeners(EventBus bus) {
-        bus.whenEvent(Events.APP_HIDDEN)
+        bus.whenEvent(Events.APP_START)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

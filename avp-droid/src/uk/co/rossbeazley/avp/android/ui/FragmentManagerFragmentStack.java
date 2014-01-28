@@ -38,7 +38,7 @@ public class FragmentManagerFragmentStack implements FragmentStack {
 
     private void addFragmentToBackStack(Fragment fragment) {
         fm.beginTransaction()
-                .add(R.id.content, fragment)
+                .add(R.id.content, fragment) //, fragment.getClass().getSimpleName())
                 .commit();
     }
 
