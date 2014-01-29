@@ -12,11 +12,9 @@ public class DependenciesService {
 
     private  Map<Class, Injector> injectorsByClass;
 
-    public DependenciesService(EventBus eventBus) {
+    public DependenciesService(EventBus eventBus, Map<Class, Injector> injectorsByClass) {
         this.eventBus = eventBus;
-        injectorsByClass = new HashMap<Class, Injector>(1){{
-                put(VideoPlayerFragment.class, new VideoPlayerFragmentInjector());
-        }};
+        this.injectorsByClass = injectorsByClass;
     }
 
     void injectDependencies(Object fragment) {
@@ -24,11 +22,17 @@ public class DependenciesService {
         injector.inject(fragment);
     }
 
-    private interface Injector<T> {
-        void inject(T fragment );
+    public interface Injector<T> {
+        void inject(T object);
     }
 
-    private class VideoPlayerFragmentInjector implements Injector<VideoPlayerFragment> {
+    public static class VideoPlayerFragmentInjector implements Injector<VideoPlayerFragment> {
+
+        private EventBus eventBus;
+
+        public VideoPlayerFragmentInjector(EventBus eventBus) {
+            this.eventBus = eventBus;
+        }
 
         @Override
         public void inject(VideoPlayerFragment fragment) {
