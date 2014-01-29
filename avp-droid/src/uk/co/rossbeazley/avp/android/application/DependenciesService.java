@@ -4,21 +4,15 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentScreenFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class DependenciesService {
-    private EventBus eventBus;
+    private final DependencyInjectors injectors;
 
-    private  Map<Class, Injector> injectorsByClass;
-
-    public DependenciesService(EventBus eventBus, Map<Class, Injector> injectorsByClass) {
-        this.eventBus = eventBus;
-        this.injectorsByClass = injectorsByClass;
+    public DependenciesService(DependencyInjectors injectors) {
+        this.injectors = injectors;
     }
 
     void injectDependencies(Object fragment) {
-        Injector injector = injectorsByClass.get(fragment.getClass());
+        Injector injector = injectors.injector(fragment.getClass());
         injector.inject(fragment);
     }
 

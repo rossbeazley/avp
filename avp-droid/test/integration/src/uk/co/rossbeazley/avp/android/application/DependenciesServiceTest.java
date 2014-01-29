@@ -1,10 +1,6 @@
 package uk.co.rossbeazley.avp.android.application;
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -14,11 +10,13 @@ public class DependenciesServiceTest {
     @Test
     public void testInjectDependencies() throws Exception {
 
-        Map<Class, DependenciesService.Injector> injectorsByClass = new HashMap<Class, DependenciesService.Injector>(1) {{
-            put(SomeClass.class, new SomeClassInjector());
+        final SomeClassInjector injector = new SomeClassInjector();
+
+        DependencyInjectors injectors = new DependencyInjectors(){{
+            register(SomeClass.class, injector);
         }};
 
-        DependenciesService ds = new DependenciesService(new ExecutorEventBus(), injectorsByClass);
+        DependenciesService ds = new DependenciesService(injectors);
         SomeClass object = new SomeClass();
         ds.injectDependencies(object);
 

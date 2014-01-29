@@ -48,7 +48,7 @@ public class Main extends Activity {
         Map<Class, DependenciesService.Injector> injectorsByClass = new HashMap<Class, DependenciesService.Injector>(1) {{
             put(VideoPlayerFragment.class, new DependenciesService.VideoPlayerFragmentInjector(services.eventbus()));
         }};
-        dependenciesService = new DependenciesService(services.eventbus(), injectorsByClass);
+        dependenciesService = new DependenciesService(injectorsByClass);
     }
 
     @Override
