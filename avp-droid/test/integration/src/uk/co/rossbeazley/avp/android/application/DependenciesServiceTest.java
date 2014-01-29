@@ -1,15 +1,11 @@
 package uk.co.rossbeazley.avp.android.application;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static junit.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -26,7 +22,7 @@ public class DependenciesServiceTest {
         SomeClass object = new SomeClass();
         ds.injectDependencies(object);
 
-        assertThat(object.isInjected(),is(true));
+        assertThat(object.isInjected(), is(true));
     }
 
     private class SomeClassInjector implements DependenciesService.Injector<SomeClass> {
