@@ -7,13 +7,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created with IntelliJ IDEA.
- * User: beazlr02
- * Date: 30/01/2014
- * Time: 16:59
- * To change this template use File | Settings | File Templates.
- */
+
 public class VideoPlayerFragmentInjectorTest implements InjectableVideoPlayerFragment {
     private FragmentScreenFactory fragmentScreenFactory;
 
