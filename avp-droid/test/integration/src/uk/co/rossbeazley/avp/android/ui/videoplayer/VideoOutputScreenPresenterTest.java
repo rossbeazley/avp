@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class VideoOutputScreenMediatorTest implements VideoOutputScreen {
+public class VideoOutputScreenPresenterTest implements VideoOutputScreen {
 
     private RenderedVideoOutput videoOutput;
 
@@ -23,7 +23,7 @@ public class VideoOutputScreenMediatorTest implements VideoOutputScreen {
         RenderedVideoOutput expectedVideoOutput = new RenderedVideoOutput() { public void attachToViewGroup(ViewGroup container) {}};
 
         EventBus eventBus = new ExecutorEventBus();
-        new VideoOutputScreenMediator(this, eventBus);
+        new VideoOutputScreenPresenter(this, eventBus);
         eventBus.sendPayload(expectedVideoOutput)
                 .withEvent(Events.PLAYER_VIEW_CREATED);
         assertThat(videoOutput, is(expectedVideoOutput));

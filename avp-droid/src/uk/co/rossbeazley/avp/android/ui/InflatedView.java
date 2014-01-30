@@ -10,14 +10,10 @@ public class InflatedView implements CanFindViewById {
     private final LayoutInflater inflater;
     private final ViewGroup container;
 
-    private InflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
+    InflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
         this.inflater = inflater;
         this.container = container;
         this.inflatedView = inflateLayout(layoutId);
-    }
-
-    public static InflatedView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
-        return new InflatedView(inflater, container, layoutId);
     }
 
     private View inflateLayout(int layoutResID) {

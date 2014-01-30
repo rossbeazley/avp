@@ -17,16 +17,14 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
     @Override
     public Screen buildScreenWithInflatedView(InflatedView inflatedView) {
-        return createScreenObjects(inflatedView);
+        final VideoScreenViewRendererAndEventAdapter result;
+
+        result = new VideoScreenViewRendererAndEventAdapter(inflatedView);
+
+        new VideoScreenControlsPresenter(bus, result);
+        new VideoOutputScreenPresenter(result, bus);
+
+        return result;
     }
 
-    private Screen createScreenObjects(InflatedView inflatedView) {
-        final VideoScreenViewRendererAndEventAdapter videoScreen = new VideoScreenViewRendererAndEventAdapter(inflatedView);
-
-        new VideoScreenControlsPresenter(bus, videoScreen);
-
-        new VideoOutputScreenMediator(videoScreen, bus);
-
-        return (Screen) videoScreen;
-    }
 }
