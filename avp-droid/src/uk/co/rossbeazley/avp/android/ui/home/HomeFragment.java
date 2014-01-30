@@ -1,7 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.home;
 
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.ScreenResourceIdFragment;
+import uk.co.rossbeazley.avp.android.ui.ScreenResourceIdFragment;
 
 public class HomeFragment extends ScreenResourceIdFragment implements InjectableHomeFragment {
     @Override
