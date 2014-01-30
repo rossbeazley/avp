@@ -1,9 +1,5 @@
 package uk.co.rossbeazley.avp.android.application;
 
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentScreenFactory;
-import uk.co.rossbeazley.avp.eventbus.EventBus;
-
 public class DependenciesService {
     private final DependencyInjectors injectors;
 
@@ -13,7 +9,7 @@ public class DependenciesService {
 
     void injectDependencies(Object fragment) {
         DependencyInjectors.Injector injector = injectors.injector(fragment.getClass());
-        injector.inject(fragment);
+        injector.inject(fragment);    //Use double dispatch to avoid this dodgy code? or DD be more of problem
     }
 
 }

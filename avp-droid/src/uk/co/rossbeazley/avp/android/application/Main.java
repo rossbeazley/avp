@@ -23,6 +23,7 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createAppServices();
+        createDependencyInjectionFramework();
         createNavigationViewControllers(getFragmentManager());
         createCoreApp(services);
 
@@ -44,6 +45,9 @@ public class Main extends Activity {
 
     private void createAppServices() {
         services = new ProductionApplicationServices(this.getApplication());
+    }
+
+    private void createDependencyInjectionFramework() {
         DependencyInjectors injectorsByClass = new DependencyInjectors() {{
             register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
         }};

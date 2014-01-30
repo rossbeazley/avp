@@ -19,7 +19,7 @@ public class VideoPlayerFragmentInjector implements DependencyInjectors.Injector
     }
 
     @Override
-    public void inject(InjectableVideoPlayerFragment fragment) { //The role is injecatble
+    public void inject(InjectableVideoPlayerFragment fragment) {
         VideoPlayerFragmentScreenFactory fragmentScreenFactory = new VideoPlayerFragmentScreenFactory(eventBus);
         fragment.setFragmentScreenFactory(fragmentScreenFactory);
     }

@@ -10,8 +10,4 @@ public class VideoPlayerFragment extends ScreenResourceIdFragment implements Inj
         return R.layout.videoplayer;
     }
 
-    @Override
-    public void setFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
-        super.setFragmentScreenFactory(fragmentScreenFactory);    //To change body of overridden methods use File | Settings | File Templates.
-    }
 }
