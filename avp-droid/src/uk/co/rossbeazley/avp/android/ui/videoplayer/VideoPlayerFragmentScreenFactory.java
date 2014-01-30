@@ -1,7 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
+import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
-import uk.co.rossbeazley.avp.android.ui.InflatedView;
+import uk.co.rossbeazley.avp.android.ui.InflatedLayoutView;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -16,10 +17,10 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
     }
 
     @Override
-    public Screen buildScreenWithInflatedView(InflatedView inflatedView) {
+    public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
         final VideoScreenViewRendererAndEventAdapter result;
 
-        result = new VideoScreenViewRendererAndEventAdapter(inflatedView);
+        result = new VideoScreenViewRendererAndEventAdapter(inflatedLayoutView);
 
         new VideoScreenControlsPresenter(bus, result);
         new VideoOutputScreenPresenter(result, bus);

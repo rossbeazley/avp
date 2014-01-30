@@ -28,17 +28,18 @@ public class FragmentManagerFragmentStack implements FragmentStack {
     }
 
     private void attemptToPushFragment(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
-        Fragment fragment = createFragment(fragmentClass);
+        Fragment fragment = createFragmentFromClass(fragmentClass);
         addFragmentToBackStack(fragment);
     }
 
-    private Fragment createFragment(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
+    private Fragment createFragmentFromClass(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
         return fragmentClass.newInstance();
     }
 
     private void addFragmentToBackStack(Fragment fragment) {
         fm.beginTransaction()
-                .add(R.id.content, fragment) //, fragment.getClass().getSimpleName())
+                .replace(R.id.content, fragment) //, fragment.getClass().getSimpleName())
+                //.addToBackStack(null)
                 .commit();
     }
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 public class DefaultInflatedViewFactory implements InflatedViewFactory {
     @Override
-    public InflatedView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
-        return new InflatedView(inflater, container, layoutId);
+    public InflatedLayoutView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
+        return new InflatedLayoutView(inflater, container, layoutId);
     }
 }

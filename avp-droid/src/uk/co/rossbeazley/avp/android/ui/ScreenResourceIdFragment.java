@@ -15,16 +15,16 @@ public abstract class ScreenResourceIdFragment extends Fragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        InflatedView inflatedView = inflateLayoutResource(inflater, container);
-        buildScreen(inflatedView);
-        return inflatedView.androidView();
+        CanFindViewById inflatedLayoutView = inflateLayoutResource(inflater, container);
+        buildScreen(inflatedLayoutView);
+        return null; //inflatedLayoutView.androidView();
     }
 
-    private void buildScreen(InflatedView inflatedView) {
-        screen = fragmentScreenFactory.buildScreenWithInflatedView(inflatedView);
+    private void buildScreen(CanFindViewById inflatedLayoutView) {
+        screen = fragmentScreenFactory.buildScreenWithInflatedView(inflatedLayoutView);
     }
 
-    private InflatedView inflateLayoutResource(LayoutInflater inflater, ViewGroup container) {
+    private InflatedLayoutView inflateLayoutResource(LayoutInflater inflater, ViewGroup container) {
         inflatedViewFactory = new DefaultInflatedViewFactory();
         return inflatedViewFactory.createInflatedView(inflater, container, resourceId());
     }

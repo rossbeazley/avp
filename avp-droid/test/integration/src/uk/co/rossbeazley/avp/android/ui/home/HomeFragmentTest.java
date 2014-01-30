@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.android.ui.InflatedView;
+import uk.co.rossbeazley.avp.android.ui.InflatedLayoutView;
 import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
 
 @RunWith(RobolectricTestRunner.class)
@@ -17,7 +17,7 @@ public class HomeFragmentTest implements InflatedViewFactory {
     }
 
     @Override
-    public InflatedView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
+    public InflatedLayoutView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
         return null;
     }
 }
