@@ -11,13 +11,13 @@ public class DependencyInjectorsTest {
 
     @Test
     public void registerAndGetInjector() {
-        DependenciesService.Injector<Class> injector = new DependenciesService.Injector<Class>() {
+        DependencyInjectors.Injector<Class> injector = new DependencyInjectors.Injector<Class>() {
             @Override
             public void inject(Class object) { }
         };
 
         dependencyInjectors.register(Class.class, injector);
-        DependenciesService.Injector<Class> rtn = dependencyInjectors.injector(Class.class);
+        DependencyInjectors.Injector<Class> rtn = dependencyInjectors.injector(Class.class);
         assertThat(rtn,is(injector));
     }
 }

@@ -8,11 +8,10 @@ import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.FragmentManagerFragmentStack;
 import uk.co.rossbeazley.avp.android.ui.FragmentStack;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main extends Activity {
 
@@ -45,8 +44,8 @@ public class Main extends Activity {
 
     private void createAppServices() {
         services = new ProductionApplicationServices(this.getApplication());
-        Map<Class, DependenciesService.Injector> injectorsByClass = new HashMap<Class, DependenciesService.Injector>(1) {{
-            put(VideoPlayerFragment.class, new DependenciesService.VideoPlayerFragmentInjector(services.eventbus()));
+        DependencyInjectors injectorsByClass = new DependencyInjectors() {{
+            register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
         }};
         dependenciesService = new DependenciesService(injectorsByClass);
     }

@@ -23,7 +23,7 @@ public class DependenciesServiceTest {
         assertThat(object.isInjected(), is(true));
     }
 
-    private class SomeClassInjector implements DependenciesService.Injector<SomeClass> {
+    private class SomeClassInjector implements DependencyInjectors.Injector<SomeClass> {
         @Override
         public void inject(SomeClass object) {
             object.setInjected(true);

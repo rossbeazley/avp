@@ -5,13 +5,17 @@ import java.util.Map;
 
 public class DependencyInjectors {
 
-    private final Map<Class, DependenciesService.Injector> injectoryByTargetClass = new HashMap<Class, DependenciesService.Injector>();
+    private final Map<Class, Injector> injectoryByTargetClass = new HashMap<Class, Injector>();
 
-    public <I> void register(Class<I> cl, DependenciesService.Injector<I> clInjector) {
+    public <I> void register(Class<I> cl, Injector<I> clInjector) {
         injectoryByTargetClass.put(cl, clInjector);
     }
 
-    public <I> DependenciesService.Injector<I> injector(Class<I> cl) {
+    public <I> Injector<I> injector(Class<I> cl) {
         return injectoryByTargetClass.get(cl);
+    }
+
+    public interface Injector<T> {
+        void inject(T object);
     }
 }
