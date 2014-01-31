@@ -1,8 +1,5 @@
 package uk.co.rossbeazley.avp.android.ui;
 
-import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
-import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
-
 /**
  * Created with IntelliJ IDEA.
  * User: beazlr02

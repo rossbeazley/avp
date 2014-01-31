@@ -8,6 +8,8 @@ import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.FragmentManagerFragmentStack;
 import uk.co.rossbeazley.avp.android.ui.FragmentStack;
+import uk.co.rossbeazley.avp.android.ui.home.HomeFragmentInjector;
+import uk.co.rossbeazley.avp.android.ui.home.InjectableHomeFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
@@ -50,6 +52,7 @@ public class Main extends Activity {
     private void createDependencyInjectionFramework() {
         DependencyInjectors injectorsByClass = new DependencyInjectors() {{
             register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
+            register(InjectableHomeFragment.class, new HomeFragmentInjector());
         }};
         dependenciesService = new DependenciesService(injectorsByClass);
     }

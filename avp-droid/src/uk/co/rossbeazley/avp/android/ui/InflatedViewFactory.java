@@ -11,5 +11,5 @@ import android.view.ViewGroup;
  * To change this template use File | Settings | File Templates.
  */
 public interface InflatedViewFactory {
-    InflatedLayoutView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId);
+    CanFindViewById createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId);
 }

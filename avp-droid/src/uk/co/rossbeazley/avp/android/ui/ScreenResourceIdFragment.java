@@ -24,8 +24,7 @@ public abstract class ScreenResourceIdFragment extends Fragment {
         screen = fragmentScreenFactory.buildScreenWithInflatedView(inflatedLayoutView);
     }
 
-    private InflatedLayoutView inflateLayoutResource(LayoutInflater inflater, ViewGroup container) {
-        inflatedViewFactory = new DefaultInflatedViewFactory();
+    private CanFindViewById inflateLayoutResource(LayoutInflater inflater, ViewGroup container) {
         return inflatedViewFactory.createInflatedView(inflater, container, resourceId());
     }
 
@@ -33,6 +32,7 @@ public abstract class ScreenResourceIdFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         screen.tearDown();
+        screen = null;
     }
 
     public void setFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
