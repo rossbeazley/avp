@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.home;
+package uk.co.rossbeazley.avp.android.ui;
 
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
