@@ -11,6 +11,7 @@ public class DependencyInjectors {
         injectorsByTargetClass.put(cl, clInjector);
     }
 
+    @SuppressWarnings("unchecked")
     public <I> Injector<I> injector(Class<I> cl) {
         return injectorsByTargetClass.get(cl);
     }
