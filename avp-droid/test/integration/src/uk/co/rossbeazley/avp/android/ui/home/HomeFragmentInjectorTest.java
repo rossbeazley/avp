@@ -2,7 +2,10 @@ package uk.co.rossbeazley.avp.android.ui.home;
 
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.android.ui.*;
+import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
+import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
+import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -15,7 +18,8 @@ public class HomeFragmentInjectorTest implements InjectableHomeFragment {
     @Test
     public void inject() {
 
-        HomeFragmentInjector homeFragmentInjector = new HomeFragmentInjector();
+        EventBus UNUSED_EVENT_BUS = null;
+        HomeFragmentInjector homeFragmentInjector = new HomeFragmentInjector(UNUSED_EVENT_BUS);
         homeFragmentInjector.inject(this);
 
         assertThat(fragmentScreenFactory, is(HomeFragmentScreenFactory.class));

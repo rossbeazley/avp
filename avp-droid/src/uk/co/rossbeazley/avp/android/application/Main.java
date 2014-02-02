@@ -11,7 +11,6 @@ import uk.co.rossbeazley.avp.android.ui.FragmentStack;
 import uk.co.rossbeazley.avp.android.ui.home.HomeFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.home.InjectableHomeFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragment;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
 
@@ -52,7 +51,7 @@ public class Main extends Activity {
     private void createDependencyInjectionFramework() {
         DependencyInjectors injectorsByClass = new DependencyInjectors() {{
             register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
-            register(InjectableHomeFragment.class, new HomeFragmentInjector());
+            register(InjectableHomeFragment.class, new HomeFragmentInjector(services.eventbus()));
         }};
         dependenciesService = new DependenciesService(injectorsByClass);
     }
