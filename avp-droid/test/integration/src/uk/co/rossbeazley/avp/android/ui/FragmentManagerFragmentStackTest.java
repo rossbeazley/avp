@@ -5,8 +5,6 @@ import android.app.FragmentManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.ActivityTestSupport;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -18,7 +16,7 @@ public class FragmentManagerFragmentStackTest {
 
     @Test
     public void testPushFragment() throws Exception {
-        ActivityForTestingViews activity = ActivityTestSupport.createVisibleActivity();
+        ActivityForTestingViews activity = ActivityForTestingViews.createVisibleActivity();
 
         FragmentManager fragmentManager = activity.getFragmentManager();
         FragmentManagerFragmentStack stack = new FragmentManagerFragmentStack(fragmentManager);

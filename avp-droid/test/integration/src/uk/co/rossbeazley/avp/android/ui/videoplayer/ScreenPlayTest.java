@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
+import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -24,7 +24,7 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
 
     @Before
     public void setUp() throws Exception {
-        activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
+        activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.videoplayer);
         VideoScreenViewRendererAndEventAdapter lvideoScreen = new VideoScreenViewRendererAndEventAdapter(activity.viewFinder());
         lvideoScreen.setPlayEventListener(this);
         videoScreen=lvideoScreen;

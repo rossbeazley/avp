@@ -1,10 +1,9 @@
-package uk.co.rossbeazley.avp.android;
+package uk.co.rossbeazley.avp.android.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.view.View;
-import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
-import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
+import org.robolectric.Robolectric;
 
 /**
 * Created with IntelliJ IDEA.
@@ -16,6 +15,16 @@ import uk.co.rossbeazley.avp.android.ui.CanInflateLayout;
 public class ActivityForTestingViews extends Activity  {
 
     public Fragment lastFragmentAttached;
+
+    public static ActivityForTestingViews createVisibleActivity() {
+        return Robolectric.buildActivity(ActivityForTestingViews.class).create().visible().get();
+    }
+
+    public static ActivityForTestingViews createVisibleActivityForLayout(int resourceId) {
+        ActivityForTestingViews activity = createVisibleActivity();
+        activity.setContentView(resourceId);
+        return activity;
+    }
 
     public CanInflateLayout layoutInflater() {
         return new CanInflateLayout() {

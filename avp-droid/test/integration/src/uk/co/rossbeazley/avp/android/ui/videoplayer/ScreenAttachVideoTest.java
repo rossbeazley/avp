@@ -7,12 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.android.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
+import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoOutputScreen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenViewRendererAndEventAdapter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -49,7 +47,7 @@ public class ScreenAttachVideoTest implements CanFindViewById {
 
     @Before
     public void setUp() throws Exception {
-        activity = ActivityTestSupport.createVisibleActivityForLayout(R.layout.videoplayer);
+        activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.videoplayer);
         videoOutputScreen = new VideoScreenViewRendererAndEventAdapter(this);
     }
 

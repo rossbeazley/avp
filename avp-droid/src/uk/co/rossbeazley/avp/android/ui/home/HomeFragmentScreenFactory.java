@@ -14,6 +14,6 @@ import uk.co.rossbeazley.avp.android.ui.Screen;
 public class HomeFragmentScreenFactory implements FragmentScreenFactory {
     @Override
     public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return new HomeScreenView(inflatedLayoutView);  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
