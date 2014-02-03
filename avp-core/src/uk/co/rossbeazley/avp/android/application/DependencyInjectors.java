@@ -13,10 +13,15 @@ public class DependencyInjectors {
 
     @SuppressWarnings("unchecked")
     public <I> Injector<I> injector(Class<I> cl) {
-        return injectorsByTargetClass.get(cl);
+        return injectorsByTargetClass.containsKey(cl) ? injectorsByTargetClass.get(cl) : Injector.NULL;
     }
 
     public interface Injector<T> {
         void inject(T object);
+
+        final Injector NULL = new Injector() {
+            @Override
+            public void inject(Object object) {}
+        };
     }
 }

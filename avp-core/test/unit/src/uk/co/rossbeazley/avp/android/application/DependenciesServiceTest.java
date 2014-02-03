@@ -8,12 +8,12 @@ import static org.junit.Assert.assertThat;
 public class DependenciesServiceTest {
 
     @Test
-    public void testInjectDependencies() throws Exception {
+    public void testInjectDependenciesDefinedByInterface() throws Exception {
 
         final SomeClassInjector injector = new SomeClassInjector();
 
         DependencyInjectors injectors = new DependencyInjectors(){{
-            register(SomeClass.class, injector);
+            register(InjectableSomeClass.class, injector);
         }};
 
         DependenciesService ds = new DependenciesService(injectors);
@@ -23,23 +23,39 @@ public class DependenciesServiceTest {
         assertThat(object.isInjected(), is(true));
     }
 
-    private class SomeClassInjector implements DependencyInjectors.Injector<SomeClass> {
+    @Test
+    public void testInjectDependenciesDefinedByInterfaceNotFound() throws Exception {
+
+        DependencyInjectors injectors = new DependencyInjectors();
+
+        DependenciesService ds = new DependenciesService(injectors);
+        SomeClass object = new SomeClass();
+        ds.injectDependencies(object);
+
+        assertThat(true, is(true));
+    }
+
+    private class SomeClassInjector implements DependencyInjectors.Injector<InjectableSomeClass> {
         @Override
-        public void inject(SomeClass object) {
+        public void inject(InjectableSomeClass object) {
             object.setInjected(true);
         }
     }
 
-    private class SomeClass {
+    private class SomeClass implements InjectableSomeClass {
         private boolean injected = false;
 
         private boolean isInjected() {
             return injected;
         }
 
-        private void setInjected(boolean injected) {
+        public void setInjected(boolean injected) {
             this.injected = injected;
         }
+    }
+
+    interface InjectableSomeClass {
+        public void setInjected(boolean injected);
     }
 }
 

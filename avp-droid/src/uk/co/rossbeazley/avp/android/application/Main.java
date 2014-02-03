@@ -9,6 +9,7 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.FragmentManagerFragmentStack;
 import uk.co.rossbeazley.avp.android.ui.FragmentStack;
 import uk.co.rossbeazley.avp.android.ui.home.HomeFragmentInjector;
+import uk.co.rossbeazley.avp.android.ui.home.HomeNavigationController;
 import uk.co.rossbeazley.avp.android.ui.home.InjectableHomeFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
@@ -38,6 +39,7 @@ public class Main extends Activity {
     private void createNavigationViewControllers(FragmentManager fragmentManager) {
         FragmentStack fragmentStack = new FragmentManagerFragmentStack(fragmentManager);
         new VideoPlayerNavigationController(fragmentStack,  services.eventbus());
+        new HomeNavigationController(fragmentStack, services.eventbus());
     }
 
     private void createCoreApp(final ApplicationServices services) {

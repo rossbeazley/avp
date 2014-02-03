@@ -20,4 +20,11 @@ public class DependencyInjectorsTest {
         DependencyInjectors.Injector<Class> rtn = dependencyInjectors.injector(Class.class);
         assertThat(rtn,is(injector));
     }
+
+    @Test
+    public void getRegisteredInjector() {
+        DependencyInjectors.Injector<DependencyInjectorsTest> inj = dependencyInjectors.injector(DependencyInjectorsTest.class);
+        inj.inject(this);
+        assertThat(inj, is(DependencyInjectors.Injector.NULL));
+    }
 }
