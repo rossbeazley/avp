@@ -8,11 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
-import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
-import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
-import uk.co.rossbeazley.avp.android.ui.Screen;
+import uk.co.rossbeazley.avp.android.ui.*;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -21,7 +19,7 @@ public class HomeFragmentTest implements InflatedViewFactory, FragmentScreenFact
 
     private int layoutId;
 
-    private CanFindViewById viewFinder = new CanFindViewById() {
+    private InflatedView viewFinder = new InflatedView() {
 
         @Override
         public View findViewById(int id) {
@@ -29,6 +27,11 @@ public class HomeFragmentTest implements InflatedViewFactory, FragmentScreenFact
         }
 
         private View ANY_VIEW = null;
+
+        @Override
+        public View inflatedView() {
+            return ANY_VIEW;
+        }
     };
 
     private HomeFragment homeFragment;
@@ -51,11 +54,11 @@ public class HomeFragmentTest implements InflatedViewFactory, FragmentScreenFact
     @Test
     public void buildsScreenWithInflatedLayout() {
         homeFragment.onCreateView(null,null,null);
-        assertThat(usedViewFinder, is(viewFinder));
+        assertThat((InflatedView) usedViewFinder, is(equalTo(viewFinder)));
     }
 
     @Override
-    public CanFindViewById createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
+    public InflatedView createInflatedView(LayoutInflater inflater, ViewGroup container, int layoutId) {
         // assert the correct use of inflater and container?
         this.layoutId = layoutId;
         return this.viewFinder;

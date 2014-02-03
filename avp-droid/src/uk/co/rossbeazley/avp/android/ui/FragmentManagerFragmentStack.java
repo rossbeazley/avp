@@ -38,8 +38,8 @@ public class FragmentManagerFragmentStack implements FragmentStack {
 
     private void addFragmentToBackStack(Fragment fragment) {
         fm.beginTransaction()
-                .replace(R.id.content, fragment) //, fragment.getClass().getSimpleName())
-                //.addToBackStack(null)
+                .replace(R.id.content, fragment)
+                .addToBackStack(fragment.getClass().getSimpleName())
                 .commit();
     }
 
