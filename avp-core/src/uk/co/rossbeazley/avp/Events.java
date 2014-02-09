@@ -20,6 +20,7 @@ public class Events {
     public static final String USER_PAUSE = "pause";
     public static final String USER_PLAY = "play";
     public static final String USER_SCRUB = "scrub";
+    public static final String USER_EXIT_VIDEO_SCREEN = "exit_video_Screen";
     public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
     public static final String PLAYER_VIEW_CREATED = "player_view_created";
 }

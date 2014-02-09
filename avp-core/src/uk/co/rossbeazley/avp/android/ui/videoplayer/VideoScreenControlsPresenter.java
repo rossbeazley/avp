@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
+import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -23,6 +24,7 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
         bindUserPlayEvent(videoScreen);
         bindUserScrubEvent(videoScreen);
         bindTimeUpdateEvent(videoScreen);
+        bindScreenTearDownEvent(videoScreen);
     }
 
     private void bindPlayerPausedEvent(final VideoControlScreen videoScreen) {
@@ -87,5 +89,14 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
                         videoScreen.hideBuffering();
                     }
                 });
+    }
+
+    private void bindScreenTearDownEvent(VideoControlScreen videoScreen) {
+        videoScreen.setTearDownEventListener(new Screen.CanListenForScreenTearDownEvents() {
+            @Override
+            public void screenTearDown() {
+                bus.announce(Events.USER_EXIT_VIDEO_SCREEN);
+            }
+        });
     }
 }

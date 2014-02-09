@@ -18,6 +18,16 @@ public class MediaPlayerControl {
         handleAppHidden();
         handleUserPause();
         handleUserPlay();
+        handleUserExitVideoScreen();
+    }
+
+    private void handleUserExitVideoScreen() {
+        bus.whenEvent(Events.USER_EXIT_VIDEO_SCREEN).thenRun(new Function() {
+            @Override
+            public void invoke() {
+                stopMediaPlayer();
+            }
+        });
     }
 
     private void handleUserPlay() {
@@ -57,7 +67,7 @@ public class MediaPlayerControl {
 
     private void stopMediaPlayer() {
         mediaPlayer.stop();
-        bus.announce(Events.PLAYER_STOPPED);
+        bus.announce(Events.PLAYER_STOPPED); //TODO move this out of control class into state observer class
     }
 
     private void handleVideoLoaded() {

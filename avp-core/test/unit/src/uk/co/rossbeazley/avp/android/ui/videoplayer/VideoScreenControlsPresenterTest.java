@@ -20,6 +20,7 @@ public class VideoScreenControlsPresenterTest {
     private boolean playEventDispatched;
     private TimeInMilliseconds scrubTime;
     private boolean closeEventDispatched;
+    private boolean exitEventDispatched;
 
     @Before
     public void setup() {
@@ -91,7 +92,17 @@ public class VideoScreenControlsPresenterTest {
     }
 
     @Test
-    public void dispatchStopEventWhenScreenTearDown() {
+    public void dispatchScreenExitEventWhenScreenTearDown() {
+        bus.whenEvent(Events.USER_EXIT_VIDEO_SCREEN)
+                .thenRun(new Function() {
+                    @Override
+                    public void invoke() {
+                        exitEventDispatched = true;
+
+                    }
+                });
+        fakeVideoScreen.tearDown();
+        assertThat(exitEventDispatched, is(true));
 
     }
 }
