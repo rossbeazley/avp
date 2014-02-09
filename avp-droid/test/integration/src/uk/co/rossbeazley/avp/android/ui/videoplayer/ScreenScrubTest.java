@@ -53,7 +53,7 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
     public void setUp() throws Exception {
 
         activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.videoplayer);
-        VideoScreenViewRendererAndEventAdapter lvideoScreen = new VideoScreenViewRendererAndEventAdapter(activity.viewFinder());
+        VideoScreenAndroidView lvideoScreen = new VideoScreenAndroidView(activity.viewFinder());
         lvideoScreen.setScrubEventListener(this);
         videoScreen = lvideoScreen;
 

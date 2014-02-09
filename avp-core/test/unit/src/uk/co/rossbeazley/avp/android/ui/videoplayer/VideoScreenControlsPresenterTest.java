@@ -19,12 +19,13 @@ public class VideoScreenControlsPresenterTest {
     private boolean pausedEventDispatched;
     private boolean playEventDispatched;
     private TimeInMilliseconds scrubTime;
+    private boolean closeEventDispatched;
 
     @Before
     public void setup() {
         bus = new ExecutorEventBus();
         fakeVideoScreen = new FakeVideoScreenVideo();
-        VideoScreenControlsPresenter controller = new VideoScreenControlsPresenter(bus, fakeVideoScreen);
+        VideoScreenControlsPresenter presenter = new VideoScreenControlsPresenter(bus, fakeVideoScreen);
     }
 
     @Test
@@ -89,4 +90,8 @@ public class VideoScreenControlsPresenterTest {
         assertThat(fakeVideoScreen.totalTime, is(expectedTime));
     }
 
+    @Test
+    public void dispatchStopEventWhenScreenTearDown() {
+
+    }
 }

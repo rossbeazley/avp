@@ -17,12 +17,12 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
     @Override
     public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
-        final VideoScreenViewRendererAndEventAdapter result;
+        final VideoScreenAndroidView result;
 
-        result = new VideoScreenViewRendererAndEventAdapter(inflatedLayoutView);
+        result = new VideoScreenAndroidView(inflatedLayoutView);
 
         new VideoScreenControlsPresenter(bus, result);
-        new VideoOutputScreenPresenter(result, bus);
+        new VideoOutputScreenPresenter(result, bus);    // think this dual presenter is a bit of a special
 
         return result;
     }

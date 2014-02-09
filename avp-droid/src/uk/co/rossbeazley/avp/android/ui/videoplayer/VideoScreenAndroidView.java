@@ -10,18 +10,19 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class VideoScreenViewRendererAndEventAdapter implements Screen, VideoControlScreen, VideoOutputScreen {
+public class VideoScreenAndroidView implements VideoControlScreen, VideoOutputScreen {
     private final ViewFinder viewFinder;
 
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
+    private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
 
-    public VideoScreenViewRendererAndEventAdapter(CanFindViewById canFindViewById) {
+    public VideoScreenAndroidView(CanFindViewById canFindViewById) {
         this.canListenForUserPlayEvents = CanListenForUserPlayEvents.NONE;
         this.canListenForUserPauseEvents = CanListenForUserPauseEvents.NONE;
         this.canListenForUserScrubEvents = CanListenForUserScrubEvents.NONE;
-
+        this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
         viewFinder = new ViewFinder(canFindViewById);
 
         bind();
@@ -135,6 +136,12 @@ public class VideoScreenViewRendererAndEventAdapter implements Screen, VideoCont
         SeekBar seekBar = (SeekBar) viewFinder.find(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(null);
 
+        canListenForScreenTearDownEvents.screenTearDown();
+    }
+
+    @Override
+    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
+        this.canListenForScreenTearDownEvents = canListenForScreenTearDownEvents;
     }
 
     private class ScrubEventAdapter implements SeekBar.OnSeekBarChangeListener {

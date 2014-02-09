@@ -9,6 +9,7 @@ import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 public class HomeScreenAndroidView implements Screen, HomeScreenView {
     private final ViewFinder viewFinder;
     private CanListenForUserSearchEvents searchEventListener;
+    private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
 
     public HomeScreenAndroidView(CanFindViewById inflatedLayoutView) {
         searchEventListener = CanListenForUserSearchEvents.NONE;
@@ -20,11 +21,19 @@ public class HomeScreenAndroidView implements Screen, HomeScreenView {
                 searchEventListener.userPressedSearch();
             }
         }, R.id.go);
+
+        this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
     }
 
     @Override
     public void tearDown() {
         viewFinder.clearOnClickListener(R.id.go);
+        canListenForScreenTearDownEvents.screenTearDown();
+    }
+
+    @Override
+    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
+        this.canListenForScreenTearDownEvents = canListenForScreenTearDownEvents;
     }
 
     @Override

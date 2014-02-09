@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
@@ -13,22 +12,21 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenTeardownTest implements VideoControlScreen.CanListenForUserPlayEvents {
+public class VideoScreenTearDownTest implements  Screen.CanListenForScreenTearDownEvents {
 
     @Test
-    public void userPlayVideoEventWhenPlayClicked() {
+    public void tearDownDispatchedFromScreen() {
         videoScreen.tearDown();
-
-        assertThat("video stop", stopEvent,is(RAISED));
+        assertThat("video stop", event,is(RAISED));
     }
 
 
     @Before
     public void setUp() throws Exception {
         activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.videoplayer);
-        VideoScreenViewRendererAndEventAdapter lvideoScreen = new VideoScreenViewRendererAndEventAdapter(activity.viewFinder());
-        lvideoScreen.setPlayEventListener(this);
-        videoScreen=lvideoScreen;
+        VideoScreenAndroidView lVideoScreen = new VideoScreenAndroidView(activity.viewFinder());
+        lVideoScreen.setTearDownEventListener(this);
+        videoScreen=lVideoScreen;
     }
 
 
@@ -39,17 +37,10 @@ public class ScreenTeardownTest implements VideoControlScreen.CanListenForUserPl
     private static final Object RAISED = new Object() { public String toString() { return "Event Raised";} };
     private static final Object NO_EVENT = new Object() { public String toString() { return "no event"; } };
 
-    private Object stopEvent = NO_EVENT;
+    private Object event = NO_EVENT;
 
-    public void userPressedPlay() {
-        stopEvent = RAISED;
-    }
-
-    private void pressPlayButton() {
-        clickOnID(R.id.play);
-    }
-
-    private void clickOnID(int id) {
-        Robolectric.clickOn(activity.findViewById(id));
+    @Override
+    public void screenTearDown() {
+        event = RAISED;
     }
 }

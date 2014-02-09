@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.ui.Screen;
 
 class FakeVideoScreenVideo implements VideoControlScreen {
 
@@ -14,6 +15,7 @@ class FakeVideoScreenVideo implements VideoControlScreen {
     public TimeInMilliseconds totalTime;
     private long scrubBarMax;
     private long scrubBarPosition;
+    private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
 
     @Override
     public void setPauseEventListener(CanListenForUserPauseEvents canListenForUserPauseEvents) {
@@ -83,5 +85,15 @@ class FakeVideoScreenVideo implements VideoControlScreen {
 
     public long scrubBarPosition() {
         return scrubBarPosition;
+    }
+
+    @Override
+    public void tearDown() {
+        canListenForScreenTearDownEvents.screenTearDown();
+    }
+
+    @Override
+    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
+        this.canListenForScreenTearDownEvents = canListenForScreenTearDownEvents;
     }
 }
