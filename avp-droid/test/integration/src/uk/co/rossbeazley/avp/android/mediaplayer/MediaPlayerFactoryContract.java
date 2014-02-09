@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
 import uk.co.rossbeazley.avp.android.player.scrub.CanScrubMediaPlayer;
@@ -38,5 +39,5 @@ public abstract class MediaPlayerFactoryContract {
     }
 
     private static final UriString ANY_URI = UriString.from("");
-    protected abstract AndroidMediaPlayerFactory getMediaPlayerFactory();
+    protected abstract MediaPlayerFactory getMediaPlayerFactory();
 }
