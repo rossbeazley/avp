@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.home;
+package uk.co.rossbeazley.avp.android.ui.search;
 
 public interface HomeScreenView {
     void setSearchEventListener(CanListenForUserSearchEvents searchEventListener);

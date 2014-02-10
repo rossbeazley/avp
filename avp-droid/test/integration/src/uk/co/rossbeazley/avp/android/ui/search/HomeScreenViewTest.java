@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.home;
+package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

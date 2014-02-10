@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.home;
+package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +7,6 @@ import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.ui.Screen;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoScreenAndroidView;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

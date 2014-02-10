@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.home;
+package uk.co.rossbeazley.avp.android.ui.search;
 
 import android.app.Fragment;
 import org.junit.Before;
