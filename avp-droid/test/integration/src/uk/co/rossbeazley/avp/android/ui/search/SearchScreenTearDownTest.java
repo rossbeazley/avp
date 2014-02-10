@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class HomeScreenTearDownTest implements  Screen.CanListenForScreenTearDownEvents {
+public class SearchScreenTearDownTest implements  Screen.CanListenForScreenTearDownEvents {
 
     @Test
     public void tearDownWhenNoObserverScreen() {
@@ -30,8 +30,8 @@ public class HomeScreenTearDownTest implements  Screen.CanListenForScreenTearDow
 
     @Before
     public void setUp() throws Exception {
-        activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.home);
-        HomeScreenAndroidView homeScreen = new HomeScreenAndroidView(activity.viewFinder());
+        activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);
+        SearchScreenAndroidView homeScreen = new SearchScreenAndroidView(activity.viewFinder());
         this.homeScreen =homeScreen;
     }
 

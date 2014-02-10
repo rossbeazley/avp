@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class HomeScreenPresenterTest implements HomeScreenView {
+public class SearchScreenPresenterTest implements SearchScreenView {
 
     private CanListenForUserSearchEvents searchEventListener;
     private boolean invoked = false;
@@ -17,12 +17,12 @@ public class HomeScreenPresenterTest implements HomeScreenView {
     @Test
     public void dispatchesEventOntoBusInResponseToUserSearch() {
         EventBus bus = new ExecutorEventBus();
-        HomeScreenPresenter presenter = new HomeScreenPresenter(this, bus);
+        SearchScreenPresenter presenter = new SearchScreenPresenter(this, bus);
 
         bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new Function() {
             @Override
             public void invoke() {
-                HomeScreenPresenterTest.this.invoked = true;
+                SearchScreenPresenterTest.this.invoked = true;
             }
         });
 

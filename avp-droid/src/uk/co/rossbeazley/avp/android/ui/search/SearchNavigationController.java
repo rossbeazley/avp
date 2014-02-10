@@ -5,11 +5,11 @@ import uk.co.rossbeazley.avp.android.ui.FragmentStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-public class HomeNavigationController {
+public class SearchNavigationController {
 
     private final FragmentStack fragmentStack;
 
-    public HomeNavigationController(FragmentStack fragmentStack, EventBus bus) {
+    public SearchNavigationController(FragmentStack fragmentStack, EventBus bus) {
         this.fragmentStack = fragmentStack;
         bindEventListeners(bus);
     }
@@ -25,7 +25,7 @@ public class HomeNavigationController {
     }
 
     private void showHomeScreen() {
-        fragmentStack.pushFragment(HomeFragment.class);
+        fragmentStack.pushFragment(SearchFragment.class);
     }
 
 }

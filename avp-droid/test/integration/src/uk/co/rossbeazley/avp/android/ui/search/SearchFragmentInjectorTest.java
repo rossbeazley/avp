@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class HomeFragmentInjectorTest implements InjectableHomeFragment {
+public class SearchFragmentInjectorTest implements InjectableSearchFragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
     private InflatedViewFactory inflatedViewFactory;
@@ -19,10 +19,10 @@ public class HomeFragmentInjectorTest implements InjectableHomeFragment {
     public void inject() {
 
         EventBus UNUSED_EVENT_BUS = null;
-        HomeFragmentInjector homeFragmentInjector = new HomeFragmentInjector(UNUSED_EVENT_BUS);
-        homeFragmentInjector.inject(this);
+        SearchFragmentInjector searchFragmentInjector = new SearchFragmentInjector(UNUSED_EVENT_BUS);
+        searchFragmentInjector.inject(this);
 
-        assertThat(fragmentScreenFactory, is(HomeFragmentScreenFactory.class));
+        assertThat(fragmentScreenFactory, is(SearchFragmentScreenFactory.class));
         assertThat(inflatedViewFactory,is(DefaultInflatedViewFactory.class));
     }
 

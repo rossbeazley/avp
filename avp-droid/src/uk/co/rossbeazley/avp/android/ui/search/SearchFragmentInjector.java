@@ -11,16 +11,16 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 * Time: 15:37
 * To change this template use File | Settings | File Templates.
 */
-public class HomeFragmentInjector implements DependencyInjectors.Injector<InjectableHomeFragment> {
+public class SearchFragmentInjector implements DependencyInjectors.Injector<InjectableSearchFragment> {
     private EventBus bus;
 
-    public HomeFragmentInjector(EventBus bus) {
+    public SearchFragmentInjector(EventBus bus) {
         this.bus = bus;
     }
 
     @Override
-    public void inject(InjectableHomeFragment homeFragment) {
+    public void inject(InjectableSearchFragment homeFragment) {
         homeFragment.setInflatedViewFactory(new DefaultInflatedViewFactory());
-        homeFragment.setFragmentScreenFactory(new HomeFragmentScreenFactory(bus));
+        homeFragment.setFragmentScreenFactory(new SearchFragmentScreenFactory(bus));
     }
 }

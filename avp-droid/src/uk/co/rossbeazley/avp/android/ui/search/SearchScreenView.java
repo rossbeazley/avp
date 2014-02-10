@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
-public interface HomeScreenView {
+public interface SearchScreenView {
     void setSearchEventListener(CanListenForUserSearchEvents searchEventListener);
 
     public interface CanListenForUserSearchEvents {

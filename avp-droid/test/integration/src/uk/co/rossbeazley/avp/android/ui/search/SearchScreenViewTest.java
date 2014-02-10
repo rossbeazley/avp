@@ -11,15 +11,15 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class HomeScreenViewTest implements HomeScreenAndroidView.CanListenForUserSearchEvents {
+public class SearchScreenViewTest implements SearchScreenAndroidView.CanListenForUserSearchEvents {
 
     private boolean called = false;
 
     @Test
     public void clickingHomeButtonDispatchesEvent() {
 
-        ActivityForTestingViews act = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.home);
-        HomeScreenView screen = new HomeScreenAndroidView(act.viewFinder());
+        ActivityForTestingViews act = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);
+        SearchScreenView screen = new SearchScreenAndroidView(act.viewFinder());
         screen.setSearchEventListener(this);
         Robolectric.clickOn(act.findViewById(R.id.go));
 

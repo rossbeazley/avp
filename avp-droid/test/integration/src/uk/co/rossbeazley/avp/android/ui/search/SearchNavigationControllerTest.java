@@ -15,7 +15,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class HomeNavigationControllerTest implements FragmentStack {
+public class SearchNavigationControllerTest implements FragmentStack {
 
     private Class pushedFragmentClass;
     private EventBus bus;
@@ -23,13 +23,13 @@ public class HomeNavigationControllerTest implements FragmentStack {
     @Before
     public void setup() {
         bus = new ExecutorEventBus();
-        new HomeNavigationController(this, bus);
+        new SearchNavigationController(this, bus);
     }
 
     @Test
     public void pushesHomeFragmentOnAppStart() {
         bus.announce(Events.APP_START);
-        Class expected = HomeFragment.class;
+        Class expected = SearchFragment.class;
         assertThat(pushedFragmentClass, is(equalTo(expected)));
     }
 

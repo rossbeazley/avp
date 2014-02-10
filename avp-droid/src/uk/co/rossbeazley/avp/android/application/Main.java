@@ -8,9 +8,9 @@ import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.FragmentManagerFragmentStack;
 import uk.co.rossbeazley.avp.android.ui.FragmentStack;
-import uk.co.rossbeazley.avp.android.ui.search.HomeFragmentInjector;
-import uk.co.rossbeazley.avp.android.ui.search.HomeNavigationController;
-import uk.co.rossbeazley.avp.android.ui.search.InjectableHomeFragment;
+import uk.co.rossbeazley.avp.android.ui.search.SearchFragmentInjector;
+import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
+import uk.co.rossbeazley.avp.android.ui.search.InjectableSearchFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
@@ -39,7 +39,7 @@ public class Main extends Activity {
     private void createNavigationViewControllers(FragmentManager fragmentManager) {
         FragmentStack fragmentStack = new FragmentManagerFragmentStack(fragmentManager);
         new VideoPlayerNavigationController(fragmentStack,  services.eventbus());
-        new HomeNavigationController(fragmentStack, services.eventbus());
+        new SearchNavigationController(fragmentStack, services.eventbus());
     }
 
     private void createCoreApp(final ApplicationServices services) {
@@ -53,7 +53,7 @@ public class Main extends Activity {
     private void createDependencyInjectionFramework() {
         DependencyInjectors injectorsByClass = new DependencyInjectors() {{
             register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
-            register(InjectableHomeFragment.class, new HomeFragmentInjector(services.eventbus()));
+            register(InjectableSearchFragment.class, new SearchFragmentInjector(services.eventbus()));
         }};
         dependenciesService = new DependenciesService(injectorsByClass);
     }

@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class HomeFragmentTest implements InflatedViewFactory, FragmentScreenFactory {
+public class SearchFragmentTest implements InflatedViewFactory, FragmentScreenFactory {
 
     private int layoutId;
 
@@ -34,26 +34,26 @@ public class HomeFragmentTest implements InflatedViewFactory, FragmentScreenFact
         }
     };
 
-    private HomeFragment homeFragment;
+    private SearchFragment searchFragment;
     private CanFindViewById usedViewFinder;
 
     @Before
     public void setUp() throws Exception {
-        homeFragment = new HomeFragment();
-        homeFragment.setInflatedViewFactory(this);
-        homeFragment.setFragmentScreenFactory(this);
+        searchFragment = new SearchFragment();
+        searchFragment.setInflatedViewFactory(this);
+        searchFragment.setFragmentScreenFactory(this);
     }
 
 
     @Test
     public void whenDisplayedUsesFactoryToCreateScreenWithHomeLayoutID() {
-        homeFragment.onCreateView(null, null, null);
-        assertThat(layoutId, is(R.layout.home));
+        searchFragment.onCreateView(null, null, null);
+        assertThat(layoutId, is(R.layout.search));
     }
 
     @Test
     public void buildsScreenWithInflatedLayout() {
-        homeFragment.onCreateView(null,null,null);
+        searchFragment.onCreateView(null,null,null);
         assertThat((InflatedView) usedViewFinder, is(equalTo(viewFinder)));
     }
 
