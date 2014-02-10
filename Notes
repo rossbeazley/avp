@@ -37,3 +37,15 @@ The navigation controller will have to be changed,
 the default navigation now is to show this new screen
 the video player screen should be shown in response to the user load event
 
+
+Wiring up the domain:
+
+need to be authenticated
+user service, can "authenticate" to and get a user back
+
+
+A programme
+programme repository, can search, is it a user search? ie need a user object and search criteria
+
+
+
