@@ -7,16 +7,16 @@ public class DependenciesService {
         this.injectors = injectors;
     }
 
-    @SuppressWarnings("unchecked")
     void injectDependencies(Object object) {
         Class<?>[] interfaces = findInjectableClasses(object);
         injectEachClass(object, interfaces);
     }
 
+    @SuppressWarnings("unchecked")
     private void injectEachClass(Object object, Class<?>[] injectableClasses) {
         for (Class injectableClass : injectableClasses) {
-            DependencyInjectors.Injector injector = injectors.injector(injectableClass);
-            injector.inject(object);    //Use double dispatch to avoid this dodgy code? or is DD more of problem, gets everywhere then
+            DependencyInjectors.Injector classInjector = injectors.injector(injectableClass);
+            classInjector.inject(object);    //Use double dispatch to avoid this dodgy code? or is DD more of problem, gets everywhere then
         }
     }
 

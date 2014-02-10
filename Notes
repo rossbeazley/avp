@@ -1,7 +1,14 @@
+Kata Rules:
+One activity, it just does NEW
+Event bus (ie message orientated programming)
+No mocking frameworks
+Find a use for dependency injection eg in your fragments
+
+
+
 Messages:
 
 User wants to load a video at a url
-
 
 User wants to pause
 User wants to play (un pause)
