@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.ui.FragmentStack;
+import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -15,7 +15,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class SearchNavigationControllerTest implements FragmentStack {
+public class SearchNavigationControllerTest implements ScreenStack {
 
     private Class pushedFragmentClass;
     private EventBus bus;

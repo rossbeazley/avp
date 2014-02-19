@@ -1,16 +1,16 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.ui.FragmentStack;
+import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
 public class SearchNavigationController {
 
-    private final FragmentStack fragmentStack;
+    private final ScreenStack screenStack;
 
-    public SearchNavigationController(FragmentStack fragmentStack, EventBus bus) {
-        this.fragmentStack = fragmentStack;
+    public SearchNavigationController(ScreenStack screenStack, EventBus bus) {
+        this.screenStack = screenStack;
         bindEventListeners(bus);
     }
 
@@ -25,7 +25,7 @@ public class SearchNavigationController {
     }
 
     private void showHomeScreen() {
-        fragmentStack.pushFragment(SearchFragment.class);
+        screenStack.pushFragment(SearchFragment.class);
     }
 
 }

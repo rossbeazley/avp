@@ -1,16 +1,16 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.ui.FragmentStack;
+import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
 public class VideoPlayerNavigationController {
 
-    private final FragmentStack fragmentStack;
+    private final ScreenStack screenStack;
 
-    public VideoPlayerNavigationController(FragmentStack fragmentStack, EventBus bus) {
-        this.fragmentStack = fragmentStack;
+    public VideoPlayerNavigationController(ScreenStack screenStack, EventBus bus) {
+        this.screenStack = screenStack;
         bindEventListeners(bus);
     }
 
@@ -25,7 +25,7 @@ public class VideoPlayerNavigationController {
     }
 
     private void showVideoPlayScreen() {
-        fragmentStack.pushFragment(VideoPlayerFragment.class);
+        screenStack.pushFragment(VideoPlayerFragment.class);
     }
 
 }
