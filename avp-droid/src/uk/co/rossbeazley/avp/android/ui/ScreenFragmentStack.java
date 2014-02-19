@@ -4,11 +4,11 @@ import android.R;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
-public class FragmentManagerFragmentStack implements ScreenStack {
+public class ScreenFragmentStack implements ScreenStack {
 
     private final FragmentManager fm;
 
-    public FragmentManagerFragmentStack(FragmentManager fm) {
+    public ScreenFragmentStack(FragmentManager fm) {
         this.fm = fm;
     }
 

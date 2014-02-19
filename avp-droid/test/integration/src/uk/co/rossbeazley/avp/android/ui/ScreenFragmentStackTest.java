@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class FragmentManagerFragmentStackTest {
+public class ScreenFragmentStackTest {
 
     /** consider giving fragments tags so they can be asserted to exist in a test */
 
@@ -19,7 +19,7 @@ public class FragmentManagerFragmentStackTest {
         ActivityForTestingViews activity = ActivityForTestingViews.createVisibleActivity();
 
         FragmentManager fragmentManager = activity.getFragmentManager();
-        FragmentManagerFragmentStack stack = new FragmentManagerFragmentStack(fragmentManager);
+        ScreenFragmentStack stack = new ScreenFragmentStack(fragmentManager);
         stack.pushFragment(Fragment.class);
         assertThat(activity.lastFragmentAttached, is((Fragment.class)));
     }

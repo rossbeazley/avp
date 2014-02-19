@@ -6,7 +6,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.ui.FragmentManagerFragmentStack;
+import uk.co.rossbeazley.avp.android.ui.ScreenFragmentStack;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.android.ui.search.SearchFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
@@ -37,7 +37,7 @@ public class Main extends Activity {
     }
 
     private void createNavigationViewControllers(FragmentManager fragmentManager) {
-        ScreenStack screenStack = new FragmentManagerFragmentStack(fragmentManager);
+        ScreenStack screenStack = new ScreenFragmentStack(fragmentManager);
         new VideoPlayerNavigationController(screenStack,  services.eventbus());
         new SearchNavigationController(screenStack, services.eventbus());
     }
