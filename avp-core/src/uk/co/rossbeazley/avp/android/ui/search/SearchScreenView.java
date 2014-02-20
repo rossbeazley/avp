@@ -1,6 +1,9 @@
 package uk.co.rossbeazley.avp.android.ui.search;
-                 //TODO should this extend Screen?
-public interface SearchScreenView {
+
+import uk.co.rossbeazley.avp.android.ui.Screen;
+
+//TODO should this extend Screen?
+public interface SearchScreenView extends Screen {
     void setSearchEventListener(CanListenForUserSearchEvents searchEventListener);
 
     public interface CanListenForUserSearchEvents {

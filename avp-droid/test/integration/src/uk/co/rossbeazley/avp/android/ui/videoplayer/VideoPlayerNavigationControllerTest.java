@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -33,8 +34,12 @@ public class VideoPlayerNavigationControllerTest implements ScreenStack {
 
     }
 
-    @Override
-    public void pushFragment(Class<? extends Fragment> fragmentClass) {
+    public void push(Class<? extends Fragment> fragmentClass) {
         this.actualClass = fragmentClass;
+    }
+
+    @Override
+    public void pushScreen(Class<? extends Screen> screenClass) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -25,7 +25,7 @@ public class SearchNavigationController {
     }
 
     private void showHomeScreen() {
-        screenStack.pushFragment(SearchFragment.class);
+        screenStack.pushScreen(SearchScreenView.class);
     }
 
 }

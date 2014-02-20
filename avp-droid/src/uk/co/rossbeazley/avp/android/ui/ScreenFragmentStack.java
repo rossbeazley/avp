@@ -7,13 +7,14 @@ import android.app.FragmentManager;
 public class ScreenFragmentStack implements ScreenStack {
 
     private final FragmentManager fm;
+    private FragmentFromScreen fragmentFromScreen;
 
-    public ScreenFragmentStack(FragmentManager fm) {
+    public ScreenFragmentStack(FragmentManager fm, FragmentFromScreen fragmentFromScreen) {
         this.fm = fm;
+        this.fragmentFromScreen = fragmentFromScreen;
     }
 
-    @Override
-    public void pushFragment(Class<? extends Fragment> fragmentClass) {
+    public void push(Class<? extends Fragment> fragmentClass) {
 
         try {
 
@@ -25,6 +26,12 @@ public class ScreenFragmentStack implements ScreenStack {
             processException(e);
         }
 
+    }
+
+    @Override
+    public void pushScreen(Class<? extends Screen> screenClass) {
+        Class<? extends Fragment> fragmentClass = this.fragmentFromScreen.fragmentClass(screenClass);
+        push(fragmentClass);
     }
 
     private void attemptToPushFragment(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
