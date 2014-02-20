@@ -7,7 +7,7 @@ public class DependenciesService {
         this.injectors = injectors;
     }
 
-    void injectDependencies(Object object) {
+    public void injectDependencies(Object object) {
         Class<?>[] interfaces = findInjectableClasses(object);
         injectEachClass(object, interfaces);
     }

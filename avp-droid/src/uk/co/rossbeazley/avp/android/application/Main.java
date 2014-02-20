@@ -9,15 +9,12 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.FragmentFromScreen;
 import uk.co.rossbeazley.avp.android.ui.ScreenFragmentStack;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
-import uk.co.rossbeazley.avp.android.ui.search.SearchFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
-import uk.co.rossbeazley.avp.android.ui.search.InjectableSearchFragment;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragment;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
 
 public class Main extends Activity {
 
+    private final DependencyInjectionFrameworkFactory dependencyInjectionFrameworkFactory = new DependencyInjectionFrameworkFactory();
     private DependenciesService dependenciesService;
     private ApplicationServices services;
 
@@ -25,7 +22,7 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         services = createAppServices();
-        dependenciesService = createDependencyInjectionFramework(services);
+        dependenciesService = dependencyInjectionFrameworkFactory.createDependencyInjectionFramework(services);
         createNavigationViewControllers(getFragmentManager());
         createCoreApp(services);
 
@@ -50,15 +47,6 @@ public class Main extends Activity {
 
     private ApplicationServices createAppServices() {
         return new ProductionApplicationServices(this.getApplication());
-    }
-
-    private DependenciesService createDependencyInjectionFramework(final ApplicationServices services) {
-        // time to pull this out into its own object, maybe use this directly in tests when testing an injetor
-        DependencyInjectors injectorsByClass = new DependencyInjectors() {{
-            register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
-            register(InjectableSearchFragment.class, new SearchFragmentInjector(services.eventbus()));
-        }};
-        return new DependenciesService(injectorsByClass);
     }
 
     @Override
