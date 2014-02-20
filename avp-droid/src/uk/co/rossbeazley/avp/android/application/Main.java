@@ -25,7 +25,7 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         services = createAppServices();
-        dependenciesService = createDependencyInjectionFramework();
+        dependenciesService = createDependencyInjectionFramework(services);
         createNavigationViewControllers(getFragmentManager());
         createCoreApp(services);
 
@@ -52,7 +52,7 @@ public class Main extends Activity {
         return new ProductionApplicationServices(this.getApplication());
     }
 
-    private DependenciesService createDependencyInjectionFramework() {
+    private DependenciesService createDependencyInjectionFramework(final ApplicationServices services) {
         // time to pull this out into its own object, maybe use this directly in tests when testing an injetor
         DependencyInjectors injectorsByClass = new DependencyInjectors() {{
             register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
