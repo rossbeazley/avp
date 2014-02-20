@@ -21,7 +21,7 @@ public class VideoPlayerFragmentInjector implements DependencyInjectors.Injector
 
     @Override
     public void inject(InjectableVideoPlayerFragment fragment) {
-        fragment.setFragmentScreenFactory(new VideoPlayerFragmentScreenFactory(eventBus));
-        fragment.setInflatedViewFactory(new DefaultInflatedViewFactory());
+        fragment.injectFragmentScreenFactory(new VideoPlayerFragmentScreenFactory(eventBus));
+        fragment.injectInflatedViewFactory(new DefaultInflatedViewFactory());
     }
 }

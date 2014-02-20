@@ -40,8 +40,8 @@ public class SearchFragmentTest implements InflatedViewFactory, FragmentScreenFa
     @Before
     public void setUp() throws Exception {
         searchFragment = new SearchFragment();
-        searchFragment.setInflatedViewFactory(this);
-        searchFragment.setFragmentScreenFactory(this);
+        searchFragment.injectInflatedViewFactory(this);
+        searchFragment.injectFragmentScreenFactory(this);
     }
 
 

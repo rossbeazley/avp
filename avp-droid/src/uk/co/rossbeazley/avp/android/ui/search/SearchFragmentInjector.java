@@ -20,7 +20,7 @@ public class SearchFragmentInjector implements DependencyInjectors.Injector<Inje
 
     @Override
     public void inject(InjectableSearchFragment homeFragment) {
-        homeFragment.setInflatedViewFactory(new DefaultInflatedViewFactory());
-        homeFragment.setFragmentScreenFactory(new SearchFragmentScreenFactory(bus));
+        homeFragment.injectInflatedViewFactory(new DefaultInflatedViewFactory());
+        homeFragment.injectFragmentScreenFactory(new SearchFragmentScreenFactory(bus));
     }
 }

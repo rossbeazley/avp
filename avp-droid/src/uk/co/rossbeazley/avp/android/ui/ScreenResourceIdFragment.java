@@ -35,11 +35,11 @@ public abstract class ScreenResourceIdFragment extends Fragment {
         screen = null;
     }
 
-    public void setFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
+    public void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
         this.fragmentScreenFactory = fragmentScreenFactory;
     }
 
-    public void setInflatedViewFactory(InflatedViewFactory inflatedViewFactory) {
+    public void injectInflatedViewFactory(InflatedViewFactory inflatedViewFactory) {
         this.inflatedViewFactory = inflatedViewFactory;
     }
 

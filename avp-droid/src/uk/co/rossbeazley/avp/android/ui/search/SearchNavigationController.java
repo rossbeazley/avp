@@ -19,12 +19,12 @@ public class SearchNavigationController {
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
-                        showHomeScreen();
+                        showSearchScreen();
                     }
                 });
     }
 
-    private void showHomeScreen() {
+    private void showSearchScreen() {
         screenStack.pushScreen(SearchScreenView.class);
     }
 

@@ -27,12 +27,12 @@ public class VideoPlayerFragmentInjectorTest implements InjectableVideoPlayerFra
 
 
     @Override
-    public void setFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
+    public void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
         this.fragmentScreenFactory = fragmentScreenFactory;
     }
 
     @Override
-    public void setInflatedViewFactory(InflatedViewFactory inflatedViewFactory) {
+    public void injectInflatedViewFactory(InflatedViewFactory inflatedViewFactory) {
         this.inflatedViewFactory = inflatedViewFactory;
     }
 }
