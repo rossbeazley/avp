@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -35,5 +36,15 @@ public class SearchScreenPresenterTest implements SearchScreenView {
     @Override
     public void setSearchEventListener(CanListenForUserSearchEvents searchEventListener) {
         this.searchEventListener = searchEventListener;
+    }
+
+    @Override
+    public void tearDown() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

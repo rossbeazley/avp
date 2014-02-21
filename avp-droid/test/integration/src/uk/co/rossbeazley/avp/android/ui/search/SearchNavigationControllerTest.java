@@ -40,7 +40,6 @@ public class SearchNavigationControllerTest implements ScreenStack {
 
     @Override
     public void pushScreen(Class<? extends Screen> screenClass) {
-        //To change body of imple? extends mented methods use File | Settings | File Templates.
     }
 
 }

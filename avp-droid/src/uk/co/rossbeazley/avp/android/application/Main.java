@@ -35,7 +35,7 @@ public class Main extends Activity {
 
     private void createNavigationViewControllers(FragmentManager fragmentManager) {
         // these should be pulled out into its own object, the whole method
-        FragmentFromScreen fragmentFromScreen = null;
+        FragmentFromScreen fragmentFromScreen = null;  //TODO implement fragmentFromScreen, should it be an interface? dunno
         ScreenStack screenStack = new ScreenFragmentStack(fragmentManager, fragmentFromScreen);
         new VideoPlayerNavigationController(screenStack,  services.eventbus());
         new SearchNavigationController(screenStack, services.eventbus());

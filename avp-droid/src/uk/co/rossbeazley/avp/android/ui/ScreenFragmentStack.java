@@ -14,24 +14,21 @@ public class ScreenFragmentStack implements ScreenStack {
         this.fragmentFromScreen = fragmentFromScreen;
     }
 
-    public void push(Class<? extends Fragment> fragmentClass) {
+    @Override
+    public void pushScreen(Class<? extends Screen> screenClass) {
+        Class<? extends Fragment> fragmentClass = this.fragmentFromScreen.fragmentClass(screenClass);
+        pushFragment(fragmentClass);
+    }
 
+
+    public void pushFragment(Class<? extends Fragment> fragmentClass) {
         try {
-
             attemptToPushFragment(fragmentClass);
-
         } catch (InstantiationException e) {
             processException(e);
         } catch (IllegalAccessException e) {
             processException(e);
         }
-
-    }
-
-    @Override
-    public void pushScreen(Class<? extends Screen> screenClass) {
-        Class<? extends Fragment> fragmentClass = this.fragmentFromScreen.fragmentClass(screenClass);
-        push(fragmentClass);
     }
 
     private void attemptToPushFragment(Class<? extends Fragment> fragmentClass) throws InstantiationException, IllegalAccessException {
