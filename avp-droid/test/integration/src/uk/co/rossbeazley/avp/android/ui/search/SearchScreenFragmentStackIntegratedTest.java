@@ -15,7 +15,7 @@ public class SearchScreenFragmentStackIntegratedTest extends ScreenFragmentStack
     public void testPushFragment() throws Exception {
         ScreenStack stack = createScreenFragmentStack();
 
-        stack.pushScreen(SearchScreenView.class);
+        stack.pushScreen(SearchScreen.class);
 
         assertThat(fragmentAttached(), is((SearchFragment.class)));
     }

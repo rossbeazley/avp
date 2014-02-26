@@ -31,7 +31,7 @@ public class SearchScreenTearDownTest implements  Screen.CanListenForScreenTearD
     @Before
     public void setUp() throws Exception {
         activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);
-        SearchScreenAndroidView homeScreen = new SearchScreenAndroidView(activity.viewFinder());
+        SearchScreenAndroid homeScreen = new SearchScreenAndroid(activity.viewFinder());
         this.homeScreen =homeScreen;
     }
 

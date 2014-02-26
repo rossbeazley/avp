@@ -29,7 +29,7 @@ public class SearchNavigationControllerTest implements ScreenStack {
     @Test
     public void pushesHomeFragmentOnAppStart() {
         bus.announce(Events.APP_START);
-        Class expected = SearchScreenView.class;
+        Class expected = SearchScreen.class;
         assertThat(pushedClass, is(equalTo(expected)));
     }
 

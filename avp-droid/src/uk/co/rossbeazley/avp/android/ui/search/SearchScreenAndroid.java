@@ -6,12 +6,12 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class SearchScreenAndroidView implements Screen, SearchScreenView {
+public class SearchScreenAndroid implements Screen, SearchScreen {
     private final ViewFinder viewFinder;
     private CanListenForUserSearchEvents searchEventListener;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
 
-    public SearchScreenAndroidView(CanFindViewById inflatedLayoutView) {
+    public SearchScreenAndroid(CanFindViewById inflatedLayoutView) {
         searchEventListener = CanListenForUserSearchEvents.NONE;
         viewFinder = new ViewFinder(inflatedLayoutView);
 
