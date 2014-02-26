@@ -1,13 +1,13 @@
-package uk.co.rossbeazley.avp.android.ui;
+package uk.co.rossbeazley.avp.android.ui.screenStack;
 
 import android.R;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
-public class FragmentManagerTransaction implements FragmentTransaction {
+class FragmentManagerTransaction implements FragmentTransaction {
     final FragmentManager fm;
 
-    public FragmentManagerTransaction(FragmentManager fm) {
+    FragmentManagerTransaction(FragmentManager fm) {
         this.fm = fm;
     }
 

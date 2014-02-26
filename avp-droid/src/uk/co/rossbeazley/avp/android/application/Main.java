@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.ui.screenStack.UiNavigationStackFactory;
 
 public class Main extends Activity {
 

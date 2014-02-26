@@ -1,10 +1,11 @@
-package uk.co.rossbeazley.avp.android.ui;
+package uk.co.rossbeazley.avp.android.ui.screenStack;
 
 import android.app.Fragment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
