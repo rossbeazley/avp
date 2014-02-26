@@ -9,6 +9,7 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.*;
 import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class Main extends Activity {
 
@@ -21,7 +22,7 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         services = createAppServices();
         dependenciesService = dependencyInjectionFrameworkFactory.createDependencyInjectionFramework(services);
-        createNavigationViewControllers(getFragmentManager());
+        createNavigationViewControllers(getFragmentManager(), services.eventbus());
         createCoreApp(services);
 
         parseIntent(getIntent());
@@ -31,11 +32,11 @@ public class Main extends Activity {
         services.intentParser().onIntent(intent);
     }
 
-    private void createNavigationViewControllers(FragmentManager fragmentManager) {
+    private void createNavigationViewControllers(FragmentManager fragmentManager, EventBus eventbus) {
         // these should be pulled out into its own object, the whole method
         ScreenStack screenStack = createScreenBackStack(fragmentManager);
-        new VideoPlayerNavigationController(screenStack,  services.eventbus());
-        new SearchNavigationController(screenStack, services.eventbus());
+        new VideoPlayerNavigationController(screenStack, eventbus);
+        new SearchNavigationController(screenStack, eventbus);
     }
 
     // can move this to factory class and then package protect the inner classes
