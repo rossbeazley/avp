@@ -5,13 +5,6 @@ import android.app.Fragment;
 import android.view.View;
 import org.robolectric.Robolectric;
 
-/**
-* Created with IntelliJ IDEA.
-* User: rdlb
-* Date: 07/09/13
-* Time: 21:48
-* To change this template use File | Settings | File Templates.
-*/
 public class ActivityForTestingViews extends Activity  {
 
     public Fragment lastFragmentAttached;

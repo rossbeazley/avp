@@ -19,7 +19,7 @@ public class ScreenFragmentStackTest implements FragmentFromScreen {
         ActivityForTestingViews activity = ActivityForTestingViews.createVisibleActivity();
 
         FragmentManager fragmentManager = activity.getFragmentManager();
-        ScreenFragmentStack stack = new ScreenFragmentStack(fragmentManager, this);
+        ScreenFragmentStack stack = new ScreenFragmentStack(this, new FragmentManagerTransaction(fragmentManager));
         stack.pushScreen(Screen.class);
         assertThat(activity.lastFragmentAttached, is((Fragment.class)));
     }
