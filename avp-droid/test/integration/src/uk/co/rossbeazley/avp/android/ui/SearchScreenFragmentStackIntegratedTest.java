@@ -29,13 +29,13 @@ public class SearchScreenFragmentStackIntegratedTest implements FragmentTransact
         assertThat(fragmentAttached, is((SearchFragment.class)));
     }
 
-    private FragmentFromScreen createScreenToFragment() {
-        return new DefaultFragmentFromScreen();
-    }
-
     @Override
     public void addFragmentToBackStack(Fragment fragment) {
         fragmentAttached = fragment;
+    }
+
+    private FragmentFromScreen createScreenToFragment() {
+        return new DefaultFragmentFromScreen();
     }
 
     private class DefaultFragmentFromScreen implements FragmentFromScreen {
