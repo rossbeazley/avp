@@ -6,10 +6,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.ui.FragmentFromScreen;
-import uk.co.rossbeazley.avp.android.ui.FragmentManagerTransaction;
-import uk.co.rossbeazley.avp.android.ui.ScreenFragmentStack;
-import uk.co.rossbeazley.avp.android.ui.ScreenStack;
+import uk.co.rossbeazley.avp.android.ui.*;
 import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
 
@@ -36,10 +33,16 @@ public class Main extends Activity {
 
     private void createNavigationViewControllers(FragmentManager fragmentManager) {
         // these should be pulled out into its own object, the whole method
-        FragmentFromScreen fragmentFromScreen = null;  //TODO implement fragmentFromScreen, should it be an interface? dunno
-        ScreenStack screenStack = new ScreenFragmentStack(fragmentFromScreen, new FragmentManagerTransaction(fragmentManager));
+        ScreenStack screenStack = createScreenBackStack(fragmentManager);
         new VideoPlayerNavigationController(screenStack,  services.eventbus());
         new SearchNavigationController(screenStack, services.eventbus());
+    }
+
+    // can move this to factory class and then package protect the inner classes
+    private ScreenStack createScreenBackStack(FragmentManager fragmentManager) {
+        FragmentFromScreen fragmentFromScreen = new DefaultFragmentFromScreen();
+        FragmentManagerTransaction fragmentTransaction = new FragmentManagerTransaction(fragmentManager);
+        return new ScreenFragmentStack(fragmentFromScreen, fragmentTransaction);
     }
 
     private void createCoreApp(final ApplicationServices services) {
