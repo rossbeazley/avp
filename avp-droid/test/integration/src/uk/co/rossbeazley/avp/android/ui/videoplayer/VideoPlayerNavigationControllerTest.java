@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
-import android.app.Fragment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -29,17 +28,13 @@ public class VideoPlayerNavigationControllerTest implements ScreenStack {
         new VideoPlayerNavigationController(this, bus);
 
         bus.sendPayload(anyUriString).withEvent(Events.USER_LOAD_VIDEO);
-        Class expectedClass = VideoPlayerFragment.class;
+        Class expectedClass = VideoControlScreen.class;
         assertThat(actualClass, is(equalTo(expectedClass)));
 
     }
 
-    public void push(Class<? extends Fragment> fragmentClass) {
-        this.actualClass = fragmentClass;
-    }
-
     @Override
     public void pushScreen(Class<? extends Screen> screenClass) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.actualClass = screenClass;
     }
 }

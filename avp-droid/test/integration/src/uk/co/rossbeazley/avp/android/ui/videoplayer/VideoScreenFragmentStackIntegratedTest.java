@@ -1,23 +1,23 @@
-package uk.co.rossbeazley.avp.android.ui.search;
+package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import org.junit.Test;
-import org.robolectric.annotation.Config;
 import uk.co.rossbeazley.avp.android.ui.ScreenFragmentStackIntegratedTest;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-@Config(manifest = Config.NONE)
-public class SearchScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
 
+public class VideoScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
+
+    @Override
     @Test
     public void testPushFragment() throws Exception {
         ScreenStack stack = createScreenFragmentStack();
 
-        stack.pushScreen(SearchScreenView.class);
+        stack.pushScreen(VideoControlScreen.class);
 
-        assertThat(fragmentAttached(), is((SearchFragment.class)));
+        assertThat(fragmentAttached(), is((VideoPlayerFragment.class)));
     }
 
 }

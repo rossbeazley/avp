@@ -12,8 +12,6 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class FragmentManagerTransactionIntergrationTest {
 
-    /** consider giving fragments tags so they can be asserted to exist in a test */
-
     @Test
     public void testPushFragment() throws Exception {
         ActivityForTestingViews activity = ActivityForTestingViews.createVisibleActivity();
