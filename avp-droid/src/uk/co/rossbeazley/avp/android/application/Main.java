@@ -2,18 +2,14 @@ package uk.co.rossbeazley.avp.android.application;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.ui.*;
-import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
-import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
-import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class Main extends Activity {
 
     private final DependencyInjectionFrameworkFactory dependencyInjectionFrameworkFactory = new DependencyInjectionFrameworkFactory();
+    private final UiNavigationStackFactory uiNavigationStackFactory = new UiNavigationStackFactory();
     private DependenciesService dependenciesService;
     private ApplicationServices services;
 
@@ -22,7 +18,7 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         services = createAppServices();
         dependenciesService = dependencyInjectionFrameworkFactory.createDependencyInjectionFramework(services);
-        createNavigationViewControllers(getFragmentManager(), services.eventbus());
+        uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), services.eventbus());
         createCoreApp(services);
 
         parseIntent(getIntent());
@@ -30,20 +26,6 @@ public class Main extends Activity {
 
     private void parseIntent(Intent intent) {
         services.intentParser().onIntent(intent);
-    }
-
-    private void createNavigationViewControllers(FragmentManager fragmentManager, EventBus eventbus) {
-        // these should be pulled out into its own object, the whole method
-        ScreenStack screenStack = createScreenBackStack(fragmentManager);
-        new VideoPlayerNavigationController(screenStack, eventbus);
-        new SearchNavigationController(screenStack, eventbus);
-    }
-
-    // can move this to factory class and then package protect the inner classes
-    private ScreenStack createScreenBackStack(FragmentManager fragmentManager) {
-        FragmentFromScreen fragmentFromScreen = new DefaultFragmentFromScreen();
-        FragmentManagerTransaction fragmentTransaction = new FragmentManagerTransaction(fragmentManager);
-        return new ScreenFragmentStack(fragmentFromScreen, fragmentTransaction);
     }
 
     private void createCoreApp(final ApplicationServices services) {
