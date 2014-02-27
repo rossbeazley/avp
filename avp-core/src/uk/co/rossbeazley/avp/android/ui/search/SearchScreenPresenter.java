@@ -5,7 +5,12 @@ import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class SearchScreenPresenter {
+
     public SearchScreenPresenter(SearchScreenView view, final EventBus bus) {
+        bindToViewSearchEvent(view, bus);
+    }
+
+    private void bindToViewSearchEvent(SearchScreenView view, final EventBus bus) {
         view.setSearchEventListener(new SearchScreenView.CanListenForUserSearchEvents() {
             @Override
             public void userPressedSearch() {
