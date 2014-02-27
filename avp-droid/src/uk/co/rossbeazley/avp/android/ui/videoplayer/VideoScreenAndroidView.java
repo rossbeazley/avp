@@ -7,7 +7,6 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
-import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
 public class VideoScreenAndroidView implements VideoControlScreen, VideoOutputScreen {

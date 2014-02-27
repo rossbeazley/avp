@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class SearchScreenViewTest implements SearchScreenAndroidView.CanListenForUserSearchEvents {
+public class SearchScreenTest implements SearchScreenAndroid.CanListenForUserSearchEvents {
 
     private boolean called = false;
 
@@ -19,7 +19,7 @@ public class SearchScreenViewTest implements SearchScreenAndroidView.CanListenFo
     public void clickingHomeButtonDispatchesEvent() {
 
         ActivityForTestingViews act = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);
-        SearchScreenView screen = new SearchScreenAndroidView(act.viewFinder());
+        SearchScreen screen = new SearchScreenAndroid(act.viewFinder());
         screen.setSearchEventListener(this);
         Robolectric.clickOn(act.findViewById(R.id.go));
 

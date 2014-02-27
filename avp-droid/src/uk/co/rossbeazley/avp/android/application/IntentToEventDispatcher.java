@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.application;
 import android.content.Intent;
 import android.net.Uri;
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 

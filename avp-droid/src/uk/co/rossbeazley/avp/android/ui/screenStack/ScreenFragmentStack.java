@@ -1,13 +1,15 @@
-package uk.co.rossbeazley.avp.android.ui;
+package uk.co.rossbeazley.avp.android.ui.screenStack;
 
 import android.app.Fragment;
+import uk.co.rossbeazley.avp.android.ui.Screen;
+import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 
-public class ScreenFragmentStack implements ScreenStack {
+class ScreenFragmentStack implements ScreenStack {
 
     private final FragmentTransaction fragmentTransaction;
     private FragmentFromScreen fragmentFromScreen;
 
-    public ScreenFragmentStack(FragmentFromScreen fragmentFromScreen, FragmentTransaction fragmentTransaction) {
+    ScreenFragmentStack(FragmentFromScreen fragmentFromScreen, FragmentTransaction fragmentTransaction) {
         this.fragmentTransaction = fragmentTransaction;
         this.fragmentFromScreen = fragmentFromScreen;
     }
@@ -19,7 +21,7 @@ public class ScreenFragmentStack implements ScreenStack {
     }
 
 
-    public void pushFragment(Class<? extends Fragment> fragmentClass) {
+    private void pushFragment(Class<? extends Fragment> fragmentClass) {
         try {
             attemptToPushFragment(fragmentClass);
         } catch (InstantiationException e) {

@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
-import android.app.Fragment;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class SearchNavigationControllerTest implements ScreenStack {
 
-    private Class pushedFragmentClass;
+    private Class pushedClass;
     private EventBus bus;
 
     @Before
@@ -30,16 +29,13 @@ public class SearchNavigationControllerTest implements ScreenStack {
     @Test
     public void pushesHomeFragmentOnAppStart() {
         bus.announce(Events.APP_START);
-        Class expected = SearchFragment.class;
-        assertThat(pushedFragmentClass, is(equalTo(expected)));
-    }
-
-    public void push(Class<? extends Fragment> fragmentClass) {
-        this.pushedFragmentClass = fragmentClass;
+        Class expected = SearchScreen.class;
+        assertThat(pushedClass, is(equalTo(expected)));
     }
 
     @Override
     public void pushScreen(Class<? extends Screen> screenClass) {
+        this.pushedClass = screenClass;
     }
 
 }
