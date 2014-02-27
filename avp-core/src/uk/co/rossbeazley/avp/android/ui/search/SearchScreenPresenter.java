@@ -6,8 +6,8 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class SearchScreenPresenter {
 
-    public SearchScreenPresenter(SearchScreenView view, final EventBus bus) {
-        bindToViewSearchEvent(view, bus);
+    public SearchScreenPresenter(SearchScreenView view, final SearchService bus) {
+        //bindToViewSearchEvent(view, bus);
     }
 
     private void bindToViewSearchEvent(SearchScreenView view, final EventBus bus) {
