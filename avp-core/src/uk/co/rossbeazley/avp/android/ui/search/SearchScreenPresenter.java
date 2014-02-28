@@ -2,10 +2,27 @@ package uk.co.rossbeazley.avp.android.ui.search;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class SearchScreenPresenter {
-    public SearchScreenPresenter(SearchScreen view, final EventBus bus) {
+
+    public SearchScreenPresenter(SearchScreen view, final SearchService searchService) {
+        bindToViewSearchEvent(view, searchService);
+    }
+
+    private void bindToViewSearchEvent(SearchScreen view, final SearchService searchService) {
+        view.setSearchEventListener(new SearchScreen.CanListenForUserSearchEvents() {
+            @Override
+            public void userPressedSearch() {
+                searchService.query("");
+            }
+        });
+
+    }
+
+
+    private void bindToViewSearchEvent(SearchScreen view, final EventBus bus) {
         view.setSearchEventListener(new SearchScreen.CanListenForUserSearchEvents() {
             @Override
             public void userPressedSearch() {
