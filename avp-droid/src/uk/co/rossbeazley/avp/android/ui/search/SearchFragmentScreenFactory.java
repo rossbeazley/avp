@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
+import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
+import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import uk.co.rossbeazley.avp.android.ui.Screen;
@@ -15,7 +17,8 @@ public class SearchFragmentScreenFactory implements FragmentScreenFactory {
     @Override
     public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
         SearchScreenAndroid result = new SearchScreenAndroid(inflatedLayoutView);
-        new SearchScreenPresenter(result, bus);
+        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus); //TODO just newing the edge of the app here, dosnt feel quite right
+        new SearchScreenPresenter(result, canDispatchSearchQuery);
         return result;
     }
 }
