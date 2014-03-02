@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class SearchServiceTest {
+public class CanDispatchSearchQueryTest {
 
     private static final String ANY_STRING = "any_old_screen";
     private boolean invoked = false;
@@ -23,20 +23,20 @@ public class SearchServiceTest {
         bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new Function() {
             @Override
             public void invoke() {
-                SearchServiceTest.this.invoked = true;
+                CanDispatchSearchQueryTest.this.invoked = true;
             }
         });
 
-        SearchService searchService = new DefaultSearchService(bus);
+        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus);
 
-        searchService.query(ANY_STRING);
+        canDispatchSearchQuery.query(ANY_STRING);
         assertThat(invoked, is(true));
     }
 
-    private static class DefaultSearchService implements SearchService {
+    private static class SearchService implements CanDispatchSearchQuery {
         private EventBus bus;
 
-        public DefaultSearchService(EventBus bus) {
+        public SearchService(EventBus bus) {
             this.bus = bus;
         }
 

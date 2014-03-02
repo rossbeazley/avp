@@ -1,7 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.android.search.SearchService;
+import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -13,14 +13,14 @@ public class SearchScreenPresenterTest implements SearchScreen {
 
     @Test
     public void dispatchesEventOntoBusInResponseToUserSearch() {
-        SearchService searchService = new SearchService() {
+        CanDispatchSearchQuery canDispatchSearchQuery = new CanDispatchSearchQuery() {
             @Override
             public void query(String searchString) {
                 invoked = true;
             }
         };
 
-        new SearchScreenPresenter(this, searchService);
+        new SearchScreenPresenter(this, canDispatchSearchQuery);
 
         searchEventListener.userPressedSearch();
 
