@@ -14,35 +14,29 @@ import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class AVPApplication {
-    private final ApplicationServices services;
 
-                              // Is this lazy?    should each service be a constructor arg
-    public AVPApplication(ApplicationServices services) {
-        this.services = services;
-        createCoreApp();
+    // Is this lazy?    should each service be a constructor arg
+    public AVPApplication(final ApplicationServices services) {
+
+        EventBus bus = services.eventbus();
+        Logger logger = services.getLogger();
+
+
+        new MediaPlayerCreator(bus, services.getAndroidMediaPlayerFactory());
+        new MediaPlayerPreparer(bus);
+        new MediaPlayerAutoPlay(bus);
+        new MediaPlayerControl(bus);
+
+        ThreadPoolFixedRateExecutor fixedRateExecutor = new ThreadPoolFixedRateExecutor(services.getExecutorService());
+        new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
+        new MediaPlayerScrubber(bus);
+        new MediaPlayerStateEventDispatcher(bus, fixedRateExecutor);
+
+        //This isnt in the core module, its only in droid
+        new MediaPlayerViewCreator(new AndroidMediaPlayerVideoOutputFactory(), bus);
+
+        new EventBusLog(logger, bus);
+        logger.debug("APP CREATED");
     }
 
-    private void createCoreApp() {
-        //TODO pull this execute statement out of this class
-        services.executeRunnableNotOnMainThread(new Runnable() {
-            @Override
-            public void run() {
-                EventBus bus = services.eventbus();
-                Logger logger = services.getLogger();
-                ThreadPoolFixedRateExecutor fixedRateExecutor = new ThreadPoolFixedRateExecutor(services.getExecutorService());
-
-                new MediaPlayerCreator(bus, services.getAndroidMediaPlayerFactory());
-                new MediaPlayerPreparer(bus);
-                new MediaPlayerAutoPlay(bus);
-                new MediaPlayerControl(bus);
-                new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
-                new MediaPlayerScrubber(bus);
-                new MediaPlayerStateEventDispatcher(bus, fixedRateExecutor);
-                new MediaPlayerViewCreator(new AndroidMediaPlayerVideoOutputFactory(), bus);
-
-                new EventBusLog(logger, bus);
-                logger.debug("APP CREATED");
-            }
-        });
-    }
 }

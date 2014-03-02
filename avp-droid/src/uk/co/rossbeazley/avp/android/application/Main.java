@@ -30,7 +30,13 @@ public class Main extends Activity {
     }
 
     private void createCoreApp(final ApplicationServices services) {
-        new AVPApplication(services);
+        services.executeRunnableNotOnMainThread(new Runnable() {
+            @Override
+            public void run() {
+                new AVPApplication(services);
+            }
+        });
+
     }
 
     private ApplicationServices createAppServices() {
