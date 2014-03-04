@@ -11,11 +11,12 @@ public class SearchScreenPresenter {
         bindToViewSearchEvent(view, canDispatchSearchQuery);
     }
 
-    private void bindToViewSearchEvent(SearchScreen view, final CanDispatchSearchQuery canDispatchSearchQuery) {
+    private void bindToViewSearchEvent(final SearchScreen view, final CanDispatchSearchQuery canDispatchSearchQuery) {
         view.setSearchEventListener(new SearchScreen.CanListenForUserSearchEvents() {
             @Override
             public void userPressedSearch() {
-                canDispatchSearchQuery.query("");
+                String searchString = view.getQueryString();
+                canDispatchSearchQuery.query(searchString);
             }
         });
 

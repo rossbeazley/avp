@@ -9,14 +9,15 @@ import static org.junit.Assert.assertThat;
 public class SearchScreenPresenterTest implements SearchScreen {
 
     private SearchScreen.CanListenForUserSearchEvents searchEventListener;
-    private boolean invoked = false;
+    private final String any_old_text = "any_old_text";
+    String queryString = "NOT SET";
 
     @Test
     public void dispatchesEventOntoBusInResponseToUserSearch() {
         CanDispatchSearchQuery canDispatchSearchQuery = new CanDispatchSearchQuery() {
             @Override
             public void query(String searchString) {
-                invoked = true;
+                queryString = searchString;
             }
         };
 
@@ -24,8 +25,13 @@ public class SearchScreenPresenterTest implements SearchScreen {
 
         searchEventListener.userPressedSearch();
 
-        assertThat(invoked, is(true));
+        assertThat(queryString, is(any_old_text));
 
+    }
+
+    @Override
+    public String getQueryString() {
+        return any_old_text;
     }
 
     @Override

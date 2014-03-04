@@ -41,4 +41,9 @@ public class SearchScreenAndroid implements Screen, SearchScreen {
         this.searchEventListener = searchEventListener;
     }
 
+    @Override
+    public String getQueryString() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }
