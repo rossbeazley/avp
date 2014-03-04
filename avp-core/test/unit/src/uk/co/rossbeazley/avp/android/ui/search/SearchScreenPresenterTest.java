@@ -26,7 +26,6 @@ public class SearchScreenPresenterTest implements SearchScreen {
         searchEventListener.userPressedSearch();
 
         assertThat(queryString, is(any_old_text));
-
     }
 
     @Override
