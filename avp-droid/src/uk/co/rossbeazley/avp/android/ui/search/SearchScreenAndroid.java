@@ -43,7 +43,7 @@ public class SearchScreenAndroid implements Screen, SearchScreen {
 
     @Override
     public String getQueryString() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return viewFinder.getText(R.id.searchString);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
 }

@@ -1,5 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
+import android.view.View;
+import android.widget.TextView;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -14,16 +17,33 @@ import static org.junit.Assert.assertThat;
 public class SearchScreenTest implements SearchScreenAndroid.CanListenForUserSearchEvents {
 
     private boolean called = false;
+    private String query_string = "any_old_query_string";
+    private ActivityForTestingViews visibleActivityForLayout;
+    private SearchScreen screen;
+
+    @Before
+    public void setUp() throws Exception {
+        visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);
+        screen = new SearchScreenAndroid(visibleActivityForLayout.viewFinder());
+    }
 
     @Test
     public void clickingHomeButtonDispatchesEvent() {
-
-        ActivityForTestingViews act = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);
-        SearchScreen screen = new SearchScreenAndroid(act.viewFinder());
         screen.setSearchEventListener(this);
-        Robolectric.clickOn(act.findViewById(R.id.go));
+        View goButton = visibleActivityForLayout.findViewById(R.id.go);
+        Robolectric.clickOn(goButton);
 
         assertThat(called,is(true));
+    }
+
+    @Test
+    public void returnsTextFromTheQueryStringTextBos() {
+        TextView tv = (TextView) visibleActivityForLayout.findViewById(R.id.searchString);
+        tv.setText(query_string);
+
+        String text;
+        text = screen.getQueryString();
+        assertThat(text, is(query_string));
     }
 
     @Override

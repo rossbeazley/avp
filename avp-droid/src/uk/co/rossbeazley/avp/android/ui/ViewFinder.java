@@ -30,4 +30,8 @@ public class ViewFinder {
     public void clearOnClickListener(int id) {
         setOnClickListener(null,id); //wouldnt it be nice if there were no click listeners etc, just viewEvent. so click and longclick etc collapse into one interface but we still call setClickListener(<Listener>l)
     }
+
+    public String getText(int id) {
+        return String.valueOf(((TextView) canFindViewById.findViewById(id)).getText());
+    }
 }
