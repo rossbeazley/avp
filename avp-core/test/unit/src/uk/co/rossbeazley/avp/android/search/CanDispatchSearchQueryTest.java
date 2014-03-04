@@ -2,8 +2,9 @@ package uk.co.rossbeazley.avp.android.search;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
-import uk.co.rossbeazley.avp.eventbus.Function;
+import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -12,24 +13,27 @@ import static org.junit.Assert.assertThat;
 
 public class CanDispatchSearchQueryTest {
 
-    private static final String ANY_STRING = "any_old_string";
-    private boolean invoked = false;
+    private UriString uristring;
+    private final String uri = "http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4";
+    private UriString expectedUriString = new UriString(uri);
+
 
     @Test
     public void testQuery() throws Exception {
          EventBus bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new Function() {
+        bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
+
             @Override
-            public void invoke() {
-                CanDispatchSearchQueryTest.this.invoked = true;
+            public void invoke(UriString payload) {
+                uristring = payload;
             }
         });
 
         CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus);
 
-        canDispatchSearchQuery.query(ANY_STRING);
-        assertThat(invoked, is(true));
+        canDispatchSearchQuery.query(uri);
+        assertThat(uristring, is(expectedUriString));
     }
 
 }

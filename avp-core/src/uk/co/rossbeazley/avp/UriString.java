@@ -22,4 +22,9 @@ public class UriString {
     public String toString() {
         return uri;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return uri.equals( ((UriString)obj).uri );
+    }
 }

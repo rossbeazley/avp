@@ -23,6 +23,12 @@ public class SearchScreenAndroid implements Screen, SearchScreen {
         }, R.id.go);
 
         this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
+
+        populateSearchBoxWithInitialValue();
+    }
+
+    private void populateSearchBoxWithInitialValue() {
+        viewFinder.setText("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4",R.id.searchString);
     }
 
     @Override
@@ -43,7 +49,7 @@ public class SearchScreenAndroid implements Screen, SearchScreen {
 
     @Override
     public String getQueryString() {
-        return viewFinder.getText(R.id.searchString);  //To change body of implemented methods use File | Settings | File Templates.
+        return viewFinder.getText(R.id.searchString);
     }
 
 }
