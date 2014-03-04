@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.ui.Screen;
@@ -14,7 +13,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-@RunWith(RobolectricTestRunner.class)
 public class VideoPlayerNavigationControllerTest implements ScreenStack {
 
     private Class actualClass;
