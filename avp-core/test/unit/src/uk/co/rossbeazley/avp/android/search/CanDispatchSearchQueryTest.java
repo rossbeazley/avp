@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 
 public class CanDispatchSearchQueryTest {
 
-    private static final String ANY_STRING = "any_old_screen";
+    private static final String ANY_STRING = "any_old_string";
     private boolean invoked = false;
 
     @Test
