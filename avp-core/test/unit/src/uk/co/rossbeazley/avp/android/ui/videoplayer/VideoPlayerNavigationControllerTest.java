@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.ui.Screen;
@@ -20,7 +19,7 @@ public class VideoPlayerNavigationControllerTest implements ScreenStack {
     @Test
     public void pushesVideoPlayerFragmentOnVideoLoadEvent() {
         //Events.USER_LOAD_VIDEO
-        UriString anyUriString = new UriString("ANY");
+        UriString anyUriString = UriString.from("ANY");
         EventBus bus = new ExecutorEventBus();
 
         new VideoPlayerNavigationController(this, bus);
