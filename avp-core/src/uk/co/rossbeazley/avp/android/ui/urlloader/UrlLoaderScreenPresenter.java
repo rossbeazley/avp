@@ -8,14 +8,16 @@ public class UrlLoaderScreenPresenter {
 
     public UrlLoaderScreenPresenter(UrlLoaderScreen view, final CanPlayMedia canDispatchSearchQuery, final EventBus bus) {
         bindToViewSearchEvent(view, canDispatchSearchQuery);
+        bindToViewGotoSearchScreenEvent(view, bus);
+    }
 
+    private void bindToViewGotoSearchScreenEvent(UrlLoaderScreen view, final EventBus bus) {
         view.setGotoSearchEventListener(new UrlLoaderScreen.CanListenForUserGotoSearchScreenEvents() {
             @Override
             public void userPressedGotoSearch() {
-                bus.announce(Events.USER_PRESSED_GOTO_SEARCH);
+                bus.announce(Events.USER_WANTS_TO_GOTO_SEARCH);
             }
         });
-
     }
 
     private void bindToViewSearchEvent(final UrlLoaderScreen view, final CanPlayMedia canDispatchSearchQuery) {

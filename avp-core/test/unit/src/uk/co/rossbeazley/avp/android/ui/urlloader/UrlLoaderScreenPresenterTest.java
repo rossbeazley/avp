@@ -45,7 +45,7 @@ public class UrlLoaderScreenPresenterTest implements UrlLoaderScreen {
 
         EventBus bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.USER_PRESSED_GOTO_SEARCH)
+        bus.whenEvent(Events.USER_WANTS_TO_GOTO_SEARCH)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

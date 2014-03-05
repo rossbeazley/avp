@@ -24,5 +24,5 @@ public class Events {
     public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
     public static final String PLAYER_VIEW_CREATED = "player_view_created";
     public static final String USER_SEARCH_CREATED = "user_search_created";
-    public static final String USER_PRESSED_GOTO_SEARCH = "user_pressed_goto_search";
+    public static final String USER_WANTS_TO_GOTO_SEARCH = "user_wants to_goto_search";
 }
