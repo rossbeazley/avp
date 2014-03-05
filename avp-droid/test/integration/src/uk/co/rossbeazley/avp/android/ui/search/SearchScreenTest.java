@@ -46,13 +46,6 @@ public class SearchScreenTest implements SearchScreenAndroid.CanListenForUserSea
         assertThat(text, is(query_string));
     }
 
-    @Test //todo delete this test when im doing real searches
-    public void newScreenIsPopulatedWithURLForTestContent() {
-        String text = screen.getQueryString();
-        assertThat(text, is("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4"));
-
-    }
-
     @Override
     public void userPressedSearch() {
         this.called=true;

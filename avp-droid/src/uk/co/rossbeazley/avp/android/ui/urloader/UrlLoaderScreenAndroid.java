@@ -14,30 +14,38 @@ public class UrlLoaderScreenAndroid implements UrlLoaderScreen {
 
     public UrlLoaderScreenAndroid(CanFindViewById inflatedLayoutView) {
         searchEventListener = CanListenForUserGoEvents.NONE;
-        viewFinder = new ViewFinder(inflatedLayoutView);
+        this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
+        this.gotoSearchEventListener = CanListenForUserGotoSearchScreenEvents.NONE;
 
-        viewFinder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchEventListener.userPressedGo();
-            }
-        }, R.id.go);
+       viewFinder = new ViewFinder(inflatedLayoutView); //at some point ill pass this in instead of inflated view
 
+        bindGoButtonListener();
+        bindGotoSearchButtonListener();
+
+        populateTextBoxWithInitialValue();
+    }
+
+    private void bindGotoSearchButtonListener() {
         viewFinder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gotoSearchEventListener.userPressedGotoSearch();
             }
         }, R.id.search);
+    }
 
-        this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
-        this.gotoSearchEventListener = CanListenForUserGotoSearchScreenEvents.NONE;
-
-        populateTextBoxWithInitialValue();
+    private void bindGoButtonListener() {
+        viewFinder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchEventListener.userPressedGo();
+            }
+        }, R.id.go);
     }
 
     private void populateTextBoxWithInitialValue() {
-        viewFinder.setText("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4",R.id.searchString);
+        final String av_test_harness_sample_video = "http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4";
+        viewFinder.setText(av_test_harness_sample_video,R.id.searchString);
     }
 
     @Override
