@@ -1,8 +1,7 @@
-package uk.co.rossbeazley.avp.android.ui.search;
+package uk.co.rossbeazley.avp.android.ui.urlloader;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
@@ -10,11 +9,10 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchNavigationControllerTest implements ScreenStack {
+public class UrlLoaderNavigationControllerTest implements ScreenStack {
 
     private Class pushedClass;
     private EventBus bus;
@@ -22,15 +20,14 @@ public class SearchNavigationControllerTest implements ScreenStack {
     @Before
     public void setup() {
         bus = new ExecutorEventBus();
-        new SearchNavigationController(this, bus);
+        new UrlLoaderNavigationController(this, bus);
     }
 
     @Test
-    public void dosntPushSearchFragmentOnAppStart() {
+    public void pushesHomeFragmentOnAppStart() {
         bus.announce(Events.APP_START);
-        Class expected = SearchScreen.class;
-        assertThat(pushedClass, is(not(equalTo(expected))));
-
+        Class expected = UrlLoaderScreen.class;
+        assertThat(pushedClass, is(equalTo(expected)));
     }
 
     @Override

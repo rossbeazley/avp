@@ -1,18 +1,19 @@
-package uk.co.rossbeazley.avp.android.search;
+package uk.co.rossbeazley.avp.android.player;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
+import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 
-public class CanDispatchSearchQueryTest {
+public class CanPlayMediaTest {
 
     private UriString uristring;
     private final String uri = "http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4";
@@ -31,12 +32,10 @@ public class CanDispatchSearchQueryTest {
             }
         });
 
-        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus);
+        CanPlayMedia canPlayMedia = new MediaService(bus);
 
-        canDispatchSearchQuery.query(uri);
+        canPlayMedia.play(uri);
         assertThat(uristring, is(expectedUriString));
-
-        fail("This isnt right at all, its a media load thingy");
     }
 
 }
