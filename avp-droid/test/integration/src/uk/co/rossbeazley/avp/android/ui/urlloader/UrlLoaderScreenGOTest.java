@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class UrlLoaderScreenTest implements UrlLoaderScreen.CanListenForUserGoEvents {
+public class UrlLoaderScreenGOTest implements UrlLoaderScreen.CanListenForUserGoEvents {
 
     private boolean called = false;
     private String query_string = "any_old_query_string";
@@ -24,7 +24,7 @@ public class UrlLoaderScreenTest implements UrlLoaderScreen.CanListenForUserGoEv
 
     @Before
     public void setUp() throws Exception {
-        visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.search);//TODO change this to real layout
+        visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.urlloader);//TODO change this to real layout
         screen = new UrlLoaderScreenAndroid(visibleActivityForLayout.viewFinder());
     }
 

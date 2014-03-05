@@ -10,6 +10,7 @@ public class UrlLoaderScreenAndroid implements UrlLoaderScreen {
     private final ViewFinder viewFinder;
     private CanListenForUserGoEvents searchEventListener;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
+    private CanListenForUserGotoSearchScreenEvents gotoSearchEventListener;
 
     public UrlLoaderScreenAndroid(CanFindViewById inflatedLayoutView) {
         searchEventListener = CanListenForUserGoEvents.NONE;
@@ -22,12 +23,20 @@ public class UrlLoaderScreenAndroid implements UrlLoaderScreen {
             }
         }, R.id.go);
 
-        this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
+        viewFinder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoSearchEventListener.userPressedGotoSearch();
+            }
+        }, R.id.search);
 
-        populateSearchBoxWithInitialValue();
+        this.canListenForScreenTearDownEvents = CanListenForScreenTearDownEvents.NONE;
+        this.gotoSearchEventListener = CanListenForUserGotoSearchScreenEvents.NONE;
+
+        populateTextBoxWithInitialValue();
     }
 
-    private void populateSearchBoxWithInitialValue() {
+    private void populateTextBoxWithInitialValue() {
         viewFinder.setText("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4",R.id.searchString);
     }
 
@@ -50,6 +59,11 @@ public class UrlLoaderScreenAndroid implements UrlLoaderScreen {
     @Override
     public String uriString() {
         return viewFinder.getText(R.id.searchString);
+    }
+
+    @Override
+    public void setGotoSearchEventListener(CanListenForUserGotoSearchScreenEvents gotoSearchEventListener) {
+        this.gotoSearchEventListener = gotoSearchEventListener;
     }
 
 

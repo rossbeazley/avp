@@ -11,11 +11,11 @@ public class SearchNavigationController {
 
     public SearchNavigationController(ScreenStack screenStack, EventBus bus) {
         this.screenStack = screenStack;
-        //bindEventListeners(bus);
+        bindEventListeners(bus);
     }
 
     private void bindEventListeners(EventBus bus) {
-        bus.whenEvent(Events.APP_START)
+        bus.whenEvent(Events.USER_WANTS_TO_GOTO_SEARCH)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

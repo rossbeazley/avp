@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
@@ -10,7 +9,6 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -26,10 +24,10 @@ public class SearchNavigationControllerTest implements ScreenStack {
     }
 
     @Test
-    public void dosntPushSearchFragmentOnAppStart() {
-        bus.announce(Events.APP_START);
+    public void pushSearchFragmentOnGotoSearchEvent() {
+        bus.announce(Events.USER_WANTS_TO_GOTO_SEARCH);
         Class expected = SearchScreen.class;
-        assertThat(pushedClass, is(not(equalTo(expected))));
+        assertThat(pushedClass, is(equalTo(expected)));
 
     }
 
