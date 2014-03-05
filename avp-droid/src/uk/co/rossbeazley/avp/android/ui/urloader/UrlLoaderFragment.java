@@ -6,6 +6,6 @@ import uk.co.rossbeazley.avp.android.ui.ScreenResourceIdFragment;
 public class UrlLoaderFragment extends ScreenResourceIdFragment implements InjectableUrlLoaderFragment {
     @Override
     protected int resourceId() {
-        return R.layout.search;
+        return R.layout.urlloader;
     }
 }

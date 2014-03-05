@@ -12,13 +12,27 @@
         />
 
     <TextView android:id="@+id/go"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:gravity="center"
-              android:text="GO"
+              android:text="LOAD URL"
               android:textColor="#aaaaaa"
               android:textSize="40dp"
+              android:paddingRight="20dp"
               android:layout_alignParentRight="true"
+              android:layout_alignParentBottom="true"
+            />
+
+    <TextView android:id="@+id/search"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:text="&lt; search screen"
+              android:paddingLeft="20dp"
+              android:paddingBottom="10dp"
+              android:textColor="#aaaaaa"
+              android:textSize="20dp"
+              android:layout_alignParentLeft="true"
               android:layout_alignParentBottom="true"
             />
 

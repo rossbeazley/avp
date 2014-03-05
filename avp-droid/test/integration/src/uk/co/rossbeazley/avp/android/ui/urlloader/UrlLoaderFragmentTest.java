@@ -49,7 +49,7 @@ public class UrlLoaderFragmentTest implements InflatedViewFactory, FragmentScree
     @Test
     public void whenDisplayedUsesFactoryToCreateScreenWithHomeLayoutID() {
         urlLoaderFragment.onCreateView(null, null, null);
-        assertThat(layoutId, is(R.layout.search));
+        assertThat("wrong layout id, expected R.layout.urlloader",layoutId, is(R.layout.urlloader));
     }
 
     @Test

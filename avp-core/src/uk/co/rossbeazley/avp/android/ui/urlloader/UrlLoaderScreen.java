@@ -7,8 +7,15 @@ public interface UrlLoaderScreen extends Screen {
 
     String uriString();
 
+    void setGotoSearchEventListener(CanListenForUserGotoSearchScreenEvents gotoSearchEventListener);
+
     public interface CanListenForUserGoEvents {
         void userPressedGo();
         CanListenForUserGoEvents NONE = new CanListenForUserGoEvents() { public void userPressedGo() {} };
+    }
+
+    public interface CanListenForUserGotoSearchScreenEvents {
+        void userPressedGotoSearch();
+        CanListenForUserGotoSearchScreenEvents NONE = new CanListenForUserGotoSearchScreenEvents() { public void userPressedGotoSearch() {}};
     }
 }
