@@ -4,6 +4,8 @@ import android.app.Fragment;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.search.SearchFragment;
 import uk.co.rossbeazley.avp.android.ui.search.SearchScreen;
+import uk.co.rossbeazley.avp.android.ui.urlloader.UrlLoaderScreen;
+import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragment;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoControlScreen;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragment;
 
@@ -19,6 +21,7 @@ class DefaultFragmentFromScreen implements FragmentFromScreen {
         fragmentsByScreen = new HashMap<Class<? extends Screen>, Class<? extends Fragment>>(){{
             put(SearchScreen.class, SearchFragment.class);
             put(VideoControlScreen.class, VideoPlayerFragment.class);
+            put(UrlLoaderScreen.class, UrlLoaderFragment.class);
         }};
     }
 

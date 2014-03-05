@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.search;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
@@ -14,29 +15,30 @@ import static org.junit.Assert.fail;
 
 public class CanDispatchSearchQueryTest {
 
-    private UriString uristring;
-    private final String uri = "http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4";
-    private UriString expectedUriString = UriString.from(uri);
 
+    private Search search;
+    private Search expectedSearch = null;
+    private String ANY_SEARCH_STRING = "any_search_string";
 
     @Test
     public void testQuery() throws Exception {
          EventBus bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
+        bus.whenEvent(Events.USER_SEARCH_CREATED).thenRun(new FunctionWithParameter<Search>() {
 
             @Override
-            public void invoke(UriString payload) {
-                uristring = payload;
+            public void invoke(Search payload) {
+                search = payload;
             }
         });
 
         CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus);
 
-        canDispatchSearchQuery.query(uri);
-        assertThat(uristring, is(expectedUriString));
+        canDispatchSearchQuery.query(ANY_SEARCH_STRING);
+        assertThat(search, is(expectedSearch));
 
-        fail("This isnt right at all, its a media load thingy");
     }
 
+    private class Search {
+    }
 }

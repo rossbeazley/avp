@@ -11,7 +11,7 @@ public class SearchNavigationController {
 
     public SearchNavigationController(ScreenStack screenStack, EventBus bus) {
         this.screenStack = screenStack;
-        bindEventListeners(bus);
+        //bindEventListeners(bus);
     }
 
     private void bindEventListeners(EventBus bus) {

@@ -11,11 +11,8 @@ public class SearchService implements CanDispatchSearchQuery {
         this.bus = bus;
     }
 
-    @Override         //TODO, introduce search play object, infact i think this class should make one and tell the world about it
+    @Override
     public void query(String searchString) {
-        //UriString uriString = new UriString("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4");
-        UriString uriString = UriString.from(searchString);
-        bus .sendPayload(uriString)
-            .withEvent(Events.USER_LOAD_VIDEO);
+
     }
 }
