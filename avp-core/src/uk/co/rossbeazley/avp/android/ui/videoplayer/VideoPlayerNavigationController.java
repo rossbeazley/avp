@@ -25,7 +25,7 @@ public class VideoPlayerNavigationController {
     }
 
     private void showVideoPlayScreen() {
-        screenStack.pushScreen(VideoControlScreen.class);
+        screenStack.pushScreen(VideoPlayerScreen.class);
     }
 
 }

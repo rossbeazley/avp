@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEvents {
+public class ScreenPlayTest implements VideoPlayerScreen.CanListenForUserPlayEvents {
 
     @Test
     public void userPlayVideoEventWhenPlayClicked() {
@@ -31,7 +31,7 @@ public class ScreenPlayTest implements VideoControlScreen.CanListenForUserPlayEv
     }
 
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

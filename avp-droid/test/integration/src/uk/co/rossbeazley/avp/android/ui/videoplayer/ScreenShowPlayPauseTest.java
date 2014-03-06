@@ -48,7 +48,7 @@ public class ScreenShowPlayPauseTest {
     }
 
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

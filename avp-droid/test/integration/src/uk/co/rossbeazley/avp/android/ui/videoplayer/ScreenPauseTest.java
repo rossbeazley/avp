@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPauseEvents {
+public class ScreenPauseTest implements VideoPlayerScreen.CanListenForUserPauseEvents {
 
     @Test
     public void userPauseVideoEventWhenPauseClicked() {
@@ -32,11 +32,11 @@ public class ScreenPauseTest implements VideoControlScreen.CanListenForUserPause
     public void setUp() throws Exception {
         activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.videoplayer);
         VideoScreenAndroidView lvideoScreen = new VideoScreenAndroidView(activity.viewFinder());
-        lvideoScreen.setPauseEventListener((VideoControlScreen.CanListenForUserPauseEvents)this);
+        lvideoScreen.setPauseEventListener((VideoPlayerScreen.CanListenForUserPauseEvents)this);
         videoScreen = lvideoScreen;
     }
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

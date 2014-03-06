@@ -20,7 +20,7 @@ class Search {
         return new Search(any_search_string);
     }
 
-    Search(String query) {
+    private Search(String query) {
         this.query = query;
     }
 

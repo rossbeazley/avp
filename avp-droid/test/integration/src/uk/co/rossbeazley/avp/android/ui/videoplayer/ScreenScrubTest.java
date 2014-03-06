@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrubEvents {
+public class ScreenScrubTest implements VideoPlayerScreen.CanListenForUserScrubEvents {
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
     private SeekBar sb;
@@ -62,7 +62,7 @@ public class ScreenScrubTest implements VideoControlScreen.CanListenForUserScrub
     }
 
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

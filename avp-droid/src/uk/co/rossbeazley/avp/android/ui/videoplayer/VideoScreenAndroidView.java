@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class VideoScreenAndroidView implements VideoControlScreen, VideoOutputScreen {
+public class VideoScreenAndroidView implements VideoPlayerScreen, VideoOutputScreen {
     private final ViewFinder viewFinder;
 
     private CanListenForUserPlayEvents canListenForUserPlayEvents;

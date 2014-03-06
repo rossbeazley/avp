@@ -1,9 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.ui.Screen;
 
-class FakeVideoScreenVideo implements VideoControlScreen {
+class FakeVideoScreenVideo implements VideoPlayerScreen {
 
     public boolean showPlay = false;
     public boolean showPause = false;

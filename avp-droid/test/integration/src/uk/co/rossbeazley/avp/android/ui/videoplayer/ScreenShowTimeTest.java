@@ -68,7 +68,7 @@ public class ScreenShowTimeTest {
     }
 
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

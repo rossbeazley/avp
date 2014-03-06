@@ -42,7 +42,7 @@ public class ScreenShowBufferingTest {
     }
 
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

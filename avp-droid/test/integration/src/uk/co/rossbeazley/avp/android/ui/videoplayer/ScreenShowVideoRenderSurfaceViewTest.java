@@ -80,7 +80,7 @@ public class ScreenShowVideoRenderSurfaceViewTest {
     }
 
 
-    private VideoControlScreen videoScreen;
+    private VideoPlayerScreen videoScreen;
 
     private ActivityForTestingViews activity;
 

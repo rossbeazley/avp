@@ -21,7 +21,7 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
         result = new VideoScreenAndroidView(inflatedLayoutView);
 
-        new VideoScreenControlsPresenter(bus, result);
+        new VideoPlayerScreenPresenter(bus, result);
         new VideoOutputScreenPresenter(result, bus);    // think this dual presenter is a bit of a special
 
         return result;

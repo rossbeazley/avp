@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 
-public interface VideoControlScreen extends Screen {
+public interface VideoPlayerScreen extends Screen {
     void showTotalTime(TimeInMilliseconds time);
 
     void showProgressTime(TimeInMilliseconds time);

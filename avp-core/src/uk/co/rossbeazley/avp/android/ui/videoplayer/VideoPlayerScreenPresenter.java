@@ -8,15 +8,15 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuff, player screen
+class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff, player screen
     private final EventBus bus;
 
-    VideoScreenControlsPresenter(final EventBus bus, final VideoControlScreen videoScreen) {
+    VideoPlayerScreenPresenter(final EventBus bus, final VideoPlayerScreen videoScreen) {
         this.bus = bus;
         registerOnEventBus(videoScreen);
     }
 
-    private void registerOnEventBus(final VideoControlScreen videoScreen) {
+    private void registerOnEventBus(final VideoPlayerScreen videoScreen) {
 
         bindPlayerPlayingEvent(videoScreen);
         bindPlayerPausedEvent(videoScreen);
@@ -27,7 +27,7 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
         bindScreenTearDownEvent(videoScreen);
     }
 
-    private void bindPlayerPausedEvent(final VideoControlScreen videoScreen) {
+    private void bindPlayerPausedEvent(final VideoPlayerScreen videoScreen) {
         bus.whenEvent(Events.PLAYER_PAUSED)
                 .thenRun(new Function() {
                     @Override
@@ -38,7 +38,7 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
                 });
     }
 
-    private void bindTimeUpdateEvent(final VideoControlScreen videoScreen) {
+    private void bindTimeUpdateEvent(final VideoPlayerScreen videoScreen) {
         bus.whenEvent(Events.PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
             @Override
             public void invoke(MediaTimePosition payload) {
@@ -51,8 +51,8 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
         });
     }
 
-    private void bindUserScrubEvent(VideoControlScreen videoScreen) {
-        videoScreen.setScrubEventListener(new VideoControlScreen.CanListenForUserScrubEvents() {
+    private void bindUserScrubEvent(VideoPlayerScreen videoScreen) {
+        videoScreen.setScrubEventListener(new VideoPlayerScreen.CanListenForUserScrubEvents() {
         @Override
             public void userScrubbedTo(long positionAsMillis) {
                 TimeInMilliseconds positionAsMilliseconds = TimeInMilliseconds.fromLong(positionAsMillis);
@@ -62,8 +62,8 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
         });
     }
 
-    private void bindUserPlayEvent(VideoControlScreen videoScreen) {
-        videoScreen.setPlayEventListener(new VideoControlScreen.CanListenForUserPlayEvents() {
+    private void bindUserPlayEvent(VideoPlayerScreen videoScreen) {
+        videoScreen.setPlayEventListener(new VideoPlayerScreen.CanListenForUserPlayEvents() {
             @Override
             public void userPressedPlay() {
                 bus.announce(Events.USER_PLAY);
@@ -71,8 +71,8 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
         });
     }
 
-    private void bindUserPauseEvent(VideoControlScreen videoScreen) {
-        videoScreen.setPauseEventListener(new VideoControlScreen.CanListenForUserPauseEvents() {
+    private void bindUserPauseEvent(VideoPlayerScreen videoScreen) {
+        videoScreen.setPauseEventListener(new VideoPlayerScreen.CanListenForUserPauseEvents() {
             @Override
             public void userPressedPause() {
                 bus.announce(Events.USER_PAUSE);
@@ -80,7 +80,7 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
         });
     }
 
-    private void bindPlayerPlayingEvent(final VideoControlScreen videoScreen) {
+    private void bindPlayerPlayingEvent(final VideoPlayerScreen videoScreen) {
         bus.whenEvent(Events.PLAYER_PLAYING)
                 .thenRun(new Function() {
                     @Override
@@ -91,7 +91,7 @@ class VideoScreenControlsPresenter {      //TODO rename all the VideoScreen stuf
                 });
     }
 
-    private void bindScreenTearDownEvent(VideoControlScreen videoScreen) {
+    private void bindScreenTearDownEvent(VideoPlayerScreen videoScreen) {
         videoScreen.setTearDownEventListener(new Screen.CanListenForScreenTearDownEvents() {
             @Override
             public void screenTearDown() {

@@ -22,7 +22,7 @@ public class VideoControlScreenMediatorScrubbingTest {
     public void setup() {
         bus = new ExecutorEventBus();
         fakeVideoScreen = new FakeVideoScreenVideo();
-        VideoScreenControlsPresenter controller = new VideoScreenControlsPresenter(bus, fakeVideoScreen);
+        VideoPlayerScreenPresenter controller = new VideoPlayerScreenPresenter(bus, fakeVideoScreen);
 
         MediaTimePosition TEN_SECOND_VIDEO = new MediaTimePosition(TimeInMilliseconds.fromInt(0), TimeInMilliseconds.fromInt(10000));
         bus.sendPayload(TEN_SECOND_VIDEO)
