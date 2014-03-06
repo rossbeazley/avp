@@ -35,24 +35,34 @@ public class UrlLoaderFragmentTest implements InflatedViewFactory, FragmentScree
         }
     };
 
-    private UrlLoaderFragment urlLoaderFragment;
+    private ScreenResourceIdFragment urlLoaderFragment;
     private CanFindViewById usedViewFinder;
 
     @Before
     public void setUp() throws Exception {
-        urlLoaderFragment = new UrlLoaderFragment();
+        urlLoaderFragment = createFragment();
         urlLoaderFragment.injectInflatedViewFactory(this);
         urlLoaderFragment.injectFragmentScreenFactory(this);
     }
 
-
-    @Test
-    public void whenDisplayedUsesFactoryToCreateScreenWithHomeLayoutID() {
-        urlLoaderFragment.onCreateView(null, null, null);
-        assertThat("wrong layout id, expected R.layout.urlloader",layoutId, is(R.layout.urlloader));
+    //specialised
+    private ScreenResourceIdFragment createFragment() {
+        return new UrlLoaderFragment();
     }
 
-    @Test
+
+    @Test //generic
+    public void whenDisplayedUsesFactoryToCreateScreenWithHomeLayoutID() {
+        urlLoaderFragment.onCreateView(null, null, null);
+        assertThat("wrong layout id, expected R.layout.urlloader",layoutId, is(expectedLayoutID()));
+    }
+
+    //specialised
+    private int expectedLayoutID() {
+        return R.layout.urlloader;
+    }
+
+    @Test //generic
     public void buildsScreenWithInflatedLayout() {
         urlLoaderFragment.onCreateView(null, null, null);
         assertThat((InflatedView) usedViewFinder, is(equalTo(viewFinder)));
