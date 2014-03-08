@@ -13,10 +13,10 @@ import static org.junit.Assert.assertThat;
 public class CanDispatchSearchQueryTest {
 
 
-    private String ANY_SEARCH_STRING = "any_search_string";
+    private final Query ANY_QUERY = Query.fromString("any_query_string");
 
     private Search search;
-    private Search expectedSearch = Search.fromQueryString(ANY_SEARCH_STRING);
+    private Search expectedSearch = Search.fromQuery(ANY_QUERY);
 
     @Test
     public void testQuery() throws Exception {
@@ -32,7 +32,7 @@ public class CanDispatchSearchQueryTest {
 
         CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus);
 
-        canDispatchSearchQuery.query(ANY_SEARCH_STRING);
+        canDispatchSearchQuery.query(ANY_QUERY);
         assertThat(search, is(expectedSearch));
 
     }

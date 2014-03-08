@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.search;
 
 class Search {
 
-    private final String query;
+    private final Query query;
 
 
     /**
@@ -16,11 +16,15 @@ class Search {
      * what happens with a pagenated result set?
      */
 
-    public static Search fromQueryString(String any_search_string) {
-        return new Search(any_search_string);
+    public static Search fromString(String any_search_string) {
+        return new Search(Query.fromString(any_search_string));
     }
 
-    private Search(String query) {
+    public static Search fromQuery(Query query) {
+        return new Search(query);
+    }
+
+    private Search(Query query) {
         this.query = query;
     }
 

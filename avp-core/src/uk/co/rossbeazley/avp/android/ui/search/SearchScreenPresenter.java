@@ -1,9 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
-import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
-import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.android.search.Query;
 
 public class SearchScreenPresenter {
 
@@ -16,7 +14,8 @@ public class SearchScreenPresenter {
             @Override
             public void userPressedSearch() {
                 String searchString = view.getQueryString();
-                canDispatchSearchQuery.query(searchString);
+                //Could maybe show the results screen then dispatch the query
+                canDispatchSearchQuery.query(Query.fromString(searchString));
             }
         });
 

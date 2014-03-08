@@ -11,8 +11,8 @@ public class SearchService implements CanDispatchSearchQuery {
     }
 
     @Override
-    public void query(String searchString) {
-        Search search = Search.fromQueryString(searchString);
+    public void query(Query searchString) {
+        Search search = Search.fromQuery(searchString);
         bus.sendPayload(search)
                 .withEvent(Events.SEARCH_CREATED);
     }
