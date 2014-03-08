@@ -56,7 +56,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
         @Override
             public void userScrubbedTo(long positionAsMillis) {
                 TimeInMilliseconds positionAsMilliseconds = TimeInMilliseconds.fromLong(positionAsMillis);
-                bus.sendPayload(positionAsMilliseconds)
+                bus.sendPayload(positionAsMilliseconds) //TODO migrate to a service object?
                         .withEvent(Events.USER_SCRUB);
             }
         });
@@ -66,7 +66,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
         videoScreen.setPlayEventListener(new VideoPlayerScreen.CanListenForUserPlayEvents() {
             @Override
             public void userPressedPlay() {
-                bus.announce(Events.USER_PLAY);
+                bus.announce(Events.USER_PLAY);  //TODO migrate to a service object?
             }
         });
     }
@@ -75,7 +75,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
         videoScreen.setPauseEventListener(new VideoPlayerScreen.CanListenForUserPauseEvents() {
             @Override
             public void userPressedPause() {
-                bus.announce(Events.USER_PAUSE);
+                bus.announce(Events.USER_PAUSE);  //TODO migrate to a service object?
             }
         });
     }
@@ -95,7 +95,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
         videoScreen.setTearDownEventListener(new Screen.CanListenForScreenTearDownEvents() {
             @Override
             public void screenTearDown() {
-                bus.announce(Events.USER_EXIT_VIDEO_SCREEN);
+                bus.announce(Events.USER_EXIT_VIDEO_SCREEN); //TODO migrate to a service object? Very confused!
             }
         });
     }
