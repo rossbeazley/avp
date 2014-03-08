@@ -1,8 +1,9 @@
 Kata Rules:
 One activity, it just does NEW
 Event bus (ie message orientated programming)
+Tell dont ask, in fact you cant ask - except in the ui layer :)
 No mocking frameworks
-Find a use for dependency injection eg in your fragments
+Dependency injection in fragments
 
 
 
@@ -25,11 +26,11 @@ User returns to the app
 User exits the app
 User wants to restart the media
 
-
+user sends a query for media into the system
 
 Objects:
 
-User
+User ??
 Media player
 Rule - auto start media on load
 

@@ -46,6 +46,7 @@ public class ResultsNavigationControllerTest implements ScreenStack {
                             screenStack.pushScreen(ResultsScreen.class); //KEVIN - my ui navigation has just broken,
                                                                          // how do i get the payload into the presenter and thus the screen?
                                                                          // for now I can show nothing and wait for the results
+                                                                         // maybe my presenters are singletons?
                         }
                     });
         }
