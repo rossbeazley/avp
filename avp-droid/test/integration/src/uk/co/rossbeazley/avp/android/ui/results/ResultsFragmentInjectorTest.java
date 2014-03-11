@@ -7,10 +7,6 @@ import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
 import uk.co.rossbeazley.avp.android.ui.NeedsAnInflatedViewFactory;
-import uk.co.rossbeazley.avp.android.ui.search.InjectableSearchFragment;
-import uk.co.rossbeazley.avp.android.ui.search.SearchFragmentInjector;
-import uk.co.rossbeazley.avp.android.ui.search.SearchFragmentScreenFactory;
-import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -56,6 +52,4 @@ public class ResultsFragmentInjectorTest implements InjectableResultsFragment, N
         }
     }   */
 
-    private class ResultsFragmentScreenFactory {
-    }
 }

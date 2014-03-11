@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.player;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
-import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class MediaService implements CanPlayMedia {

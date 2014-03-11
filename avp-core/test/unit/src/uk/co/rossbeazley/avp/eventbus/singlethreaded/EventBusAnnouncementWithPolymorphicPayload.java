@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.eventbus.singlethreaded;
 
-import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;

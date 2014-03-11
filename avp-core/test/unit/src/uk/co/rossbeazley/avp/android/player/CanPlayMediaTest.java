@@ -3,8 +3,6 @@ package uk.co.rossbeazley.avp.android.player;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
-import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
-import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
