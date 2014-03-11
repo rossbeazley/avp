@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.ui;
 
-public interface InjectableScreenResourceIdFragment {
+public interface InjectableScreenResourceIdFragment extends NeedsAnInflatedViewFactory {
     void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory);
-    void injectInflatedViewFactory(InflatedViewFactory inflatedViewFactory);
 }
