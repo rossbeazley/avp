@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.screenStack;
 
 import android.app.FragmentManager;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
+import uk.co.rossbeazley.avp.android.ui.results.ResultsNavigationController;
 import uk.co.rossbeazley.avp.android.ui.search.SearchNavigationController;
 import uk.co.rossbeazley.avp.android.ui.urlloader.UrlLoaderNavigationController;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
@@ -15,6 +16,7 @@ public class UiNavigationStackFactory {
         new VideoPlayerNavigationController(screenStack, eventbus);
         new SearchNavigationController(screenStack, eventbus);
         new UrlLoaderNavigationController(screenStack, eventbus);
+        new ResultsNavigationController(screenStack, eventbus);
     }
 
     private ScreenStack createScreenBackStack(FragmentManager fragmentManager) {

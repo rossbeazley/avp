@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
 
-class ResultsNavigationController {
+public class ResultsNavigationController {
 
     public ResultsNavigationController(final ScreenStack screenStack, final EventBus bus) {
         bus.whenEvent(Events.SEARCH_CREATED)

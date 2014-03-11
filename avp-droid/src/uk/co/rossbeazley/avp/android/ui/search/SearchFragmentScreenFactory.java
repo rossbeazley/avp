@@ -17,8 +17,12 @@ public class SearchFragmentScreenFactory implements FragmentScreenFactory {
     @Override
     public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
         SearchScreenAndroid result = new SearchScreenAndroid(inflatedLayoutView);
+        createPresenter(result);
+        return result;
+    }
+
+    private void createPresenter(SearchScreenAndroid result) {
         CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus); //TODO just newing the edge of the app here, dosnt feel quite right
         new SearchScreenPresenter(result, canDispatchSearchQuery);
-        return result;
     }
 }
