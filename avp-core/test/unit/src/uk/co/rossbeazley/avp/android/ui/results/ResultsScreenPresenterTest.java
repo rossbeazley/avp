@@ -30,9 +30,4 @@ public class ResultsScreenPresenterTest implements ResultsScreen {
     public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
     }
 
-    private class ResultsScreenPresenter {
-        public ResultsScreenPresenter(ResultsScreen screen) {
-
-        }
-    }
 }
