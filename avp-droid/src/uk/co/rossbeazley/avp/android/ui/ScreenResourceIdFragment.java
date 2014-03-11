@@ -34,7 +34,7 @@ public abstract class ScreenResourceIdFragment extends Fragment {
         screen.tearDown();
         screen = null;
     }
-
+    //TODO generify this
     public void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
         this.fragmentScreenFactory = fragmentScreenFactory;
     }
