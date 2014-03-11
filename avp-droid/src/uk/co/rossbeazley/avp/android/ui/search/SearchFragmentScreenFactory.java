@@ -8,7 +8,7 @@ import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class SearchFragmentScreenFactory implements FragmentScreenFactory {
-    private EventBus bus;
+    private final EventBus bus;
 
     public SearchFragmentScreenFactory(EventBus bus) {
         this.bus = bus;

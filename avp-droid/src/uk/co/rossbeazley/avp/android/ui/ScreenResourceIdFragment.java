@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class ScreenResourceIdFragment extends Fragment {
+public abstract class ScreenResourceIdFragment extends Fragment implements NeedsAnInflatedViewFactory {
 
     private FragmentScreenFactory fragmentScreenFactory;
     private Screen screen;
