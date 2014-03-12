@@ -1,5 +1,8 @@
 package uk.co.rossbeazley.avp.android.application;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class DependenciesService {
     private final DependencyInjectors injectors;
 
@@ -21,7 +24,19 @@ public class DependenciesService {
     }
 
     private Class<?>[] findInjectableClasses(Object object) {
-        return object.getClass().getInterfaces();
+        ArrayList<Class<?>> rtn = new ArrayList<Class<?>>();
+
+        Class<?> clazz = object.getClass();
+
+        Class<?>[] interfaces = clazz.getInterfaces();
+        while (clazz.getSuperclass() != null) {
+            rtn.addAll(Arrays.asList(interfaces));
+            clazz = clazz.getSuperclass();
+            interfaces = clazz.getInterfaces();
+        }
+
+        return rtn.toArray(new Class[rtn.size()]);
+
     }
 
 }
