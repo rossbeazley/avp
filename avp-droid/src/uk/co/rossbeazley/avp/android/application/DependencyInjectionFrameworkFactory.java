@@ -14,15 +14,20 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
 public class DependencyInjectionFrameworkFactory {
 
     public DependenciesService createDependencyInjectionFramework(final ApplicationServices services) {
-        DependencyInjectors injectorsByClass = new DependencyInjectors() {{
-            register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
-            register(InjectableSearchFragment.class, new SearchFragmentInjector(services.eventbus()));
-            register(InjectableUrlLoaderFragment.class, new UrlLoaderFragmentInjector(services.eventbus()));
-            register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector());
+        DependencyInjectorMap injectorsByClass = createDependencyInjectorMap(services);
+        DependanciesInjectorRegistry injectorRegistry = new DependanciesInjectorRegistry(injectorsByClass);
+        return new DependenciesService(injectorRegistry);
+    }
 
-            register(NeedsAnInflatedViewFactory.class, new NeedsAnInflatedViewFactoryInjector());
-        }};
-        return new DependenciesService(injectorsByClass);
+    private DependencyInjectorMap createDependencyInjectorMap(final ApplicationServices services) {
+        return new DependencyInjectorMap() {{
+                register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(services.eventbus()));
+                register(InjectableSearchFragment.class, new SearchFragmentInjector(services.eventbus()));
+                register(InjectableUrlLoaderFragment.class, new UrlLoaderFragmentInjector(services.eventbus()));
+                register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector());
+
+                register(NeedsAnInflatedViewFactory.class, new NeedsAnInflatedViewFactoryInjector());
+            }};
     }
 
 }

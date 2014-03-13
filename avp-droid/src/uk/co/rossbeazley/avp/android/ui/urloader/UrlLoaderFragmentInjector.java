@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.urloader;
 
-import uk.co.rossbeazley.avp.android.application.DependencyInjectors;
+import uk.co.rossbeazley.avp.android.application.DependencyInjectorMap;
 import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -11,7 +11,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 * Time: 15:37
 * To change this template use File | Settings | File Templates.
 */
-public class UrlLoaderFragmentInjector implements DependencyInjectors.Injector<InjectableUrlLoaderFragment> {
+public class UrlLoaderFragmentInjector implements DependencyInjectorMap.Injector<InjectableUrlLoaderFragment> {
     private EventBus bus;
 
     public UrlLoaderFragmentInjector(EventBus bus) {

@@ -14,7 +14,6 @@ import static org.junit.Assert.assertThat;
 public class SearchFragmentInjectorTest implements InjectableSearchFragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
-    private InflatedViewFactory inflatedViewFactory;
 
     @Test
     public void inject() {
@@ -24,7 +23,6 @@ public class SearchFragmentInjectorTest implements InjectableSearchFragment {
         searchFragmentInjector.inject(this);
 
         assertThat(fragmentScreenFactory, is(SearchFragmentScreenFactory.class));
-        assertThat(inflatedViewFactory,is(DefaultInflatedViewFactory.class));
     }
 
     @Test
@@ -35,17 +33,11 @@ public class SearchFragmentInjectorTest implements InjectableSearchFragment {
         ds.injectDependencies(this);
 
         assertThat(fragmentScreenFactory, is(SearchFragmentScreenFactory.class));
-        assertThat(inflatedViewFactory,is(DefaultInflatedViewFactory.class));
     }
 
     @Override
     public void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
         this.fragmentScreenFactory = fragmentScreenFactory;
-    }
-
-    @Override
-    public void injectInflatedViewFactory(InflatedViewFactory inflatedViewFactory) {
-        this.inflatedViewFactory = inflatedViewFactory;
     }
 
 

@@ -42,7 +42,7 @@ public class ResultsFragmentInjectorTest implements InjectableResultsFragment, N
     }
 
           /*
-    private class ResultsFragmentInjector implements DependencyInjectors.Injector<InjectableResultsFragment> {
+    private class ResultsFragmentInjector implements DependencyInjectorMap.Injector<InjectableResultsFragment> {
         public ResultsFragmentInjector() {
         }
 

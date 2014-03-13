@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
-import uk.co.rossbeazley.avp.android.application.DependencyInjectors;
+import uk.co.rossbeazley.avp.android.application.DependencyInjectorMap;
 import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -11,7 +11,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 * Time: 13:02
 * To change this template use File | Settings | File Templates.
 */
-public class VideoPlayerFragmentInjector implements DependencyInjectors.Injector<InjectableVideoPlayerFragment> {
+public class VideoPlayerFragmentInjector implements DependencyInjectorMap.Injector<InjectableVideoPlayerFragment> {
 
     private EventBus eventBus;
 

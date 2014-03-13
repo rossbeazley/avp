@@ -13,11 +13,11 @@ public class DependenciesServiceTest {
     @Test
     public void testInjectDependenciesDefinedByInterface() throws Exception {
 
-        DependencyInjectors injectors = new DependencyInjectors(){{
+        DependencyInjectorMap injectors = new DependencyInjectorMap(){{
             register(InjectableSomeClass.class, new SomeClassInjector());
         }};
-
-        DependenciesService ds = new DependenciesService(injectors);
+        DependanciesInjectorRegistry injectorRegistry = new DependanciesInjectorRegistry(injectors);
+        DependenciesService ds = new DependenciesService(injectorRegistry);
         SomeClass object = new SomeClass();
         ds.injectDependencies(object);
 
@@ -27,9 +27,9 @@ public class DependenciesServiceTest {
     @Test
     public void testInjectDependenciesDefinedByInterfaceNotFound() throws Exception {
 
-        DependencyInjectors injectors = new DependencyInjectors();
-
-        DependenciesService ds = new DependenciesService(injectors);
+        DependencyInjectorMap injectors = new DependencyInjectorMap();
+        DependanciesInjectorRegistry injectorRegistry = new DependanciesInjectorRegistry(injectors);
+        DependenciesService ds = new DependenciesService(injectorRegistry);
         SomeClass object = new SomeClass();
         ds.injectDependencies(object);
 
@@ -39,12 +39,13 @@ public class DependenciesServiceTest {
     @Test
     public void testDependenciesDefinedOnSuperclassInjected() {
 
-        DependencyInjectors injectors = new DependencyInjectors(){{
+        DependencyInjectorMap injectors = new DependencyInjectorMap(){{
             register(InjectableSomeClass.class, new SomeClassInjector());
             register(InjectableSuperClass.class, new SomeSuperClassInjector());
         }};
 
-        DependenciesService ds = new DependenciesService(injectors);
+        DependanciesInjectorRegistry injectorRegistry = new DependanciesInjectorRegistry(injectors);
+        DependenciesService ds = new DependenciesService(injectorRegistry);
         SomeClass object = new SomeClass();
         ds.injectDependencies(object);
 
@@ -68,7 +69,7 @@ public class DependenciesServiceTest {
         return rtn.toArray(new Class[rtn.size()]);
     }
 
-    private class SomeClassInjector implements DependencyInjectors.Injector<InjectableSomeClass> {
+    private class SomeClassInjector implements DependencyInjectorMap.Injector<InjectableSomeClass> {
         @Override
         public void inject(InjectableSomeClass object) {
             object.setInjected(true);
@@ -92,7 +93,7 @@ public class DependenciesServiceTest {
     }
 
 
-    private class SomeSuperClassInjector implements DependencyInjectors.Injector<InjectableSuperClass> {
+    private class SomeSuperClassInjector implements DependencyInjectorMap.Injector<InjectableSuperClass> {
         @Override
         public void inject(InjectableSuperClass object) {
             object.setSuperInjected(true);
@@ -111,7 +112,6 @@ public class DependenciesServiceTest {
             return superInjected;
         }
     }
-
 
     interface InjectableSuperClass {
         public void setSuperInjected(boolean injected);
