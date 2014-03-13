@@ -3,25 +3,17 @@ package uk.co.rossbeazley.avp.android.application;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DependencyInjectorMap {
+class DependencyInjectorMap {
 
-    private final Map<Class, Injector> injectorsByTargetClass = new HashMap<Class, Injector>();
+    private final Map<Class, DependenciesService.Injector> injectorsByTargetClass = new HashMap<Class, DependenciesService.Injector>();
 
-    public <I> void register(Class<I> cl, Injector<I> clInjector) {
+    public <I> void register(Class<I> cl, DependenciesService.Injector<I> clInjector) {
         injectorsByTargetClass.put(cl, clInjector);
     }
 
     @SuppressWarnings("unchecked")
-    public <I> Injector<I> injector(Class<I> cl) {
-        return injectorsByTargetClass.containsKey(cl) ? injectorsByTargetClass.get(cl) : Injector.NULL;
+    public <I> DependenciesService.Injector<I> injector(Class<I> cl) {
+        return injectorsByTargetClass.containsKey(cl) ? injectorsByTargetClass.get(cl) : DependenciesService.Injector.NULL;
     }
 
-    public interface Injector<T> {
-        void inject(T object);
-
-        final Injector NULL = new Injector() {
-            @Override
-            public void inject(Object object) {}
-        };
-    }
 }

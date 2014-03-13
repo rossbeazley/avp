@@ -11,20 +11,20 @@ public class DependencyInjectorMapTest {
 
     @Test
     public void registerAndGetInjector() {
-        DependencyInjectorMap.Injector<Class> injector = new DependencyInjectorMap.Injector<Class>() {
+        DependenciesService.Injector<Class> injector = new DependenciesService.Injector<Class>() {
             @Override
             public void inject(Class object) { }
         };
 
         dependencyInjectorMap.register(Class.class, injector);
-        DependencyInjectorMap.Injector<Class> rtn = dependencyInjectorMap.injector(Class.class);
+        DependenciesService.Injector<Class> rtn = dependencyInjectorMap.injector(Class.class);
         assertThat(rtn,is(injector));
     }
 
     @Test
     public void getRegisteredInjector() {
-        DependencyInjectorMap.Injector<DependencyInjectorMapTest> inj = dependencyInjectorMap.injector(DependencyInjectorMapTest.class);
+        DependenciesService.Injector<DependencyInjectorMapTest> inj = dependencyInjectorMap.injector(DependencyInjectorMapTest.class);
         inj.inject(this);
-        assertThat(inj, is(DependencyInjectorMap.Injector.NULL));
+        assertThat(inj, is(DependenciesService.Injector.NULL));
     }
 }

@@ -6,20 +6,26 @@ public class DependenciesService {
     private final DependanciesInjectorRegistry dependanciesInjectorRegistry;
 
     public DependenciesService(DependanciesInjectorRegistry injectorRegistry) {
-        //dependanciesInjectorRegistry = new DependanciesInjectorRegistry(injectorRegistry);
         dependanciesInjectorRegistry = injectorRegistry;
     }
 
     public void injectDependencies(Object object) {
-        ArrayList<DependencyInjectorMap.Injector> rtn = dependanciesInjectorRegistry.injectorsForObject(object);
+        ArrayList<Injector> rtn = dependanciesInjectorRegistry.injectorsForObject(object);
         injectIntoObject(object, rtn);
-        //Use double dispatch to avoid this dodgy code? or is DD more of problem, gets everywhere then
     }
 
-    private void injectIntoObject(Object object, ArrayList<DependencyInjectorMap.Injector> rtn) {
-        for(DependencyInjectorMap.Injector injector : rtn) {
+    private void injectIntoObject(Object object, ArrayList<Injector> rtn) {
+        for(Injector injector : rtn) {
             injector.inject(object);
         }
     }
 
+    public interface Injector<T> {
+        void inject(T object);
+
+        final Injector NULL = new Injector() {
+            @Override
+            public void inject(Object object) {}
+        };
+    }
 }

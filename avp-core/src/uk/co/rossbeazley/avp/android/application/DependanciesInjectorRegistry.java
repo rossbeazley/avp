@@ -6,35 +6,39 @@ import java.util.Arrays;
 public class DependanciesInjectorRegistry {
     final DependencyInjectorMap injectors;
 
-    public DependanciesInjectorRegistry(DependencyInjectorMap injectors) {
-        this.injectors = injectors;
+    public DependanciesInjectorRegistry() {
+        this.injectors = new DependencyInjectorMap();
     }
 
-    ArrayList<DependencyInjectorMap.Injector> injectorsForObject(Object object) {
-        Class<?>[] interfaces = findInjectableClasses(object);
+    public <I> void register(Class<I> cl, DependenciesService.Injector<I> clInjector) {
+        injectors.register(cl,clInjector);
+    }
+
+    public ArrayList<DependenciesService.Injector> injectorsForObject(Object object) {
+        Class<?>[] interfaces = interfacesFromClassHieracy(object);
         return getInjectorsForClasses(interfaces);
     }
 
-    private ArrayList<DependencyInjectorMap.Injector> getInjectorsForClasses(Class<?>[] injectableClasses) {
-        ArrayList<DependencyInjectorMap.Injector> rtn = new ArrayList<DependencyInjectorMap.Injector>();
+    private ArrayList<DependenciesService.Injector> getInjectorsForClasses(Class<?>[] injectableClasses) {
+        ArrayList<DependenciesService.Injector> rtn = new ArrayList<DependenciesService.Injector>();
 
         for (Class injectableClass : injectableClasses) {
-            DependencyInjectorMap.Injector classInjector = injectors.injector(injectableClass);
+            DependenciesService.Injector classInjector = injectors.injector(injectableClass);
             rtn.add(classInjector);
         }
         return rtn;
     }
 
-    private Class<?>[] findInjectableClasses(Object object) {
+    private Class<?>[] interfacesFromClassHieracy(Object objectForInjection) {
         ArrayList<Class<?>> rtn = new ArrayList<Class<?>>();
 
-        Class<?> clazz = object.getClass();
+        Class<?> currentClass = objectForInjection.getClass();
 
-        Class<?>[] interfaces = clazz.getInterfaces();
-        while (clazz.getSuperclass() != null) {
+        Class<?>[] interfaces = currentClass.getInterfaces();
+        while (currentClass.getSuperclass() != null) {
             rtn.addAll(Arrays.asList(interfaces));
-            clazz = clazz.getSuperclass();
-            interfaces = clazz.getInterfaces();
+            currentClass = currentClass.getSuperclass();
+            interfaces = currentClass.getInterfaces();
         }
 
         return rtn.toArray(new Class[rtn.size()]);
