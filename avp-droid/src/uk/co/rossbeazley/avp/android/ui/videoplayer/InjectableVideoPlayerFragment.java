@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
-import uk.co.rossbeazley.avp.android.ui.InjectableScreenResourceIdFragment;
+import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,5 +9,6 @@ import uk.co.rossbeazley.avp.android.ui.InjectableScreenResourceIdFragment;
  * Time: 15:57
  * To change this template use File | Settings | File Templates.
  */
-public interface InjectableVideoPlayerFragment extends InjectableScreenResourceIdFragment{
+public interface InjectableVideoPlayerFragment {
+    void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory);
 }

@@ -1,7 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.urloader;
 
-import uk.co.rossbeazley.avp.android.ui.InjectableScreenResourceIdFragment;
+import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 
 
-public interface InjectableUrlLoaderFragment extends InjectableScreenResourceIdFragment {
+public interface InjectableUrlLoaderFragment {
+    void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory);
 }
