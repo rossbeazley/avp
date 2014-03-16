@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.results;
+package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ResultsFragmentDITest {
+public class SearchFragmentDITest {
 
     private ArrayList<DependenciesService.Injector> injectors;
 
@@ -27,10 +27,10 @@ public class ResultsFragmentDITest {
     }
 
     @Test
-    public void resultsFragmentInjectorRegistered() {
+    public void searchFragmentInjectorRegistered() {
         boolean found = false;
         for (DependenciesService.Injector injector : injectors) {
-            if(injector instanceof InjectableResultsFragmentInjector) {
+            if(injector instanceof SearchFragmentInjector) {
                 found = true;
             }
         }
@@ -48,10 +48,11 @@ public class ResultsFragmentDITest {
             }
         }
 
-        assertThat(found, is(true));
+        assertThat(found,is(true));
+
     }
 
-    private ResultsFragment getObject() {
-        return new ResultsFragment();
+    private Object getObject() {
+        return new SearchFragment();
     }
 }

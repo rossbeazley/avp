@@ -6,9 +6,7 @@ import uk.co.rossbeazley.avp.android.application.ApplicationServices;
 import uk.co.rossbeazley.avp.android.application.DependenciesService;
 import uk.co.rossbeazley.avp.android.application.DependencyInjectionFrameworkFactory;
 import uk.co.rossbeazley.avp.android.application.NullApplicationServices;
-import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
-import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
 import uk.co.rossbeazley.avp.android.ui.urloader.InjectableUrlLoaderFragment;
 import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragmentScreenFactory;
@@ -20,7 +18,6 @@ import static org.junit.Assert.assertThat;
 public class UrlLoaderFragmentInjectorTest implements InjectableUrlLoaderFragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
-    private InflatedViewFactory inflatedViewFactory;
 
     @Test
     public void inject() {
@@ -30,7 +27,6 @@ public class UrlLoaderFragmentInjectorTest implements InjectableUrlLoaderFragmen
         urlLoaderFragmentInjector.inject(this);
 
         assertThat(fragmentScreenFactory, is(UrlLoaderFragmentScreenFactory.class));
-        assertThat(inflatedViewFactory,is(DefaultInflatedViewFactory.class));
     }
 
     @Test
@@ -41,18 +37,11 @@ public class UrlLoaderFragmentInjectorTest implements InjectableUrlLoaderFragmen
         ds.injectDependencies(this);
 
         assertThat(fragmentScreenFactory, is(UrlLoaderFragmentScreenFactory.class));
-        assertThat(inflatedViewFactory,is(DefaultInflatedViewFactory.class));
     }
 
     @Override
     public void injectFragmentScreenFactory(FragmentScreenFactory fragmentScreenFactory) {
         this.fragmentScreenFactory = fragmentScreenFactory;
     }
-
-    @Override
-    public void injectInflatedViewFactory(InflatedViewFactory inflatedViewFactory) {
-        this.inflatedViewFactory = inflatedViewFactory;
-    }
-
 
 }

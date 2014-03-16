@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.android.ui.results;
+package uk.co.rossbeazley.avp.android.ui.urlloader;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,8 @@ import uk.co.rossbeazley.avp.android.application.DependanciesInjectorRegistry;
 import uk.co.rossbeazley.avp.android.application.DependenciesService;
 import uk.co.rossbeazley.avp.android.application.DependencyInjectionFrameworkFactory;
 import uk.co.rossbeazley.avp.android.ui.NeedsAnInflatedViewFactoryInjector;
+import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragment;
+import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragmentInjector;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ResultsFragmentDITest {
+public class UrlLoaderFragmentDITest {
 
     private ArrayList<DependenciesService.Injector> injectors;
 
@@ -27,10 +29,10 @@ public class ResultsFragmentDITest {
     }
 
     @Test
-    public void resultsFragmentInjectorRegistered() {
+    public void urlLoaderFragmentInjectorRegistered() {
         boolean found = false;
         for (DependenciesService.Injector injector : injectors) {
-            if(injector instanceof InjectableResultsFragmentInjector) {
+            if(injector instanceof UrlLoaderFragmentInjector) {
                 found = true;
             }
         }
@@ -48,10 +50,10 @@ public class ResultsFragmentDITest {
             }
         }
 
-        assertThat(found, is(true));
+        assertThat(found,is(true));
     }
 
-    private ResultsFragment getObject() {
-        return new ResultsFragment();
+    private Object getObject() {
+        return new UrlLoaderFragment();
     }
 }

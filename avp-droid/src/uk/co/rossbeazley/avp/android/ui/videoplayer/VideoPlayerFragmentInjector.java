@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.android.application.DependenciesService;
-import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 /**
@@ -22,6 +21,5 @@ public class VideoPlayerFragmentInjector implements DependenciesService.Injector
     @Override
     public void inject(InjectableVideoPlayerFragment fragment) {
         fragment.injectFragmentScreenFactory(new VideoPlayerFragmentScreenFactory(eventBus));
-        fragment.injectInflatedViewFactory(new DefaultInflatedViewFactory());
     }
 }

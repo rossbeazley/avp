@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.urloader;
 
 import uk.co.rossbeazley.avp.android.application.DependenciesService;
-import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 /**
@@ -20,7 +19,6 @@ public class UrlLoaderFragmentInjector implements DependenciesService.Injector<I
 
     @Override
     public void inject(InjectableUrlLoaderFragment homeFragment) {
-        homeFragment.injectInflatedViewFactory(new DefaultInflatedViewFactory());
         homeFragment.injectFragmentScreenFactory(new UrlLoaderFragmentScreenFactory(bus));
     }
 }
