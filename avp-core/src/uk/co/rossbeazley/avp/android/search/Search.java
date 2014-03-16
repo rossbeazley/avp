@@ -1,8 +1,9 @@
 package uk.co.rossbeazley.avp.android.search;
 
-class Search {
+public class Search {
 
     private final Query query;
+    private Results results;
 
 
     /**
@@ -43,5 +44,15 @@ class Search {
     @Override
     public int hashCode() {
         return query.hashCode();
+    }
+
+    public static Search fromResults(Results expectedResults) {
+        Search search = new Search(null);
+        search.results = expectedResults;
+        return search;
+    }
+
+    public Results results() {
+        return results;
     }
 }
