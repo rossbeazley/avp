@@ -24,7 +24,7 @@ public class DependencyInjectionFrameworkFactory {
             register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(eventbus));
             register(InjectableSearchFragment.class, new SearchFragmentInjector(eventbus));
             register(InjectableUrlLoaderFragment.class, new UrlLoaderFragmentInjector(eventbus));
-            register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector());
+            register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector(eventbus));
             register(NeedsAnInflatedViewFactory.class, new NeedsAnInflatedViewFactoryInjector());
         }};
     }
