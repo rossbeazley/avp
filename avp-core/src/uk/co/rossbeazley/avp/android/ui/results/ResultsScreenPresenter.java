@@ -9,6 +9,10 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 class ResultsScreenPresenter {
     public ResultsScreenPresenter(final ResultsScreen screen, EventBus bus) {
         defaultEvent(screen);
+        bindToSearchCompletedEvent(screen, bus);
+    }
+
+    private void bindToSearchCompletedEvent(final ResultsScreen screen, EventBus bus) {
         bus.whenEvent(Events.SEARCH_COMPLETED)
                 .thenRun(new FunctionWithParameter<Search>() {
                     @Override
