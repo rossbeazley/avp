@@ -15,5 +15,6 @@ public class SearchService implements CanDispatchSearchQuery {
         Search search = Search.fromQuery(searchString);
         bus.sendPayload(search)
                 .withEvent(Events.SEARCH_CREATED);
+        //programmeRepositry.query(search);
     }
 }
