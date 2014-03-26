@@ -22,7 +22,7 @@ public class SearchFragmentScreenFactory implements FragmentScreenFactory {
     }
 
     private void createPresenter(SearchScreenAndroid result) {
-        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus); //TODO just newing the edge of the app here, dosnt feel quite right
+        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus, mediaRepository); //TODO just newing the edge of the app here, dosnt feel quite right
         new SearchScreenPresenter(result, canDispatchSearchQuery);
     }
 }
