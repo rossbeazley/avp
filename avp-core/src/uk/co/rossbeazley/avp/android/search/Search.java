@@ -10,11 +10,6 @@ public class Search {
      * Guessing im going to have a results section, the results view can render this
      * or no results if empty list, do we need to have a pending flag or something?
      * maybe its a SearchResults object, no flag needed or this Search has SearchResults.
-     *
-     *
-     * The results view nav controller should look out for the search_created event
-     *
-     * what happens with a pagenated result set?
      */
 
     public static Search fromString(String any_search_string) {
@@ -54,5 +49,13 @@ public class Search {
 
     public Results results() {
         return results;
+    }
+
+    public void results(Results results) {
+        this.results = results;
+    }
+
+    public Query query() {
+        return query;
     }
 }
