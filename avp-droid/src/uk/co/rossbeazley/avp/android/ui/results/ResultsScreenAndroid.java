@@ -19,7 +19,7 @@ class ResultsScreenAndroid implements ResultsScreen {
 
     @Override
     public void showResults(Results results) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //TODO implement the show results method
     }
 
     @Override
