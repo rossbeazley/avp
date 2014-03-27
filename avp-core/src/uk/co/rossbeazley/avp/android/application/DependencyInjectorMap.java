@@ -12,8 +12,8 @@ class DependencyInjectorMap {
     }
 
     @SuppressWarnings("unchecked")
-    public <I> DependenciesService.Injector<I> injector(Class<I> cl) {
-        return injectorsByTargetClass.containsKey(cl) ? injectorsByTargetClass.get(cl) : DependenciesService.Injector.NULL;
+    public <Injectable> DependenciesService.Injector<Injectable> injector(Class<Injectable> injectableClass) {
+        return injectorsByTargetClass.containsKey(injectableClass) ? injectorsByTargetClass.get(injectableClass) : DependenciesService.Injector.NULL;
     }
 
 }
