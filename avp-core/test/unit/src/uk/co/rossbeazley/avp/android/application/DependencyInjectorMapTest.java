@@ -16,14 +16,14 @@ public class DependencyInjectorMapTest {
             public void inject(Class object) { }
         };
 
-        dependencyInjectorMap.register(Class.class, injector);
-        DependenciesService.Injector<Class> rtn = dependencyInjectorMap.injector(Class.class);
-        assertThat(rtn,is(injector));
+        dependencyInjectorMap.put(Class.class, injector);
+        DependenciesService.Injector<Class> rtn = dependencyInjectorMap.get(Class.class);
+        assertThat(rtn, is(injector));
     }
 
     @Test
     public void unregisteredInjector() {
-        DependenciesService.Injector<DependencyInjectorMapTest> inj = dependencyInjectorMap.injector(DependencyInjectorMapTest.class);
+        DependenciesService.Injector<DependencyInjectorMapTest> inj = dependencyInjectorMap.get(DependencyInjectorMapTest.class);
         inj.inject(this);
         assertThat(inj, is(DependenciesService.Injector.NULL));
     }

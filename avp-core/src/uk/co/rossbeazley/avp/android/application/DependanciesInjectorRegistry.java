@@ -10,12 +10,12 @@ public class DependanciesInjectorRegistry {
     }
 
     public <I> void register(Class<I> cl, DependenciesService.Injector<I> clInjector) {
-        injectors.register(cl,clInjector);
+        injectors.put(cl, clInjector);
     }
 
     public Collection<DependenciesService.Injector> injectorsForObject(Object object) {
         Class<?>[] interfaces = new InterfacesFromClass(object).invoke();
-        return injectors.injectorsForClasses(interfaces);
+        return new InjectorsForClasses(injectors, interfaces).invoke();
     }
 
 }
