@@ -7,7 +7,7 @@ class DependencyInjectorMap {
 
     private final Map<Class, DependenciesService.Injector> injectorsByTargetClass = new HashMap<Class, DependenciesService.Injector>();
 
-    public <I> void register(Class<I> cl, DependenciesService.Injector<I> clInjector) {
+    public <Injectable> void register(Class<Injectable> cl, DependenciesService.Injector<Injectable> clInjector) {
         injectorsByTargetClass.put(cl, clInjector);
     }
 
