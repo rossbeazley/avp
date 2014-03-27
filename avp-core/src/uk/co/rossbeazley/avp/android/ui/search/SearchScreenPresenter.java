@@ -5,7 +5,7 @@ import uk.co.rossbeazley.avp.android.search.Query;
 
 public class SearchScreenPresenter {
 
-    public SearchScreenPresenter(SearchScreen view, final CanDispatchSearchQuery canDispatchSearchQuery) {
+    public SearchScreenPresenter(final SearchScreen view, final CanDispatchSearchQuery canDispatchSearchQuery) {
         bindToViewSearchEvent(view, canDispatchSearchQuery);
     }
 
