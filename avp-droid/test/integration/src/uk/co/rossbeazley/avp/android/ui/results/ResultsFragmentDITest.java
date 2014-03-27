@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.android.application.DependencyInjectionFrameworkFac
 import uk.co.rossbeazley.avp.android.ui.NeedsAnInflatedViewFactoryInjector;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class ResultsFragmentDITest {
 
-    private ArrayList<DependenciesService.Injector> injectors;
+    private Collection<DependenciesService.Injector> injectors;
 
     @Before
     public void setUp() throws Exception {

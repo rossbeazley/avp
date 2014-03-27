@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.application;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class DependenciesService {
     private final DependanciesInjectorRegistry dependanciesInjectorRegistry;
@@ -10,11 +10,11 @@ public class DependenciesService {
     }
 
     public void injectDependencies(Object object) {
-        ArrayList<Injector> rtn = dependanciesInjectorRegistry.injectorsForObject(object);
+        Collection<Injector> rtn = dependanciesInjectorRegistry.injectorsForObject(object);
         injectIntoObject(object, rtn);
     }
 
-    private void injectIntoObject(Object object, ArrayList<Injector> rtn) {
+    private void injectIntoObject(Object object, Collection<Injector> rtn) {
         for(Injector injector : rtn) {
             injector.inject(object);
         }

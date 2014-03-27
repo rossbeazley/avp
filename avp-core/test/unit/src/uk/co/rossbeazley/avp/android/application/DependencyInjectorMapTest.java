@@ -22,7 +22,7 @@ public class DependencyInjectorMapTest {
     }
 
     @Test
-    public void getRegisteredInjector() {
+    public void unregisteredInjector() {
         DependenciesService.Injector<DependencyInjectorMapTest> inj = dependencyInjectorMap.injector(DependencyInjectorMapTest.class);
         inj.inject(this);
         assertThat(inj, is(DependenciesService.Injector.NULL));

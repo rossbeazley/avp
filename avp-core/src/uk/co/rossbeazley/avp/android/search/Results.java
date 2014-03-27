@@ -18,6 +18,6 @@ public class Results {
     }
 
     public int size() {
-        return 1;
+        return programmes.length;
     }
 }

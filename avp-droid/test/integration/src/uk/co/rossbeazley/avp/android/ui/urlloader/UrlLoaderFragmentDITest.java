@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragment;
 import uk.co.rossbeazley.avp.android.ui.urloader.UrlLoaderFragmentInjector;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class UrlLoaderFragmentDITest {
 
-    private ArrayList<DependenciesService.Injector> injectors;
+    private Collection<DependenciesService.Injector> injectors;
 
     @Before
     public void setUp() throws Exception {
