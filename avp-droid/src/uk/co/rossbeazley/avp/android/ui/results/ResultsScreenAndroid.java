@@ -10,12 +10,12 @@ import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 
 class ResultsScreenAndroid implements ResultsScreen {
-    private final ListView searchResultsList;
+    private final CanFindViewById canFindViewById;
     private View searchSpinner;
 
     public ResultsScreenAndroid(CanFindViewById canFindViewById) {
+        this.canFindViewById = canFindViewById;
         this.searchSpinner = canFindViewById.findViewById(R.id.searchspinner);
-        this.searchResultsList = (ListView) canFindViewById.findViewById(R.id.searchresultslist);
     }
 
     @Override
@@ -26,7 +26,11 @@ class ResultsScreenAndroid implements ResultsScreen {
     @Override
     public void showResults(Results results) {
         //TODO implement the show results method
-        searchResultsList.setAdapter(new ResultsListAdapter());
+        findListView(R.id.searchresultslist).setAdapter(new ResultsListAdapter());
+    }
+
+    private ListView findListView(int id) {
+        return ((ListView) canFindViewById.findViewById(id));
     }
 
     @Override
