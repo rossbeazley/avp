@@ -35,7 +35,7 @@ public class SearchFragmentScreenFactory implements FragmentScreenFactory {
             put(Query.fromString("search"), new Results(new Programme()));
         }};
         MediaRepository mediaRepository = new MediaRepositoryStub(bus, resultsByQuery);
-        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus, mediaRepository); //TODO just newing the edge of the app here, dosnt feel quite right
+        CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus); //TODO just newing the edge of the app here, dosnt feel quite right
         new SearchScreenPresenter(result, canDispatchSearchQuery);
     }
 }

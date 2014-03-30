@@ -25,7 +25,7 @@ public class ResultsNavigationControllerTest implements ScreenStack {
 
     @Test
     public void pushResultsScreenWhenSearchCreated() {
-        bus.announce(Events.SEARCH_CREATED);
+        bus.announce(Events.USER_QUERY);
         Class expected = ResultsScreen.class;
         assertThat(pushedClass, is(equalTo(expected)));
     }

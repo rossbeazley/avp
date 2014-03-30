@@ -46,7 +46,11 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                function.invoke(payload);
+                try {
+                    function.invoke(payload);
+                } catch (ClassCastException e) {
+                    //exception squashed
+                }
             }
         });
     }

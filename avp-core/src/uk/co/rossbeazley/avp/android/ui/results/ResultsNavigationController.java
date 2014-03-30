@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.Function;
 public class ResultsNavigationController {
 
     public ResultsNavigationController(final ScreenStack screenStack, final EventBus bus) {
-        bus.whenEvent(Events.SEARCH_CREATED)
+        bus.whenEvent(Events.USER_QUERY)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
