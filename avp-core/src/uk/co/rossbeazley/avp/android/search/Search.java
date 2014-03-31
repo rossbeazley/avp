@@ -1,61 +1,36 @@
 package uk.co.rossbeazley.avp.android.search;
 
+import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.media.MediaRepository;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
+
 public class Search {
 
-    private final Query query;
-    private Results results;
+    private final MediaRepository repo;
+    private final EventBus bus;
 
+    public Search(final MediaRepository repo, final EventBus bus) {
+        this.repo = repo;
+        this.bus = bus;
+        bindToUserQueryEvent(bus);
 
-    /**
-     * Guessing im going to have a results section, the results view can render this
-     * or no results if empty list, do we need to have a pending flag or something?
-     * maybe its a SearchResults object, no flag needed or this Search has SearchResults.
-     */
-
-    public static Search fromString(String any_search_string) {
-        return new Search(Query.fromString(any_search_string));
     }
 
-    public static Search fromQuery(Query query) {
-        return new Search(query);
+    private void bindToUserQueryEvent(EventBus bus) {
+        bus.whenEvent(Events.USER_QUERY)
+                .thenRun(new FunctionWithParameter<Query>() {
+                    @Override
+                    public void invoke(Query payload) {
+                        executeQuery(payload);
+
+                    }
+                });
     }
 
-    private Search(Query query) {
-        this.query = query;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Search search = (Search) o;
-
-        if (!query.equals(search.query)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return query.hashCode();
-    }
-
-    public static Search fromResults(Results expectedResults) {
-        Search search = new Search(null);
-        search.results = expectedResults;
-        return search;
-    }
-
-    public Results results() {
-        return results;
-    }
-
-    public void results(Results results) {
-        this.results = results;
-    }
-
-    public Query query() {
-        return query;
+    private void executeQuery(Query payload) {
+        Results results = repo.execute(payload);
+        bus.sendPayload(results)
+                .withEvent(Events.SEARCH_COMPLETED);
     }
 }

@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.results;
 
 
 import uk.co.rossbeazley.avp.Events;
-import uk.co.rossbeazley.avp.android.search.Search;
+import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
@@ -14,10 +14,10 @@ class ResultsScreenPresenter {
 
     private void bindToSearchCompletedEvent(final ResultsScreen screen, EventBus bus) {
         bus.whenEvent(Events.SEARCH_COMPLETED)
-                .thenRun(new FunctionWithParameter<Search>() {
+                .thenRun(new FunctionWithParameter<Results>() {
                     @Override
-                    public void invoke(Search payload) {
-                        screen.showResults(payload.results());
+                    public void invoke(Results payload) {
+                        screen.showResults(payload);
                     }
                 });
     }

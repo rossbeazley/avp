@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.search.Results;
-import uk.co.rossbeazley.avp.android.search.Search;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -33,9 +32,8 @@ public class ResultsScreenPresenterTest implements ResultsScreen {
 
     @Test
     public void whenSearchIsCompleteResultsListSetInScreen() {
-        Search search = Search.fromResults(expectedResults);
-
-        bus.sendPayload(search)
+        Results results = new Results();
+        bus.sendPayload(results)
                 .withEvent(Events.SEARCH_COMPLETED);
 
         assertThat(actualResults,is(expectedResults));
