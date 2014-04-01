@@ -2,6 +2,9 @@ package uk.co.rossbeazley.avp.android.application;
 
 import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.media.MediaRepository;
+import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
+import uk.co.rossbeazley.avp.android.media.Programme;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
@@ -11,7 +14,12 @@ import uk.co.rossbeazley.avp.android.player.render.MediaPlayerViewCreator;
 import uk.co.rossbeazley.avp.android.player.scrub.MediaPlayerScrubber;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateEventDispatcher;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
+import uk.co.rossbeazley.avp.android.search.Query;
+import uk.co.rossbeazley.avp.android.search.Results;
+import uk.co.rossbeazley.avp.android.search.Search;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
+
+import java.util.HashMap;
 
 public class AVPApplication {
 
@@ -36,7 +44,16 @@ public class AVPApplication {
         new MediaPlayerViewCreator(new AndroidMediaPlayerVideoOutputFactory(), bus);
 
         new EventBusLog(logger, bus);
+
+        new Search(createMediaRepository(), bus);
+
         logger.debug("APP CREATED");
+    }
+
+    private MediaRepositoryStub createMediaRepository() {
+        return new MediaRepositoryStub(new HashMap<Query, Results>(){{
+            put(Query.fromString("ross"), new Results(new Programme()));
+        }});
     }
 
 }

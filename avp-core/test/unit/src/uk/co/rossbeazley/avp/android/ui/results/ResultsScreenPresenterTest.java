@@ -32,8 +32,7 @@ public class ResultsScreenPresenterTest implements ResultsScreen {
 
     @Test
     public void whenSearchIsCompleteResultsListSetInScreen() {
-        Results results = new Results();
-        bus.sendPayload(results)
+        bus.sendPayload(expectedResults)
                 .withEvent(Events.SEARCH_COMPLETED);
 
         assertThat(actualResults,is(expectedResults));

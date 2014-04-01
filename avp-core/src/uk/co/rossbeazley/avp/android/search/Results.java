@@ -13,10 +13,6 @@ public class Results {
         this.programmes = programmes;
     }
 
-    public List<String> names() {
-        return Arrays.asList("A result");
-    }
-
     public int size() {
         return programmes.length;
     }

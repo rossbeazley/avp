@@ -28,7 +28,6 @@ public class SearchTest {
                     }
                 });
 
-
         final Results expectedResult = new Results();
 
         final Query usersQuery = Query.fromString("any_query");
@@ -41,7 +40,6 @@ public class SearchTest {
 
         bus.sendPayload(usersQuery)
                 .withEvent(Events.USER_QUERY);
-
 
         assertThat(announcedResult, is(expectedResult));
     }
