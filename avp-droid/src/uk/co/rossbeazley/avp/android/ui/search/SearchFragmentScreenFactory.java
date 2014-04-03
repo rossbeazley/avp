@@ -32,7 +32,7 @@ public class SearchFragmentScreenFactory implements FragmentScreenFactory {
     private void createPresenter(SearchScreenAndroid result) {
         Map<Query, Results> resultsByQuery;
         resultsByQuery = new HashMap<Query, Results>(1){{
-            put(Query.fromString("search"), new Results(new Programme()));
+            put(Query.fromString("search"), new Results(new Programme("")));
         }};
         MediaRepository mediaRepository = new MediaRepositoryStub(resultsByQuery);
         CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus); //TODO just newing the edge of the app here, dosnt feel quite right

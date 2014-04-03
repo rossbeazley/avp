@@ -34,7 +34,7 @@ class ResultsListAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return results.size();
     }
 
     @Override
