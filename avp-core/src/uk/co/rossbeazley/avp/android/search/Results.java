@@ -10,7 +10,7 @@ public class Results {
         this.mediaItems = mediaItems;
     }
 
-    public int size() {
+    public int count() {
         return mediaItems.length;
     }
 }
