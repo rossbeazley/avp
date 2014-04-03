@@ -62,6 +62,24 @@ public class ResultsScreenResultsListTest {
      * assert behaviour of
      *
      *
+     * boolean areAllItemsEnabled();
+
+     boolean isEnabled(int i);
+
+
+     void registerDataSetObserver(android.database.DataSetObserver dataSetObserver);
+
+     void unregisterDataSetObserver(android.database.DataSetObserver dataSetObserver);
+
+     java.lang.Object getItem(int i);
+
+     long getItemId(int i);
+
+     android.view.View getView(int i, android.view.View view, android.view.ViewGroup viewGroup);
+
+     int getItemViewType(int i);
+
+     *
      *
      */
 
