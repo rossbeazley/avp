@@ -12,34 +12,58 @@ import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 public class ResultsScreenResultsListTest {
 
-    private CanFindViewById findsViews;
+    private ListView list;
 
     @Before
-    public void givenOneResultIsShowOnTheScreen() {
-        Results results = new Results(new MediaItem(""));
+    public void givenTwoResultAreShowOnTheScreen() {
+        Results results = new Results(new MediaItem("first"),new MediaItem("second"));
 
         ActivityForTestingViews visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.results);
+        CanFindViewById findsViews;
         findsViews = visibleActivityForLayout.viewFinder();
         ResultsScreen screen = new ResultsScreenAndroid(findsViews);
 
         screen.showResults(results);
+        list = (ListView) findsViews.findViewById(R.id.searchresultslist);
     }
 
     @Test
-    public void testShowResults() throws Exception {
-
-        int listSize;
-
-        ListView list = (ListView) findsViews.findViewById(R.id.searchresultslist);
-
-        listSize = list.getAdapter().getCount();
-
-        assertThat(listSize, is(1));
+    public void sizeReportedAsTwo() throws Exception {
+        int listSize = list.getAdapter().getCount();
+        assertThat(listSize, is(2));
     }
+
+
+    @Test
+    public void oneTypeOfView() {
+        int numberOfTypes = list.getAdapter().getViewTypeCount();
+        assertThat(numberOfTypes, is(1));
+    }
+
+    @Test
+    public void isNotEmpty() {
+        assertThat(list.getAdapter().isEmpty(),is(not(true)));
+    }
+
+    @Test
+    public void idsAreStable() {
+        assertThat(list.getAdapter().hasStableIds(),is(true));
+    }
+
+
+    /**
+     *
+     * assert behaviour of
+     *
+     *
+     *
+     */
+
 
 }
