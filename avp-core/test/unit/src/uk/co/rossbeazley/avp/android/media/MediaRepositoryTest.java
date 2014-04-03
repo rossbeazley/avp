@@ -17,7 +17,7 @@ public class MediaRepositoryTest {
     MediaRepository mediaRepository;
     private ExecutorEventBus bus;
     private Map<Query, Results> resultsByQuery;
-    private Results expectedResults = new Results(new Programme(""));
+    private Results expectedResults = new Results(new MediaItem(""));
     private Query query = Query.fromString("a specific query");
     private Results actualResults;
 

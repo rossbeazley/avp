@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.search;
 
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
-import uk.co.rossbeazley.avp.android.media.Programme;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
 import uk.co.rossbeazley.avp.android.search.Query;
 import uk.co.rossbeazley.avp.android.search.Results;
@@ -32,7 +32,7 @@ public class SearchFragmentScreenFactory implements FragmentScreenFactory {
     private void createPresenter(SearchScreenAndroid result) {
         Map<Query, Results> resultsByQuery;
         resultsByQuery = new HashMap<Query, Results>(1){{
-            put(Query.fromString("search"), new Results(new Programme("")));
+            put(Query.fromString("search"), new Results(new MediaItem("")));
         }};
         MediaRepository mediaRepository = new MediaRepositoryStub(resultsByQuery);
         CanDispatchSearchQuery canDispatchSearchQuery = new SearchService(bus); //TODO just newing the edge of the app here, dosnt feel quite right

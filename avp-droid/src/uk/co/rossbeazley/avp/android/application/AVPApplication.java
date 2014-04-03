@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.application;
 import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
-import uk.co.rossbeazley.avp.android.media.Programme;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
@@ -51,7 +51,7 @@ public class AVPApplication {
 
     private MediaRepositoryStub createMediaRepository() {
         return new MediaRepositoryStub(new HashMap<Query, Results>(){{
-            put(Query.fromString("ross"), new Results(new Programme("")));
+            put(Query.fromString("ross"), new Results(new MediaItem("")));
         }});
     }
 

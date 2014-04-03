@@ -1,9 +1,9 @@
 package uk.co.rossbeazley.avp.android.media;
 
-public class Programme {
+public class MediaItem {
     private final String programTitle;
 
-    public Programme(String programTitle) {
+    public MediaItem(String programTitle) {
 
         this.programTitle = programTitle;
     }

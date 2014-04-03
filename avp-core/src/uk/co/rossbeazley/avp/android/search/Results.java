@@ -1,19 +1,16 @@
 package uk.co.rossbeazley.avp.android.search;
 
-import uk.co.rossbeazley.avp.android.media.Programme;
-
-import java.util.Arrays;
-import java.util.List;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 
 public class Results {
 
-    private final Programme[] programmes;
+    private final MediaItem[] mediaItems;
 
-    public Results(Programme... programmes) {
-        this.programmes = programmes;
+    public Results(MediaItem... mediaItems) {
+        this.mediaItems = mediaItems;
     }
 
     public int size() {
-        return programmes.length;
+        return mediaItems.length;
     }
 }

@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import uk.co.rossbeazley.avp.android.R;
-import uk.co.rossbeazley.avp.android.media.Programme;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
@@ -21,7 +21,7 @@ public class ResultsScreenResultsListTest {
 
     @Before
     public void givenOneResultIsShowOnTheScreen() {
-        Results results = new Results(new Programme(""));
+        Results results = new Results(new MediaItem(""));
 
         ActivityForTestingViews visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.results);
         findsViews = visibleActivityForLayout.viewFinder();
