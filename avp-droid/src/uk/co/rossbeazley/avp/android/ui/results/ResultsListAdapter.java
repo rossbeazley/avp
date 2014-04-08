@@ -39,7 +39,7 @@ class ResultsListAdapter implements ListAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return results.result(i);
     }
 
     @Override

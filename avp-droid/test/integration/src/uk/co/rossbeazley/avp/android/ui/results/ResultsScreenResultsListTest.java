@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,11 +19,15 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class ResultsScreenResultsListTest {
 
-    private ListView list;
+    private ListAdapter adapter;
+    private MediaItem firstMediaItem;
+    private MediaItem secondMediaItem;
 
     @Before
     public void givenTwoResultAreShowOnTheScreen() {
-        Results results = new Results(new MediaItem("first"),new MediaItem("second"));
+        firstMediaItem = new MediaItem("first");
+        secondMediaItem = new MediaItem("second");
+        Results results = new Results(firstMediaItem, secondMediaItem);
 
         ActivityForTestingViews visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.results);
         CanFindViewById findsViews;
@@ -30,35 +35,57 @@ public class ResultsScreenResultsListTest {
         ResultsScreen screen = new ResultsScreenAndroid(findsViews);
 
         screen.showResults(results);
-        list = (ListView) findsViews.findViewById(R.id.searchresultslist);
+        ListView list = (ListView) findsViews.findViewById(R.id.searchresultslist);
+        adapter = list.getAdapter();
     }
 
     @Test
     public void sizeReportedAsTwo() throws Exception {
-        int listSize = list.getAdapter().getCount();
+        int listSize = adapter.getCount();
         assertThat(listSize, is(2));
     }
 
 
     @Test
     public void oneTypeOfView() {
-        int numberOfTypes = list.getAdapter().getViewTypeCount();
+        int numberOfTypes = adapter.getViewTypeCount();
         assertThat(numberOfTypes, is(1));
     }
 
     @Test
     public void isNotEmpty() {
-        assertThat(list.getAdapter().isEmpty(),is(not(true)));
+        assertThat(adapter.isEmpty(),is(not(true)));
     }
 
     @Test
     public void idsAreStable() {
-        assertThat(list.getAdapter().hasStableIds(),is(true));
+        assertThat(adapter.hasStableIds(),is(true));
     }
 
     @Test
     public void itemsAreAllEnabled() {
-        assertThat(list.getAdapter().areAllItemsEnabled(),is(true));
+        assertThat(adapter.areAllItemsEnabled(),is(true));
+    }
+
+    @Test
+    public void itemOneIsEnabled() {
+        assertThat(adapter.isEnabled(1),is(true));
+    }
+
+    @Test
+    public void itemTwoIsEnabled() {
+        assertThat(adapter.isEnabled(2),is(true));
+    }
+
+    @Test
+    public void returnsMediaItemOne() {
+        assertThat(adapter.getItem(0), is((Object)firstMediaItem));
+    }
+
+
+    @Test
+    public void returnsMediaItemTwo() {
+        assertThat(adapter.getItem(1), is((Object)secondMediaItem));
     }
 
     /**
@@ -67,14 +94,9 @@ public class ResultsScreenResultsListTest {
      *
      *
 
-     boolean isEnabled(int i);
-
-
      void registerDataSetObserver(android.database.DataSetObserver dataSetObserver);
 
      void unregisterDataSetObserver(android.database.DataSetObserver dataSetObserver);
-
-     java.lang.Object getItem(int i);
 
      long getItemId(int i);
 

@@ -13,4 +13,8 @@ public class Results {
     public int count() {
         return mediaItems.length;
     }
+
+    public MediaItem result(int index) {
+        return mediaItems[index];
+    }
 }
