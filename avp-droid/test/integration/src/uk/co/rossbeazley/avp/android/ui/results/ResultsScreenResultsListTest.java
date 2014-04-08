@@ -56,13 +56,16 @@ public class ResultsScreenResultsListTest {
         assertThat(list.getAdapter().hasStableIds(),is(true));
     }
 
+    @Test
+    public void itemsAreAllEnabled() {
+        assertThat(list.getAdapter().areAllItemsEnabled(),is(true));
+    }
 
     /**
      *
      * assert behaviour of
      *
      *
-     * boolean areAllItemsEnabled();
 
      boolean isEnabled(int i);
 
