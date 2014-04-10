@@ -17,4 +17,8 @@ public class Results {
     public MediaItem result(int index) {
         return mediaItems[index];
     }
+
+    public boolean empty() {
+        return mediaItems == null || mediaItems.length == 0;
+    }
 }

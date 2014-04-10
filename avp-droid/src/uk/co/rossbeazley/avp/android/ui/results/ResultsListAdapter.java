@@ -3,11 +3,13 @@ package uk.co.rossbeazley.avp.android.ui.results;
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import uk.co.rossbeazley.avp.android.search.Results;
 
-class ResultsListAdapter implements ListAdapter {
+class ResultsListAdapter extends BaseAdapter {
 
+    public static final int RESULT_VIEW_TYPE = 30035;
     private final Results results;
 
     public ResultsListAdapter(Results results) {
@@ -44,7 +46,7 @@ class ResultsListAdapter implements ListAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -59,16 +61,11 @@ class ResultsListAdapter implements ListAdapter {
 
     @Override
     public int getItemViewType(int i) {
-        return 0;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 1;
+        return RESULT_VIEW_TYPE;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return results.empty();
     }
 }

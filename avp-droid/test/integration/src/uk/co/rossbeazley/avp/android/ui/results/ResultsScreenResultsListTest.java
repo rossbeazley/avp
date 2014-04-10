@@ -88,21 +88,35 @@ public class ResultsScreenResultsListTest {
         assertThat(adapter.getItem(1), is((Object)secondMediaItem));
     }
 
+    @Test
+    public void theFirstViewItemTypeIsRESULT() {
+        assertThat(adapter.getItemViewType(0), is(ResultsListAdapter.RESULT_VIEW_TYPE));
+    }
+
+    @Test
+    public void theSecondViewItemTypeIsRESULT() {
+        assertThat(adapter.getItemViewType(1), is(ResultsListAdapter.RESULT_VIEW_TYPE));
+    }
+
+    @Test
+    public void theIdOfTheFirstItemIsTheSameAsTheIndex() {
+        assertThat(adapter.getItemId(0), is(0l));
+    }
+
+    @Test
+    public void theIdOfTheSecondItemIsTheSameAsTheIndex() {
+        assertThat(adapter.getItemId(1), is(1l));
+    }
+
+
+
     /**
      *
      * assert behaviour of
      *
      *
 
-     void registerDataSetObserver(android.database.DataSetObserver dataSetObserver);
-
-     void unregisterDataSetObserver(android.database.DataSetObserver dataSetObserver);
-
-     long getItemId(int i);
-
      android.view.View getView(int i, android.view.View view, android.view.ViewGroup viewGroup);
-
-     int getItemViewType(int i);
 
      *
      *
