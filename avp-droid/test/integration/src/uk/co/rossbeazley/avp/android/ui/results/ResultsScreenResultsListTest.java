@@ -113,12 +113,7 @@ public class ResultsScreenResultsListTest {
     /**
      *
      * assert behaviour of
-     *
-     *
-
-     android.view.View getView(int i, android.view.View view, android.view.ViewGroup viewGroup);
-
-     *
+        android.view.View getView(int i, android.view.View view, android.view.ViewGroup viewGroup);
      *
      */
 
