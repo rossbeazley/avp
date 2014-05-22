@@ -1,6 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
+import android.content.Context;
 import android.database.DataSetObserver;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -27,14 +29,6 @@ class ResultsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public void registerDataSetObserver(DataSetObserver dataSetObserver) {
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
-    }
-
-    @Override
     public int getCount() {
         return results.count();
     }
@@ -56,7 +50,15 @@ class ResultsListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View viewToRecycle, ViewGroup parentViewGroup) {
-        return null;
+
+        /**
+         * use an infated layout,
+         * custom class in the layout with sub views
+         * custom class has the necessary methods to set the data without violating encapsulation
+         * onFinishInflate you can grab instances of your sub views
+         */
+
+        return new ResultsListItemView(parentViewGroup.getContext());
     }
 
     @Override
@@ -67,5 +69,19 @@ class ResultsListAdapter extends BaseAdapter {
     @Override
     public boolean isEmpty() {
         return results.empty();
+    }
+
+    private class ResultsListItemView extends View {
+        public ResultsListItemView(Context context) {
+            super(context);
+        }
+
+        public ResultsListItemView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public ResultsListItemView(Context context, AttributeSet attrs, int defStyle) {
+            super(context, attrs, defStyle);
+        }
     }
 }

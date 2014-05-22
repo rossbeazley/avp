@@ -35,7 +35,7 @@ public class ResultsListAdapterViewFactoryTest {
     }
 
     @Test
-    public void viewCreatedWithATextView() {
+    public void viewCreated() {
         ViewGroup parentGroup = Robolectric.newInstanceOf(LinearLayout.class);
         View createdView = adapter.getView(0, null, parentGroup);
         assertThat(createdView,is(notNullValue()));
