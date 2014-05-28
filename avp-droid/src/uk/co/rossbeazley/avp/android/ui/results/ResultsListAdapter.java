@@ -52,7 +52,7 @@ class ResultsListAdapter extends BaseAdapter {
     public View getView(int i, View viewToRecycle, ViewGroup parentViewGroup) {
 
         /**
-         * use an infated layout,
+         * use an inflated layout,
          * custom class in the layout with sub views
          * custom class has the necessary methods to set the data without violating encapsulation
          * onFinishInflate you can grab instances of your sub views
