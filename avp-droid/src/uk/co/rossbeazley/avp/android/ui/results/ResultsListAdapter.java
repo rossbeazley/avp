@@ -1,21 +1,23 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
 import android.content.Context;
-import android.database.DataSetObserver;
-import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
+import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.search.Results;
 
-class ResultsListAdapter extends BaseAdapter {
+public class ResultsListAdapter extends BaseAdapter {
 
     public static final int RESULT_VIEW_TYPE = 30035;
+    public static final boolean DO_NOT_ATTACH_TO_PARENT_VIEW = false;
     private final Results results;
+    private final ResultsListAdapter.ResultsListItemViewFactory resultsListItemViewFactory;
 
     public ResultsListAdapter(Results results) {
         this.results = results;
+        resultsListItemViewFactory = new ResultsListItemViewFactory();
     }
 
     @Override
@@ -50,15 +52,7 @@ class ResultsListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View viewToRecycle, ViewGroup parentViewGroup) {
-
-        /**
-         * use an inflated layout,
-         * custom class in the layout with sub views
-         * custom class has the necessary methods to set the data without violating encapsulation
-         * onFinishInflate you can grab instances of your sub views
-         */
-
-        return new ResultsListItemView(parentViewGroup.getContext());
+        return resultsListItemViewFactory.create(viewToRecycle, parentViewGroup);
     }
 
     @Override
@@ -71,17 +65,43 @@ class ResultsListAdapter extends BaseAdapter {
         return results.empty();
     }
 
-    private class ResultsListItemView extends View {
-        public ResultsListItemView(Context context) {
-            super(context);
+
+
+
+
+    private class ResultsListItemViewFactory {
+
+        public ResultsListItemView create(View viewToRecycle, ViewGroup parentViewGroup) {
+
+            ResultsListItemView result = resultsListItemViewToRecycle(viewToRecycle) ?
+                    recycleResultsListItemView((ResultsListItemView) viewToRecycle) :
+                    createResultsListItemView(parentViewGroup);
+
+            return result;
         }
 
-        public ResultsListItemView(Context context, AttributeSet attrs) {
-            super(context, attrs);
+        private boolean resultsListItemViewToRecycle(View viewToRecycle) {
+            return viewToRecycle != null && viewToRecycle instanceof ResultsListItemView;
         }
 
-        public ResultsListItemView(Context context, AttributeSet attrs, int defStyle) {
-            super(context, attrs, defStyle);
+        private ResultsListItemView recycleResultsListItemView(ResultsListItemView viewToRecycle) {
+            return (ResultsListItemView) viewToRecycle;
         }
+
+        private ResultsListItemView createResultsListItemView(ViewGroup parentViewGroup) {
+            ResultsListItemView result;
+            LayoutInflater layoutInflator = layoutInflatorFromView(parentViewGroup);
+            result = inflateResultsListItemView(parentViewGroup, layoutInflator);
+            return result;
+        }
+
+        private LayoutInflater layoutInflatorFromView(ViewGroup parentViewGroup) {
+            return (LayoutInflater) parentViewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        private ResultsListItemView inflateResultsListItemView(ViewGroup parentViewGroup, LayoutInflater layoutInflator) {
+            return (ResultsListItemView) layoutInflator.inflate(R.layout.results_list_row, parentViewGroup, DO_NOT_ATTACH_TO_PARENT_VIEW);
+        }
+
     }
 }

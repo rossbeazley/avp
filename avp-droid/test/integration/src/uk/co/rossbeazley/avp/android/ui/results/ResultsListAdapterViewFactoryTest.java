@@ -10,11 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
-import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -25,7 +23,10 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class ResultsListAdapterViewFactoryTest {
 
+    public static final int FOR_ITEM_ZERO = 0;
     private ListAdapter adapter;
+    public static final View NO_VIEW_TO_RECYCLE = null;
+
 
     @Before
     public void givenTwoResultAreShowOnTheScreen() {
@@ -35,20 +36,25 @@ public class ResultsListAdapterViewFactoryTest {
     }
 
     @Test
-    public void viewCreated() {
-        ViewGroup parentGroup = Robolectric.newInstanceOf(LinearLayout.class);
-        View createdView = adapter.getView(0, null, parentGroup);
+    public void viewRowCreated() {
+        ActivityForTestingViews activity = ActivityForTestingViews.createVisibleActivity();
+        ListView parentViewGroup = new ListView(activity);
+
+        View createdView = adapter.getView(FOR_ITEM_ZERO, NO_VIEW_TO_RECYCLE, parentViewGroup);
+
         assertThat(createdView,is(notNullValue()));
     }
 
     @Test
-    public void viewRecycled() {
-        ViewGroup parentGroup = Robolectric.newInstanceOf(LinearLayout.class);
-        View createdView = adapter.getView(0, null, parentGroup);
+    public void viewRowRecycled() {
+        ActivityForTestingViews activity = ActivityForTestingViews.createVisibleActivity();
+        ListView parentViewGroup = new ListView(activity);
+        View viewToRecycle = new ResultsListItemView(activity);
 
-        View recycledView = adapter.getView(0, createdView, parentGroup);
+        View createdView = adapter.getView(FOR_ITEM_ZERO, viewToRecycle, parentViewGroup);
+
         assertThat(createdView,is(notNullValue()));
-        assertThat(createdView,is(recycledView));
+        assertThat(createdView,is(viewToRecycle));
     }
 
 }
