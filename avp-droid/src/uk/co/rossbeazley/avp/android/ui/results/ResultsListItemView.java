@@ -11,13 +11,6 @@ public class ResultsListItemView extends RelativeLayout {
 
     private TextView programmeTextView;
 
-    /**
-     * use an inflated layout,
-     * custom class in the layout with sub views
-     * custom class has the necessary methods to set the data without violating encapsulation
-     * onFinishInflate you can grab instances of your sub views
-     */
-
     public ResultsListItemView(Context context) {
         super(context);
     }
@@ -33,6 +26,10 @@ public class ResultsListItemView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        bindProgrammeTextView();
+    }
+
+    private void bindProgrammeTextView() {
         this.programmeTextView = (TextView)findViewById(R.id.results_list_item_programme_text);
     }
 
