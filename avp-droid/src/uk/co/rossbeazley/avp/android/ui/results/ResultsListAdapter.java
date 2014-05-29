@@ -74,7 +74,7 @@ public class ResultsListAdapter extends BaseAdapter {
         public ResultsListItemView create(View viewToRecycle, ViewGroup parentViewGroup) {
 
             ResultsListItemView result = resultsListItemViewToRecycle(viewToRecycle) ?
-                    recycleResultsListItemView((ResultsListItemView) viewToRecycle) :
+                    recycleResultsListItemView(viewToRecycle) :
                     createResultsListItemView(parentViewGroup);
 
             return result;
@@ -84,7 +84,7 @@ public class ResultsListAdapter extends BaseAdapter {
             return viewToRecycle != null && viewToRecycle instanceof ResultsListItemView;
         }
 
-        private ResultsListItemView recycleResultsListItemView(ResultsListItemView viewToRecycle) {
+        private ResultsListItemView recycleResultsListItemView(View viewToRecycle) {
             return (ResultsListItemView) viewToRecycle;
         }
 
@@ -92,6 +92,7 @@ public class ResultsListAdapter extends BaseAdapter {
             ResultsListItemView result;
             LayoutInflater layoutInflator = layoutInflatorFromView(parentViewGroup);
             result = inflateResultsListItemView(parentViewGroup, layoutInflator);
+            result.setProgrammeText("one");
             return result;
         }
 

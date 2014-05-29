@@ -7,6 +7,6 @@
 
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="SOME TEXT" />
+              android:id="@+id/results_list_item_programme_text" />
 
 </uk.co.rossbeazley.avp.android.ui.results.ResultsListItemView>
