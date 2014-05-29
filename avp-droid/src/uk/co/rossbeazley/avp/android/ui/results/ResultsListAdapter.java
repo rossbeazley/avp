@@ -52,7 +52,7 @@ public class ResultsListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View viewToRecycle, ViewGroup parentViewGroup) {
-        return resultsListItemViewFactory.create(viewToRecycle, parentViewGroup);
+        return resultsListItemViewFactory.create(viewToRecycle, parentViewGroup).forMediaItem(results.result(i));
     }
 
     @Override
@@ -73,26 +73,24 @@ public class ResultsListAdapter extends BaseAdapter {
 
         public ResultsListItemView create(View viewToRecycle, ViewGroup parentViewGroup) {
 
-            ResultsListItemView result = resultsListItemViewToRecycle(viewToRecycle) ?
-                    recycleResultsListItemView(viewToRecycle) :
-                    createResultsListItemView(parentViewGroup);
-
-            return result;
+            return recycleableView(viewToRecycle) ? recycleView(viewToRecycle) : createView(parentViewGroup);
         }
 
-        private boolean resultsListItemViewToRecycle(View viewToRecycle) {
+
+        private boolean recycleableView(View viewToRecycle) {
             return viewToRecycle != null && viewToRecycle instanceof ResultsListItemView;
         }
 
-        private ResultsListItemView recycleResultsListItemView(View viewToRecycle) {
+        private ResultsListItemView recycleView(View viewToRecycle) {
             return (ResultsListItemView) viewToRecycle;
         }
 
-        private ResultsListItemView createResultsListItemView(ViewGroup parentViewGroup) {
+
+        private ResultsListItemView createView(ViewGroup parentViewGroup) {
             ResultsListItemView result;
             LayoutInflater layoutInflator = layoutInflatorFromView(parentViewGroup);
             result = inflateResultsListItemView(parentViewGroup, layoutInflator);
-            result.setProgrammeText("one");
+
             return result;
         }
 

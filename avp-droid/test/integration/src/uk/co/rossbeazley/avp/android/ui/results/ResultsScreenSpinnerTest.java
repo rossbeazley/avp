@@ -23,4 +23,16 @@ public class ResultsScreenSpinnerTest {
         assertThat(spinnerView.getVisibility(), is(View.VISIBLE));
     }
 
+    @Test
+    public void spinnerHides() throws Exception {
+        ActivityForTestingViews visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.results);
+        ResultsScreen screen = new ResultsScreenAndroid(visibleActivityForLayout.viewFinder());
+
+        screen.showSpinner();
+        screen.hideSpinner();
+
+        View spinnerView = visibleActivityForLayout.findViewById(R.id.searchspinner);
+        assertThat(spinnerView.getVisibility(), is(View.GONE));
+    }
+
 }

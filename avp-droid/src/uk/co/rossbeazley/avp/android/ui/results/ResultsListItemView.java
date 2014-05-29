@@ -2,9 +2,11 @@ package uk.co.rossbeazley.avp.android.ui.results;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import uk.co.rossbeazley.avp.android.R;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 
 public class ResultsListItemView extends RelativeLayout {
 
@@ -33,7 +35,12 @@ public class ResultsListItemView extends RelativeLayout {
         this.programmeTextView = (TextView)findViewById(R.id.results_list_item_programme_text);
     }
 
-    public void setProgrammeText(String one) {
-        this.programmeTextView.setText(one);
+    public void setProgrammeTitleText(String programmeTitle) {
+        this.programmeTextView.setText(programmeTitle);
+    }
+
+    public View forMediaItem(MediaItem result) {
+        setProgrammeTitleText(result.titleString());
+        return this;
     }
 }

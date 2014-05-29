@@ -14,6 +14,15 @@ public class MediaRepositoryStub implements MediaRepository {
 
     @Override
     public Results execute(Query search) {
+        waitTwoSeconds();
         return resultsByQuery.get(search);
+    }
+
+    private void waitTwoSeconds() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

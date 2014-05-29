@@ -26,6 +26,11 @@ class ResultsScreenAndroid implements ResultsScreen {
         findListView(R.id.searchresultslist).setAdapter(new ResultsListAdapter(results));
     }
 
+    @Override
+    public void hideSpinner() {
+        searchSpinner.setVisibility(View.GONE);
+    }
+
     private ListView findListView(int id) {
         return ((ListView) canFindViewById.findViewById(id));
     }

@@ -18,6 +18,7 @@ class ResultsScreenPresenter {
                     @Override
                     public void invoke(Results payload) {
                         screen.showResults(payload);
+                        screen.hideSpinner();
                     }
                 });
     }

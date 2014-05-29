@@ -7,4 +7,8 @@ public class MediaItem {
 
         this.programTitle = programTitle;
     }
+
+    public String titleString() {
+        return programTitle;
+    }
 }

@@ -25,9 +25,13 @@ public class EventBusLog {
         logEvent(Events.USER_PLAY);
         logEvent(Events.USER_SCRUB);
         logEvent(Events.USER_PAUSE);
-        logEvent(Events.APP_HIDDEN);
 
+        logEvent(Events.APP_HIDDEN);
         logEvent(Events.APP_SHUTDOWN);
+
+        logEvent(Events.USER_WANTS_TO_GOTO_SEARCH);
+        logEvent(Events.USER_QUERY);
+        logEvent(Events.SEARCH_COMPLETED);
     }
 
     private void logEvent(final String event) {

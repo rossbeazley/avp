@@ -51,7 +51,13 @@ public class AVPApplication {
 
     private MediaRepositoryStub createMediaRepository() {
         return new MediaRepositoryStub(new HashMap<Query, Results>(){{
-            put(Query.fromString("ross"), new Results(new MediaItem("")));
+            put(Query.fromString("ross"),
+                    new Results(new MediaItem("Item 1"),
+                                new MediaItem("Item 2"),
+                                new MediaItem("Item 3"),
+                                new MediaItem("Item 4"),
+                                new MediaItem("Item 5"),
+                                new MediaItem("Item 6")));
         }});
     }
 

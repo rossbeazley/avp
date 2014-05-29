@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
@@ -26,16 +28,19 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class ResultsListAdapterGetViewTest {
 
+    public static final String PROGRAM_TITLE = "media item ";
     private ListAdapter adapter;
     public static final View NO_VIEW_TO_RECYCLE = null;
     private ActivityForTestingViews activityForTestingViews;
     private ListView parentViewGroup;
+    public static final int ITEM_ZERO = 0;
+    public static final int ITEM_ONE = 1;
 
 
     @Before
     public void givenTwoResultAreShowOnTheScreen() {
-        MediaItem mediaItem = new MediaItem("one");
-        Results results = new Results(mediaItem);
+        Results results = new Results(new MediaItem(PROGRAM_TITLE+ITEM_ZERO), new MediaItem(PROGRAM_TITLE+ITEM_ONE));
+
         adapter = new ResultsListAdapter(results);
         activityForTestingViews = ActivityForTestingViews.createVisibleActivity();
         parentViewGroup = new ListView(activityForTestingViews);
@@ -43,31 +48,38 @@ public class ResultsListAdapterGetViewTest {
 
     @Test
     public void viewRowCreated() {
-        final int FOR_ITEM_ZERO = 0;
-        View createdView = adapter.getView(FOR_ITEM_ZERO, NO_VIEW_TO_RECYCLE, parentViewGroup);
+        View createdView = adapter.getView(ITEM_ZERO, NO_VIEW_TO_RECYCLE, parentViewGroup);
 
         assertThat(createdView,is(ResultsListItemView.class));
     }
 
     @Test
     public void viewRowRecycled() {
-        View viewToRecycle = new ResultsListItemView(activityForTestingViews);
-        final int FOR_ITEM_ZERO = 0;
+        View viewToRecycle = LayoutInflater.from(activityForTestingViews).inflate(R.layout.results_list_row, null);
 
-        View createdView = adapter.getView(FOR_ITEM_ZERO, viewToRecycle, parentViewGroup);
+        View createdView = adapter.getView(ITEM_ZERO, viewToRecycle, parentViewGroup);
 
         assertThat(createdView,is(viewToRecycle));
     }
 
     @Test
-    public void viewContainsATextViewWithMediaItemText() {
-        final int FOR_ITEM_ZERO = 0;
-        View createdView = adapter.getView(FOR_ITEM_ZERO, NO_VIEW_TO_RECYCLE, parentViewGroup);
+    public void firstItemInTheList() {
+        View createdView = adapter.getView(ITEM_ZERO, NO_VIEW_TO_RECYCLE, parentViewGroup);
 
         ArrayList<View> foundViews = new ArrayList<View>();
-        createdView.findViewsWithText(foundViews, "one", View.FIND_VIEWS_WITH_TEXT);
+        createdView.findViewsWithText(foundViews, PROGRAM_TITLE, View.FIND_VIEWS_WITH_TEXT);
 
-        assertThat( ((TextView)foundViews.get(0)).getText().toString(), is("one"));
+        assertThat( ((TextView)foundViews.get(0)).getText().toString(), is(PROGRAM_TITLE+ITEM_ZERO));
+    }
+
+    @Test
+    public void secondItemInTheList() {
+        View createdView = adapter.getView(ITEM_ONE, NO_VIEW_TO_RECYCLE, parentViewGroup);
+
+        ArrayList<View> foundViews = new ArrayList<View>();
+        createdView.findViewsWithText(foundViews, PROGRAM_TITLE, View.FIND_VIEWS_WITH_TEXT);
+
+        assertThat( ((TextView)foundViews.get(0)).getText().toString(), is(PROGRAM_TITLE+ITEM_ONE));
     }
 
 }

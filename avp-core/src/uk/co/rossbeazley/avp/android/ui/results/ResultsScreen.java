@@ -7,4 +7,6 @@ public interface ResultsScreen extends Screen {
     void showSpinner();
 
     void showResults(Results results);
+
+    void hideSpinner();
 }
