@@ -4,10 +4,10 @@ import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class MediaService implements CanPlayMedia {
+public class MediaPlaybackService implements CanPlayMedia {
     private EventBus bus;
 
-    public MediaService(EventBus bus) {
+    public MediaPlaybackService(EventBus bus) {
         this.bus = bus;
     }
 

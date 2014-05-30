@@ -30,7 +30,7 @@ public class CanPlayMediaTest {
             }
         });
 
-        CanPlayMedia canPlayMedia = new MediaService(bus);
+        CanPlayMedia canPlayMedia = new MediaPlaybackService(bus);
 
         canPlayMedia.play(uri);
         assertThat(uristring, is(expectedUriString));
