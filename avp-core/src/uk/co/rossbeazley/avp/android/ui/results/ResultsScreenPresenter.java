@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 class ResultsScreenPresenter {
-    public ResultsScreenPresenter(final ResultsScreen screen, EventBus bus) {
+    public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus) {
         defaultEvent(screen);
         bindToSearchCompletedEvent(screen, bus);
     }
@@ -17,10 +17,14 @@ class ResultsScreenPresenter {
                 .thenRun(new FunctionWithParameter<Results>() {
                     @Override
                     public void invoke(Results payload) {
-                        screen.showResults(payload);
-                        screen.hideSpinner();
+                        presentResults(payload, screen);
                     }
                 });
+    }
+
+    private void presentResults(Results payload, ResultsScreen screen) {
+        screen.showResults(payload);
+        screen.hideSpinner();
     }
 
     private void defaultEvent(ResultsScreen screen) {

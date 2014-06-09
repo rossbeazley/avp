@@ -15,4 +15,11 @@ public class SearchService implements CanDispatchSearchQuery {
         bus.sendPayload(userQuery)
                 .withEvent(Events.USER_QUERY);
     }
+
+    /**
+     * what if we had a currentQuery method, it returns the current query in the system?
+     *
+     * consider what happens when a query completes execution
+     * but any observer that might be interested misses it
+     */
 }
