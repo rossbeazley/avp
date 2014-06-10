@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
 public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScreen{
 
     private Results results;
-    private DisplaysResultsAfterPerformsSearchCompletes.ScreenTransaction screenTransaction;
+    private ScreenFragmentTransaction screenFragmentTransaction;
 
     @Test
     public void dispatchesQueryAndDisplaysResults() {
@@ -32,7 +32,7 @@ public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScree
         ScreenStack screenStack = new ScreenStack() {
             @Override
             public void pushScreen(Class<? extends Screen> screenClass) {
-                screenTransaction = new ScreenTransaction(DisplaysResultsAfterPerformsSearchCompletes.this, bus);
+                screenFragmentTransaction = new ScreenFragmentTransaction(DisplaysResultsAfterPerformsSearchCompletes.this, bus);
             }
 
         };
@@ -51,7 +51,7 @@ public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScree
         Query query = Query.fromString("ross");
         new SearchService(bus).query(query);
 
-        screenTransaction.invoke();
+        screenFragmentTransaction.commit();
 
         assertThat(results, is(not(nullValue())));
     }
@@ -81,16 +81,16 @@ public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScree
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    private class ScreenTransaction {
+    private class ScreenFragmentTransaction {
         private final ResultsScreen resultsScreen;
         private final EventBus eventBus;
 
-        public ScreenTransaction(ResultsScreen resultsScreen, EventBus eventBus) {
+        public ScreenFragmentTransaction(ResultsScreen resultsScreen, EventBus eventBus) {
             this.resultsScreen = resultsScreen;
             this.eventBus = eventBus;
         }
 
-        public void invoke() {
+        public void commit() {
             new ResultsScreenPresenter(resultsScreen, eventBus);
         }
     }
