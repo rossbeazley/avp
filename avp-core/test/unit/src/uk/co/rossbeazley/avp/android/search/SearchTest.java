@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.avp.android.search;
 
+import org.hamcrest.Matcher;
+import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
@@ -16,11 +18,15 @@ import static org.junit.Assert.assertThat;
 public class SearchTest {
 
     private Results announcedResult;
+    private EventBus bus;
+    private Results expectedResult;
+    private Query usersQuery;
+    private Search search;
 
-    @Test
-    public void usesMediaRepositoryToRunQuery() {
-        EventBus bus = new ExecutorEventBus();
-        bus.whenEvent(Events.SEARCH_COMPLETED)
+    @Before
+    public void setUp() throws Exception {
+        bus = new ExecutorEventBus();
+        bus.whenEvent(Events.SEARCH_RESULTS_AVAILABLE)
                 .thenRun(new FunctionWithParameter<Results>() {
                     @Override
                     public void invoke(Results payload) {
@@ -28,19 +34,36 @@ public class SearchTest {
                     }
                 });
 
-        final Results expectedResult = new Results();
-
-        final Query usersQuery = Query.fromString("any_query");
+        expectedResult = new Results();
+        usersQuery = Query.fromString("any_query");
 
         MediaRepository repo = new MediaRepositoryStub(new HashMap<Query, Results>(){{
-            put(usersQuery,expectedResult);
+            put(usersQuery, expectedResult);
         }});
+        search = new Search(repo, bus);
 
-        new Search(repo, bus);
+    }
+
+    @Test
+    public void usesMediaRepositoryToRunQuery() {
+
 
         bus.sendPayload(usersQuery)
-                .withEvent(Events.USER_QUERY);
+                .withEvent(Events.PERFORMING_QUERY);
 
         assertThat(announcedResult, is(expectedResult));
+    }
+
+    @Test
+    public void announcesResultsStateWhenResultsAvailable() {
+
+        bus.sendPayload(usersQuery)
+                .withEvent(Events.PERFORMING_QUERY);
+
+        announcedResult = null;
+
+        search.announceState();
+
+        assertThat(announcedResult,is(expectedResult));
     }
 }

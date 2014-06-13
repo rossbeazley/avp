@@ -17,7 +17,7 @@ public class ResultsFragmentScreenFactory implements FragmentScreenFactory {
     @Override
     public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
         ResultsScreenAndroid result = new ResultsScreenAndroid(inflatedLayoutView);
-        new ResultsScreenPresenter(result, bus);
+        new ResultsScreenPresenter(result, bus, applicationCore.searchService);
         return result;
     }
 }

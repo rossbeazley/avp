@@ -26,7 +26,7 @@ public class CanDispatchSearchQueryTest {
         queryAnnounced = null;
         bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.USER_QUERY)
+        bus.whenEvent(Events.PERFORMING_QUERY)
                 .thenRun(new FunctionWithParameter<Query>() {
             @Override public void invoke(Query payload) {
                 queryAnnounced = payload;

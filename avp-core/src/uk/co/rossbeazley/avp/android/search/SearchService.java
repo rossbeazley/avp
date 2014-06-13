@@ -13,7 +13,7 @@ public class SearchService implements CanDispatchSearchQuery {
     @Override
     public void query(Query userQuery) {
         bus.sendPayload(userQuery)
-                .withEvent(Events.USER_QUERY);
+                .withEvent(Events.PERFORMING_QUERY);
     }
 
     /**

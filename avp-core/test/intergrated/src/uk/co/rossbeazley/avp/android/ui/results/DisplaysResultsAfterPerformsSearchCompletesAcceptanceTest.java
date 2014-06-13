@@ -8,7 +8,6 @@ import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import uk.co.rossbeazley.avp.android.search.Query;
 import uk.co.rossbeazley.avp.android.search.Results;
-import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -19,22 +18,22 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScreen{
+public class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implements ResultsScreen{
 
     private Results results;
     private ScreenFragmentTransaction screenFragmentTransaction;
+    private ApplicationCore applicationCore;
 
     @Test
     public void dispatchesQueryAndDisplaysResults() {
 
-        final EventBus bus = new ExecutorEventBus();    //think this is a threading issue, consider a two thread eventBus
+        final EventBus bus = new ExecutorEventBus();
 
         ScreenStack screenStack = new ScreenStack() {
             @Override
             public void pushScreen(Class<? extends Screen> screenClass) {
-                screenFragmentTransaction = new ScreenFragmentTransaction(DisplaysResultsAfterPerformsSearchCompletes.this, bus);
+                screenFragmentTransaction = new ScreenFragmentTransaction(DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest.this, bus);
             }
-
         };
 
         new ResultsNavigationController(screenStack, bus);
@@ -44,12 +43,10 @@ public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScree
         final MediaPlayerFactory UNUSED_MP_FACTORY = null;
         final CanExecuteCommandsAtFixedRate UNUSED_EXECUTOR = null;
 
-
-        new ApplicationCore(bus, UNUSED_MP_FACTORY, UNUSED_EXECUTOR, repo);
-
+        applicationCore = new ApplicationCore(bus, UNUSED_MP_FACTORY, UNUSED_EXECUTOR, repo);
 
         Query query = Query.fromString("ross");
-        new SearchService(bus).query(query);
+        applicationCore.searchService.query(query);
 
         screenFragmentTransaction.commit();
 
@@ -72,14 +69,10 @@ public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScree
     }
 
     @Override
-    public void tearDown() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void tearDown() { }
 
     @Override
-    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) { }
 
     private class ScreenFragmentTransaction {
         private final ResultsScreen resultsScreen;
@@ -91,7 +84,7 @@ public class DisplaysResultsAfterPerformsSearchCompletes implements ResultsScree
         }
 
         public void commit() {
-            new ResultsScreenPresenter(resultsScreen, eventBus);
+            new ResultsScreenPresenter(resultsScreen, eventBus, applicationCore.currentSearchResults);
         }
     }
 }

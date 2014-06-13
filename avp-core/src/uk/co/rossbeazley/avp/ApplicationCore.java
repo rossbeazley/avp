@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp;
 
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
-import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
@@ -11,7 +10,7 @@ import uk.co.rossbeazley.avp.android.player.scrub.MediaPlayerScrubber;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateEventDispatcher;
 import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
-import uk.co.rossbeazley.avp.android.search.Search;
+import uk.co.rossbeazley.avp.android.search.*;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 /**
@@ -24,16 +23,32 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 public class ApplicationCore {
 
 
+    public final MediaPlayerCreator mediaPlayerCreator;
+    public final MediaPlayerPreparer mediaPlayerPreparer;
+    public final MediaPlayerAutoPlay mediaPlayerAutoPlay;
+    public final MediaPlayerControl mediaPlayerControl;
+    public final MediaPlayerTimePositionWatcher mediaPlayerTimePositionWatcher;
+    public final MediaPlayerScrubber mediaPlayerScrubber;
+    public final MediaPlayerStateEventDispatcher mediaPlayerStateEventDispatcher;
+    public final Search search;
+
+    // imperative shell
+    public final CanDispatchSearchQuery searchService;
+    public final CurrentSearchResults currentSearchResults;
+
     public ApplicationCore(EventBus bus, MediaPlayerFactory androidMediaPlayerFactory, CanExecuteCommandsAtFixedRate fixedRateExecutor, MediaRepository mediaRepository) {
-        new MediaPlayerCreator(bus, androidMediaPlayerFactory);
-        new MediaPlayerPreparer(bus);
-        new MediaPlayerAutoPlay(bus);
-        new MediaPlayerControl(bus);
+        mediaPlayerCreator = new MediaPlayerCreator(bus, androidMediaPlayerFactory);
+        mediaPlayerPreparer = new MediaPlayerPreparer(bus);
+        mediaPlayerAutoPlay = new MediaPlayerAutoPlay(bus);
+        mediaPlayerControl = new MediaPlayerControl(bus);
 
-        new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
-        new MediaPlayerScrubber(bus);
-        new MediaPlayerStateEventDispatcher(bus, fixedRateExecutor);
+        mediaPlayerTimePositionWatcher = new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
+        mediaPlayerScrubber = new MediaPlayerScrubber(bus);
+        mediaPlayerStateEventDispatcher = new MediaPlayerStateEventDispatcher(bus, fixedRateExecutor);
 
-        new Search(mediaRepository, bus);
+        search = new Search(mediaRepository, bus);
+
+        searchService = new SearchService(bus);
+        currentSearchResults = search;
     }
 }

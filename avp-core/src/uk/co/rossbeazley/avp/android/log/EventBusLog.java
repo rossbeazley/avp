@@ -30,8 +30,8 @@ public class EventBusLog {
         logEvent(Events.APP_SHUTDOWN);
 
         logEvent(Events.USER_WANTS_TO_GOTO_SEARCH);
-        logEvent(Events.USER_QUERY);
-        logEvent(Events.SEARCH_COMPLETED);
+        logEvent(Events.PERFORMING_QUERY);
+        logEvent(Events.SEARCH_RESULTS_AVAILABLE);
     }
 
     private void logEvent(final String event) {

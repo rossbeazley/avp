@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.results;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -10,66 +11,91 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ResultsScreenPresenterTest implements ResultsScreen {
+public class ResultsScreenPresenterTest {
 
-    private static final String SHOWN = "visible";
-    private static final String HIDDEN = "hidden";
-    private String spinner = "unknown";
-    private Results actualResults;
+    private final FakeResultsScreen fakeScreen = new FakeResultsScreen();
+
     private Results expectedResults = new Results();
+
     private EventBus bus;
+    private CurrentSearchResults fakeCurrentSearch;
 
     @Before
     public void setUp() throws Exception {
+        fakeCurrentSearch = new CurrentSearchResults() {
+            @Override
+            public void announceState() {
+            }
+        };
+
         bus = new ExecutorEventBus();
-        new ResultsScreenPresenter(this, bus);
     }
 
     @Test    //TODO should be able to drop this test and make the views default state have spinner shown
-    public void directsViewToDisplaySpinnerAsDefaultState() {
-        assertThat("spinner shown", spinner,is(SHOWN));
+    public void directsViewToDisplaySpinnerAsDefaultStateIfResultsLoading() {
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
+        assertThat("spinner shown", fakeScreen.spinner,is(fakeScreen.SHOWN));
     }
 
 
     @Test
     public void whenSearchIsCompleteResultsListSetInScreen() {
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
         bus.sendPayload(expectedResults)
-                .withEvent(Events.SEARCH_COMPLETED);
+                .withEvent(Events.SEARCH_RESULTS_AVAILABLE);
 
-        assertThat(actualResults,is(expectedResults));
+        assertThat(fakeScreen.actualResults,is(expectedResults));
     }
 
     @Test
     public void spinnerHiddenOnSearchComplete() {
-        assertThat(spinner,is(SHOWN));
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
+        assertThat(fakeScreen.spinner,is(fakeScreen.SHOWN));
 
         bus.sendPayload(expectedResults)
-                .withEvent(Events.SEARCH_COMPLETED);
+                .withEvent(Events.SEARCH_RESULTS_AVAILABLE);
 
-        assertThat(spinner,is(HIDDEN));
+        assertThat(fakeScreen.spinner,is(fakeScreen.HIDDEN));
     }
 
-    @Override
-    public void showResults(Results results) {
-        actualResults = results;
+    @Test
+    public void whenResultsAvailableListSetInScreen() {
+        new ResultsScreenPresenter(fakeScreen, bus, new CurrentSearchResults() {
+            @Override
+            public void announceState() {
+                bus.sendPayload(expectedResults).withEvent(Events.SEARCH_RESULTS_AVAILABLE);
+            }
+        });
+        assertThat(fakeScreen.actualResults,is(expectedResults));
     }
 
-    @Override
-    public void showSpinner() {
-        spinner = SHOWN;
-    }
+    private class FakeResultsScreen implements ResultsScreen {
+        public Results actualResults;
+        public static final String SHOWN = "visible";
+        public static final String HIDDEN = "hidden";
+        public String spinner = "unknown";
 
-    @Override
-    public void hideSpinner() {
-        spinner = HIDDEN;
-    }
+        @Override
+        public void showResults(Results results) {
+            actualResults = results;
+        }
 
-    @Override
-    public void tearDown() {
-    }
+        @Override
+        public void showSpinner() {
+            spinner = SHOWN;
+        }
 
-    @Override
-    public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
-    }
+        @Override
+        public void hideSpinner() {
+            spinner = HIDDEN;
+        }
 
+        @Override
+        public void tearDown() {
+        }
+
+        @Override
+        public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
+        }
+    }
 }

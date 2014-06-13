@@ -23,8 +23,8 @@ public class Events {
     public static final String USER_EXIT_VIDEO_SCREEN = "exit_video_Screen";
     public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
     public static final String PLAYER_VIEW_CREATED = "player_view_created";
-    public static final String USER_QUERY = "search_created";
+    public static final String PERFORMING_QUERY = "search_created";
     public static final String USER_WANTS_TO_GOTO_SEARCH = "user_wants to_goto_search";
 
-    public static final String SEARCH_COMPLETED = "search_completed";
+    public static final String SEARCH_RESULTS_AVAILABLE = "search_completed";
 }
