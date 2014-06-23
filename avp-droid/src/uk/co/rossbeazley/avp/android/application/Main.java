@@ -8,6 +8,7 @@ import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.ui.screenStack.UiNavigationStackFactory;
+import uk.co.rossbeazley.avp.eventbus.Function;
 
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -25,6 +26,17 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), services.eventbus());
         parseIntent(getIntent());
+        finishWhenFragmentBackstackIsEmpty();
+
+    }
+
+    private void finishWhenFragmentBackstackIsEmpty() {
+        services.eventbus().whenEvent(Events.UI_CLOSED).thenRun(new Function() {
+            @Override
+            public void invoke() {
+                Main.this.finish();
+            }
+        });
     }
 
     private void parseIntent(Intent intent) {
@@ -72,8 +84,4 @@ public class Main extends Activity {
     }
 
 
-    /** TODO,
-     *
-     * a nav controller that exits the app when the back stack is zero
-     */
 }

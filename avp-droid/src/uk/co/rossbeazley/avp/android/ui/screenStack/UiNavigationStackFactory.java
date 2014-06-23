@@ -13,6 +13,7 @@ public class UiNavigationStackFactory {
     public void createNavigationViewControllers(FragmentManager fragmentManager, EventBus eventbus) {
 
         ScreenStack screenStack = createScreenBackStack(fragmentManager);
+        new EmptyFragmentBackStack(fragmentManager, eventbus);
         new VideoPlayerNavigationController(screenStack, eventbus);
         new SearchNavigationController(screenStack, eventbus);
         new UrlLoaderNavigationController(screenStack, eventbus);
