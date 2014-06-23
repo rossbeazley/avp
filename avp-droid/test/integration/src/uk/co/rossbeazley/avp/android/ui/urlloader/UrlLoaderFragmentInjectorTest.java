@@ -32,7 +32,7 @@ public class UrlLoaderFragmentInjectorTest implements InjectableUrlLoaderFragmen
     @Test
     public void injectIntegratedTest() {
         ApplicationServices services = new NullApplicationServices();
-        DependenciesService ds = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services);
+        DependenciesService ds = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, null);
 
         ds.injectDependencies(this);
 

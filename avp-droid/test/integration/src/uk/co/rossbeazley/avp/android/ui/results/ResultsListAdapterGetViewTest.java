@@ -55,7 +55,7 @@ public class ResultsListAdapterGetViewTest {
 
     @Test
     public void viewRowRecycled() {
-        View viewToRecycle = LayoutInflater.from(activityForTestingViews).inflate(R.layout.results_list_row, null);
+        View viewToRecycle = LayoutInflater.from(Robolectric.application).inflate(R.layout.results_list_row, null);
 
         View createdView = adapter.getView(ITEM_ZERO, viewToRecycle, parentViewGroup);
 

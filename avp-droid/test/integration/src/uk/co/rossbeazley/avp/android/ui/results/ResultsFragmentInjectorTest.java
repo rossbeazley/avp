@@ -18,7 +18,7 @@ public class ResultsFragmentInjectorTest implements InjectableResultsFragment {
     @Test
     public void injectIntegratedTest() {
         ApplicationServices services = new NullApplicationServices();
-        DependenciesService ds = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services);
+        DependenciesService ds = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, null);
 
         ds.injectDependencies(this);
 

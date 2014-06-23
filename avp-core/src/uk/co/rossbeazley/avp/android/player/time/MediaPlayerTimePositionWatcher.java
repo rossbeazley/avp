@@ -61,8 +61,7 @@ public class MediaPlayerTimePositionWatcher {
     }
 
     private boolean notTheSamePositionAsLastTime(MediaTimePosition mediaTimePosition) {
-        if(rememberedTimePosition == null) return true;
-        return ! rememberedTimePosition.equals(mediaTimePosition);
+        return rememberedTimePosition == null ? true : !rememberedTimePosition.equals(mediaTimePosition);
     }
 
     private void monitorMediaPlayerTime(CanGetTimeFromMediaPlayer player) {

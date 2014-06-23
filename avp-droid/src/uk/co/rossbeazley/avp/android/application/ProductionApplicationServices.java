@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import uk.co.rossbeazley.avp.android.log.AndroidLogger;
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
 import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -62,7 +63,7 @@ public class ProductionApplicationServices implements ApplicationServices {
     }
 
     @Override
-    public void executeRunnableNotOnMainThread(final Runnable runnable) {
+    public void executeBlockingRunnableNotOnMainThread(final Runnable runnable) {
         final CountDownLatch latch = new CountDownLatch(1);
 
         Logger logger = getLogger();
@@ -93,5 +94,10 @@ public class ProductionApplicationServices implements ApplicationServices {
             scheduledExecutorService = Executors.newScheduledThreadPool(THREAD_POOL_SIZE_OF_ONE);
         }
         return scheduledExecutorService;
+    }
+
+    @Override
+    public MediaRepositoryStub getMediaRepository() {
+        return MediaRepositoryStub.createMediaRepository();
     }
 }

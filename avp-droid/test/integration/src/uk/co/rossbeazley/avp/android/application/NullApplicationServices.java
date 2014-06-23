@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android.application;
 
 import uk.co.rossbeazley.avp.android.log.Logger;
+import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -35,12 +36,17 @@ public class NullApplicationServices implements ApplicationServices {
     }
 
     @Override
-    public void executeRunnableNotOnMainThread(Runnable runnable) {
+    public void executeBlockingRunnableNotOnMainThread(Runnable runnable) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public ScheduledExecutorService getExecutorService() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public MediaRepositoryStub getMediaRepository() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

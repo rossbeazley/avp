@@ -3,9 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.search;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.application.*;
-import uk.co.rossbeazley.avp.android.ui.DefaultInflatedViewFactory;
 import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
-import uk.co.rossbeazley.avp.android.ui.InflatedViewFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -28,7 +26,7 @@ public class SearchFragmentInjectorTest implements InjectableSearchFragment {
     @Test
     public void injectIntegratedTest() {
         ApplicationServices services = new NullApplicationServices();
-        DependenciesService ds = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services);
+        DependenciesService ds = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, null);
 
         ds.injectDependencies(this);
 

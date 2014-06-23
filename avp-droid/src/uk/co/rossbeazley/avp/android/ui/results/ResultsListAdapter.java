@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,34 +70,35 @@ public class ResultsListAdapter extends BaseAdapter {
 
     private class ResultsListItemViewFactory {
 
-        public ResultsListItemView create(View viewToRecycle, ViewGroup parentViewGroup) {
-
+        public ResultsListItemView create(View viewToRecycle, ViewGroup parentViewGroup)
+        {
             return recycleableView(viewToRecycle) ? recycleView(viewToRecycle) : createView(parentViewGroup);
         }
 
 
-        private boolean recycleableView(View viewToRecycle) {
+
+        private boolean recycleableView(View viewToRecycle)
+        {
             return viewToRecycle != null && viewToRecycle instanceof ResultsListItemView;
         }
 
-        private ResultsListItemView recycleView(View viewToRecycle) {
+        private ResultsListItemView recycleView(View viewToRecycle)
+        {
             return (ResultsListItemView) viewToRecycle;
         }
 
 
-        private ResultsListItemView createView(ViewGroup parentViewGroup) {
+        private ResultsListItemView createView(ViewGroup parentViewGroup)
+        {
             ResultsListItemView result;
-            LayoutInflater layoutInflator = layoutInflatorFromView(parentViewGroup);
+            LayoutInflater layoutInflator = LayoutInflater.from(parentViewGroup.getContext());
             result = inflateResultsListItemView(parentViewGroup, layoutInflator);
 
             return result;
         }
 
-        private LayoutInflater layoutInflatorFromView(ViewGroup parentViewGroup) {
-            return (LayoutInflater) parentViewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        private ResultsListItemView inflateResultsListItemView(ViewGroup parentViewGroup, LayoutInflater layoutInflator) {
+        private ResultsListItemView inflateResultsListItemView(ViewGroup parentViewGroup, LayoutInflater layoutInflator)
+        {
             return (ResultsListItemView) layoutInflator.inflate(R.layout.results_list_row, parentViewGroup, DO_NOT_ATTACH_TO_PARENT_VIEW);
         }
 

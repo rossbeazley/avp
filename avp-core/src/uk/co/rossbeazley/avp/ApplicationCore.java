@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp;
 
+import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;

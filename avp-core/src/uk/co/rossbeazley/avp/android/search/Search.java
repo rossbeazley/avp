@@ -32,7 +32,11 @@ public class Search implements CurrentSearchResults {
 
     private void executeQuery(Query payload) {
         results = repo.execute(payload);
-        state = new ResultsAvailable(results, bus);
+        changeState(new ResultsAvailable(results, bus));
+    }
+
+    private void changeState(ResultsAvailable newState) {
+        state = newState;
         state.announce();
     }
 

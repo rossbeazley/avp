@@ -22,7 +22,8 @@ public class ResultsFragmentDITest {
 
     @Before
     public void setUp() throws Exception {
-        DependanciesInjectorRegistry dependanciesInjectorRegistry= new DependencyInjectionFrameworkFactory().createDependanciesInjectorRegistry(new ExecutorEventBus());
+        DependanciesInjectorRegistry dependanciesInjectorRegistry= new DependencyInjectionFrameworkFactory()
+                                                                    .createDependanciesInjectorRegistry(new ExecutorEventBus(), null);
         injectors = dependanciesInjectorRegistry.injectorsForObject(getObject());
     }
 

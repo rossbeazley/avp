@@ -4,24 +4,26 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.ui.screenStack.UiNavigationStackFactory;
+
+import java.util.concurrent.ScheduledExecutorService;
 
 public class Main extends Activity {
 
-    private final DependencyInjectionFrameworkFactory dependencyInjectionFrameworkFactory = new DependencyInjectionFrameworkFactory();
     private final UiNavigationStackFactory uiNavigationStackFactory = new UiNavigationStackFactory();
-    private DependenciesService dependenciesService;
-    private ApplicationServices services;
+    private final ApplicationServices services = new ProductionApplicationServices(this.getApplication());
+    private final ApplicationCore applicationCore = createCoreAppBlocking(services);
+    private final DependenciesService dependenciesService = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, applicationCore);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        services = createAppServices();
-        dependenciesService = dependencyInjectionFrameworkFactory.createDependencyInjectionFramework(services);
         uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), services.eventbus());
-        createCoreApp(services);
-
         parseIntent(getIntent());
     }
 
@@ -29,18 +31,20 @@ public class Main extends Activity {
         services.intentParser().onIntent(intent);
     }
 
-    private void createCoreApp(final ApplicationServices services) {
-        services.executeRunnableNotOnMainThread(new Runnable() {
+    private ApplicationCore createCoreAppBlocking(final ApplicationServices services) {
+        final AVPApplication[] avpApp = new AVPApplication[1];
+
+        services.executeBlockingRunnableNotOnMainThread(new Runnable() {
             @Override
             public void run() {
-                new AVPApplication(services);
+                ScheduledExecutorService executorService = services.getExecutorService();
+                new EventBusLog(services.getLogger(), services.eventbus());
+                avpApp[0] = new AVPApplication(services.eventbus(), services.getLogger(), services.getAndroidMediaPlayerFactory(), new ThreadPoolFixedRateExecutor(executorService), services.getMediaRepository());
             }
         });
 
-    }
 
-    private ApplicationServices createAppServices() {
-        return new ProductionApplicationServices(this.getApplication());
+        return avpApp[0].core;
     }
 
     @Override
@@ -67,4 +71,9 @@ public class Main extends Activity {
         services.eventbus().announce(Events.APP_SHUTDOWN);
     }
 
+
+    /** TODO,
+     *
+     * a nav controller that exits the app when the back stack is zero
+     */
 }

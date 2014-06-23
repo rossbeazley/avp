@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.application.DependanciesInjectorRegistry;
 import uk.co.rossbeazley.avp.android.application.DependenciesService;
 import uk.co.rossbeazley.avp.android.application.DependencyInjectionFrameworkFactory;
@@ -24,7 +25,8 @@ public class UrlLoaderFragmentDITest {
 
     @Before
     public void setUp() throws Exception {
-        DependanciesInjectorRegistry dependanciesInjectorRegistry= new DependencyInjectionFrameworkFactory().createDependanciesInjectorRegistry(new ExecutorEventBus());
+        ApplicationCore UNUSED_APP_CORE = null;
+        DependanciesInjectorRegistry dependanciesInjectorRegistry= new DependencyInjectionFrameworkFactory().createDependanciesInjectorRegistry(new ExecutorEventBus(), UNUSED_APP_CORE);
         injectors = dependanciesInjectorRegistry.injectorsForObject(getObject());
     }
 
