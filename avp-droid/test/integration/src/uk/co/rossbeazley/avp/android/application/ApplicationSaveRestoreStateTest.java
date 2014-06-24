@@ -51,16 +51,16 @@ public class ApplicationSaveRestoreStateTest {
     public void savesRunningIndicatorIntoBundle() {
         Bundle inState = new Bundle();
         Bundle outState = new Bundle();
-        new ApplicationState(inState,eventBus).stateIntoBundle(outState);
-        assertTrue(outState.containsKey(ApplicationState.RUNNING));
+        new ApplicationUIState(inState,eventBus).stateIntoBundle(outState);
+        assertTrue(outState.containsKey(ApplicationUIState.RUNNING));
     }
 
     @Test
     public void bundleWithRestoreKeyIsStateRestore() {
         Bundle bundle = new Bundle();
-        bundle.putBoolean(ApplicationState.RUNNING, true);
+        bundle.putBoolean(ApplicationUIState.RUNNING, true);
 
-        new ApplicationState(bundle, eventBus);
+        new ApplicationUIState(bundle, eventBus);
 
         assertThat(appState, is(APP_RESUMED));
     }
@@ -70,7 +70,7 @@ public class ApplicationSaveRestoreStateTest {
 
         Bundle bundle = new Bundle();
 
-        new ApplicationState(bundle, eventBus);
+        new ApplicationUIState(bundle, eventBus);
 
         assertThat(appState, is(APP_START));
     }
@@ -79,7 +79,7 @@ public class ApplicationSaveRestoreStateTest {
 
         Bundle bundle = null;
 
-        new ApplicationState(bundle, eventBus);
+        new ApplicationUIState(bundle, eventBus);
 
         assertThat(appState, is(APP_START));
     }
@@ -87,13 +87,13 @@ public class ApplicationSaveRestoreStateTest {
     @Test
     public void stateNotRunningWhenUICloses() {
 
-        ApplicationState applicationState = new ApplicationState(new Bundle(), eventBus);
+        ApplicationUIState applicationUIState = new ApplicationUIState(new Bundle(), eventBus);
         eventBus.announce(EmptyFragmentBackStack.UI_CLOSED);
 
         Bundle outState = new Bundle();
-        applicationState.stateIntoBundle(outState);
+        applicationUIState.stateIntoBundle(outState);
 
-        assertFalse(outState.containsKey(ApplicationState.RUNNING));
+        assertFalse(outState.containsKey(ApplicationUIState.RUNNING));
     }
 
 }

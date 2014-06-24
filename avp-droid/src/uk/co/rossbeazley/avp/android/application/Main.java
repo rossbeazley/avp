@@ -20,13 +20,13 @@ public class Main extends Activity implements CanFinishTheApp{
     private final ApplicationCore applicationCore = createCoreAppBlocking(services);
     private final DependenciesService dependenciesService = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, applicationCore);
     private final IntentToEventDispatcher intentParser = services.intentParser();
-    private ApplicationState uiState;
+    private ApplicationUIState uiState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), eventbus);
         //intentParser.onIntent(getIntent(), savedInstanceState);
-        uiState = new ApplicationState(savedInstanceState, eventbus);
+        uiState = new ApplicationUIState(savedInstanceState, eventbus);
         new ApplicationExit(eventbus, this);
         super.onCreate(savedInstanceState);
     }

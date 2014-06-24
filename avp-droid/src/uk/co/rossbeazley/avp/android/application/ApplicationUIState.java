@@ -6,14 +6,14 @@ import uk.co.rossbeazley.avp.android.ui.screenStack.EmptyFragmentBackStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-class ApplicationState {
+class ApplicationUIState {
 
     public static final String RUNNING = "RUNNING";
     private static final String STOPPED = "STOPPED";
 
     private String state;
 
-    public ApplicationState(Bundle outState, EventBus eventBus) {
+    public ApplicationUIState(Bundle outState, EventBus eventBus) {
         rehydrateStateFromBundle(outState, eventBus);
 
         eventBus.whenEvent(EmptyFragmentBackStack.UI_CLOSED)
