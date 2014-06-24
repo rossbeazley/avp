@@ -5,3 +5,6 @@ event eventBus?
 automated test
 
 --Consider an object that binds click listeners, shows and hides views
+
+
+

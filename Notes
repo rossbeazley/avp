@@ -67,3 +67,20 @@ MID REFACTOR:
 going to pull presenters, navigation controllers and screen interfaces into CORE project.
 need to wrap the dependencies service with a test to check its assembled correctly, consider an intergrated test to replace the current injection tests
 need to pull the navigation controllers factory out into its own object
+
+
+
+
+Features to implement:
+Remembers Query, in sql DB
+Rehydrates query on APP_RESUME
+Current Query getter?
+
+Remembers Search Results
+Rehydrates search results on APP_RESUME, or we re-dispatch query?
+
+Select search result
+Full page view
+
+
+Images
