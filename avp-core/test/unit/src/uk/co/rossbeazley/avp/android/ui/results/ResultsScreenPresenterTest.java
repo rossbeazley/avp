@@ -2,9 +2,9 @@ package uk.co.rossbeazley.avp.android.ui.results;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.android.search.Results;
+import uk.co.rossbeazley.avp.android.search.Search;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -42,7 +42,7 @@ public class ResultsScreenPresenterTest {
     public void whenSearchIsCompleteResultsListSetInScreen() {
         new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
         bus.sendPayload(expectedResults)
-                .withEvent(Events.SEARCH_RESULTS_AVAILABLE);
+                .withEvent(Search.SEARCH_RESULTS_AVAILABLE);
 
         assertThat(fakeScreen.actualResults,is(expectedResults));
     }
@@ -53,7 +53,7 @@ public class ResultsScreenPresenterTest {
         assertThat(fakeScreen.spinner,is(fakeScreen.SHOWN));
 
         bus.sendPayload(expectedResults)
-                .withEvent(Events.SEARCH_RESULTS_AVAILABLE);
+                .withEvent(Search.SEARCH_RESULTS_AVAILABLE);
 
         assertThat(fakeScreen.spinner,is(fakeScreen.HIDDEN));
     }
@@ -63,7 +63,7 @@ public class ResultsScreenPresenterTest {
         new ResultsScreenPresenter(fakeScreen, bus, new CurrentSearchResults() {
             @Override
             public void announceState() {
-                bus.sendPayload(expectedResults).withEvent(Events.SEARCH_RESULTS_AVAILABLE);
+                bus.sendPayload(expectedResults).withEvent(Search.SEARCH_RESULTS_AVAILABLE);
             }
         });
         assertThat(fakeScreen.actualResults,is(expectedResults));

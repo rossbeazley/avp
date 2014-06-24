@@ -26,6 +26,5 @@ public class Events {
     public static final String PERFORMING_QUERY = "search_created";
     public static final String USER_WANTS_TO_GOTO_SEARCH = "user_wants to_goto_search";
 
-    public static final String SEARCH_RESULTS_AVAILABLE = "search_completed";
 
 }

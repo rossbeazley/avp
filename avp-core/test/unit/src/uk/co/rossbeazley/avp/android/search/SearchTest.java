@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.search;
 
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
@@ -26,7 +25,7 @@ public class SearchTest {
     @Before
     public void setUp() throws Exception {
         bus = new ExecutorEventBus();
-        bus.whenEvent(Events.SEARCH_RESULTS_AVAILABLE)
+        bus.whenEvent(Search.SEARCH_RESULTS_AVAILABLE)
                 .thenRun(new FunctionWithParameter<Results>() {
                     @Override
                     public void invoke(Results payload) {
@@ -46,8 +45,6 @@ public class SearchTest {
 
     @Test
     public void usesMediaRepositoryToRunQuery() {
-
-
         bus.sendPayload(usersQuery)
                 .withEvent(Events.PERFORMING_QUERY);
 

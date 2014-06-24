@@ -7,14 +7,18 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 public class Search implements CurrentSearchResults {
 
+    public static final String NO_SEARCH_RESULTS_AVAILABLE = "no_search_results";
+    public static final String SEARCH_RESULTS_AVAILABLE = "search_completed";
+
     private final MediaRepository repo;
     private final EventBus bus;
     private Results results;
-    private Search.ResultsAvailable state;
+    private SearchState state;
 
     public Search(final MediaRepository repo, final EventBus bus) {
         this.repo = repo;
         this.bus = bus;
+        state = new NoResults();
         bindToUserQueryEvent(bus);
 
     }
@@ -44,7 +48,19 @@ public class Search implements CurrentSearchResults {
         state.announce();
     }
 
-    private class ResultsAvailable {
+    private interface SearchState {
+        void announce();
+    }
+
+    private class NoResults implements SearchState {
+
+        @Override
+        public void announce() {
+            bus.announce(NO_SEARCH_RESULTS_AVAILABLE);
+        }
+    }
+
+    private class ResultsAvailable implements SearchState {
         private final Results results;
         private final EventBus bus;
 
@@ -52,10 +68,10 @@ public class Search implements CurrentSearchResults {
             this.results = results;
             this.bus = bus;
         }
-
+        @Override
         public void announce() {
             bus.sendPayload(results)
-                    .withEvent(Events.SEARCH_RESULTS_AVAILABLE);
+                    .withEvent(SEARCH_RESULTS_AVAILABLE);
         }
     }
 }

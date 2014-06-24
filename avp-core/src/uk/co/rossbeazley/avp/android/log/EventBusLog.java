@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android.log;
 
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.search.Search;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
@@ -31,7 +32,7 @@ public class EventBusLog {
 
         logEvent(Events.USER_WANTS_TO_GOTO_SEARCH);
         logEvent(Events.PERFORMING_QUERY);
-        logEvent(Events.SEARCH_RESULTS_AVAILABLE);
+        logEvent(Search.SEARCH_RESULTS_AVAILABLE);
     }
 
     private void logEvent(final String event) {
