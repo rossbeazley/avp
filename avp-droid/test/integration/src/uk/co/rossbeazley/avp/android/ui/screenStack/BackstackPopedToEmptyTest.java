@@ -33,7 +33,7 @@ public class BackstackPopedToEmptyTest {
         //new EmptyFragmentBackStack(fragmentManager, eventBus);
         new UiNavigationStackFactory().createNavigationViewControllers(fragmentManager, eventBus);
 
-        eventBus.whenEvent(Events.UI_CLOSED)
+        eventBus.whenEvent(EmptyFragmentBackStack.UI_CLOSED)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

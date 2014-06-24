@@ -8,39 +8,26 @@ import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.ui.screenStack.UiNavigationStackFactory;
-import uk.co.rossbeazley.avp.eventbus.Function;
+import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 import java.util.concurrent.ScheduledExecutorService;
 
-public class Main extends Activity {
+public class Main extends Activity implements CanFinishTheApp{
 
     private final UiNavigationStackFactory uiNavigationStackFactory = new UiNavigationStackFactory();
     private final ApplicationServices services = new ProductionApplicationServices(this.getApplication());
+    private final EventBus eventbus = services.eventbus();
     private final ApplicationCore applicationCore = createCoreAppBlocking(services);
     private final DependenciesService dependenciesService = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, applicationCore);
-
-
+    private IntentToEventDispatcher intentParser = services.intentParser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), eventbus);
+        intentParser.onIntent(getIntent());
+        new ApplicationExit(eventbus, this);
+
         super.onCreate(savedInstanceState);
-        uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), services.eventbus());
-        parseIntent(getIntent());
-        finishWhenFragmentBackstackIsEmpty();
-
-    }
-
-    private void finishWhenFragmentBackstackIsEmpty() {
-        services.eventbus().whenEvent(Events.UI_CLOSED).thenRun(new Function() {
-            @Override
-            public void invoke() {
-                Main.this.finish();
-            }
-        });
-    }
-
-    private void parseIntent(Intent intent) {
-        services.intentParser().onIntent(intent);
     }
 
     private ApplicationCore createCoreAppBlocking(final ApplicationServices services) {
@@ -62,7 +49,7 @@ public class Main extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        parseIntent(getIntent());
+        intentParser.onIntent(getIntent());
     }
 
     @Override
@@ -74,13 +61,13 @@ public class Main extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        services.eventbus().announce(Events.APP_HIDDEN);
+        eventbus.announce(Events.APP_HIDDEN);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        services.eventbus().announce(Events.APP_SHUTDOWN);
+        eventbus.announce(Events.APP_SHUTDOWN);
     }
 
 
