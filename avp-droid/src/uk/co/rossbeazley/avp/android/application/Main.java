@@ -19,21 +19,27 @@ public class Main extends Activity implements CanFinishTheApp{
     private final EventBus eventbus = services.eventbus();
     private final ApplicationCore applicationCore = createCoreAppBlocking(services);
     private final DependenciesService dependenciesService = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, applicationCore);
-    private IntentToEventDispatcher intentParser = services.intentParser();
+    private final IntentToEventDispatcher intentParser = services.intentParser();
+    private ApplicationState uiState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), eventbus);
-        intentParser.onIntent(getIntent(), savedInstanceState);
+        //intentParser.onIntent(getIntent(), savedInstanceState);
+        uiState = new ApplicationState(savedInstanceState, eventbus);
         new ApplicationExit(eventbus, this);
-
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        uiState.stateIntoBundle(outState);
     }
 
     private ApplicationCore createCoreAppBlocking(final ApplicationServices services) {
@@ -55,7 +61,7 @@ public class Main extends Activity implements CanFinishTheApp{
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        intentParser.onIntent(getIntent());
+        //intentParser.onIntent(getIntent());
     }
 
     @Override

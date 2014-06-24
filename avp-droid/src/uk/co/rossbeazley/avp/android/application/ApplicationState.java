@@ -26,7 +26,7 @@ class ApplicationState {
     }
 
     private void rehydrateStateFromBundle(Bundle outState, EventBus eventBus) {
-        if(applicationRestored(outState)) {
+        if(applicationWasRunning(outState)) {
              eventBus.announce(Events.APP_RESUMED);
          } else {
              eventBus.announce(Events.APP_START);
@@ -35,8 +35,8 @@ class ApplicationState {
         state = RUNNING;
     }
 
-    private boolean applicationRestored(Bundle outState) {
-        return outState.containsKey(RUNNING);
+    private boolean applicationWasRunning(Bundle outState) {
+        return outState != null && outState.containsKey(RUNNING);
     }
 
     public void stateIntoBundle(Bundle outState) {

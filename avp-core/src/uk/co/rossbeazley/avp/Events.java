@@ -12,8 +12,7 @@ public class Events {
     public static final String PLAYER_VIDEO_LOADED = "video_loaded";
     public static final String PLAYER_CREATED = "media_player_created";
     public static final String APP_SHUTDOWN = "app_shutdown";
-    public static final String APP_HIDDEN = "app_hidden";
-    public static final String APP_START = "app_start";
+
     public static final String PLAYER_STOPPED = "player_stopped";
     public static final String PLAYER_PLAYING = "player_playing";
     public static final String PLAYER_PAUSED = "player_paused";
@@ -26,6 +25,7 @@ public class Events {
     public static final String PERFORMING_QUERY = "search_created";
     public static final String USER_WANTS_TO_GOTO_SEARCH = "user_wants to_goto_search";
 
-
+    public static final String APP_START = "app_start";
+    public static final String APP_HIDDEN = "app_hidden";
     public static final String APP_RESUMED = "app_resumed";
 }

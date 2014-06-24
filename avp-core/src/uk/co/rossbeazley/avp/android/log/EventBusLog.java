@@ -29,6 +29,9 @@ public class EventBusLog {
 
         logEvent(Events.APP_HIDDEN);
         logEvent(Events.APP_SHUTDOWN);
+        logEvent(Events.APP_RESUMED);
+        logEvent(Events.APP_START);
+
 
         logEvent(Events.USER_WANTS_TO_GOTO_SEARCH);
         logEvent(Events.PERFORMING_QUERY);

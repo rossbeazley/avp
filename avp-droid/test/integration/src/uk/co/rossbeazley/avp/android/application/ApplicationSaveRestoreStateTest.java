@@ -74,6 +74,15 @@ public class ApplicationSaveRestoreStateTest {
 
         assertThat(appState, is(APP_START));
     }
+    @Test
+    public void bundleWithNullBundleIsStateStart() {
+
+        Bundle bundle = null;
+
+        new ApplicationState(bundle, eventBus);
+
+        assertThat(appState, is(APP_START));
+    }
 
     @Test
     public void stateNotRunningWhenUICloses() {
