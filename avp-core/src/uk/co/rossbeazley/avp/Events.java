@@ -27,4 +27,5 @@ public class Events {
     public static final String USER_WANTS_TO_GOTO_SEARCH = "user_wants to_goto_search";
 
 
+    public static final String APP_RESUMED = "app_resumed";
 }

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 
 public class ApplicationExitTest implements CanFinishTheApp {
 
-    private String state = "running";
+    private String state = "RUNNING";
     private String finished = "finished";
 
     @Test

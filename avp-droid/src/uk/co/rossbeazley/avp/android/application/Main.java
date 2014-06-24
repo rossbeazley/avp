@@ -24,10 +24,16 @@ public class Main extends Activity implements CanFinishTheApp{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         uiNavigationStackFactory.createNavigationViewControllers(getFragmentManager(), eventbus);
-        intentParser.onIntent(getIntent());
+        intentParser.onIntent(getIntent(), savedInstanceState);
         new ApplicationExit(eventbus, this);
 
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
     }
 
     private ApplicationCore createCoreAppBlocking(final ApplicationServices services) {

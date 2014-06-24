@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.application;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -38,4 +39,7 @@ public class IntentToEventDispatcher {
         return dataString;
     }
 
+    public void onIntent(Intent intent, Bundle savedInstanceState) {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 }
