@@ -17,10 +17,8 @@ public class ResultsScreenPresenterItemSelectedTest {
     private CurrentSearchResults currentSearchResults;
     private MediaItem expectedResult = new MediaItem("::ANY_TITLE::");
     private MediaItem selectedResult;
+    private FakeResultsScreen fakeScreen;
 
-
-    private Results results = new Results(expectedResult);
-    private final FakeResultsScreen fakeScreen = new FakeResultsScreen(results);
 
     @Before
     public void setUp() throws Exception {
@@ -36,15 +34,14 @@ public class ResultsScreenPresenterItemSelectedTest {
         };
 
         bus = new ExecutorEventBus();
+        fakeScreen = new FakeResultsScreen();
     }
 
 
     @Test
     public void selectsResult() {
         new ResultsScreenPresenter(fakeScreen, bus, currentSearchResults);
-
-        fakeScreen.listener.selected(fakeScreen.actualResults.result(0));
-
+        fakeScreen.listener.selected(expectedResult);
         assertThat(selectedResult, is(expectedResult));
     }
 

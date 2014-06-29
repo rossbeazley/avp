@@ -9,13 +9,6 @@ class FakeResultsScreen implements ResultsScreen {
     public String spinner = SHOWN;
     public ResultsScreen.CanListenForResultSelection listener;
 
-    FakeResultsScreen() {
-    }
-
-    public FakeResultsScreen(Results results) {
-        this.actualResults = results;
-    }
-
     @Override
     public void showResults(Results results) {
         actualResults = results;
