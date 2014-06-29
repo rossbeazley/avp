@@ -11,12 +11,7 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 class ResultsScreenPresenter {
     public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, final CurrentSearchResults currentSearch) {
         bindToSearchCompletedEvent(screen, bus);
-        screen.setResultSelectedListener(new ResultsScreen.CanListenForResultSelection() {
-            @Override
-            public void selected(MediaItem item) {
-                currentSearch.selectResult(item);
-            }
-        });
+        bindToResultSelectedOnScreenEvent(screen, currentSearch);
         currentSearch.announceState();
     }
 
@@ -33,6 +28,15 @@ class ResultsScreenPresenter {
     private void presentResults(Results payload, ResultsScreen screen) {
         screen.showResults(payload);
         screen.hideSpinner();
+    }
+
+    private void bindToResultSelectedOnScreenEvent(ResultsScreen screen, final CurrentSearchResults currentSearch) {
+        screen.setResultSelectedListener(new ResultsScreen.CanListenForResultSelection() {
+            @Override
+            public void selected(MediaItem item) {
+                currentSearch.selectResult(item);
+            }
+        });
     }
 
 }
