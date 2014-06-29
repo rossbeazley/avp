@@ -10,9 +10,6 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 class ResultsScreenPresenter {
     public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, CurrentSearchResults currentSearch) {
         bindToSearchCompletedEvent(screen, bus);
-
-        defaultEvent(screen);
-
         currentSearch.announceState();
     }
 
@@ -31,7 +28,4 @@ class ResultsScreenPresenter {
         screen.hideSpinner();
     }
 
-    private void defaultEvent(ResultsScreen screen) {
-        screen.showSpinner();
-    }
 }

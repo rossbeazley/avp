@@ -13,12 +13,9 @@ import static org.junit.Assert.assertThat;
 @RunWith(RobolectricTestRunner.class)
 public class ResultsScreenSpinnerTest {
     @Test
-    public void testShowSpinner() throws Exception {
+    public void spinnerShowAsDefault() throws Exception {
         ActivityForTestingViews visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.results);
         ResultsScreen screen = new ResultsScreenAndroid(visibleActivityForLayout.viewFinder());
-
-        screen.showSpinner();
-
         View spinnerView = visibleActivityForLayout.findViewById(R.id.searchspinner);
         assertThat(spinnerView.getVisibility(), is(View.VISIBLE));
     }

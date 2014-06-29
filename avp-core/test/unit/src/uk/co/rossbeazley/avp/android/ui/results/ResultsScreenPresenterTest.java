@@ -31,12 +31,6 @@ public class ResultsScreenPresenterTest {
         bus = new ExecutorEventBus();
     }
 
-    @Test    //TODO should be able to drop this test and make the views default state have spinner shown
-    public void directsViewToDisplaySpinnerAsDefaultStateIfResultsLoading() {
-        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
-        assertThat("spinner shown", fakeScreen.spinner,is(fakeScreen.SHOWN));
-    }
-
 
     @Test
     public void whenSearchIsCompleteResultsListSetInScreen() {

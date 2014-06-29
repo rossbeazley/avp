@@ -72,6 +72,12 @@ need to pull the navigation controllers factory out into its own object
 
 
 Features to implement:
+
+Select search result
+Full page view
+
+Images
+
 Remembers Query, in sql DB
 Rehydrates query on APP_RESUME
 Current Query getter?
@@ -79,8 +85,5 @@ Current Query getter?
 Remembers Search Results
 Rehydrates search results on APP_RESUME, or we re-dispatch query?
 
-Select search result
-Full page view
 
 
-Images
