@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android.search;
 
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -46,6 +47,11 @@ public class Search implements CurrentSearchResults {
 
     public void announceState() {
         state.announce();
+    }
+
+    @Override
+    public void selectResult(MediaItem selected) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private interface SearchState {

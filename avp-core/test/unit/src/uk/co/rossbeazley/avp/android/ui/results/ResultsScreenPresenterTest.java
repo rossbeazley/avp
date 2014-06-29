@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.results;
 
 import org.junit.Before;
 import org.junit.Test;
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.search.Search;
@@ -25,6 +26,11 @@ public class ResultsScreenPresenterTest {
         fakeCurrentSearch = new CurrentSearchResults() {
             @Override
             public void announceState() {
+            }
+
+            @Override
+            public void selectResult(MediaItem selected) {
+                //To change body of implemented methods use File | Settings | File Templates.
             }
         };
 
@@ -59,37 +65,13 @@ public class ResultsScreenPresenterTest {
             public void announceState() {
                 bus.sendPayload(expectedResults).withEvent(Search.SEARCH_RESULTS_AVAILABLE);
             }
+
+            @Override
+            public void selectResult(MediaItem selected) {
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
         });
         assertThat(fakeScreen.actualResults,is(expectedResults));
     }
 
-    private class FakeResultsScreen implements ResultsScreen {
-        public Results actualResults;
-        public static final String SHOWN = "visible";
-        public static final String HIDDEN = "hidden";
-        public String spinner = "unknown";
-
-        @Override
-        public void showResults(Results results) {
-            actualResults = results;
-        }
-
-        @Override
-        public void showSpinner() {
-            spinner = SHOWN;
-        }
-
-        @Override
-        public void hideSpinner() {
-            spinner = HIDDEN;
-        }
-
-        @Override
-        public void tearDown() {
-        }
-
-        @Override
-        public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) {
-        }
-    }
 }

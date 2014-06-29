@@ -69,6 +69,11 @@ public class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implement
     }
 
     @Override
+    public void setResultSelectedListener(CanListenForResultSelection listener) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public void tearDown() { }
 
     @Override

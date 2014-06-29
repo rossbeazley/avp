@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
 
+import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.search.Search;
@@ -8,8 +9,14 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 class ResultsScreenPresenter {
-    public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, CurrentSearchResults currentSearch) {
+    public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, final CurrentSearchResults currentSearch) {
         bindToSearchCompletedEvent(screen, bus);
+        screen.setResultSelectedListener(new ResultsScreen.CanListenForResultSelection() {
+            @Override
+            public void selected(MediaItem item) {
+                currentSearch.selectResult(item);
+            }
+        });
         currentSearch.announceState();
     }
 
