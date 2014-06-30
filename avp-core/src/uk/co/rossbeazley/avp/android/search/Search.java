@@ -8,14 +8,11 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 public class Search implements CurrentSearchResults, CurrentResult {
 
-    public static final String NO_SEARCH_RESULTS_AVAILABLE = "no_search_results";
-    public static final String SEARCH_RESULTS_AVAILABLE = "search_completed";
-    public static final String MEDIA_ITEM_AVAILABLE = "media_item_available";
-
     private final MediaRepository repo;
     private final EventBus bus;
     private Results results;
     private SearchState state;
+
     private MediaItem selectResult;
 
     public Search(final MediaRepository repo, final EventBus bus) {

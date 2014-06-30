@@ -1,18 +1,12 @@
 package uk.co.rossbeazley.avp.android.search;
 
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
-import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
-import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
-
-import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -34,7 +28,7 @@ public class SearchSelectItemTest {
 
     @Test
     public void resultSelectionAnnounced() {
-        bus.whenEvent(Search.MEDIA_ITEM_AVAILABLE)
+        bus.whenEvent(CurrentResult.MEDIA_ITEM_AVAILABLE)
                 .thenRun(new FunctionWithParameter<MediaItem>() {
                     @Override
                     public void invoke(MediaItem payload) {

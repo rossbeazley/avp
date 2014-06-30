@@ -74,7 +74,10 @@ need to pull the navigation controllers factory out into its own object
 Features to implement:
 
 Select search result
-Full page view
+
+nav controller responding to MEDIA_ITEM_AVAILABLE
+
+Full page view needs to query the currentResult
 
 Images
 

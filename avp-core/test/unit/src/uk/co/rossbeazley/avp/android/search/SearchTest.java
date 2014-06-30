@@ -25,7 +25,7 @@ public class SearchTest {
     @Before
     public void setUp() throws Exception {
         bus = new ExecutorEventBus();
-        bus.whenEvent(Search.SEARCH_RESULTS_AVAILABLE)
+        bus.whenEvent(CurrentSearchResults.SEARCH_RESULTS_AVAILABLE)
                 .thenRun(new FunctionWithParameter<Results>() {
                     @Override
                     public void invoke(Results payload) {

@@ -2,15 +2,10 @@ package uk.co.rossbeazley.avp.android.search;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
-import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
-import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
-
-import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -36,7 +31,7 @@ public class SearchNoResultsTest {
 
         announcedResult = null;
 
-        bus.whenEvent(Search.NO_SEARCH_RESULTS_AVAILABLE)
+        bus.whenEvent(CurrentSearchResults.NO_SEARCH_RESULTS_AVAILABLE)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
