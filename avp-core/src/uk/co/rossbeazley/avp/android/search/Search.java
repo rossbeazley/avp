@@ -10,6 +10,7 @@ public class Search implements CurrentSearchResults {
 
     public static final String NO_SEARCH_RESULTS_AVAILABLE = "no_search_results";
     public static final String SEARCH_RESULTS_AVAILABLE = "search_completed";
+    public static final String MEDIA_ITEM_AVAILABLE = "media_item_available";
 
     private final MediaRepository repo;
     private final EventBus bus;
