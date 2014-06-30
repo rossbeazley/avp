@@ -9,10 +9,12 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 class ResultsScreenAndroid implements ResultsScreen {
     private final CanFindViewById canFindViewById;
     private View searchSpinner;
+    private CanListenForResultSelection listener;
 
     public ResultsScreenAndroid(CanFindViewById canFindViewById) {
         this.canFindViewById = canFindViewById;
         this.searchSpinner = canFindViewById.findViewById(R.id.searchspinner);
+        listener = CanListenForResultSelection.NULL;
     }
 
     @Override
@@ -29,6 +31,11 @@ class ResultsScreenAndroid implements ResultsScreen {
     @Override
     public void hideSpinner() {
         searchSpinner.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setResultSelectedListener(CanListenForResultSelection listener) {
+        this.listener = listener;
     }
 
     private ListView findListView(int id) {

@@ -3,8 +3,8 @@ package uk.co.rossbeazley.avp.android.ui.results;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
+import uk.co.rossbeazley.avp.android.search.CurrentResult;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
-import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -18,6 +18,7 @@ public class ResultsScreenPresenterItemSelectedTest {
     private MediaItem expectedResult = new MediaItem("::ANY_TITLE::");
     private MediaItem selectedResult;
     private FakeResultsScreen fakeScreen;
+    private CurrentResult currentResult;
 
 
     @Before
@@ -27,6 +28,10 @@ public class ResultsScreenPresenterItemSelectedTest {
             public void announceState() {
             }
 
+
+        };
+
+        currentResult = new CurrentResult() {
             @Override
             public void selectResult(MediaItem selected) {
                 selectedResult = selected;
@@ -40,7 +45,7 @@ public class ResultsScreenPresenterItemSelectedTest {
 
     @Test
     public void selectsResult() {
-        new ResultsScreenPresenter(fakeScreen, bus, currentSearchResults);
+        new ResultsScreenPresenter(fakeScreen, bus, currentSearchResults, currentResult);
         fakeScreen.listener.selected(expectedResult);
         assertThat(selectedResult, is(expectedResult));
     }

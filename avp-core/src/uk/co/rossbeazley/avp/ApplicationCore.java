@@ -36,6 +36,7 @@ public class ApplicationCore {
     // imperative shell
     public final CanDispatchSearchQuery searchService;
     public final CurrentSearchResults currentSearchResults;
+    public final CurrentResult currentResult;
 
     public ApplicationCore(EventBus bus, MediaPlayerFactory androidMediaPlayerFactory, CanExecuteCommandsAtFixedRate fixedRateExecutor, MediaRepository mediaRepository) {
         mediaPlayerCreator = new MediaPlayerCreator(bus, androidMediaPlayerFactory);
@@ -51,5 +52,6 @@ public class ApplicationCore {
 
         searchService = new SearchService(bus);
         currentSearchResults = search;
+        currentResult = search;
     }
 }

@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 public class SearchSelectItemTest {
 
     private EventBus bus;
-    private CurrentSearchResults search;
+    private CurrentResult search;
     private MediaItem announcedResult;
 
     @Before

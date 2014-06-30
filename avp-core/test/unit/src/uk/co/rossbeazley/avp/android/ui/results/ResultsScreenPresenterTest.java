@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.results;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
+import uk.co.rossbeazley.avp.android.search.CurrentResult;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.search.Search;
@@ -20,17 +21,13 @@ public class ResultsScreenPresenterTest {
 
     private EventBus bus;
     private CurrentSearchResults fakeCurrentSearch;
+    private CurrentResult fakeCurrentResult = null;
 
     @Before
     public void setUp() throws Exception {
         fakeCurrentSearch = new CurrentSearchResults() {
             @Override
             public void announceState() {
-            }
-
-            @Override
-            public void selectResult(MediaItem selected) {
-                //To change body of implemented methods use File | Settings | File Templates.
             }
         };
 
@@ -40,7 +37,7 @@ public class ResultsScreenPresenterTest {
 
     @Test
     public void whenSearchIsCompleteResultsListSetInScreen() {
-        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch, fakeCurrentResult);
         bus.sendPayload(expectedResults)
                 .withEvent(Search.SEARCH_RESULTS_AVAILABLE);
 
@@ -49,7 +46,7 @@ public class ResultsScreenPresenterTest {
 
     @Test
     public void spinnerHiddenOnSearchComplete() {
-        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch);
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch, fakeCurrentResult);
         assertThat(fakeScreen.spinner,is(fakeScreen.SHOWN));
 
         bus.sendPayload(expectedResults)
@@ -65,12 +62,7 @@ public class ResultsScreenPresenterTest {
             public void announceState() {
                 bus.sendPayload(expectedResults).withEvent(Search.SEARCH_RESULTS_AVAILABLE);
             }
-
-            @Override
-            public void selectResult(MediaItem selected) {
-                //To change body of implemented methods use File | Settings | File Templates.
-            }
-        });
+        }, fakeCurrentResult);
         assertThat(fakeScreen.actualResults,is(expectedResults));
     }
 

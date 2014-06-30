@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class Search implements CurrentSearchResults {
+public class Search implements CurrentSearchResults, CurrentResult {
 
     public static final String NO_SEARCH_RESULTS_AVAILABLE = "no_search_results";
     public static final String SEARCH_RESULTS_AVAILABLE = "search_completed";
@@ -16,6 +16,7 @@ public class Search implements CurrentSearchResults {
     private final EventBus bus;
     private Results results;
     private SearchState state;
+    private MediaItem selectResult;
 
     public Search(final MediaRepository repo, final EventBus bus) {
         this.repo = repo;
@@ -52,7 +53,8 @@ public class Search implements CurrentSearchResults {
 
     @Override
     public void selectResult(MediaItem selected) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.selectResult = selected;
+        bus.sendPayload(selected).withEvent(MEDIA_ITEM_AVAILABLE);
     }
 
     private interface SearchState {

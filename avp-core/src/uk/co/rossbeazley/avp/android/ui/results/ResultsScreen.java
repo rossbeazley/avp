@@ -15,5 +15,7 @@ public interface ResultsScreen extends Screen {
 
     public interface CanListenForResultSelection {
         void selected(MediaItem item);
+
+        CanListenForResultSelection NULL = new CanListenForResultSelection() {public void selected(MediaItem item) {}};
     }
 }

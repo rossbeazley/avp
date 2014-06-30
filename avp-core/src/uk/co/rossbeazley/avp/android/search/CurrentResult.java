@@ -2,8 +2,7 @@ package uk.co.rossbeazley.avp.android.search;
 
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 
-public interface CurrentSearchResults {
-    void announceState();
+public interface CurrentResult {
 
-
+    void selectResult(MediaItem selected);
 }
