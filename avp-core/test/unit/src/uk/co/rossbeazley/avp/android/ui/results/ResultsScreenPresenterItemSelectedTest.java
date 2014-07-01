@@ -23,13 +23,7 @@ public class ResultsScreenPresenterItemSelectedTest {
 
     @Before
     public void setUp() throws Exception {
-        currentSearchResults = new CurrentSearchResults() {
-            @Override
-            public void announceState() {
-            }
-
-
-        };
+        currentSearchResults = new CurrentSearchResults() {@Override public void announceState() {}};
 
         currentResult = new CurrentResult() {
             @Override

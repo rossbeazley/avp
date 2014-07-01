@@ -10,10 +10,11 @@ public class Search implements CurrentSearchResults, CurrentResult {
 
     private final MediaRepository repo;
     private final EventBus bus;
+    private SelectedMediaItem selectedMediaItem;
     private Results results;
     private SearchState state;
 
-    private MediaItem selectResult;
+
 
     public Search(final MediaRepository repo, final EventBus bus) {
         this.repo = repo;
@@ -21,6 +22,7 @@ public class Search implements CurrentSearchResults, CurrentResult {
         state = new NoResults();
         bindToUserQueryEvent(bus);
 
+        selectedMediaItem = new SelectedMediaItem(bus);
     }
 
     private void bindToUserQueryEvent(EventBus bus) {
@@ -50,8 +52,7 @@ public class Search implements CurrentSearchResults, CurrentResult {
 
     @Override
     public void selectResult(MediaItem selected) {
-        this.selectResult = selected;
-        bus.sendPayload(selected).withEvent(MEDIA_ITEM_AVAILABLE);
+        selectedMediaItem.selectResult(selected);
     }
 
     private interface SearchState {

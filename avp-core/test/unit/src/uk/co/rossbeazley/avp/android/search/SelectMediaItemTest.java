@@ -5,25 +5,40 @@ import org.junit.Test;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
+import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchSelectItemTest {
+public class SelectMediaItemTest {
 
     private EventBus bus;
     private CurrentResult search;
     private MediaItem announcedResult;
+    private boolean selecting;
 
     @Before
     public void setUp() throws Exception {
         bus = new ExecutorEventBus();
+        search = new SelectedMediaItem(bus);
+        selecting=false;
+    }
 
-        MediaRepository unused_repo = null;
-        search = new Search(unused_repo, bus);
+    @Test
+    public void resultSelectignAnnounced() {
+        bus.whenEvent(CurrentResult.MEDIA_ITEM_SELECTING)
+                .thenRun(new Function() {
+                    @Override
+                    public void invoke() {
+                        selecting = true;
+                    }
+                });
 
+        MediaItem expectedResult = new MediaItem("::ANY_TITLE::");
+        search.selectResult(expectedResult);
+        assertThat(selecting, is(true));
     }
 
     @Test
