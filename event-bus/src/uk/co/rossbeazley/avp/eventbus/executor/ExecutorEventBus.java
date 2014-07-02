@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.eventbus.executor;
 import uk.co.rossbeazley.avp.eventbus.AnnouncementWithPayload;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.EventSubscription;
+import uk.co.rossbeazley.avp.eventbus.Function;
 
 import java.util.concurrent.Executor;
 
@@ -27,7 +28,12 @@ public class ExecutorEventBus implements EventBus {
 
     @Override
     public AnnouncementWithPayload sendPayload(Object any_object) {
-        return new EventSubscriptionsAnnouncementWithPayload(eventSubscriptions, any_object);  //To change body of created methods use File | Settings | File Templates.
+        return new EventSubscriptionsAnnouncementWithPayload(eventSubscriptions, any_object);
+    }
+
+    @Override
+    public void registerProducer(Object event, Function function) {
+
     }
 
 

@@ -42,6 +42,7 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
         executorInvoke(functionWithParameter, payload);
     }
 
+    @SuppressWarnings("unchecked")
     private void executorInvoke(final FunctionWithParameter function, final Object payload) {
         executor.execute(new Runnable() {
             @Override
