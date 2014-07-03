@@ -13,7 +13,7 @@ class EventSubscriptions {
     EventSubscription addSubscriberForEvent(Object event, ExecutorEventSubscription subscription) {
         Functions functions;
         if (subscriptionsPerEvent.containsKey(event)) {
-            functions = subscriptionsPerEvent.get(event);
+            functions = functions(event);
         } else {
             functions = new Functions();
             subscriptionsPerEvent.put(event, functions);
@@ -23,16 +23,14 @@ class EventSubscriptions {
     }
 
     void announce(Object event) {
-        Functions functions = subscriptionsPerEvent.get(event);
-        if (functions != null) {
-            functions.invoke();
-        }
+        functions(event).invoke();
     }
 
     void announce(Object event, Object payload) {
-        Functions functions = subscriptionsPerEvent.get(event);
-        if (functions != null) {
-            functions.invoke(payload);
-        }
+        functions(event).invoke(payload);
+    }
+
+    private Functions functions(Object event) {
+        return subscriptionsPerEvent.containsKey(event) ? subscriptionsPerEvent.get(event) : Functions.EMPTY;
     }
 }
