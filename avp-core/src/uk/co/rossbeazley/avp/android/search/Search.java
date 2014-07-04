@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class Search implements CurrentSearchResults, CurrentResult {
+public class Search implements CurrentSearchResults {
 
     private final MediaRepository repo;
     private final EventBus bus;
@@ -50,10 +50,6 @@ public class Search implements CurrentSearchResults, CurrentResult {
         state.announce();
     }
 
-    @Override
-    public void selectResult(MediaItem selected) {
-        selectedMediaItem.selectResult(selected);
-    }
 
     private interface SearchState {
         void announce();

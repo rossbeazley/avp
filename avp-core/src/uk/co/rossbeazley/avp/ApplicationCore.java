@@ -52,6 +52,6 @@ public class ApplicationCore {
 
         searchService = new SearchService(bus);
         currentSearchResults = search;
-        currentResult = search;
+        currentResult = new SelectedMediaItem(bus);
     }
 }

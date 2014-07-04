@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.eventbus.executor;
 import uk.co.rossbeazley.avp.eventbus.AnnouncementWithPayload;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.EventSubscription;
-import uk.co.rossbeazley.avp.eventbus.Function;
+import uk.co.rossbeazley.avp.eventbus.singlethreaded.PayloadFunction;
 
 import java.util.concurrent.Executor;
 
@@ -32,7 +32,7 @@ public class ExecutorEventBus implements EventBus {
     }
 
     @Override
-    public void registerProducer(Object event, Function function) {
+    public void registerProducer(Object event, PayloadFunction function) {
 
     }
 
