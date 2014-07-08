@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.avp.eventbus.singlethreaded;
+package uk.co.rossbeazley.avp.eventbus;
 
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 

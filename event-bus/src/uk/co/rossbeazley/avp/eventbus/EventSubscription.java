@@ -4,4 +4,6 @@ public interface EventSubscription {
     void thenRun(Function fn);
 
     void thenRun(FunctionWithParameter fn);
+
+    //TODO add un-register message
 }

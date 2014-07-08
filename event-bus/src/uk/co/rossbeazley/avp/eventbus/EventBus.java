@@ -1,7 +1,5 @@
 package uk.co.rossbeazley.avp.eventbus;
 
-import uk.co.rossbeazley.avp.eventbus.singlethreaded.PayloadFunction;
-
 public interface EventBus {
     void announce(Object event);
 

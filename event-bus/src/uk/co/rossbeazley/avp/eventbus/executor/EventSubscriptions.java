@@ -13,7 +13,7 @@ class EventSubscriptions {
     EventSubscription addSubscriberForEvent(Object event, ExecutorEventSubscription subscription) {
         Functions functions;
         if (subscriptionsPerEvent.containsKey(event)) {
-            functions = functions(event);
+            functions = subscriptionsPerEvent.get(event);
         } else {
             functions = new Functions();
             subscriptionsPerEvent.put(event, functions);

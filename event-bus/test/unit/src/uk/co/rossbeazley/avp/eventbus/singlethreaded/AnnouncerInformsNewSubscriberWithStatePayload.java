@@ -3,6 +3,7 @@ package uk.co.rossbeazley.avp.eventbus.singlethreaded;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
+import uk.co.rossbeazley.avp.eventbus.PayloadFunction;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -14,7 +15,7 @@ public class AnnouncerInformsNewSubscriberWithStatePayload
     private Object announcedPayload;
 
     @Test
-    public void announcerRegisteredSubscriberListens()
+    public void aProducerInformsAConsumer()
     {
         EventBus bus = new ExecutorEventBus();
 

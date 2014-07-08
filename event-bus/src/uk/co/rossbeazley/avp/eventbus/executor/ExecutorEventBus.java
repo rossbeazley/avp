@@ -3,17 +3,16 @@ package uk.co.rossbeazley.avp.eventbus.executor;
 import uk.co.rossbeazley.avp.eventbus.AnnouncementWithPayload;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.EventSubscription;
-import uk.co.rossbeazley.avp.eventbus.singlethreaded.PayloadFunction;
+import uk.co.rossbeazley.avp.eventbus.PayloadFunction;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Executor;
 
 public class ExecutorEventBus implements EventBus {
 
     private final CanBuildExecutor canBuildExecutor;
+    private final Producers producers = new Producers();
     private EventSubscriptions eventSubscriptions = new EventSubscriptions();
-    private Map<Object, PayloadFunction> producers = new HashMap<Object, PayloadFunction>();
+
 
     public ExecutorEventBus() {
         canBuildExecutor = CanBuildExecutor.DEFAULT;
@@ -36,7 +35,7 @@ public class ExecutorEventBus implements EventBus {
 
     @Override
     public void registerProducer(Object event, PayloadFunction function) {
-        this.producers.put(event,function);
+        this.producers.add(event, function);
     }
 
 
@@ -44,9 +43,8 @@ public class ExecutorEventBus implements EventBus {
     public EventSubscription whenEvent(Object event) {
         Executor executor = canBuildExecutor.executor();
         ExecutorEventSubscription subscription = new ExecutorEventSubscription(executor);
-
+        producers.notifyProducersOfNewSubscriber(event, subscription);
         return eventSubscriptions.addSubscriberForEvent(event, subscription);
     }
-
 
 }

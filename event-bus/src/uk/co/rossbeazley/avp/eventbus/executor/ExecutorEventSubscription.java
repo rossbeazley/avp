@@ -3,7 +3,9 @@ package uk.co.rossbeazley.avp.eventbus.executor;
 import uk.co.rossbeazley.avp.eventbus.EventSubscription;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
+import uk.co.rossbeazley.avp.eventbus.PayloadFunction;
 
+import java.util.List;
 import java.util.concurrent.Executor;
 
 class ExecutorEventSubscription implements EventSubscription, AnnouncementFunction {
@@ -12,6 +14,7 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
     private FunctionWithParameter functionWithParameter;
 
     private static final Object NO_PAYLOAD = null;
+    private List<PayloadFunction> payloadFunctions;
 
     public ExecutorEventSubscription(Executor executor) {
         this.executor = executor;
@@ -30,6 +33,12 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
     @Override
     public void thenRun(FunctionWithParameter function) {
         this.functionWithParameter = function;
+        if(this.payloadFunctions!=null)
+        {
+            for (PayloadFunction payloadFunction : payloadFunctions) {
+                payloadFunction.payload(function);
+            }
+        }
     }
 
     @Override
@@ -54,5 +63,9 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
                 }
             }
         });
+    }
+
+    public void registerProducers(List<PayloadFunction> payloadFunctions) {
+        this.payloadFunctions = payloadFunctions;
     }
 }
