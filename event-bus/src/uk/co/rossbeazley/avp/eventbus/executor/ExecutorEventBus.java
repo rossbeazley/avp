@@ -35,7 +35,7 @@ public class ExecutorEventBus implements EventBus {
 
     @Override
     public void registerProducer(Object event, PayloadFunction function) {
-        this.producers.add(event, function);
+        producers.add(event, function);
     }
 
 
@@ -43,7 +43,7 @@ public class ExecutorEventBus implements EventBus {
     public EventSubscription whenEvent(Object event) {
         Executor executor = canBuildExecutor.executor();
         ExecutorEventSubscription subscription = new ExecutorEventSubscription(executor);
-        producers.notifyProducersOfNewSubscriber(event, subscription);
+        producers.newSubscriber(event, subscription);
         return eventSubscriptions.addSubscriberForEvent(event, subscription);
     }
 
