@@ -13,7 +13,8 @@ public class SelectedMediaItem implements CurrentResult {
 
     @Override
     public void selectResult(MediaItem selected) {
+        bus.announce(MEDIA_ITEM_SELECTING);
         this.selectResult = selected;       // what if we have to load from repo?
-        bus.sendPayload(selected).withEvent(Search.MEDIA_ITEM_AVAILABLE);
+        bus.sendPayload(selected).withEvent(MEDIA_ITEM_AVAILABLE);
     }
 }
