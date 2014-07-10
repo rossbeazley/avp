@@ -43,7 +43,7 @@ public class ExecutorEventBus implements EventBus {
     public EventSubscription whenEvent(Object event) {
         Executor executor = canBuildExecutor.executor();
         ExecutorEventSubscription subscription = new ExecutorEventSubscription(executor);
-        producers.newSubscriber(event, subscription);
+        producers.newSubscriberFunction(event, subscription);
         return eventSubscriptions.addSubscriberForEvent(event, subscription);
     }
 

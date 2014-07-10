@@ -13,7 +13,7 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
 
     private static final Object NO_PAYLOAD = null;
     private Object event;
-    private CanNotifySubscribers producers;
+    private Producers.CanNotifySubscribers producers;
 
     public ExecutorEventSubscription(Executor executor) {
         this.executor = executor;
@@ -60,7 +60,7 @@ class ExecutorEventSubscription implements EventSubscription, AnnouncementFuncti
         });
     }
 
-    public void registerProducers(Object event, CanNotifySubscribers producers) {
+    void registerProducers(Object event, Producers.CanNotifySubscribers producers) {
         this.event = event;
         this.producers = producers;
     }
