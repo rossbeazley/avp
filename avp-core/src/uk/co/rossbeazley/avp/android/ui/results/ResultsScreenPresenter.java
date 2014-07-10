@@ -9,10 +9,9 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 class ResultsScreenPresenter {
-    public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, final CurrentSearchResults currentSearch, CurrentResult currentResult) {
+    public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, CurrentResult currentResult) {
         bindToSearchCompletedEvent(screen, bus);
         bindToResultSelectedOnScreenEvent(screen, currentResult);
-        currentSearch.announceState();
     }
 
     private void bindToSearchCompletedEvent(final ResultsScreen screen, EventBus bus) {

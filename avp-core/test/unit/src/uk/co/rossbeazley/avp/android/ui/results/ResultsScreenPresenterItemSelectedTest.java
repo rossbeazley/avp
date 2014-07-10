@@ -39,7 +39,7 @@ public class ResultsScreenPresenterItemSelectedTest {
 
     @Test
     public void selectsResult() {
-        new ResultsScreenPresenter(fakeScreen, bus, currentSearchResults, currentResult);
+        new ResultsScreenPresenter(fakeScreen, bus, currentResult);
         fakeScreen.listener.selected(expectedResult);
         assertThat(selectedResult, is(expectedResult));
     }

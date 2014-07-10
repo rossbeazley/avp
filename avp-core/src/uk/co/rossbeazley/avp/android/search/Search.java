@@ -5,6 +5,7 @@ import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
+import uk.co.rossbeazley.avp.eventbus.PayloadFunction;
 
 public class Search implements CurrentSearchResults {
 
@@ -21,8 +22,17 @@ public class Search implements CurrentSearchResults {
         this.bus = bus;
         state = new NoResults();
         bindToUserQueryEvent(bus);
-
+        registerAsProducer(bus);
         selectedMediaItem = new SelectedMediaItem(bus);
+    }
+
+    private void registerAsProducer(EventBus bus) {
+        bus.registerProducer(SEARCH_RESULTS_AVAILABLE, new PayloadFunction<Results>() {
+            @Override
+            public void payload(FunctionWithParameter<Results> listener) {
+                listener.invoke(results);
+            }
+        });
     }
 
     private void bindToUserQueryEvent(EventBus bus) {

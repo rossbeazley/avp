@@ -89,7 +89,7 @@ public class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implement
         }
 
         public void commit() {
-            new ResultsScreenPresenter(resultsScreen, eventBus, applicationCore.currentSearchResults, applicationCore.currentResult);
+            new ResultsScreenPresenter(resultsScreen, eventBus, applicationCore.currentResult);
         }
     }
 }

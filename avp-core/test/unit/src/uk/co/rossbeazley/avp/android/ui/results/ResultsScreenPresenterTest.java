@@ -34,8 +34,8 @@ public class ResultsScreenPresenterTest {
 
 
     @Test
-    public void whenSearchIsCompleteResultsListSetInScreen() {
-        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch, fakeCurrentResult);
+    public void whenResultsAvailableListSetInScreen() {
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentResult);
         bus.sendPayload(expectedResults)
                 .withEvent(CurrentSearchResults.SEARCH_RESULTS_AVAILABLE);
 
@@ -44,24 +44,13 @@ public class ResultsScreenPresenterTest {
 
     @Test
     public void spinnerHiddenOnSearchComplete() {
-        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentSearch, fakeCurrentResult);
+        new ResultsScreenPresenter(fakeScreen, bus, fakeCurrentResult);
         assertThat(fakeScreen.spinner,is(fakeScreen.SHOWN));
 
         bus.sendPayload(expectedResults)
                 .withEvent(CurrentSearchResults.SEARCH_RESULTS_AVAILABLE);
 
         assertThat(fakeScreen.spinner,is(fakeScreen.HIDDEN));
-    }
-
-    @Test
-    public void whenResultsAvailableListSetInScreen() {
-        new ResultsScreenPresenter(fakeScreen, bus, new CurrentSearchResults() {
-            @Override
-            public void announceState() {
-                bus.sendPayload(expectedResults).withEvent(SEARCH_RESULTS_AVAILABLE);
-            }
-        }, fakeCurrentResult);
-        assertThat(fakeScreen.actualResults,is(expectedResults));
     }
 
 }
