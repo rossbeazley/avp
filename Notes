@@ -90,3 +90,24 @@ Rehydrates search results on APP_RESUME, or we re-dispatch query?
 
 
 
+----- redux media repository
+
+
+ReduxSearch
+
+asks the ReduxUser for a token
+builds a request using the token
+asks the request for the response
+returns the response
+
+
+ReduxUser
+
+two states
+ : none expired token
+ : Asks redux for a new token
+    - asks the UserAccount for the U/P
+
+
+
+-----
