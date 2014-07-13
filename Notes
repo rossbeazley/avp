@@ -101,6 +101,12 @@ MediaRepository < #ReduxSearch
     asks the request for the response
     returns the response
 
+ReduxSearchRequest
+- initialise
+  creates a new json request and constructs the url string
+- execute
+    this puts it on the request queue but uses a future to block
+
 
 ReduxUser
  - responds to token message
