@@ -93,20 +93,23 @@ Rehydrates search results on APP_RESUME, or we re-dispatch query?
 ----- redux media repository
 
 
-ReduxSearch
+MediaRepository < #ReduxSearch
 
-asks the ReduxUser for a token
-builds a request using the token
-asks the request for the response
-returns the response
+- responds to the execute query message
+    asks the ReduxUser for a token
+    builds a request using the token and query object
+    asks the request for the response
+    returns the response
 
 
 ReduxUser
-
-two states
- : none expired token
- : Asks redux for a new token
-    - asks the UserAccount for the U/P
+ - responds to token message
+    two states
+    : valid expired token (not too old)
+    : Asks redux for a new token
+      asks the UserAccount for the U/P
+      builds a request using the user account details
+      saves the response token
 
 
 
