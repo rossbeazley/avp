@@ -26,7 +26,7 @@ public class MediaRepositoryStub implements MediaRepository {
     }
 
     @Override
-    public Results execute(Query search) {
-        return resultsByQuery.get(search);
+    public void execute(Query search, Success success) {
+        success.call(resultsByQuery.get(search));
     }
 }

@@ -33,7 +33,12 @@ public class MediaRepositoryTest {
     @Test
     public void testExecute() throws Exception {
 
-        actualResults = mediaRepository.execute(query);
+        mediaRepository.execute(query, new MediaRepository.Success() {
+            @Override
+            public void call(Results results) {
+                actualResults = results;
+            }
+        });
 
         assertThat(actualResults,is(expectedResults));
     }
