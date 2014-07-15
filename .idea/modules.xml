@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/volley/Volley.iml" filepath="$PROJECT_DIR$/volley/Volley.iml" />
       <module fileurl="file://$PROJECT_DIR$/avp-core/avp-core.iml" filepath="$PROJECT_DIR$/avp-core/avp-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/avp-droid/avp-droid.iml" filepath="$PROJECT_DIR$/avp-droid/avp-droid.iml" />
       <module fileurl="file://$PROJECT_DIR$/avp-droid/test/device/device.iml" filepath="$PROJECT_DIR$/avp-droid/test/device/device.iml" />
