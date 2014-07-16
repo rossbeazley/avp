@@ -37,6 +37,7 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="Android 4.3 Platform" jdkType="Android SDK" />
+    <orderEntry type="module" module-name="Volley" scope="TEST" />
   </component>
 </module>
 

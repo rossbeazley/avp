@@ -96,7 +96,7 @@ Rehydrates search results on APP_RESUME, or we re-dispatch query?
 MediaRepository < #ReduxSearch
 - responds to the execute query message
     asks the ReduxUser for a token
-    builds a request using the token and query object
+    builds a request url using the token and query object
     asks the request for the response
     returns the response
 
