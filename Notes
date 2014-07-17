@@ -120,3 +120,7 @@ ReduxUser
 
 
 -----
+
+
+A request builder, takes the correctly formatted url and listener object
+we invoke the listener object with a JSON object (or array)

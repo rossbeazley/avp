@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.media;
 
-import com.android.volley.Response;
 import org.json.JSONArray;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.search.Query;
@@ -12,7 +11,7 @@ import static org.junit.Assert.assertThat;
 public class ReduxMediaRepositoryTest {
 
     private Results actualResults;
-    private String REDUX_URL_FOR_ANY_QUERY = "";
+    private String REDUX_URL_FOR_ANY_QUERY ="https://i.bbcredux.com/asset/search?q=ANY_QUERY&token=VALIDTOKEN";
 
     @Test
     public void theOneWhereItExecutesAQuerySuccessfully() {
