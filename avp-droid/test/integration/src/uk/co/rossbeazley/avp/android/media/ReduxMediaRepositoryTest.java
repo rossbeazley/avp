@@ -1,11 +1,12 @@
 package uk.co.rossbeazley.avp.android.media;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.search.Query;
 import uk.co.rossbeazley.avp.android.search.Results;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -14,13 +15,23 @@ public class ReduxMediaRepositoryTest {
 
     private Results actualResults;
     private String REDUX_URL_FOR_ANY_QUERY ="https://i.bbcredux.com/asset/search?q=ANY_QUERY&token=VALIDTOKEN";
+    private String jsonForMediaItems = "{" +
+            " \"results\": {" +
+            "\"assets\":[" +
+            " {\"name\":\"Item 1\" }," +
+            " {\"name\":\"Item 2\" }," +
+            " {\"name\":\"Item 3\" }" +
+            "]} }";
+
+    private JSONObject any_json_response = new JSONObject();
 
     @Test
     public void theOneWhereItExecutesAQuerySuccessfully() {
         Query any_search = Query.fromString("ANY_QUERY");
-        Results expectedResults = new Results(new MediaItem("Item 1"),
+        final List<MediaItem> mediaItems = Arrays.asList(new MediaItem("Item 1"),
                 new MediaItem("Item 2"),
                 new MediaItem("Item 3"));
+        final Results expectedResults = new Results(mediaItems);
 
         RequestFactory requestFactory = new RequestFactory() {
 
@@ -30,51 +41,50 @@ public class ReduxMediaRepositoryTest {
                     return new Request() {
                         @Override
                         public void execute() {
-                            JSONObject jsonResponse = null;
-                            try {
-
-                                jsonResponse = new JSONObject("{" +
-                                                            " \"results\": {" +
-                                        "\"assets\":["+
-                                        " {\"name\":\"Item 1\" },"+
-                                        " {\"name\":\"Item 2\" },"+
-                                        " {\"name\":\"Item 3\" }"+
-                                                                "]} }"
-                                );
-
-                            } catch (JSONException e) {
-
-                            }
-                            listener.onResponse(jsonResponse);
+                            listener.onResponse(any_json_response);
                         }
                     };
                 }
-
                 return null;
             }
         };
 
-        ReduxUser reduxUser = new ReduxUser() {
+        ReduxUser authenticatedReduxUser = new ReduxUser() {
             @Override
             public AccessToken accessToken() {
                 return new AccessToken("TOKEN");
             }
         };
-        new ReduxMediaRepository(requestFactory,reduxUser)
+        MediaItemFactory mediaItemFactory = new MediaItemFactory() {
+            @Override
+            public List<MediaItem> fromJson(JSONObject jsonObject) {
+                return mediaItems;
+            }
+        };
+        new ReduxMediaRepository(requestFactory,authenticatedReduxUser,mediaItemFactory)
                 .execute(any_search, new MediaRepository.Success() {
                     @Override
                     public void call(Results results) {
                         actualResults = results;
                     }
                 });
+
         assertThat(expectedResults,is(actualResults));
     }
+
+
+
+
+
+
+
+
 
     private class ReduxMediaRepository implements MediaRepository {
 
         private final RequestFactory requestFactory;
 
-        public ReduxMediaRepository(RequestFactory requestFactory, ReduxUser reduxUser) {
+        public ReduxMediaRepository(RequestFactory requestFactory, ReduxUser reduxUser, MediaItemFactory mediaItemFactory) {
             this.requestFactory = requestFactory;
         }
 
@@ -84,9 +94,11 @@ public class ReduxMediaRepositoryTest {
         }
     }
 
+    private interface MediaItemFactory {
+        List<MediaItem> fromJson(JSONObject jsonObject);
+    }
 
     private interface ReduxUser {
-
         AccessToken accessToken();
     }
 
