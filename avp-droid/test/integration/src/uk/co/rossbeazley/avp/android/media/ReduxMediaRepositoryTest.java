@@ -54,7 +54,13 @@ public class ReduxMediaRepositoryTest {
             }
         };
 
-        new ReduxMediaRepository(requestFactory)
+        ReduxUser reduxUser = new ReduxUser() {
+            @Override
+            public AccessToken accessToken() {
+                return new AccessToken("TOKEN");
+            }
+        };
+        new ReduxMediaRepository(requestFactory,reduxUser)
                 .execute(any_search, new MediaRepository.Success() {
                     @Override
                     public void call(Results results) {
@@ -68,7 +74,7 @@ public class ReduxMediaRepositoryTest {
 
         private final RequestFactory requestFactory;
 
-        public ReduxMediaRepository(RequestFactory requestFactory) {
+        public ReduxMediaRepository(RequestFactory requestFactory, ReduxUser reduxUser) {
             this.requestFactory = requestFactory;
         }
 
@@ -79,7 +85,10 @@ public class ReduxMediaRepositoryTest {
     }
 
 
+    private interface ReduxUser {
 
+        AccessToken accessToken();
+    }
 
     private interface RequestFactory {
         public Request requestForQuery(String url, Request.Success<JSONObject> listener);
@@ -94,5 +103,17 @@ public class ReduxMediaRepositoryTest {
         }
 
         public void execute();
+    }
+
+    private class AccessToken {
+        private final String token;
+
+        public AccessToken(String token) {
+            this.token = token;
+        }
+
+        public String toString() {
+            return token;
+        }
     }
 }
