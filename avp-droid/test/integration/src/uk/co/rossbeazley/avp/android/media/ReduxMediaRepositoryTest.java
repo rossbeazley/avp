@@ -1,6 +1,8 @@
 package uk.co.rossbeazley.avp.android.media;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.search.Query;
 import uk.co.rossbeazley.avp.android.search.Results;
@@ -23,12 +25,26 @@ public class ReduxMediaRepositoryTest {
         RequestFactory requestFactory = new RequestFactory() {
 
             @Override
-            public Request requestForQuery(String url, final Request.Success<JSONArray> listener) {
+            public Request requestForQuery(String url, final Request.Success<JSONObject> listener) {
                 if(url.equals(REDUX_URL_FOR_ANY_QUERY)) {
                     return new Request() {
                         @Override
                         public void execute() {
-                            JSONArray jsonResponse = new JSONArray();
+                            JSONObject jsonResponse = null;
+                            try {
+
+                                jsonResponse = new JSONObject("{" +
+                                                            " \"results\": {" +
+                                        "\"assets\":["+
+                                        " {\"name\":\"Item 1\" },"+
+                                        " {\"name\":\"Item 2\" },"+
+                                        " {\"name\":\"Item 3\" }"+
+                                                                "]} }"
+                                );
+
+                            } catch (JSONException e) {
+
+                            }
                             listener.onResponse(jsonResponse);
                         }
                     };
@@ -66,7 +82,7 @@ public class ReduxMediaRepositoryTest {
 
 
     private interface RequestFactory {
-        public Request requestForQuery(String url, Request.Success<JSONArray> listener);
+        public Request requestForQuery(String url, Request.Success<JSONObject> listener);
     }
 
 
