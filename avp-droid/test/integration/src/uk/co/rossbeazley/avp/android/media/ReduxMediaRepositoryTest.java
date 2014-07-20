@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.media;
 
+import com.android.volley.Response;
 import org.json.JSONObject;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.android.search.Query;
@@ -15,7 +16,7 @@ public class ReduxMediaRepositoryTest {
 
     private Results actualResults;
     private String REDUX_URL_FOR_ANY_QUERY ="https://i.bbcredux.com/asset/search?q=ANY_QUERY&token=VALIDTOKEN";
-    private String jsonForMediaItems = "{" +
+    private String unused_jsonForMediaItems = "{" +
             " \"results\": {" +
             "\"assets\":[" +
             " {\"name\":\"Item 1\" }," +
@@ -36,7 +37,7 @@ public class ReduxMediaRepositoryTest {
         RequestFactory requestFactory = new RequestFactory() {
 
             @Override
-            public Request requestForQuery(String url, final Request.Success<JSONObject> listener) {
+            public Request requestForQuery(String url, final Response.Listener<JSONObject> listener) {
                 if(url.equals(REDUX_URL_FOR_ANY_QUERY)) {
                     return new Request() {
                         @Override
@@ -55,12 +56,14 @@ public class ReduxMediaRepositoryTest {
                 return new AccessToken("TOKEN");
             }
         };
+
         MediaItemFactory mediaItemFactory = new MediaItemFactory() {
             @Override
             public List<MediaItem> fromJson(JSONObject jsonObject) {
                 return mediaItems;
             }
         };
+
         new ReduxMediaRepository(requestFactory,authenticatedReduxUser,mediaItemFactory)
                 .execute(any_search, new MediaRepository.Success() {
                     @Override
@@ -103,17 +106,11 @@ public class ReduxMediaRepositoryTest {
     }
 
     private interface RequestFactory {
-        public Request requestForQuery(String url, Request.Success<JSONObject> listener);
+        public Request requestForQuery(String url, Response.Listener<JSONObject> listener);
     }
 
 
     private interface Request {
-
-        /* this listener is potential double glazing*/
-        public interface Success<T> {
-            public void onResponse(T response);
-        }
-
         public void execute();
     }
 
