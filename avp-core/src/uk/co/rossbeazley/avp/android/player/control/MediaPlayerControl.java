@@ -9,6 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 public class MediaPlayerControl {
 
 
+    public static final String PLAYER_STOPPED = "player_stopped";
     private final EventBus bus;
     private CanControlPlaybackOfMediaPlayer mediaPlayer;
 
@@ -68,7 +69,7 @@ public class MediaPlayerControl {
 
     private void stopMediaPlayer() {
         mediaPlayer.stop();
-        bus.announce(Events.PLAYER_STOPPED); //TODO move this out of control class into state observer class
+        bus.announce(PLAYER_STOPPED); //TODO move this out of control class into state observer class
     }
 
     private void handleVideoLoaded() {

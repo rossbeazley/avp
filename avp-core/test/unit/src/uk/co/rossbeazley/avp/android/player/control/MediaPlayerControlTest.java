@@ -39,7 +39,7 @@ public class MediaPlayerControlTest {
     @Test
     public void announcesStopEventWhenTheMediaPlayerIsStopped() {
         playerState = PLAYING;
-        bus.whenEvent(Events.PLAYER_STOPPED).thenRun(new Function() {
+        bus.whenEvent(MediaPlayerControl.PLAYER_STOPPED).thenRun(new Function() {
             @Override
             public void invoke() {
                 playerState = STOPPED;
