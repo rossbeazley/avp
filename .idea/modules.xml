@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/avp-droid/avp-droid.iml" filepath="$PROJECT_DIR$/avp-droid/avp-droid.iml" />
       <module fileurl="file://$PROJECT_DIR$/avp-droid/test/device/device.iml" filepath="$PROJECT_DIR$/avp-droid/test/device/device.iml" />
       <module fileurl="file://$PROJECT_DIR$/event-bus/event-bus.iml" filepath="$PROJECT_DIR$/event-bus/event-bus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mediaplayer/mediaplayer.iml" filepath="$PROJECT_DIR$/mediaplayer/mediaplayer.iml" />
     </modules>
   </component>
 </project>
