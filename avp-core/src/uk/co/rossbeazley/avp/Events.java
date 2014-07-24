@@ -8,7 +8,6 @@ package uk.co.rossbeazley.avp;
  * To change this template use File | Settings | File Templates.
  */
 public class Events {
-    public static final String PLAYER_CREATED = "media_player_created";
     public static final String APP_SHUTDOWN = "app_shutdown";
 
     public static final String PLAYER_STOPPED = "player_stopped";

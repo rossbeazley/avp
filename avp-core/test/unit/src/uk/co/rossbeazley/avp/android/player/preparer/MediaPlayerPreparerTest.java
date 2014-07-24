@@ -1,8 +1,8 @@
 package uk.co.rossbeazley.avp.android.player.preparer;
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -28,7 +28,7 @@ public class MediaPlayerPreparerTest {
         });
 
         FakePlaybackOfMediaPlayer expectedMediaPlayer = FakePlaybackOfMediaPlayer.createFakeMediaPlayer();
-        bus.sendPayload(expectedMediaPlayer).withEvent(Events.PLAYER_CREATED);
+        bus.sendPayload(expectedMediaPlayer).withEvent(MediaPlayerCreator.PLAYER_CREATED);
 
         assertThat(preparedMediaPlayer.isPrepared(), is(true));
     }

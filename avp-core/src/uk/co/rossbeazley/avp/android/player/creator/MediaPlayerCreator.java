@@ -1,12 +1,13 @@
 package uk.co.rossbeazley.avp.android.player.creator;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 public class MediaPlayerCreator {
+
+    public static final String PLAYER_CREATED = "media_player_created";
 
     public MediaPlayerCreator(final EventBus bus, final MediaPlayerFactory factory) {
         bindCreateMediaPlayerEventHandler(bus, factory);
@@ -23,7 +24,7 @@ public class MediaPlayerCreator {
 
     static private void createMediaPlayer(EventBus bus, UriString payload,MediaPlayerFactory factory) {
         Object mediaplayer = factory.createMediaPlayerForUri(payload);
-        bus.sendPayload(mediaplayer).withEvent(Events.PLAYER_CREATED);
+        bus.sendPayload(mediaplayer).withEvent(PLAYER_CREATED);
     }
 
 }

@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.log;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
+import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -17,7 +18,7 @@ public class EventBusLog {
         this.bus = bus;
 
         logEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
-        logEvent(Events.PLAYER_CREATED);
+        logEvent(MediaPlayerCreator.PLAYER_CREATED);
         logEvent(Events.PLAYER_TIME_UPDATE);
         logEvent(Events.PLAYER_PAUSED);
         logEvent(Events.PLAYER_PLAYING);
