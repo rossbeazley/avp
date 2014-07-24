@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.player.time;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
@@ -31,7 +32,7 @@ public class MediaPlayerTimePositionWatcher {
     }
 
     private void bindVideoLoadedEvent(EventBus bus) {
-        bus.whenEvent(Events.PLAYER_VIDEO_LOADED)
+        bus.whenEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED)
                 .thenRun(new FunctionWithParameter<CanGetTimeFromMediaPlayer>() {
 
                     @Override

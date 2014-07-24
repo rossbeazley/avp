@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.player.creator;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
@@ -12,7 +13,7 @@ public class MediaPlayerCreator {
     }
 
     static private void bindCreateMediaPlayerEventHandler(final EventBus bus, final MediaPlayerFactory factory) {
-        bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
+        bus.whenEvent(MediaPlaybackService.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
             @Override
             public void invoke(final UriString payload) {
                 createMediaPlayer(bus, payload,factory);

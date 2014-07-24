@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -15,7 +15,7 @@ public class VideoPlayerNavigationController {
     }
 
     private void bindEventListeners(EventBus bus) {
-        bus.whenEvent(Events.USER_LOAD_VIDEO)
+        bus.whenEvent(MediaPlaybackService.USER_LOAD_VIDEO)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

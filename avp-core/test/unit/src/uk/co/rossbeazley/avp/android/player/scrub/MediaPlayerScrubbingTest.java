@@ -5,6 +5,7 @@ import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -22,7 +23,7 @@ public class MediaPlayerScrubbingTest {
         bus = new ExecutorEventBus();
         new MediaPlayerScrubber(bus);
         bus.sendPayload(mediaPlayer)
-                .withEvent(Events.PLAYER_VIDEO_LOADED);
+                .withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
     }
 
     @Test

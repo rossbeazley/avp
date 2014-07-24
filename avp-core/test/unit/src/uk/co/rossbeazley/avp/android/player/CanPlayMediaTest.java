@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.player;
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -22,7 +21,7 @@ public class CanPlayMediaTest {
     public void testQuery() throws Exception {
          EventBus bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
+        bus.whenEvent(MediaPlaybackService.USER_LOAD_VIDEO).thenRun(new FunctionWithParameter<UriString>() {
 
             @Override
             public void invoke(UriString payload) {

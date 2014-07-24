@@ -1,7 +1,7 @@
 package uk.co.rossbeazley.avp.android.player.state;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -18,7 +18,7 @@ public class MediaPlayerStateEventDispatcher {
     }
 
     private void bindVideoLoadedEvent(final EventBus bus) {
-        bus.whenEvent(Events.PLAYER_VIDEO_LOADED)
+        bus.whenEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED)
                 .thenRun(new FunctionWithParameter<CanDiscoverPlayingStateOfMediaPlayer>() {
                     @Override
                     public void invoke(CanDiscoverPlayingStateOfMediaPlayer payload) {

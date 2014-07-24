@@ -1,6 +1,8 @@
 package uk.co.rossbeazley.avp.android.log;
 
 import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -14,7 +16,7 @@ public class EventBusLog {
         this.log = log;
         this.bus = bus;
 
-        logEvent(Events.PLAYER_VIDEO_LOADED);
+        logEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         logEvent(Events.PLAYER_CREATED);
         logEvent(Events.PLAYER_TIME_UPDATE);
         logEvent(Events.PLAYER_PAUSED);
@@ -22,7 +24,7 @@ public class EventBusLog {
         logEvent(Events.PLAYER_STOPPED);
         logEvent(Events.PLAYER_VIEW_CREATED);
 
-        logEvent(Events.USER_LOAD_VIDEO);
+        logEvent(MediaPlaybackService.USER_LOAD_VIDEO);
         logEvent(Events.USER_PLAY);
         logEvent(Events.USER_SCRUB);
         logEvent(Events.USER_PAUSE);

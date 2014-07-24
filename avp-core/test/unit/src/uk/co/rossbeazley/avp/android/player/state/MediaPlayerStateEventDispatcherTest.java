@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.player.time.FakeScheduledExecutor;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -49,7 +50,7 @@ public class MediaPlayerStateEventDispatcherTest {
     @Test
     public void reportsInitialStateOfPlayingForStartedPlayer() {
         bus.sendPayload(mediaPlayer)
-                .withEvent(Events.PLAYER_VIDEO_LOADED);
+                .withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         fakeScheduledExecutor.runOnce();
         assertThat(playerState, is(Events.PLAYER_PLAYING));
     }
@@ -57,7 +58,7 @@ public class MediaPlayerStateEventDispatcherTest {
     @Test
     public void whenTransitionsToPauseFromPlayingPauseEventRaised() {
         bus.sendPayload(mediaPlayer)
-                .withEvent(Events.PLAYER_VIDEO_LOADED);
+                .withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         mediaPlayer.pause();
         fakeScheduledExecutor.runOnce();
         assertThat(playerState, is(Events.PLAYER_PAUSED));
@@ -67,7 +68,7 @@ public class MediaPlayerStateEventDispatcherTest {
     @Test
     public void whenTransitionsToPlayFromPausedPlayEventRaised() {
         bus.sendPayload(mediaPlayer)
-                .withEvent(Events.PLAYER_VIDEO_LOADED);
+                .withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         mediaPlayer.pause();
         mediaPlayer.start();
         fakeScheduledExecutor.runOnce();

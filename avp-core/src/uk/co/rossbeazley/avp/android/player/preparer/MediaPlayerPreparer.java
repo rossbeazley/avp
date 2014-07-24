@@ -5,6 +5,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 public class MediaPlayerPreparer {
+    public static final String PLAYER_VIDEO_LOADED = "video_loaded";
     private final EventBus bus;
 
     public MediaPlayerPreparer(final EventBus bus) {
@@ -28,7 +29,7 @@ public class MediaPlayerPreparer {
         return new CanPrepareMediaPlayer.PreparedStateChangeListener() {
             @Override
             public void prepared() {
-                bus.sendPayload(mediaplayer).withEvent(Events.PLAYER_VIDEO_LOADED);
+                bus.sendPayload(mediaplayer).withEvent(PLAYER_VIDEO_LOADED);
             }
         };
     }

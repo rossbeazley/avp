@@ -1,8 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.UriString;
+import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -24,7 +24,7 @@ public class VideoPlayerNavigationControllerTest implements ScreenStack {
 
         new VideoPlayerNavigationController(this, bus);
 
-        bus.sendPayload(anyUriString).withEvent(Events.USER_LOAD_VIDEO);
+        bus.sendPayload(anyUriString).withEvent(MediaPlaybackService.USER_LOAD_VIDEO);
         Class expectedClass = VideoPlayerScreen.class;
         assertThat(actualClass, is(equalTo(expectedClass)));
 

@@ -20,7 +20,7 @@ public class MediaPlayerPreparerTest {
 
         EventBus bus = new ExecutorEventBus();
         new MediaPlayerPreparer(bus);
-        bus.whenEvent(Events.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<FakePlaybackOfMediaPlayer>() {
+        bus.whenEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED).thenRun(new FunctionWithParameter<FakePlaybackOfMediaPlayer>() {
             @Override
             public void invoke(FakePlaybackOfMediaPlayer payload) {
                 preparedMediaPlayer = payload;

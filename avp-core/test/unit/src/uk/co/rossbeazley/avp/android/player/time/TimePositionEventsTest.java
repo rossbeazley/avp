@@ -6,6 +6,7 @@ import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
+import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -47,7 +48,7 @@ public class TimePositionEventsTest {
                         timeInEvent = payload;
                     }
                 });
-        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         executor.runOnce();
         assertThat(timeInEvent, is(expectedTime));
     }
@@ -63,7 +64,7 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
 
         executor.runOnce();
 
@@ -89,7 +90,7 @@ public class TimePositionEventsTest {
                     }
                 });
 
-        bus.sendPayload(mediaPlayer).withEvent(Events.PLAYER_VIDEO_LOADED);
+        bus.sendPayload(mediaPlayer).withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         executor.runOnce();
         assertThat(numberOfEvents, is(1));
 
