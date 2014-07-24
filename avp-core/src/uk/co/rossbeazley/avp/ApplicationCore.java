@@ -24,6 +24,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 public class ApplicationCore {
 
 
+    public static final String APP_START = "app_start";
     public final MediaPlayerCreator mediaPlayerCreator;
     public final MediaPlayerPreparer mediaPlayerPreparer;
     public final MediaPlayerAutoPlay mediaPlayerAutoPlay;

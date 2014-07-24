@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.player.time;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -8,6 +7,7 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 
 public class MediaPlayerTimePositionWatcher {
+    public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
     private CanGetTimeFromMediaPlayer mediaPlayer;
     private final CanExecuteCommandsAtFixedRate executor;
     private final EventBus bus;
@@ -58,7 +58,7 @@ public class MediaPlayerTimePositionWatcher {
     }
 
     private void sendAnnouncement(MediaTimePosition mediaTimePosition) {
-        bus.sendPayload(mediaTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
+        bus.sendPayload(mediaTimePosition).withEvent(PLAYER_TIME_UPDATE);
     }
 
     private boolean notTheSamePositionAsLastTime(MediaTimePosition mediaTimePosition) {

@@ -1,10 +1,11 @@
 package uk.co.rossbeazley.avp.android.ui.urlloader;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.CanPlayMedia;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 public class UrlLoaderScreenPresenter {
+
+    public static final String USER_WANTS_TO_GOTO_SEARCH = "user_wants to_goto_search";
 
     public UrlLoaderScreenPresenter(UrlLoaderScreen view, final CanPlayMedia canDispatchSearchQuery, final EventBus bus) {
         bindToViewSearchEvent(view, canDispatchSearchQuery);
@@ -15,7 +16,7 @@ public class UrlLoaderScreenPresenter {
         view.setGotoSearchEventListener(new UrlLoaderScreen.CanListenForUserGotoSearchScreenEvents() {
             @Override
             public void userPressedGotoSearch() {
-                bus.announce(Events.USER_WANTS_TO_GOTO_SEARCH);
+                bus.announce(USER_WANTS_TO_GOTO_SEARCH);
             }
         });
     }

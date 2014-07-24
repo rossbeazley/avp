@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.urlloader;
 
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -15,7 +15,7 @@ public class UrlLoaderNavigationController {
     }
 
     private void bindEventListeners(EventBus bus) {
-        bus.whenEvent(Events.APP_START)
+        bus.whenEvent(ApplicationCore.APP_START)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

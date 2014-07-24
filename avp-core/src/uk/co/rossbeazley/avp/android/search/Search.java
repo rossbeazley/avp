@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.avp.android.search;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -35,7 +34,7 @@ public class Search implements CurrentSearchResults {
     }
 
     private void bindToUserQueryEvent(EventBus bus) {
-        bus.whenEvent(Events.PERFORMING_QUERY)
+        bus.whenEvent(SearchService.PERFORMING_QUERY)
                 .thenRun(new FunctionWithParameter<Query>() {
                     @Override
                     public void invoke(Query payload) {

@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
@@ -21,7 +21,7 @@ public class IntentToEventDispatcher {
 
 //        UriString uriString = new UriString("http://s3-eu-west-1.amazonaws.com/mediaservices-samples/elementalGPU2_1_2/flv_avc1_med_bl__v_od_p026.mp4");
 //        bus.sendPayload(uriString).withEvent(Events.USER_LOAD_VIDEO);
-        bus.announce(Events.APP_START);
+        bus.announce(ApplicationCore.APP_START);
 
         logger.debug("onNewIntent !! " + dataStringFromIntent(intent));
     }

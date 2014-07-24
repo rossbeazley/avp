@@ -2,9 +2,9 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
+import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -76,7 +76,7 @@ public class VideoPlayerScreenPresenterTest {
         TimeInMilliseconds expectedTime = TimeInMilliseconds.fromLong(1000);
         TimeInMilliseconds ANY_TIME = TimeInMilliseconds.fromLong(0);
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(expectedTime, ANY_TIME);
-        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
+        bus.sendPayload(mediaPlayerTimePosition).withEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
 
         assertThat(fakeVideoScreen.progressTime, is(expectedTime));
     }
@@ -87,7 +87,7 @@ public class VideoPlayerScreenPresenterTest {
         TimeInMilliseconds expectedTime = TimeInMilliseconds.fromLong(1000);
         TimeInMilliseconds ANY_TIME = TimeInMilliseconds.fromLong(0);
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(ANY_TIME, expectedTime);
-        bus.sendPayload(mediaPlayerTimePosition).withEvent(Events.PLAYER_TIME_UPDATE);
+        bus.sendPayload(mediaPlayerTimePosition).withEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
 
         assertThat(fakeVideoScreen.totalTime, is(expectedTime));
     }

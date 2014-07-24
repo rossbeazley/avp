@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.Function;
 public class ResultsNavigationController {
 
     public ResultsNavigationController(final ScreenStack screenStack, final EventBus bus) {
-        bus.whenEvent(Events.PERFORMING_QUERY)
+        bus.whenEvent(SearchService.PERFORMING_QUERY)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

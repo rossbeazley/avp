@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.player.render.MediaPlayerViewCreator;
 import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -25,7 +25,7 @@ public class VideoOutputScreenPresenterTest implements VideoOutputScreen {
         EventBus eventBus = new ExecutorEventBus();
         new VideoOutputScreenPresenter(this, eventBus);
         eventBus.sendPayload(expectedVideoOutput)
-                .withEvent(Events.PLAYER_VIEW_CREATED);
+                .withEvent(MediaPlayerViewCreator.PLAYER_VIEW_CREATED);
         assertThat(videoOutput, is(expectedVideoOutput));
     }
 

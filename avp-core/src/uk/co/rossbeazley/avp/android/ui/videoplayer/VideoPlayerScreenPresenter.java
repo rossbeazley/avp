@@ -1,8 +1,8 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
+import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -44,7 +44,7 @@ public class VideoPlayerScreenPresenter {
     }
 
     private void bindTimeUpdateEvent(final VideoPlayerScreen videoScreen) {
-        bus.whenEvent(Events.PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
+        bus.whenEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE).thenRun(new FunctionWithParameter<MediaTimePosition>() {
             @Override
             public void invoke(MediaTimePosition payload) {
                 TimeInMilliseconds currentPosition = payload.getCurrentPosition();

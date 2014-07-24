@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.results;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.android.search.SearchService;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -25,7 +25,7 @@ public class ResultsNavigationControllerTest implements ScreenStack {
 
     @Test
     public void pushResultsScreenWhenSearchCreated() {
-        bus.announce(Events.PERFORMING_QUERY);
+        bus.announce(SearchService.PERFORMING_QUERY);
         Class expected = ResultsScreen.class;
         assertThat(pushedClass, is(equalTo(expected)));
     }

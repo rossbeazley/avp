@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.urlloader;
 
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.CanPlayMedia;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -45,7 +44,7 @@ public class UrlLoaderScreenPresenterTest implements UrlLoaderScreen {
 
         EventBus bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.USER_WANTS_TO_GOTO_SEARCH)
+        bus.whenEvent(UrlLoaderScreenPresenter.USER_WANTS_TO_GOTO_SEARCH)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

@@ -3,7 +3,6 @@ package uk.co.rossbeazley.avp.android.player.time;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
@@ -41,7 +40,7 @@ public class TimePositionEventsTest {
 
         expectedTime = new MediaTimePosition(currentPosition, totalLength);
 
-        bus.whenEvent(Events.PLAYER_TIME_UPDATE)
+        bus.whenEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
                     public void invoke(MediaTimePosition payload) {
@@ -56,7 +55,7 @@ public class TimePositionEventsTest {
 
     @Test
     public void whenTheTimeChangesOnTheMediaPlayerAnEventIsRaised() {
-        bus.whenEvent(Events.PLAYER_TIME_UPDATE)
+        bus.whenEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
                     public void invoke(MediaTimePosition payload) {
@@ -82,7 +81,7 @@ public class TimePositionEventsTest {
         TimeInMilliseconds currentPosition = TimeInMilliseconds.fromLong(1892);
         mediaPlayer.setCurrentPosition(currentPosition);
 
-        bus.whenEvent(Events.PLAYER_TIME_UPDATE)
+        bus.whenEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE)
                 .thenRun(new FunctionWithParameter<MediaTimePosition>() {
                     @Override
                     public void invoke(MediaTimePosition payload) {

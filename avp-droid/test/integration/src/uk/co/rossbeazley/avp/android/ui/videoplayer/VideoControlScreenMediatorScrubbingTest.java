@@ -2,8 +2,8 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -26,7 +26,7 @@ public class VideoControlScreenMediatorScrubbingTest {
 
         MediaTimePosition TEN_SECOND_VIDEO = new MediaTimePosition(TimeInMilliseconds.fromInt(0), TimeInMilliseconds.fromInt(10000));
         bus.sendPayload(TEN_SECOND_VIDEO)
-           .withEvent(Events.PLAYER_TIME_UPDATE);
+           .withEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class VideoControlScreenMediatorScrubbingTest {
     public void whenTimeUpdatedScrubBarPositionUpdated() {
         MediaTimePosition TEN_SECOND_VIDEO_POSITION_FOUR = new MediaTimePosition(TimeInMilliseconds.fromInt(4000), TimeInMilliseconds.fromInt(10000));
         bus.sendPayload(TEN_SECOND_VIDEO_POSITION_FOUR)
-                .withEvent(Events.PLAYER_TIME_UPDATE);
+                .withEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
         assertThat(fakeVideoScreen.scrubBarPosition(),is(4000l));
     }
 

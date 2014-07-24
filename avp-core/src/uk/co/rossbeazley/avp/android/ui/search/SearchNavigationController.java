@@ -1,7 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.search;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
+import uk.co.rossbeazley.avp.android.ui.urlloader.UrlLoaderScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
@@ -15,7 +15,7 @@ public class SearchNavigationController {
     }
 
     private void bindEventListeners(EventBus bus) {
-        bus.whenEvent(Events.USER_WANTS_TO_GOTO_SEARCH)
+        bus.whenEvent(UrlLoaderScreenPresenter.USER_WANTS_TO_GOTO_SEARCH)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

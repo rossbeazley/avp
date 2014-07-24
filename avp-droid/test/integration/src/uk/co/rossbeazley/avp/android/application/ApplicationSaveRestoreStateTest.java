@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.screenStack.EmptyFragmentBackStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -29,7 +30,7 @@ public class ApplicationSaveRestoreStateTest {
     public void setUp() throws Exception {
         eventBus = new ExecutorEventBus();
 
-        eventBus.whenEvent(Events.APP_START)
+        eventBus.whenEvent(ApplicationCore.APP_START)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

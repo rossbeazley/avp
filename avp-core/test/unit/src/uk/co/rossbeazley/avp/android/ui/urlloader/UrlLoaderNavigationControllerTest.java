@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.urlloader;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -25,7 +25,7 @@ public class UrlLoaderNavigationControllerTest implements ScreenStack {
 
     @Test
     public void pushesHomeFragmentOnAppStart() {
-        bus.announce(Events.APP_START);
+        bus.announce(ApplicationCore.APP_START);
         Class expected = UrlLoaderScreen.class;
         assertThat(pushedClass, is(equalTo(expected)));
     }

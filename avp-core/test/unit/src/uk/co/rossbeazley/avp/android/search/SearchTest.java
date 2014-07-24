@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.search;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
 import uk.co.rossbeazley.avp.android.media.MediaRepositoryStub;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -46,7 +45,7 @@ public class SearchTest {
     @Test
     public void usesMediaRepositoryToRunQuery() {
         bus.sendPayload(usersQuery)
-                .withEvent(Events.PERFORMING_QUERY);
+                .withEvent(SearchService.PERFORMING_QUERY);
 
         assertThat(announcedResult, is(expectedResult));
     }
@@ -55,7 +54,7 @@ public class SearchTest {
     public void announcesResultsStateWhenResultsAvailable() {
 
         bus.sendPayload(usersQuery)
-                .withEvent(Events.PERFORMING_QUERY);
+                .withEvent(SearchService.PERFORMING_QUERY);
 
         announcedResult = null;
 

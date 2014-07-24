@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.search;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -26,7 +25,7 @@ public class CanDispatchSearchQueryTest {
         queryAnnounced = null;
         bus = new ExecutorEventBus();
 
-        bus.whenEvent(Events.PERFORMING_QUERY)
+        bus.whenEvent(SearchService.PERFORMING_QUERY)
                 .thenRun(new FunctionWithParameter<Query>() {
             @Override public void invoke(Query payload) {
                 queryAnnounced = payload;
