@@ -9,10 +9,11 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class VideoPlayerScreenPresenter {
+public class VideoPlayerScreenPresenter {
     public static final String USER_PAUSE = "pause";      //TODO rename all the VideoScreen stuff, player screen
     public static final String USER_PLAY = "play";
     public static final String USER_SCRUB = "scrub";
+    public static final String USER_EXIT_VIDEO_SCREEN = "exit_video_Screen";
     private final EventBus bus;
 
     VideoPlayerScreenPresenter(final EventBus bus, final VideoPlayerScreen videoScreen) {
@@ -99,7 +100,7 @@ class VideoPlayerScreenPresenter {
         videoScreen.setTearDownEventListener(new Screen.CanListenForScreenTearDownEvents() {
             @Override
             public void screenTearDown() {
-                bus.announce(Events.USER_EXIT_VIDEO_SCREEN); //TODO migrate to a service object? Very confused!
+                bus.announce(USER_EXIT_VIDEO_SCREEN); //TODO migrate to a service object? Very confused!
             }
         });
     }

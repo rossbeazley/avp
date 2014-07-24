@@ -65,7 +65,7 @@ public class MediaPlayerControlTest {
 
     @Test
     public void stopsTheMediaPlayerWhenUserExitVideoScreen() {
-        bus.announce(Events.USER_EXIT_VIDEO_SCREEN);
+        bus.announce(VideoPlayerScreenPresenter.USER_EXIT_VIDEO_SCREEN);
         assertThat(mediaPlayer.isNotPlaying(), is(true));
     }
 }

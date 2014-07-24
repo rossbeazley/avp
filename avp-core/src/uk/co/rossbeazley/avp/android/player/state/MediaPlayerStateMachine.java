@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.player.state;
 
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-class MediaPlayerStateMachine {
+public class MediaPlayerStateMachine {
     public static final String PLAYER_PLAYING = "player_playing";
     public static final String PLAYER_PAUSED = "player_paused";
     private MediaPlayerState state;

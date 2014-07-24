@@ -25,7 +25,7 @@ public class MediaPlayerControl {
     }
 
     private void handleUserExitVideoScreen() {
-        bus.whenEvent(Events.USER_EXIT_VIDEO_SCREEN).thenRun(new Function() {
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_EXIT_VIDEO_SCREEN).thenRun(new Function() {
             @Override
             public void invoke() {
                 stopMediaPlayer();

@@ -94,7 +94,7 @@ public class VideoPlayerScreenPresenterTest {
 
     @Test
     public void dispatchScreenExitEventWhenScreenTearDown() {
-        bus.whenEvent(Events.USER_EXIT_VIDEO_SCREEN)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_EXIT_VIDEO_SCREEN)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

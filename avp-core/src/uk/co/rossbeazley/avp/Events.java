@@ -10,7 +10,6 @@ package uk.co.rossbeazley.avp;
 public class Events {
     public static final String APP_SHUTDOWN = "app_shutdown";
 
-    public static final String USER_EXIT_VIDEO_SCREEN = "exit_video_Screen";
     public static final String PLAYER_TIME_UPDATE = "mediaTimeUpdate";
     public static final String PLAYER_VIEW_CREATED = "player_view_created";
     public static final String PERFORMING_QUERY = "search_created";
