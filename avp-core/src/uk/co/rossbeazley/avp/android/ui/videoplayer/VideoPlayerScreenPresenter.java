@@ -2,13 +2,17 @@ package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff, player screen
+class VideoPlayerScreenPresenter {
+    public static final String USER_PAUSE = "pause";      //TODO rename all the VideoScreen stuff, player screen
+    public static final String USER_PLAY = "play";
+    public static final String USER_SCRUB = "scrub";
     private final EventBus bus;
 
     VideoPlayerScreenPresenter(final EventBus bus, final VideoPlayerScreen videoScreen) {
@@ -28,7 +32,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
     }
 
     private void bindPlayerPausedEvent(final VideoPlayerScreen videoScreen) {
-        bus.whenEvent(Events.PLAYER_PAUSED)
+        bus.whenEvent(MediaPlayerStateMachine.PLAYER_PAUSED)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
@@ -57,7 +61,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
             public void userScrubbedTo(long positionAsMillis) {
                 TimeInMilliseconds positionAsMilliseconds = TimeInMilliseconds.fromLong(positionAsMillis);
                 bus.sendPayload(positionAsMilliseconds) //TODO migrate to a service object?
-                        .withEvent(Events.USER_SCRUB);
+                        .withEvent(USER_SCRUB);
             }
         });
     }
@@ -66,7 +70,7 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
         videoScreen.setPlayEventListener(new VideoPlayerScreen.CanListenForUserPlayEvents() {
             @Override
             public void userPressedPlay() {
-                bus.announce(Events.USER_PLAY);  //TODO migrate to a service object?
+                bus.announce(USER_PLAY);  //TODO migrate to a service object?
             }
         });
     }
@@ -75,13 +79,13 @@ class VideoPlayerScreenPresenter {      //TODO rename all the VideoScreen stuff,
         videoScreen.setPauseEventListener(new VideoPlayerScreen.CanListenForUserPauseEvents() {
             @Override
             public void userPressedPause() {
-                bus.announce(Events.USER_PAUSE);  //TODO migrate to a service object?
+                bus.announce(USER_PAUSE);  //TODO migrate to a service object?
             }
         });
     }
 
     private void bindPlayerPlayingEvent(final VideoPlayerScreen videoScreen) {
-        bus.whenEvent(Events.PLAYER_PLAYING)
+        bus.whenEvent(MediaPlayerStateMachine.PLAYER_PLAYING)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

@@ -1,8 +1,8 @@
 package uk.co.rossbeazley.avp.android.player.scrub;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
@@ -24,7 +24,7 @@ public class MediaPlayerScrubber {
     }
 
     private void bindScrubEvent(EventBus bus) {
-        bus.whenEvent(Events.USER_SCRUB)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_SCRUB)
                 .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
                     @Override
                     public void invoke(TimeInMilliseconds payload) {

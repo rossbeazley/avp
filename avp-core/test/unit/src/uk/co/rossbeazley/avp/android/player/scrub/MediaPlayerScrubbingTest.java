@@ -2,10 +2,10 @@ package uk.co.rossbeazley.avp.android.player.scrub;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
@@ -32,7 +32,7 @@ public class MediaPlayerScrubbingTest {
         TimeInMilliseconds expectedScrubPosition = TimeInMilliseconds.fromLong(5000);
 
         bus.sendPayload(expectedScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         assertThat(mediaPlayer.seekingTo(), is(expectedScrubPosition));
     }
@@ -44,10 +44,10 @@ public class MediaPlayerScrubbingTest {
         TimeInMilliseconds secondScrubPosition = TimeInMilliseconds.fromLong(15000);
 
         bus.sendPayload(expectedScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         bus.sendPayload(secondScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         assertThat(mediaPlayer.seekingTo(), is(expectedScrubPosition));
     }
@@ -60,10 +60,10 @@ public class MediaPlayerScrubbingTest {
         TimeInMilliseconds expectedScrubPosition = TimeInMilliseconds.fromLong(2300);
 
         bus.sendPayload(firstScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         bus.sendPayload(expectedScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         mediaPlayer.announceScrubbingComplete();
 
@@ -80,13 +80,13 @@ public class MediaPlayerScrubbingTest {
         TimeInMilliseconds expectedScrubPosition = TimeInMilliseconds.fromLong(2300);
 
         bus.sendPayload(firstScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         bus.sendPayload(secondScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         bus.sendPayload(expectedScrubPosition)
-                .withEvent(Events.USER_SCRUB);
+                .withEvent(VideoPlayerScreenPresenter.USER_SCRUB);
 
         mediaPlayer.announceScrubbingComplete();
 

@@ -5,6 +5,7 @@ import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
@@ -51,14 +52,14 @@ public class MediaPlayerControlTest {
 
     @Test
     public void pausesTheMediaPlayerOnPauseEvent() {
-        bus.announce(Events.USER_PAUSE);
+        bus.announce(VideoPlayerScreenPresenter.USER_PAUSE);
         assertThat(mediaPlayer.isPaused(),is(true));
     }
 
     @Test
     public void playsTheMediaPlayerOnPlayEvent() {
         mediaPlayer.pause();
-        bus.announce(Events.USER_PLAY);
+        bus.announce(VideoPlayerScreenPresenter.USER_PLAY);
         assertThat(mediaPlayer.isPlaying(),is(true));
     }
 

@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
+import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -31,20 +32,20 @@ public class VideoPlayerScreenPresenterTest {
 
     @Test
     public void whenPlayingEventShowPauseHideBuffering() {
-        bus.announce(Events.PLAYER_PLAYING);
+        bus.announce(MediaPlayerStateMachine.PLAYER_PLAYING);
         assertThat(fakeVideoScreen.showPause && fakeVideoScreen.hideBuffering, is(true));
     }
 
     @Test
     public void whenPausedEventShowPlayHideBuffering() {
         assertThat(fakeVideoScreen.showPlay, is(false));
-        bus.announce(Events.PLAYER_PAUSED);
+        bus.announce(MediaPlayerStateMachine.PLAYER_PAUSED);
         assertThat(fakeVideoScreen.showPlay && fakeVideoScreen.hideBuffering, is(true));
     }
 
     @Test
     public void whenUserHitsPauseEventIsRaised() {
-        bus.whenEvent(Events.USER_PAUSE)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_PAUSE)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
@@ -58,7 +59,7 @@ public class VideoPlayerScreenPresenterTest {
 
     @Test
     public void whenUserHitsPlayEventIsRaised() {
-        bus.whenEvent(Events.USER_PLAY)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_PLAY)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {

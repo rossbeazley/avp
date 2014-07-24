@@ -2,6 +2,7 @@ package uk.co.rossbeazley.avp.android.player.control;
 
 import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -33,7 +34,7 @@ public class MediaPlayerControl {
     }
 
     private void handleUserPlay() {
-        bus.whenEvent(Events.USER_PLAY).thenRun(new Function() {
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_PLAY).thenRun(new Function() {
             @Override
             public void invoke() {
                 playMediaPlayer();
@@ -46,7 +47,7 @@ public class MediaPlayerControl {
     }
 
     private void handleUserPause() {
-        bus.whenEvent(Events.USER_PAUSE).thenRun(new Function() {
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_PAUSE).thenRun(new Function() {
             @Override
             public void invoke() {
                 pauseMediaPlayer();

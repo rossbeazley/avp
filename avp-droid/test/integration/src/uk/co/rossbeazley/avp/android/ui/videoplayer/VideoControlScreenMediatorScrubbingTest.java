@@ -44,7 +44,7 @@ public class VideoControlScreenMediatorScrubbingTest {
 
     @Test
     public void whenUserScrubsToStartScrubEventWithZeroMillis() {
-        bus.whenEvent(Events.USER_SCRUB)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_SCRUB)
                 .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
                     @Override
                     public void invoke(TimeInMilliseconds payload) {
@@ -59,7 +59,7 @@ public class VideoControlScreenMediatorScrubbingTest {
 
     @Test
     public void whenUserScrubsThirtyPercentScrubEventWith300Millis() {
-        bus.whenEvent(Events.USER_SCRUB)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_SCRUB)
                 .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
                     @Override
                     public void invoke(TimeInMilliseconds payload) {
@@ -75,7 +75,7 @@ public class VideoControlScreenMediatorScrubbingTest {
 
     @Test
     public void whenUserScrubsToEndScrubEventWith1000Millis() {
-        bus.whenEvent(Events.USER_SCRUB)
+        bus.whenEvent(VideoPlayerScreenPresenter.USER_SCRUB)
                 .thenRun(new FunctionWithParameter<TimeInMilliseconds>() {
                     @Override
                     public void invoke(TimeInMilliseconds payload) {

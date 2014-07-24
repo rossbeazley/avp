@@ -1,9 +1,10 @@
 package uk.co.rossbeazley.avp.android.player.state;
 
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 class MediaPlayerStateMachine {
+    public static final String PLAYER_PLAYING = "player_playing";
+    public static final String PLAYER_PAUSED = "player_paused";
     private MediaPlayerState state;
     private final CanDiscoverPlayingStateOfMediaPlayer mediaPlayer;
     private EventBus bus;
@@ -20,12 +21,12 @@ class MediaPlayerStateMachine {
 
     private void transitionToPaused() {
         state = pausedState;
-        bus.announce(Events.PLAYER_PAUSED);
+        bus.announce(PLAYER_PAUSED);
     }
 
     private void transitionToPlaying() {
         state = playingState;
-        bus.announce(Events.PLAYER_PLAYING);
+        bus.announce(PLAYER_PLAYING);
     }
 
     private interface MediaPlayerState {

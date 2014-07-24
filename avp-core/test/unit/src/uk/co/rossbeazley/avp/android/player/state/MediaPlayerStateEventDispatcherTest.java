@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.player.state;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.player.time.FakeScheduledExecutor;
@@ -25,19 +24,19 @@ public class MediaPlayerStateEventDispatcherTest {
         mediaPlayer = FakePlaybackOfMediaPlayer.createStartedFakeMediaPlayer();
 
         bus = new ExecutorEventBus();
-        bus.whenEvent(Events.PLAYER_PAUSED)
+        bus.whenEvent(MediaPlayerStateMachine.PLAYER_PAUSED)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
-                        playerState = Events.PLAYER_PAUSED;
+                        playerState = MediaPlayerStateMachine.PLAYER_PAUSED;
                     }
                 });
 
-        bus.whenEvent(Events.PLAYER_PLAYING)
+        bus.whenEvent(MediaPlayerStateMachine.PLAYER_PLAYING)
                 .thenRun(new Function() {
                     @Override
                     public void invoke() {
-                        playerState = Events.PLAYER_PLAYING;
+                        playerState = MediaPlayerStateMachine.PLAYER_PLAYING;
                     }
                 });
 
@@ -52,7 +51,7 @@ public class MediaPlayerStateEventDispatcherTest {
         bus.sendPayload(mediaPlayer)
                 .withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         fakeScheduledExecutor.runOnce();
-        assertThat(playerState, is(Events.PLAYER_PLAYING));
+        assertThat(playerState, is(MediaPlayerStateMachine.PLAYER_PLAYING));
     }
 
     @Test
@@ -61,7 +60,7 @@ public class MediaPlayerStateEventDispatcherTest {
                 .withEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
         mediaPlayer.pause();
         fakeScheduledExecutor.runOnce();
-        assertThat(playerState, is(Events.PLAYER_PAUSED));
+        assertThat(playerState, is(MediaPlayerStateMachine.PLAYER_PAUSED));
 
     }
 
@@ -72,7 +71,7 @@ public class MediaPlayerStateEventDispatcherTest {
         mediaPlayer.pause();
         mediaPlayer.start();
         fakeScheduledExecutor.runOnce();
-        assertThat(playerState, is(Events.PLAYER_PLAYING));
+        assertThat(playerState, is(MediaPlayerStateMachine.PLAYER_PLAYING));
 
     }
 
