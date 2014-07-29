@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.player.control;
 
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -60,7 +60,7 @@ public class MediaPlayerControl {
     }
 
     private void handleAppHidden() {
-        bus.whenEvent(Events.APP_HIDDEN).thenRun(new Function() {
+        bus.whenEvent(ApplicationCore.APP_HIDDEN).thenRun(new Function() {
             @Override
             public void invoke() {
                 stopMediaPlayer();

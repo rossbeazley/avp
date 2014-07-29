@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.log;
 
-import uk.co.rossbeazley.avp.Events;
+import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
@@ -36,9 +36,9 @@ public class EventBusLog {
         logEvent(VideoPlayerScreenPresenter.USER_SCRUB);
         logEvent(VideoPlayerScreenPresenter.USER_PAUSE);
 
-        logEvent(Events.APP_HIDDEN);
-        logEvent(Events.APP_SHUTDOWN);
-        logEvent(Events.APP_RESUMED);
+        logEvent(ApplicationCore.APP_HIDDEN);
+        logEvent(ApplicationCore.APP_SHUTDOWN);
+        logEvent(ApplicationCore.APP_RESUMED);
         //TODO logEvent(ApplicationUIState.APP_START);
 
 

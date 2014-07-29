@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.ApplicationCore;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.ui.screenStack.UiNavigationStackFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -73,13 +72,13 @@ public class Main extends Activity implements CanFinishTheApp{
     @Override
     protected void onPause() {
         super.onPause();
-        eventbus.announce(Events.APP_HIDDEN);
+        eventbus.announce(ApplicationCore.APP_HIDDEN);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        eventbus.announce(Events.APP_SHUTDOWN);
+        eventbus.announce(ApplicationCore.APP_SHUTDOWN);
     }
 
 

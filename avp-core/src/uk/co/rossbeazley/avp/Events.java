@@ -8,8 +8,5 @@ package uk.co.rossbeazley.avp;
  * To change this template use File | Settings | File Templates.
  */
 public class Events {
-    public static final String APP_SHUTDOWN = "app_shutdown";
 
-    public static final String APP_HIDDEN = "app_hidden";
-    public static final String APP_RESUMED = "app_resumed";
 }

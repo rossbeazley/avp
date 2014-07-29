@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.application;
 
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.ApplicationCore;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.screenStack.EmptyFragmentBackStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
@@ -28,7 +27,7 @@ class ApplicationUIState {
 
     private void rehydrateStateFromBundle(Bundle outState, EventBus eventBus) {
         if(applicationWasRunning(outState)) {
-             eventBus.announce(Events.APP_RESUMED);
+             eventBus.announce(ApplicationCore.APP_RESUMED);
          } else {
              eventBus.announce(ApplicationCore.APP_START);
          }
