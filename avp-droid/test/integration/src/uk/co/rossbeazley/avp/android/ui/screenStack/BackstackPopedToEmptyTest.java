@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import uk.co.rossbeazley.avp.Events;
 import uk.co.rossbeazley.avp.android.ui.ActivityForTestingViews;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;

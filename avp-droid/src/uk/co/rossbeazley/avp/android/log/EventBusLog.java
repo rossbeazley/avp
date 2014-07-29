@@ -5,6 +5,7 @@ import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
 import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
+import uk.co.rossbeazley.avp.android.player.render.MediaPlayerViewCreator;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
@@ -29,7 +30,7 @@ public class EventBusLog {
         logEvent(MediaPlayerStateMachine.PLAYER_PAUSED);
         logEvent(MediaPlayerStateMachine.PLAYER_PLAYING);
         logEvent(MediaPlayerControl.PLAYER_STOPPED);
-        //TODO logEvent(MediaPlayerViewCreator.PLAYER_VIEW_CREATED);
+        logEvent(MediaPlayerViewCreator.PLAYER_VIEW_CREATED);
 
         logEvent(MediaPlaybackService.USER_LOAD_VIDEO);
         logEvent(VideoPlayerScreenPresenter.USER_PLAY);
@@ -39,7 +40,7 @@ public class EventBusLog {
         logEvent(ApplicationCore.APP_HIDDEN);
         logEvent(ApplicationCore.APP_SHUTDOWN);
         logEvent(ApplicationCore.APP_RESUMED);
-        //TODO logEvent(ApplicationUIState.APP_START);
+        logEvent(ApplicationCore.APP_START);
 
 
         logEvent(UrlLoaderScreenPresenter.USER_WANTS_TO_GOTO_SEARCH);
