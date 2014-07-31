@@ -27,7 +27,6 @@
     </orderEntry>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="event-bus" />
     <orderEntry type="module" module-name="avp-core" />
   </component>
 </module>
