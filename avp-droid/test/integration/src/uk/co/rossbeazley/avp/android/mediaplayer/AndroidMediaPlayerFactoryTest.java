@@ -10,6 +10,8 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 public class AndroidMediaPlayerFactoryTest extends MediaPlayerFactoryContract {
 
 
+    //TODO Bus announcement test?
+
     @Override
     protected AndroidMediaPlayerFactory getMediaPlayerFactory() {
         return new AndroidMediaPlayerFactory(Robolectric.application, new ExecutorEventBus());

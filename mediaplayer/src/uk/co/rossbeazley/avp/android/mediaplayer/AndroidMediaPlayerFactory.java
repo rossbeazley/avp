@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class AndroidMediaPlayerFactory implements MediaPlayerFactory {
 
-    public static final String PLAYER_CREATED = "media_player_created";
+    public static final String PLAYER_CREATED = "android_media_player_created";
     private Context applicationContext;
     private final EventBus eventBus;
 

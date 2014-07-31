@@ -7,6 +7,8 @@ import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
 public class MediaPlayerCreator {
 
+    public static final String PLAYER_CREATED = "media_player_created";
+
     public MediaPlayerCreator(final EventBus bus, final MediaPlayerFactory factory) {
         bindCreateMediaPlayerEventHandler(bus, factory);
     }
@@ -22,7 +24,7 @@ public class MediaPlayerCreator {
 
     static private void createMediaPlayer(EventBus bus, UriString payload,MediaPlayerFactory factory) {
         Object mediaplayer = factory.createMediaPlayerForUri(payload.uri);
-
+        bus.sendPayload(mediaplayer).withEvent(MediaPlayerCreator.PLAYER_CREATED);
     }
 
 }

@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.player.creator;
 
 import org.junit.Test;
 import uk.co.rossbeazley.avp.UriString;
-import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -24,7 +23,7 @@ public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPl
         MediaPlayerFactory mediaPlayerFactory = (MediaPlayerFactory) this;
         new MediaPlayerCreator(bus, mediaPlayerFactory);
 
-        bus.whenEvent(AndroidMediaPlayerFactory.PLAYER_CREATED).thenRun(new FunctionWithParameter<Object>() {
+        bus.whenEvent(MediaPlayerCreator.PLAYER_CREATED).thenRun(new FunctionWithParameter<Object>() {
             public void invoke(Object payload) {
                 announcedMediaPlayer=payload;
             }
