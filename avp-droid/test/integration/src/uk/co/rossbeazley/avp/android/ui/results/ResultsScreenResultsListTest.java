@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.avp.android.ui.results;
 
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import org.junit.Before;
@@ -22,6 +23,7 @@ public class ResultsScreenResultsListTest {
     private ListAdapter adapter;
     private MediaItem firstMediaItem;
     private MediaItem secondMediaItem;
+    private ListView list;
 
     @Before
     public void givenTwoResultAreShowOnTheScreen() {
@@ -35,8 +37,14 @@ public class ResultsScreenResultsListTest {
         ResultsScreen screen = new ResultsScreenAndroid(findsViews);
 
         screen.showResults(results);
-        ListView list = (ListView) findsViews.findViewById(R.id.searchresultslist);
+        list = (ListView) findsViews.findViewById(R.id.searchresultslist);
         adapter = list.getAdapter();
+    }
+
+    @Test
+    public void theListIsVisible()
+    {
+        assertThat(list.getVisibility(),is(View.VISIBLE));
     }
 
     @Test

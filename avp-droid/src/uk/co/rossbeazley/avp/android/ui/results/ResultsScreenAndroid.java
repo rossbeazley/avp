@@ -25,7 +25,9 @@ class ResultsScreenAndroid implements ResultsScreen {
     @Override
     public void showResults(Results results) {
         //TODO implement the show results method
-        findListView(R.id.searchresultslist).setAdapter(new ResultsListAdapter(results));
+        ListView listView = findListView(R.id.searchresultslist);
+        listView.setVisibility(View.VISIBLE);
+        listView.setAdapter(new ResultsListAdapter(results));
     }
 
     @Override

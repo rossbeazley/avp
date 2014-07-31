@@ -25,7 +25,6 @@ public class ResultsScreenSpinnerTest {
         ActivityForTestingViews visibleActivityForLayout = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.results);
         ResultsScreen screen = new ResultsScreenAndroid(visibleActivityForLayout.viewFinder());
 
-        screen.showSpinner();
         screen.hideSpinner();
 
         View spinnerView = visibleActivityForLayout.findViewById(R.id.searchspinner);

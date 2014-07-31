@@ -28,7 +28,7 @@ public class Search implements CurrentSearchResults {
         bus.registerProducer(SEARCH_RESULTS_AVAILABLE, new PayloadFunction<Results>() {
             @Override
             public void payload(FunctionWithParameter<Results> listener) {
-                listener.invoke(results);
+                listener.invoke(results);   //TODO should only announce if there are results
             }
         });
     }
