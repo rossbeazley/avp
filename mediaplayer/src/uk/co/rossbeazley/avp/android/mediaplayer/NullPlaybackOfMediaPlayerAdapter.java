@@ -2,7 +2,6 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
@@ -14,15 +13,9 @@ public class NullPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer, 
 
     private final TimeInMilliseconds noTime = TimeInMilliseconds.fromLong(0);
 
-    private Logger logger;
-
     public NullPlaybackOfMediaPlayerAdapter() {
-        logger = Logger.NULL;
     }
 
-    public NullPlaybackOfMediaPlayerAdapter(Logger logger) {
-        this.logger = logger;
-    }
 
     @Override
     public void start() {
@@ -92,6 +85,6 @@ public class NullPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer, 
 
 
     private void doLog(String msg) {
-        logger.debug("Null Media Player Adapter " + msg);
+        //logger.debug("Null Media Player Adapter " + msg);
     }
 }

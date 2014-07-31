@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Deploy device and launch" type="AndroidRunConfigurationType" factoryName="Android Application">
     <module name="avp-droid" />
-    <option name="ACTIVITY_CLASS" />
+    <option name="ACTIVITY_CLASS" value="" />
     <option name="MODE" value="default_activity" />
     <option name="DEPLOY" value="true" />
     <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />

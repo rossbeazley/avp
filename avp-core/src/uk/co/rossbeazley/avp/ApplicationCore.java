@@ -1,17 +1,12 @@
 package uk.co.rossbeazley.avp;
 
-import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.media.MediaRepository;
-import uk.co.rossbeazley.avp.android.player.control.MediaPlayerAutoPlay;
-import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
-import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
-import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerFactory;
-import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
-import uk.co.rossbeazley.avp.android.player.scrub.MediaPlayerScrubber;
-import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateEventDispatcher;
-import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
-import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
-import uk.co.rossbeazley.avp.android.search.*;
+import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
+import uk.co.rossbeazley.avp.android.search.CurrentResult;
+import uk.co.rossbeazley.avp.android.search.CurrentSearchResults;
+import uk.co.rossbeazley.avp.android.search.Search;
+import uk.co.rossbeazley.avp.android.search.SearchService;
+import uk.co.rossbeazley.avp.android.search.SelectedMediaItem;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 /**
@@ -28,13 +23,7 @@ public class ApplicationCore {
     public static final String APP_SHUTDOWN = "app_shutdown";
     public static final String APP_HIDDEN = "app_hidden";
     public static final String APP_RESUMED = "app_resumed";
-    public final MediaPlayerCreator mediaPlayerCreator;
-    public final MediaPlayerPreparer mediaPlayerPreparer;
-    public final MediaPlayerAutoPlay mediaPlayerAutoPlay;
-    public final MediaPlayerControl mediaPlayerControl;
-    public final MediaPlayerTimePositionWatcher mediaPlayerTimePositionWatcher;
-    public final MediaPlayerScrubber mediaPlayerScrubber;
-    public final MediaPlayerStateEventDispatcher mediaPlayerStateEventDispatcher;
+
     public final Search search;
 
     // imperative shell
@@ -42,15 +31,8 @@ public class ApplicationCore {
     public final CurrentSearchResults currentSearchResults;
     public final CurrentResult currentResult;
 
-    public ApplicationCore(EventBus bus, MediaPlayerFactory androidMediaPlayerFactory, CanExecuteCommandsAtFixedRate fixedRateExecutor, MediaRepository mediaRepository) {
-        mediaPlayerCreator = new MediaPlayerCreator(bus, androidMediaPlayerFactory);
-        mediaPlayerPreparer = new MediaPlayerPreparer(bus);
-        mediaPlayerAutoPlay = new MediaPlayerAutoPlay(bus);
-        mediaPlayerControl = new MediaPlayerControl(bus);
+    public ApplicationCore(EventBus bus, MediaRepository mediaRepository) {
 
-        mediaPlayerTimePositionWatcher = new MediaPlayerTimePositionWatcher(fixedRateExecutor, bus);
-        mediaPlayerScrubber = new MediaPlayerScrubber(bus);
-        mediaPlayerStateEventDispatcher = new MediaPlayerStateEventDispatcher(bus, fixedRateExecutor);
 
         search = new Search(mediaRepository, bus);
 

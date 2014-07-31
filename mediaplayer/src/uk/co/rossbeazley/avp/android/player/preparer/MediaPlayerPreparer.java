@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.avp.android.player.preparer;
 
-import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
+import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
+//import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
@@ -11,7 +12,7 @@ public class MediaPlayerPreparer {
     public MediaPlayerPreparer(final EventBus bus) {
         this.bus = bus;
 
-        bus.whenEvent(MediaPlayerCreator.PLAYER_CREATED).thenRun(new FunctionWithParameter<CanPrepareMediaPlayer>() {
+        bus.whenEvent(AndroidMediaPlayerFactory.PLAYER_CREATED).thenRun(new FunctionWithParameter<CanPrepareMediaPlayer>() {
             @Override
             public void invoke(final CanPrepareMediaPlayer payload) {
                 prepareMediaPlayer(payload);

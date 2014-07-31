@@ -43,7 +43,7 @@ public class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implement
         final MediaPlayerFactory UNUSED_MP_FACTORY = null;
         final CanExecuteCommandsAtFixedRate UNUSED_EXECUTOR = null;
 
-        applicationCore = new ApplicationCore(bus, UNUSED_MP_FACTORY, UNUSED_EXECUTOR, repo);
+        applicationCore = new ApplicationCore(bus, repo);
 
         Query query = Query.fromString("ross");
         applicationCore.searchService.query(query);

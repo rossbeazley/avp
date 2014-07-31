@@ -6,7 +6,7 @@
     <uses-sdk android:minSdkVersion="8"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <application android:label="@string/app_name" >
+    <application android:label="@string/app_name" android:name="StaticSingletonApplicationContext">
 
         <activity android:name=".application.Main"
                   android:label="@string/app_name"
@@ -17,12 +17,12 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <intent-filter>
+            <!--intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="http" android:pathPattern="*.mp4" />
-            </intent-filter>
+            </intent-filter-->
         </activity>
     </application>
 </manifest> 

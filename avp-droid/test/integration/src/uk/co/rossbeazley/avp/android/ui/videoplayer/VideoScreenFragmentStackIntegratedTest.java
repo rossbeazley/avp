@@ -15,7 +15,7 @@ public class VideoScreenFragmentStackIntegratedTest extends ScreenFragmentStackI
     public void testPushFragment() throws Exception {
         ScreenStack stack = createScreenFragmentStack();
 
-        stack.pushScreen(VideoPlayerScreen.class);
+        stack.pushScreen(MediaPlayerScreen.class);
 
         assertThat(fragmentAttached(), is((VideoPlayerFragment.class)));
     }

@@ -28,7 +28,16 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
         //This isnt in the core module, its only in droid
         new MediaPlayerViewCreator(new AndroidMediaPlayerVideoOutputFactory(), bus); //TODO work out how to get rid of this
 
-        return result;
+        return new MediaPlayerScreen() {
+
+            @Override
+            public void tearDown() {
+                result.tearDown();
+            }
+
+            @Override
+            public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) { }
+        };
     }
 
 }

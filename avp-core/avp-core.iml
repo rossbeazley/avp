@@ -19,6 +19,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="event-bus" exported="" />
+    <orderEntry type="module" module-name="mediaplayer" />
   </component>
 </module>
 

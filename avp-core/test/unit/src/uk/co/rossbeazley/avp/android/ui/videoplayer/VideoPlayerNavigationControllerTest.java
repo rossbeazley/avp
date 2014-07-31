@@ -25,7 +25,7 @@ public class VideoPlayerNavigationControllerTest implements ScreenStack {
         new VideoPlayerNavigationController(this, bus);
 
         bus.sendPayload(anyUriString).withEvent(MediaPlaybackService.USER_LOAD_VIDEO);
-        Class expectedClass = VideoPlayerScreen.class;
+        Class expectedClass = MediaPlayerScreen.class;
         assertThat(actualClass, is(equalTo(expectedClass)));
 
     }

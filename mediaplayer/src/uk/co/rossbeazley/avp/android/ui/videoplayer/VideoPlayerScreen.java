@@ -1,9 +1,9 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.ui.Screen;
 
-public interface VideoPlayerScreen extends Screen {
+public interface VideoPlayerScreen {
+
     void showTotalTime(TimeInMilliseconds time);
 
     void showProgressTime(TimeInMilliseconds time);
@@ -38,5 +38,18 @@ public interface VideoPlayerScreen extends Screen {
     interface CanListenForUserScrubEvents {
         void userScrubbedTo(long positionAsPercentage);
         CanListenForUserScrubEvents NONE = new CanListenForUserScrubEvents() { public void userScrubbedTo(long positionAsPercentage) {} };
+    }
+
+
+
+
+    void tearDown();
+
+    //TODO consider removing this, really its only tearDown that the fragment expects
+    void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents);
+
+    interface CanListenForScreenTearDownEvents {
+        void screenTearDown();
+        CanListenForScreenTearDownEvents NONE = new CanListenForScreenTearDownEvents() { public void screenTearDown() {} };
     }
 }

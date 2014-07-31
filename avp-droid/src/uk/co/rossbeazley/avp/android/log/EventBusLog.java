@@ -1,9 +1,9 @@
 package uk.co.rossbeazley.avp.android.log;
 
 import uk.co.rossbeazley.avp.ApplicationCore;
+import uk.co.rossbeazley.avp.android.mediaplayer.AndroidMediaPlayerFactory;
 import uk.co.rossbeazley.avp.android.player.MediaPlaybackService;
 import uk.co.rossbeazley.avp.android.player.control.MediaPlayerControl;
-import uk.co.rossbeazley.avp.android.player.creator.MediaPlayerCreator;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.player.render.MediaPlayerViewCreator;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
@@ -25,7 +25,7 @@ public class EventBusLog {
         this.bus = bus;
 
         logEvent(MediaPlayerPreparer.PLAYER_VIDEO_LOADED);
-        logEvent(MediaPlayerCreator.PLAYER_CREATED);
+        logEvent(AndroidMediaPlayerFactory.PLAYER_CREATED);
         logEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
         logEvent(MediaPlayerStateMachine.PLAYER_PAUSED);
         logEvent(MediaPlayerStateMachine.PLAYER_PLAYING);

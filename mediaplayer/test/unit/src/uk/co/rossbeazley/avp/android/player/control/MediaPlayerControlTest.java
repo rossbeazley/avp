@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.player.control;
 
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.rossbeazley.avp.ApplicationCore;
+//import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.player.FakePlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
@@ -33,7 +33,7 @@ public class MediaPlayerControlTest {
 
     @Test
     public void stopsTheMediaPlayerWhenAppHidden() {
-        bus.announce(ApplicationCore.APP_HIDDEN);
+        //bus.announce(ApplicationCore.APP_HIDDEN);
         assertThat(mediaPlayer.isNotPlaying(), is(true));
     }
 
@@ -46,7 +46,7 @@ public class MediaPlayerControlTest {
                 playerState = STOPPED;
             }
         });
-        bus.announce(ApplicationCore.APP_HIDDEN);
+        //bus.announce(ApplicationCore.APP_HIDDEN);
         assertThat(playerState, is(STOPPED)); //SMELL this class is responsible for sending stop events, to be moved out into a mediaplayer prepared watcher thingy class
     }
 

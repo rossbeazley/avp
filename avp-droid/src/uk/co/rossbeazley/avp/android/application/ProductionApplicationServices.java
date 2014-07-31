@@ -57,7 +57,7 @@ public class ProductionApplicationServices implements ApplicationServices {
     @Override
     public AndroidMediaPlayerFactory getAndroidMediaPlayerFactory() {
         if(androidMediaPlayerFactory==null) {
-            androidMediaPlayerFactory = new AndroidMediaPlayerFactory(applicationContext, getLogger());
+            androidMediaPlayerFactory = new AndroidMediaPlayerFactory(applicationContext, eventbus());
         }
         return androidMediaPlayerFactory;
     }

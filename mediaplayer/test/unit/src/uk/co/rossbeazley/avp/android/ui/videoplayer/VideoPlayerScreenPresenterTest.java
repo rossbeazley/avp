@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.avp.android.ui.videoplayer;
 
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
@@ -33,14 +35,14 @@ public class VideoPlayerScreenPresenterTest {
     @Test
     public void whenPlayingEventShowPauseHideBuffering() {
         bus.announce(MediaPlayerStateMachine.PLAYER_PLAYING);
-        assertThat(fakeVideoScreen.showPause && fakeVideoScreen.hideBuffering, is(true));
+        Assert.assertThat(fakeVideoScreen.showPause && fakeVideoScreen.hideBuffering, CoreMatchers.is(true));
     }
 
     @Test
     public void whenPausedEventShowPlayHideBuffering() {
-        assertThat(fakeVideoScreen.showPlay, is(false));
+        Assert.assertThat(fakeVideoScreen.showPlay, CoreMatchers.is(false));
         bus.announce(MediaPlayerStateMachine.PLAYER_PAUSED);
-        assertThat(fakeVideoScreen.showPlay && fakeVideoScreen.hideBuffering, is(true));
+        Assert.assertThat(fakeVideoScreen.showPlay && fakeVideoScreen.hideBuffering, CoreMatchers.is(true));
     }
 
     @Test
@@ -54,7 +56,7 @@ public class VideoPlayerScreenPresenterTest {
                     }
                 });
         fakeVideoScreen.pausePressed();
-        assertThat(pausedEventDispatched, is(true));
+        Assert.assertThat(pausedEventDispatched, CoreMatchers.is(true));
     }
 
     @Test
@@ -68,7 +70,7 @@ public class VideoPlayerScreenPresenterTest {
                     }
                 });
         fakeVideoScreen.playPressed();
-        assertThat(playEventDispatched, is(true));
+        Assert.assertThat(playEventDispatched, CoreMatchers.is(true));
     }
     @Test
     public void whenTimeUpdateEventCurrentTimeUpdatedOnScreen() {
@@ -78,7 +80,7 @@ public class VideoPlayerScreenPresenterTest {
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(expectedTime, ANY_TIME);
         bus.sendPayload(mediaPlayerTimePosition).withEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
 
-        assertThat(fakeVideoScreen.progressTime, is(expectedTime));
+        Assert.assertThat(fakeVideoScreen.progressTime, CoreMatchers.is(expectedTime));
     }
 
     @Test
@@ -89,7 +91,7 @@ public class VideoPlayerScreenPresenterTest {
         MediaTimePosition mediaPlayerTimePosition = new MediaTimePosition(ANY_TIME, expectedTime);
         bus.sendPayload(mediaPlayerTimePosition).withEvent(MediaPlayerTimePositionWatcher.PLAYER_TIME_UPDATE);
 
-        assertThat(fakeVideoScreen.totalTime, is(expectedTime));
+        Assert.assertThat(fakeVideoScreen.totalTime, CoreMatchers.is(expectedTime));
     }
 
     @Test
@@ -103,7 +105,7 @@ public class VideoPlayerScreenPresenterTest {
                     }
                 });
         fakeVideoScreen.tearDown();
-        assertThat(exitEventDispatched, is(true));
+        Assert.assertThat(exitEventDispatched, CoreMatchers.is(true));
 
     }
 }

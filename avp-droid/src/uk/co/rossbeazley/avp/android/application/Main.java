@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import uk.co.rossbeazley.avp.ApplicationCore;
+import uk.co.rossbeazley.avp.android.StaticSingletonApplicationContext;
 import uk.co.rossbeazley.avp.android.log.EventBusLog;
 import uk.co.rossbeazley.avp.android.ui.screenStack.UiNavigationStackFactory;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
@@ -14,7 +15,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public class Main extends Activity implements CanFinishTheApp{
 
     private final UiNavigationStackFactory uiNavigationStackFactory = new UiNavigationStackFactory();
-    private final ApplicationServices services = new ProductionApplicationServices(this.getApplication());
+    private final ApplicationServices services = new ProductionApplicationServices(StaticSingletonApplicationContext.instance);
     private final EventBus eventbus = services.eventbus();
     private final ApplicationCore applicationCore = createCoreAppBlocking(services);
     private final DependenciesService dependenciesService = new DependencyInjectionFrameworkFactory().createDependencyInjectionFramework(services, applicationCore);

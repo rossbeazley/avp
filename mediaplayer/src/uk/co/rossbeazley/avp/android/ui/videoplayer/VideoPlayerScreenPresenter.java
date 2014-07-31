@@ -4,7 +4,6 @@ import uk.co.rossbeazley.avp.TimeInMilliseconds;
 import uk.co.rossbeazley.avp.android.player.state.MediaPlayerStateMachine;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.android.player.time.MediaTimePosition;
-import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
@@ -97,7 +96,7 @@ public class VideoPlayerScreenPresenter {
     }
 
     private void bindScreenTearDownEvent(VideoPlayerScreen videoScreen) {
-        videoScreen.setTearDownEventListener(new Screen.CanListenForScreenTearDownEvents() {
+        videoScreen.setTearDownEventListener(new VideoPlayerScreen.CanListenForScreenTearDownEvents() {
             @Override
             public void screenTearDown() {
                 bus.announce(USER_EXIT_VIDEO_SCREEN); //TODO migrate to a service object? Very confused!

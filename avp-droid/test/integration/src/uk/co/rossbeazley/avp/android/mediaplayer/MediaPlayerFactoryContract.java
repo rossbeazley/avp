@@ -38,6 +38,6 @@ public abstract class MediaPlayerFactoryContract {
         assertTrue(getMediaPlayerFactory().createMediaPlayerForUri(ANY_URI) instanceof CanAttachToAndroidView);
     }
 
-    private static final UriString ANY_URI = UriString.from("");
+    private static final String ANY_URI = "";
     protected abstract MediaPlayerFactory getMediaPlayerFactory();
 }

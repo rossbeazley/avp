@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.mediaplayer;
 import android.media.MediaPlayer;
 import android.view.SurfaceHolder;
 import uk.co.rossbeazley.avp.TimeInMilliseconds;
-import uk.co.rossbeazley.avp.android.log.Logger;
+//import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.android.player.control.CanControlPlaybackOfMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.preparer.CanPrepareMediaPlayer;
 import uk.co.rossbeazley.avp.android.player.render.CanAttachToAndroidView;
@@ -26,12 +26,12 @@ class AndroidPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer,
 
     private Collection<PreparedStateChangeListener> preparedStateChangeListeners = new ArrayList<PreparedStateChangeListener>();
     private final android.media.MediaPlayer mediaPlayer;
-    private final Logger logger;
+//    private final Logger logger;
     private Collection<ScrubCompleteListener> seekCompleteListeners = new ArrayList<ScrubCompleteListener>();
 
-    AndroidPlaybackOfMediaPlayerAdapter(android.media.MediaPlayer mediaPlayer, Logger logger) {
+    AndroidPlaybackOfMediaPlayerAdapter(MediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
-        this.logger = logger;
+//        this.logger = logger;
         bindPreparedEventAdapter();
         bindSeekCompleteAdapter();
     }
@@ -60,43 +60,43 @@ class AndroidPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer,
 
     @Override
     public void addPreparedStateChangeListener(PreparedStateChangeListener preparedStateChangeListener) {
-        logger.debug("addPreparedStateChangeListener");
+//        logger.debug("addPreparedStateChangeListener");
         preparedStateChangeListeners.add(preparedStateChangeListener);
     }
 
     public void prepareAsync() throws IllegalStateException {
-        logger.debug("prepare async");
+//        logger.debug("prepare async");
         mediaPlayer.prepareAsync();
     }
 
     public void start() throws IllegalStateException {
-        logger.debug("start");
+//        logger.debug("start");
         mediaPlayer.start();
     }
 
     @Override
     public boolean isPlaying() {
         boolean result = mediaPlayer.isPlaying();
-        logger.debug("isPlaying? " + result);
+//        logger.debug("isPlaying? " + result);
         return result;
     }
 
     @Override
     public boolean isNotPlaying() {
         boolean result = !mediaPlayer.isPlaying();
-        logger.debug("isNotPlaying? " + result);
+//        logger.debug("isNotPlaying? " + result);
         return result;
     }
 
     @Override
     public void stop() {
-        logger.debug("stop");
+//        logger.debug("stop");
         mediaPlayer.stop();
     }
 
     @Override
     public void pause() {
-        logger.debug("pause");
+//        logger.debug("pause");
         mediaPlayer.pause();
     }
 
@@ -118,7 +118,7 @@ class AndroidPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer,
 
     @Override
     public void seekTo(TimeInMilliseconds time) {
-        logger.debug("seekTo " + time.value);
+//        logger.debug("seekTo " + time.value);
         mediaPlayer.seekTo((int) time.value);
     }
 
@@ -129,7 +129,7 @@ class AndroidPlaybackOfMediaPlayerAdapter implements CanPrepareMediaPlayer,
 
     @Override
     public void setDisplay(SurfaceHolder surfaceHolder) {
-        logger.debug("Set Display");
+//        logger.debug("Set Display");
         mediaPlayer.setDisplay(surfaceHolder);
     }
 }
