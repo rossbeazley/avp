@@ -9,13 +9,14 @@ import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class VideoScreenAndroidView implements VideoPlayerScreen, VideoOutputScreen {
+public class VideoScreenAndroidView implements VideoPlayerScreen {
     private final ViewFinder viewFinder;
 
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
     private CanListenForUserPauseEvents canListenForUserPauseEvents;
     private CanListenForUserScrubEvents canListenForUserScrubEvents;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
+
 
     public VideoScreenAndroidView(CanFindViewById canFindViewById) {
         this.canListenForUserPlayEvents = CanListenForUserPlayEvents.NONE;
@@ -117,12 +118,6 @@ public class VideoScreenAndroidView implements VideoPlayerScreen, VideoOutputScr
     public void showPause() {
         viewFinder.setVisibility(View.GONE, R.id.play);
         viewFinder.setVisibility(View.VISIBLE, R.id.pause);
-    }
-
-    @Override
-    public void attachVideo(RenderedVideoOutput videoOutput) {
-        ViewGroup container = (ViewGroup) viewFinder.find(R.id.videocontainer);
-        videoOutput.attachToViewGroup(container);
     }
 
     @Override

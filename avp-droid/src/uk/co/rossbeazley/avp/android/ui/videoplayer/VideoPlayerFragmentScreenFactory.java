@@ -19,11 +19,12 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
 
     @Override
     public Screen buildScreenWithInflatedView(CanFindViewById inflatedLayoutView) {
-        final VideoScreenAndroidView result;
+        final VideoOutputScreen result;
 
-        result = new VideoScreenAndroidView(inflatedLayoutView);
+        final VideoScreenAndroidView controlsView = new VideoScreenAndroidView(inflatedLayoutView);
+        result = new PlayerScreenAndroidView(inflatedLayoutView);
 
-        new VideoPlayerScreenPresenter(bus, result);
+        new VideoPlayerScreenPresenter(bus, controlsView);
         new VideoOutputScreenPresenter(result, bus);    // think this dual presenter is a bit of a special
         //This isnt in the core module, its only in droid
         new MediaPlayerViewCreator(new AndroidMediaPlayerVideoOutputFactory(), bus); //TODO work out how to get rid of this
@@ -33,6 +34,7 @@ public class VideoPlayerFragmentScreenFactory implements FragmentScreenFactory {
             @Override
             public void tearDown() {
                 result.tearDown();
+                controlsView.tearDown();
             }
 
             @Override

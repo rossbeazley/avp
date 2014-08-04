@@ -1,9 +1,11 @@
 package uk.co.rossbeazley.avp.android.player.render;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+import uk.co.rossbeazley.avp.android.R;
 
 public class AndroidMediaPlayerVideoOutput implements RenderedVideoOutput {
 
@@ -15,6 +17,8 @@ public class AndroidMediaPlayerVideoOutput implements RenderedVideoOutput {
 
     @Override
     public void attachToViewGroup(ViewGroup container) {
+        // inflate controls view
+        //LayoutInflater.from(container).inflate(R.layout.)
         SurfaceView sv = createSurfaceViewFromViewGroupContext(container);
         addSurfaceViewToViewGroup(sv, container);
     }

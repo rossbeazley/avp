@@ -48,7 +48,7 @@ public class ScreenAttachVideoTest implements CanFindViewById {
     @Before
     public void setUp() throws Exception {
         activity = ActivityForTestingViews.createVisibleActivityForLayout(R.layout.videoplayer);
-        videoOutputScreen = new VideoScreenAndroidView(this);
+        videoOutputScreen = new PlayerScreenAndroidView(this);
     }
 
     @Override
