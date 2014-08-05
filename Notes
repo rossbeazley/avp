@@ -124,3 +124,28 @@ ReduxUser
 
 A request builder, takes the correctly formatted url and listener object
 we invoke the listener object with a JSON object (or array)
+
+--------
+
+
+A new screen for the media player:
+we have a new fragment:
+ it inflates the layout
+ it creates the presenter that attaches the RenderedVideo to the target ViewGroup
+
+We need a whole new media player view - the current one is AndroidMediaPlayerVideoOutput
+ It will still implement RenderedVideoOutput
+ It will have a AndroidMediaPlayerVideoOutput
+ It will have a VideoScreenAndroidView
+ It will need a presenter for the VideoScreen and the VideoOutput
+
+We could do an integrated test of the fragment, assert the view is visible.
+When the event is announced, is that object is attached correctly on the screen.
+The object adds a text view to the screen, or tags the viewgroup? <- tags the viewgroup
+
+
+
+First step, write an integrated test that asserts the correct view is displayed
+and when the bus event happens the expected viewgroup is tagged with the success object
+ - then refactor into a seperate view class and controller (unless its already composed)
+
