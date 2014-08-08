@@ -12,11 +12,9 @@ import static org.junit.Assert.assertThat;
 @Config(manifest = Config.NONE)
 public class UrlLoaderScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
 
-    @Test
-    public void testPushFragment() throws Exception {
-        ScreenStack stack = createScreenFragmentStack();
+    public void testPushFragment(ScreenStack screenFragmentStack) throws Exception {
 
-        stack.pushScreen(UrlLoaderScreen.class);
+        screenFragmentStack.pushScreen(UrlLoaderScreen.class);
 
         assertThat(fragmentAttached(), is((UrlLoaderFragment.class)));
     }

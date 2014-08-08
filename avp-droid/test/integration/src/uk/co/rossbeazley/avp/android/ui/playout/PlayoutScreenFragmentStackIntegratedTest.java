@@ -1,27 +1,16 @@
-package uk.co.rossbeazley.avp.android.ui.videoplayer;
+package uk.co.rossbeazley.avp.android.ui.playout;
 
-import org.junit.Ignore;
-import org.junit.Test;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.android.ui.screenStack.ScreenFragmentStackIntegratedTest;
+import uk.co.rossbeazley.avp.android.ui.videoplayer.MediaPlayerScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-
-public class VideoScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
-
+public class PlayoutScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest{
     @Override
     public void testPushFragment(ScreenStack screenFragmentStack) throws Exception {
-        /*
-
-
-        MID REFACTOR
-
         screenFragmentStack.pushScreen(MediaPlayerScreen.class);
-
-        assertThat(fragmentAttached(), is((VideoPlayerFragment.class)));
-        */
+        assertThat(fragmentAttached(), is((PlayoutFragment.class)));
     }
-
 }

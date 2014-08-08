@@ -13,9 +13,13 @@ public abstract class ScreenFragmentStackIntegratedTest implements FragmentTrans
     private Fragment fragmentAttached;
 
     @Test
-    public abstract void testPushFragment() throws Exception;
+    public void runTest() throws Exception {
+        testPushFragment(createScreenFragmentStack());
+    }
 
-    public ScreenStack createScreenFragmentStack() {
+    public abstract void testPushFragment(ScreenStack screenFragmentStack) throws Exception;
+
+    private ScreenStack createScreenFragmentStack() {
         FragmentFromScreen fragmentFromScreen = new DefaultFragmentFromScreen();
         FragmentTransaction fragmentTransaction = this;
         return new ScreenFragmentStack(fragmentFromScreen, fragmentTransaction);

@@ -11,11 +11,9 @@ import static org.junit.Assert.assertThat;
 @Config(manifest = Config.NONE)
 public class SearchScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
 
-    @Test
-    public void testPushFragment() throws Exception {
-        ScreenStack stack = createScreenFragmentStack();
+    public void testPushFragment(ScreenStack screenFragmentStack) throws Exception {
 
-        stack.pushScreen(SearchScreen.class);
+        screenFragmentStack.pushScreen(SearchScreen.class);
 
         assertThat(fragmentAttached(), is((SearchFragment.class)));
     }
