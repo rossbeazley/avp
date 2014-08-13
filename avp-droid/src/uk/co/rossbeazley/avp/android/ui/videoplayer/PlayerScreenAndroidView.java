@@ -12,19 +12,17 @@ import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
 public class PlayerScreenAndroidView implements VideoOutputScreen {
 
+    private final CanFindViewById viewFinder;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;
-    private final ViewFinder viewFinder;
-
 
     public PlayerScreenAndroidView(CanFindViewById canFindViewById) {
-        viewFinder = new ViewFinder(canFindViewById);
+        this.viewFinder = canFindViewById;
         this.canListenForScreenTearDownEvents = Screen.CanListenForScreenTearDownEvents.NONE;
-
     }
 
     @Override
     public void attachVideo(RenderedVideoOutput videoOutput) {
-        ViewGroup container = (ViewGroup) viewFinder.find(R.id.videocontainer);
+        ViewGroup container = (ViewGroup) viewFinder.findViewById(R.id.videocontainer);
         videoOutput.attachToViewGroup(container);
     }
 

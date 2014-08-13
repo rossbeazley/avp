@@ -133,7 +133,7 @@ we have a new fragment:
  it inflates the layout
  it creates the presenter that attaches the RenderedVideo to the target ViewGroup
 
-We need a whole new media player view - the current one is AndroidMediaPlayerVideoOutput
+We need a whole new media player view generated to attach to the screen - the current one is AndroidMediaPlayerVideoOutput
  It will still implement RenderedVideoOutput
  It will have a AndroidMediaPlayerVideoOutput
  It will have a VideoScreenAndroidView

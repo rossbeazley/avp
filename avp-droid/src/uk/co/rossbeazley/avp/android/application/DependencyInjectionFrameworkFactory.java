@@ -3,6 +3,8 @@ package uk.co.rossbeazley.avp.android.application;
 import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.ui.NeedsAnInflatedViewFactory;
 import uk.co.rossbeazley.avp.android.ui.NeedsAnInflatedViewFactoryInjector;
+import uk.co.rossbeazley.avp.android.ui.playout.EventBusInjector;
+import uk.co.rossbeazley.avp.android.ui.playout.InjectableEventBus;
 import uk.co.rossbeazley.avp.android.ui.results.InjectableResultsFragment;
 import uk.co.rossbeazley.avp.android.ui.results.InjectableResultsFragmentInjector;
 import uk.co.rossbeazley.avp.android.ui.search.InjectableSearchFragment;
@@ -27,6 +29,7 @@ public class DependencyInjectionFrameworkFactory {
             register(InjectableUrlLoaderFragment.class, new UrlLoaderFragmentInjector(eventbus));
             register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector(eventbus, applicationCore));
             register(NeedsAnInflatedViewFactory.class, new NeedsAnInflatedViewFactoryInjector());
+            register(InjectableEventBus.class, new EventBusInjector(eventbus));
         }};
     }
 

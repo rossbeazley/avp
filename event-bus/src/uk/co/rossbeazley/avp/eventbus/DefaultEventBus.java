@@ -1,25 +1,28 @@
 package uk.co.rossbeazley.avp.eventbus;
 
+import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
+
 public class DefaultEventBus implements EventBus {
 
+    EventBus bus = new ExecutorEventBus();
 
     @Override
     public void announce(Object event) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        bus.announce(event);
     }
 
     @Override
     public EventSubscription whenEvent(Object event) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return bus.whenEvent(event);
     }
 
     @Override
     public AnnouncementWithPayload sendPayload(Object any_object) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return bus.sendPayload(any_object);
     }
 
     @Override
     public void registerProducer(Object event, PayloadFunction function) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        bus.registerProducer(event,function);
     }
 }
