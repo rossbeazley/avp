@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.ui.screenStack.EmptyFragmentBackStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-class ApplicationUIState {
+final class ApplicationUIState {
 
     public static final String RUNNING = "RUNNING";
     private static final String STOPPED = "STOPPED";

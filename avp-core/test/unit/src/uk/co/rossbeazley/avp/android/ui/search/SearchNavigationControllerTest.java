@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchNavigationControllerTest implements ScreenStack {
+public final class SearchNavigationControllerTest implements ScreenStack {
 
     private Class pushedClass;
     private EventBus bus;

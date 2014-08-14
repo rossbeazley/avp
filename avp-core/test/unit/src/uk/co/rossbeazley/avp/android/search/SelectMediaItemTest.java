@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SelectMediaItemTest {
+public final class SelectMediaItemTest {
 
     private EventBus bus;
     private CurrentResult search;

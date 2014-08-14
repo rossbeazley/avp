@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class MediaPlayerViewCreatorTest implements CanCreateAndroidMediaPlayerVideoOutput {
+public final class MediaPlayerViewCreatorTest implements CanCreateAndroidMediaPlayerVideoOutput {
 
     private RenderedVideoOutput expectedView = new RenderedVideoOutput() {
         @Override

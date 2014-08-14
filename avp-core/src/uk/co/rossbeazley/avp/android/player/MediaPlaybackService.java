@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.player;
 import uk.co.rossbeazley.avp.UriString;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class MediaPlaybackService implements CanPlayMedia {
+public final class MediaPlaybackService implements CanPlayMedia {
     public static final String USER_LOAD_VIDEO = "load_video";
     private EventBus bus;
 

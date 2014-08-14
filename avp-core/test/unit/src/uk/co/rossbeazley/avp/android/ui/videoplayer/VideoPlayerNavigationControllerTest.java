@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class VideoPlayerNavigationControllerTest implements ScreenStack {
+public final class VideoPlayerNavigationControllerTest implements ScreenStack {
 
     private Class actualClass;
 

@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class UrlLoaderFragmentTest implements InflatedViewFactory, FragmentScreenFactory {
+public final class UrlLoaderFragmentTest implements InflatedViewFactory, FragmentScreenFactory {
 
     private int layoutId;
 

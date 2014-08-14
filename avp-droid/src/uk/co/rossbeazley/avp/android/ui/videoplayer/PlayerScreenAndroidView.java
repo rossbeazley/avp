@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class PlayerScreenAndroidView implements VideoOutputScreen {
+public final class PlayerScreenAndroidView implements VideoOutputScreen {
 
     private final CanFindViewById viewFinder;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;

@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 
 @RunWith(RobolectricTestRunner.class)
-public class AndroidMediaPlayerFactoryTest extends MediaPlayerFactoryContract {
+public final class AndroidMediaPlayerFactoryTest extends MediaPlayerFactoryContract {
 
 
     //TODO Bus announcement test?

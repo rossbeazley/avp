@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.search;
 
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class SearchService implements CanDispatchSearchQuery {
+public final class SearchService implements CanDispatchSearchQuery {
     public static final String PERFORMING_QUERY = "search_created";
     final private EventBus bus;
 

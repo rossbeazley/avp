@@ -4,7 +4,7 @@ import uk.co.rossbeazley.avp.android.ui.screenStack.EmptyFragmentBackStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-class ApplicationExit {
+final class ApplicationExit {
 
     public ApplicationExit(EventBus eventbus, CanFinishTheApp main) {
         this.bindToUiClosedEvent(eventbus, main);

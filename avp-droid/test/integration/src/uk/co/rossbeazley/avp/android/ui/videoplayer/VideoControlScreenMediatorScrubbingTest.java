@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class VideoControlScreenMediatorScrubbingTest {
+public final class VideoControlScreenMediatorScrubbingTest {
 
     private EventBus bus;
     private FakeVideoScreenVideo fakeVideoScreen;

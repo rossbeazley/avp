@@ -11,7 +11,7 @@ import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ResultsFragmentInjectorTest implements InjectableResultsFragment {
+public final class ResultsFragmentInjectorTest implements InjectableResultsFragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
 

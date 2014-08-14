@@ -14,7 +14,7 @@ import uk.co.rossbeazley.avp.android.player.time.CanExecuteCommandsAtFixedRate;
 import uk.co.rossbeazley.avp.android.player.time.MediaPlayerTimePositionWatcher;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class AVPApplication {
+public final class AVPApplication {
 
     public final ApplicationCore core;
 

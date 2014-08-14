@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.search.Results;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MediaRepositoryStub implements MediaRepository {
+public final class MediaRepositoryStub implements MediaRepository {
     private final Map<Query, Results> resultsByQuery;
 
     public MediaRepositoryStub(Map<Query, Results> resultsByQuery) {

@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchFragmentInjectorTest implements InjectableSearchFragment {
+public final class SearchFragmentInjectorTest implements InjectableSearchFragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
 

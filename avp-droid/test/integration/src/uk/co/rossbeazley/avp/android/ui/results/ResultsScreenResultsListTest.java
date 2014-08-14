@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ResultsScreenResultsListTest {
+public final class ResultsScreenResultsListTest {
 
     private ListAdapter adapter;
     private MediaItem firstMediaItem;

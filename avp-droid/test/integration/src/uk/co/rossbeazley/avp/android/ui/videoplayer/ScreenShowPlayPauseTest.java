@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenShowPlayPauseTest {
+public final class ScreenShowPlayPauseTest {
 
     private Integer playButton;
     private int pauseButton;

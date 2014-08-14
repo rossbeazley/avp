@@ -8,7 +8,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ApplicationExitTest implements CanFinishTheApp {
+public final class ApplicationExitTest implements CanFinishTheApp {
 
     private String state = "RUNNING";
     private String finished = "finished";

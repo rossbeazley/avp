@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-public class ActivityForTesting extends Activity {
+public final class ActivityForTesting extends Activity {
     public LinearLayout LL;
 
     @Override

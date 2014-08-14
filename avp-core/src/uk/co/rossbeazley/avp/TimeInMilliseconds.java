@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class TimeInMilliseconds {
+public final class TimeInMilliseconds {
     final public long value;
     private final SimpleDateFormat sdf;
 

@@ -8,7 +8,7 @@ import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-class ResultsScreenPresenter {
+final class ResultsScreenPresenter {
     public ResultsScreenPresenter(final ResultsScreen screen, final EventBus bus, CurrentResult currentResult) {
         bindToSearchCompletedEvent(screen, bus);
         bindToResultSelectedOnScreenEvent(screen, currentResult);

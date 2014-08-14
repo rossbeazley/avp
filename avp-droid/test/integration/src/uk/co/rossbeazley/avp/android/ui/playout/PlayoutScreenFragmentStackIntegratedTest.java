@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.MediaPlayerScreen;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class PlayoutScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest{
+public final class PlayoutScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest{
     @Override
     public void testPushFragment(ScreenStack screenFragmentStack) throws Exception {
         screenFragmentStack.pushScreen(MediaPlayerScreen.class);

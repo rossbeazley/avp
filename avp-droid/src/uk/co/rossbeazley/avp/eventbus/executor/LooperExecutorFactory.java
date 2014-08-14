@@ -5,7 +5,7 @@ import android.os.Looper;
 
 import java.util.concurrent.Executor;
 
-public class LooperExecutorFactory implements CanBuildExecutor {
+public final class LooperExecutorFactory implements CanBuildExecutor {
 
     public Executor executor() {
         Handler handler = newHandlerForCurrentLooper();
@@ -17,7 +17,7 @@ public class LooperExecutorFactory implements CanBuildExecutor {
         return new Handler(looper);
     }
 
-    private static class LooperExecutor implements Executor {
+    private static final class LooperExecutor implements Executor {
 
         private final Handler handler;
 

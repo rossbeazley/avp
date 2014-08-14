@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
-public class ApplicationSaveRestoreStateTest {
+public final class ApplicationSaveRestoreStateTest {
 
     private static final String APP_RESUMED = "app_resumed";
     private static final String APP_START = "app_start";

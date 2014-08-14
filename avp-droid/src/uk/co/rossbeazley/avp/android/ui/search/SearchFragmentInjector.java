@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 * Time: 15:37
 * To change this template use File | Settings | File Templates.
 */
-public class SearchFragmentInjector implements DependenciesService.Injector <InjectableSearchFragment> {
+public final class SearchFragmentInjector implements DependenciesService.Injector <InjectableSearchFragment> {
     private EventBus bus;
 
     public SearchFragmentInjector(EventBus bus) {

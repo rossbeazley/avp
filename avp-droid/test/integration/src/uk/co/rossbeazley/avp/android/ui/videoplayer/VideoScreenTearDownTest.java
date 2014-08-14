@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class VideoScreenTearDownTest implements VideoPlayerScreen.CanListenForScreenTearDownEvents {
+public final class VideoScreenTearDownTest implements VideoPlayerScreen.CanListenForScreenTearDownEvents {
 
     @Test
     public void tearDownDispatchedFromScreen() {

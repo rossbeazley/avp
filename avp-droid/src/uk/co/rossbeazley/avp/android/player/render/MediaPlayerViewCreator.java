@@ -4,7 +4,7 @@ import uk.co.rossbeazley.avp.android.player.preparer.MediaPlayerPreparer;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class MediaPlayerViewCreator {
+public final class MediaPlayerViewCreator {
 
 
     public static final String PLAYER_VIEW_CREATED = "player_view_created";

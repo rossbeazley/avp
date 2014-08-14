@@ -4,7 +4,7 @@ import android.R;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
-class FragmentManagerTransaction implements FragmentTransaction {
+final class FragmentManagerTransaction implements FragmentTransaction {
     final FragmentManager fm;
 
     FragmentManagerTransaction(FragmentManager fm) {

@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.ui.results;
 
 import uk.co.rossbeazley.avp.android.search.Results;
 
-class FakeResultsScreen implements ResultsScreen {
+final class FakeResultsScreen implements ResultsScreen {
     public Results actualResults;
     public static final String SHOWN = "visible";
     public static final String HIDDEN = "hidden";

@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.application;
 
 import java.util.ArrayList;
 
-class InjectorsForClasses {
+final class InjectorsForClasses {
     private Class<?>[] interfaces;
     private DependencyInjectorMap injectors;
 

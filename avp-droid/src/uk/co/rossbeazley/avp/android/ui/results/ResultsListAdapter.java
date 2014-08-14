@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.search.Results;
 
-public class ResultsListAdapter extends BaseAdapter {
+public final class ResultsListAdapter extends BaseAdapter {
 
     public static final int RESULT_VIEW_TYPE = 30035;
     public static final boolean DO_NOT_ATTACH_TO_PARENT_VIEW = false;
@@ -68,7 +68,7 @@ public class ResultsListAdapter extends BaseAdapter {
 
 
 
-    private class ResultsListItemViewFactory {
+    private final class ResultsListItemViewFactory {
 
         public ResultsListItemView create(View viewToRecycle, ViewGroup parentViewGroup)
         {

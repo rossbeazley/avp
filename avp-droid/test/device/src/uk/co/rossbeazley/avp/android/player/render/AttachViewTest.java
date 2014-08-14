@@ -8,7 +8,7 @@ import uk.co.rossbeazley.avp.android.application.Main;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class AttachViewTest extends ActivityInstrumentationTestCase2<Main> implements CanAttachToAndroidView {
+public final class AttachViewTest extends ActivityInstrumentationTestCase2<Main> implements CanAttachToAndroidView {
 
     private boolean setDisplayCalled;
     private Main act;

@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @Config(manifest = Config.NONE)
-public class UrlLoaderScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
+public final class UrlLoaderScreenFragmentStackIntegratedTest extends ScreenFragmentStackIntegratedTest {
 
     public void testPushFragment(ScreenStack screenFragmentStack) throws Exception {
 

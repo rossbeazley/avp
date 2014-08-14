@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class VideoPlayerFragmentInjectorTest implements InjectableVideoPlayerFragment {
+public final class VideoPlayerFragmentInjectorTest implements InjectableVideoPlayerFragment {
     private FragmentScreenFactory fragmentScreenFactory;
 
     @Test

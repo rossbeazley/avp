@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.screenStack;
 import android.app.FragmentManager;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class EmptyFragmentBackStack {
+public final class EmptyFragmentBackStack {
 
     public static final String UI_CLOSED = "ui_closed";
 

@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.search;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class SelectedMediaItem implements CurrentResult {
+public final class SelectedMediaItem implements CurrentResult {
     private final EventBus bus;
     MediaItem selectResult;
 

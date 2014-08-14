@@ -7,7 +7,7 @@ import android.view.SurfaceView;
 import android.view.ViewGroup;
 import uk.co.rossbeazley.avp.android.R;
 
-public class AndroidMediaPlayerVideoOutput implements RenderedVideoOutput {
+public final class AndroidMediaPlayerVideoOutput implements RenderedVideoOutput {
 
     private SurfaceHolderStateChangeCallbacks surfaceHolderStateChangeCallbacks;
 
@@ -41,7 +41,7 @@ public class AndroidMediaPlayerVideoOutput implements RenderedVideoOutput {
 
 
 
-    private static class SurfaceHolderStateChangeCallbacks implements SurfaceHolder.Callback {
+    private static final class SurfaceHolderStateChangeCallbacks implements SurfaceHolder.Callback {
         private final CanAttachToAndroidView mediaPlayer;
 
         public SurfaceHolderStateChangeCallbacks(CanAttachToAndroidView mediaPlayer) {

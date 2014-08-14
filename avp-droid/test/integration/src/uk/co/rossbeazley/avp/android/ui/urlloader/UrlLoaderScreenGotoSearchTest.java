@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class UrlLoaderScreenGotoSearchTest implements UrlLoaderScreen.CanListenForUserGotoSearchScreenEvents {
+public final class UrlLoaderScreenGotoSearchTest implements UrlLoaderScreen.CanListenForUserGotoSearchScreenEvents {
 
     private boolean called = false;
     private ActivityForTestingViews visibleActivityForLayout;

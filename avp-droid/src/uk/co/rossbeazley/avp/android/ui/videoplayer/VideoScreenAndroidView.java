@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.android.player.render.RenderedVideoOutput;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class VideoScreenAndroidView implements VideoPlayerScreen {
+public final class VideoScreenAndroidView implements VideoPlayerScreen {
     private final ViewFinder viewFinder;
 
     private CanListenForUserPlayEvents canListenForUserPlayEvents;
@@ -138,7 +138,7 @@ public class VideoScreenAndroidView implements VideoPlayerScreen {
         this.canListenForScreenTearDownEvents = canListenForScreenTearDownEvents;
     }
 
-    private class ScrubEventAdapter implements SeekBar.OnSeekBarChangeListener {
+    private final class ScrubEventAdapter implements SeekBar.OnSeekBarChangeListener {
 
         public Integer last_seek_position;
 

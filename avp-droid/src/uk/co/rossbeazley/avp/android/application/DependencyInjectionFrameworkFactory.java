@@ -15,7 +15,7 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.InjectableVideoPlayerFragmen
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerFragmentInjector;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class DependencyInjectionFrameworkFactory {
+public final class DependencyInjectionFrameworkFactory {
 
     public DependenciesService createDependencyInjectionFramework(final ApplicationServices services, ApplicationCore applicationCore) {
         DependanciesInjectorRegistry injectorRegistry = createDependanciesInjectorRegistry(services.eventbus(), applicationCore);
@@ -23,14 +23,13 @@ public class DependencyInjectionFrameworkFactory {
     }
 
     public DependanciesInjectorRegistry createDependanciesInjectorRegistry(final EventBus eventbus, final ApplicationCore applicationCore) {
-        return new DependanciesInjectorRegistry() {{
-            register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(eventbus));
-            register(InjectableSearchFragment.class, new SearchFragmentInjector(eventbus));
-            register(InjectableUrlLoaderFragment.class, new UrlLoaderFragmentInjector(eventbus));
-            register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector(eventbus, applicationCore));
-            register(NeedsAnInflatedViewFactory.class, new NeedsAnInflatedViewFactoryInjector());
-            register(InjectableEventBus.class, new EventBusInjector(eventbus));
-        }};
+        return new DependanciesInjectorRegistry()
+            .register(InjectableVideoPlayerFragment.class, new VideoPlayerFragmentInjector(eventbus))
+            .register(InjectableSearchFragment.class, new SearchFragmentInjector(eventbus))
+            .register(InjectableUrlLoaderFragment.class, new UrlLoaderFragmentInjector(eventbus))
+            .register(InjectableResultsFragment.class, new InjectableResultsFragmentInjector(eventbus, applicationCore))
+            .register(NeedsAnInflatedViewFactory.class, new NeedsAnInflatedViewFactoryInjector())
+            .register(InjectableEventBus.class, new EventBusInjector(eventbus));
     }
 
 }

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-class DefaultFragmentFromScreen implements FragmentFromScreen {
+final class DefaultFragmentFromScreen implements FragmentFromScreen {
 
     private Map<Class<? extends Screen>, Class<? extends Fragment>> fragmentsByScreen;
 

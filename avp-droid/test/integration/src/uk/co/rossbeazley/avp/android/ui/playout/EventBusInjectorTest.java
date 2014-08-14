@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class EventBusInjectorTest implements InjectableEventBus {
+public final class EventBusInjectorTest implements InjectableEventBus {
     private EventBus actualEventBus;
 
     @Override

@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 
-public class SearchScreenAndroid implements Screen, SearchScreen {
+public final class SearchScreenAndroid implements Screen, SearchScreen {
     private final ViewFinder viewFinder;
     private CanListenForUserSearchEvents searchEventListener;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;

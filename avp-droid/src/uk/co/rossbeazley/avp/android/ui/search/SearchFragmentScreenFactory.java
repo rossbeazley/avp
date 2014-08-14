@@ -15,7 +15,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchFragmentScreenFactory implements FragmentScreenFactory {
+public final class SearchFragmentScreenFactory implements FragmentScreenFactory {
     private final EventBus bus;
 
     public SearchFragmentScreenFactory(EventBus bus) {

@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.android.search.Query;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchScreenPresenterTest implements SearchScreen {
+public final class SearchScreenPresenterTest implements SearchScreen {
 
     private SearchScreen.CanListenForUserSearchEvents searchEventListener;
     private final String any_old_text = "any_old_text";

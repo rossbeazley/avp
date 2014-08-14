@@ -8,7 +8,7 @@ import android.widget.TextView;
 import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.media.MediaItem;
 
-public class ResultsListItemView extends RelativeLayout {
+public final class ResultsListItemView extends RelativeLayout {
 
 
     private TextView programmeTextView;

@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.view.View;
 import org.robolectric.Robolectric;
 
-public class ActivityForTestingViews extends Activity  {
+public final class ActivityForTestingViews extends Activity  {
 
     public Fragment lastFragmentAttached;
 

@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ResultsFragmentDITest {
+public final class ResultsFragmentDITest {
 
     private Collection<DependenciesService.Injector> injectors;
 

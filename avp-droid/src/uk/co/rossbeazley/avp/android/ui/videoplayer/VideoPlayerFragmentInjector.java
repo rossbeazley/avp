@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 * Time: 13:02
 * To change this template use File | Settings | File Templates.
 */
-public class VideoPlayerFragmentInjector implements DependenciesService.Injector<InjectableVideoPlayerFragment> {
+public final class VideoPlayerFragmentInjector implements DependenciesService.Injector<InjectableVideoPlayerFragment> {
 
     private EventBus eventBus;
 

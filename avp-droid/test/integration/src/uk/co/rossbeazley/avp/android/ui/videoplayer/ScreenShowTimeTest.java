@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenShowTimeTest {
+public final class ScreenShowTimeTest {
 
 
     private static final CharSequence THREE_SECONDS_ZERO_MINS = "00:03";

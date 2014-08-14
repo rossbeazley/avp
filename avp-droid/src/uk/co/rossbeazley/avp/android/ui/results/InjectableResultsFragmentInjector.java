@@ -5,7 +5,7 @@ import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.application.DependenciesService;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class InjectableResultsFragmentInjector implements DependenciesService.Injector<InjectableResultsFragment> {
+public final class InjectableResultsFragmentInjector implements DependenciesService.Injector<InjectableResultsFragment> {
     private EventBus bus;
     private ApplicationCore applicationCore;
 

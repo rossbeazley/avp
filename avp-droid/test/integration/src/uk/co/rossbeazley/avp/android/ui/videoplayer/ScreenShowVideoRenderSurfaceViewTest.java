@@ -17,7 +17,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenShowVideoRenderSurfaceViewTest {
+public final class ScreenShowVideoRenderSurfaceViewTest {
 
 
     private static final String CALLED = "CALLED";

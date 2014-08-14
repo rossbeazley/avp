@@ -15,7 +15,7 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 
-public class EventBusLog {
+public final class EventBusLog {
 
     private final Logger log;
     private final EventBus bus;

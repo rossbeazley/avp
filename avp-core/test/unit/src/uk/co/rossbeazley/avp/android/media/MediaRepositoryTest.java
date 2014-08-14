@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class MediaRepositoryTest {
+public final class MediaRepositoryTest {
 
     MediaRepository mediaRepository;
     private ExecutorEventBus bus;

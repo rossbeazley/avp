@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPlayerFactory {
+public final class AndroidMediaPlayerCreationEventBusIntegratedTest implements MediaPlayerFactory {
     private Object fakeMediaPlayer;
     private Object announcedMediaPlayer;
 

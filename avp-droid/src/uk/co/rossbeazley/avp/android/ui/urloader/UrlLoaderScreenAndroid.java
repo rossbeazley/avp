@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 import uk.co.rossbeazley.avp.android.ui.ViewFinder;
 import uk.co.rossbeazley.avp.android.ui.urlloader.UrlLoaderScreen;
 
-public class UrlLoaderScreenAndroid implements UrlLoaderScreen {
+public final class UrlLoaderScreenAndroid implements UrlLoaderScreen {
     private final ViewFinder viewFinder;
     private CanListenForUserGoEvents searchEventListener;
     private CanListenForScreenTearDownEvents canListenForScreenTearDownEvents;

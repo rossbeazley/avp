@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.ui;
 import android.view.View;
 import android.widget.TextView;
 
-public class ViewFinder {
+public final class ViewFinder {
 
     private final CanFindViewById canFindViewById;
 

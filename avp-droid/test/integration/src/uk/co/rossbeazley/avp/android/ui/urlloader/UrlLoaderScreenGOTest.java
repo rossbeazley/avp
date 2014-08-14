@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class UrlLoaderScreenGOTest implements UrlLoaderScreen.CanListenForUserGoEvents {
+public final class UrlLoaderScreenGOTest implements UrlLoaderScreen.CanListenForUserGoEvents {
 
     private boolean called = false;
     private String query_string = "any_old_query_string";

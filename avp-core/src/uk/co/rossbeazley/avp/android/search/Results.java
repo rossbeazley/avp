@@ -5,7 +5,7 @@ import uk.co.rossbeazley.avp.android.media.MediaItem;
 import java.util.Arrays;
 import java.util.List;
 
-public class Results {
+public final class Results {
 
     private final List<MediaItem> mediaItems;
 

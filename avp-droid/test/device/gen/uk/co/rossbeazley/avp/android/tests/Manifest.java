@@ -2,6 +2,6 @@
 
 package uk.co.rossbeazley.avp.android.tests;
 
-/* This stub is for using by IDE only. It is NOT the Manifest class actually packed into APK */
-public final class Manifest {
+/* This stub is for using by IDE only. It is NOT the Manifest final class actually packed into APK */
+public final final class Manifest {
 }

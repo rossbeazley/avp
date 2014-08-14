@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenShowBufferingTest {
+public final class ScreenShowBufferingTest {
 
     private Integer bufferingIndicator;
 

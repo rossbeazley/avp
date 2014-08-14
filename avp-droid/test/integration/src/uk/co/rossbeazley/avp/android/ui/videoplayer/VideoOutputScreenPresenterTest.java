@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class VideoOutputScreenPresenterTest implements VideoOutputScreen {
+public final class VideoOutputScreenPresenterTest implements VideoOutputScreen {
 
     private RenderedVideoOutput videoOutput;
 

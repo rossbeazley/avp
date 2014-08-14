@@ -2,7 +2,7 @@ package uk.co.rossbeazley.avp.android.application;
 
 import java.util.Collection;
 
-public class DependenciesService {
+public final class DependenciesService {
     private final DependanciesInjectorRegistry dependanciesInjectorRegistry;
 
     public DependenciesService(DependanciesInjectorRegistry injectorRegistry) {

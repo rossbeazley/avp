@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.ui.FragmentScreenFactory;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class ResultsFragmentScreenFactory implements FragmentScreenFactory {
+public final class ResultsFragmentScreenFactory implements FragmentScreenFactory {
 
 
     private EventBus bus;

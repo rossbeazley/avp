@@ -6,7 +6,7 @@ import uk.co.rossbeazley.avp.android.R;
 import uk.co.rossbeazley.avp.android.search.Results;
 import uk.co.rossbeazley.avp.android.ui.CanFindViewById;
 
-class ResultsScreenAndroid implements ResultsScreen {
+final class ResultsScreenAndroid implements ResultsScreen {
     private final CanFindViewById canFindViewById;
     private View searchSpinner;
     private CanListenForResultSelection listener;

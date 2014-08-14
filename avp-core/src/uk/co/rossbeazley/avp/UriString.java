@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp;
 
-public class UriString {
+public final class UriString {
     public final String uri;
 
     private UriString(String uri) {

@@ -4,7 +4,7 @@ import android.app.Fragment;
 import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 
-class ScreenFragmentStack implements ScreenStack {
+final class ScreenFragmentStack implements ScreenStack {
 
     private final FragmentTransaction fragmentTransaction;
     private FragmentFromScreen fragmentFromScreen;

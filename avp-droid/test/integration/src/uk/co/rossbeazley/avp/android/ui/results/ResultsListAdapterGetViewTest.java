@@ -26,7 +26,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ResultsListAdapterGetViewTest {
+public final class ResultsListAdapterGetViewTest {
 
     public static final String PROGRAM_TITLE = "media item ";
     private ListAdapter adapter;

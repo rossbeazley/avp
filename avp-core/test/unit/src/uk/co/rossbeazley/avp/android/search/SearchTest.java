@@ -13,7 +13,7 @@ import java.util.HashMap;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchTest {
+public final class SearchTest {
 
     private Results announcedResult;
     private EventBus bus;

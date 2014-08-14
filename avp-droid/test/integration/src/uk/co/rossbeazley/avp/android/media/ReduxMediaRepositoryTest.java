@@ -13,7 +13,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ReduxMediaRepositoryTest {
+public final class ReduxMediaRepositoryTest {
 
     private Results actualResults;
     private String REDUX_URL_FOR_ANY_QUERY ="https://i.bbcredux.com/asset/search?q=ANY_QUERY&token=VALIDTOKEN";
@@ -84,7 +84,7 @@ public class ReduxMediaRepositoryTest {
 
 
 
-    private class ReduxMediaRepository implements MediaRepository {
+    private final class ReduxMediaRepository implements MediaRepository {
 
         private final RequestFactory requestFactory;
 
@@ -115,7 +115,7 @@ public class ReduxMediaRepositoryTest {
         public void execute();
     }
 
-    private class AccessToken {
+    private final class AccessToken {
         private final String token;
 
         public AccessToken(String token) {

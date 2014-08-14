@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.search;
 
-public class Query {
+public final class Query {
 
     private final String query;
 

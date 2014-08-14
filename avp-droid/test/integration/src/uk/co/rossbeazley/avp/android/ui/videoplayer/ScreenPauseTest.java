@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class ScreenPauseTest implements VideoPlayerScreen.CanListenForUserPauseEvents {
+public final class ScreenPauseTest implements VideoPlayerScreen.CanListenForUserPauseEvents {
 
     @Test
     public void userPauseVideoEventWhenPauseClicked() {

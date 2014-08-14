@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class FragmentManagerTransactionIntergrationTest {
+public final class FragmentManagerTransactionIntergrationTest {
 
     @Test
     public void testPushFragment() throws Exception {

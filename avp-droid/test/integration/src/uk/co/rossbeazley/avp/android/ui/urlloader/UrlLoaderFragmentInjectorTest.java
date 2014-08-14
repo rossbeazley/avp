@@ -15,7 +15,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class UrlLoaderFragmentInjectorTest implements InjectableUrlLoaderFragment {
+public final class UrlLoaderFragmentInjectorTest implements InjectableUrlLoaderFragment {
 
     private FragmentScreenFactory fragmentScreenFactory;
 

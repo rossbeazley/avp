@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.application;
 import java.util.HashMap;
 import java.util.Map;
 
-class DependencyInjectorMap {
+final class DependencyInjectorMap {
 
     private final Map<Class, DependenciesService.Injector> injectorsByTargetClass = new HashMap<Class, DependenciesService.Injector>();
 

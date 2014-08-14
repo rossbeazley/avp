@@ -12,7 +12,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 
 import java.util.concurrent.ScheduledExecutorService;
 
-public class Main extends Activity implements CanFinishTheApp{
+public final class Main extends Activity implements CanFinishTheApp{
 
     private final UiNavigationStackFactory uiNavigationStackFactory = new UiNavigationStackFactory();
     private final ApplicationServices services = new ProductionApplicationServices(StaticSingletonApplicationContext.instance);

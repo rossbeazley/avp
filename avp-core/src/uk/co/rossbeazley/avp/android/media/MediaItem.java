@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.avp.android.media;
 
-public class MediaItem {
+public final class MediaItem {
     private final String programTitle;
 
     /**

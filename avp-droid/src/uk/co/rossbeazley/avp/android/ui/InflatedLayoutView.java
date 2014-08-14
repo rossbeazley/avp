@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class InflatedLayoutView implements InflatedView {
+public final class InflatedLayoutView implements InflatedView {
 
     private final View inflatedView;
 

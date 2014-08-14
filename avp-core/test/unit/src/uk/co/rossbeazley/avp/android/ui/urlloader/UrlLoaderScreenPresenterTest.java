@@ -9,7 +9,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class UrlLoaderScreenPresenterTest implements UrlLoaderScreen {
+public final class UrlLoaderScreenPresenterTest implements UrlLoaderScreen {
 
     private CanListenForUserGoEvents searchEventListener;
 

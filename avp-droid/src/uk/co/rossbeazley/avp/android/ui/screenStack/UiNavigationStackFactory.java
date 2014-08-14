@@ -8,7 +8,7 @@ import uk.co.rossbeazley.avp.android.ui.urlloader.UrlLoaderNavigationController;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoPlayerNavigationController;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class UiNavigationStackFactory {
+public final class UiNavigationStackFactory {
 
     public void createNavigationViewControllers(FragmentManager fragmentManager, EventBus eventbus) {
 

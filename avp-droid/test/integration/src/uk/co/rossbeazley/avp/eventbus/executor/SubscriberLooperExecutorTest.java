@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class SubscriberLooperExecutorTest {
+public final class SubscriberLooperExecutorTest {
 
     private Looper mainLooper = null;
     Looper discoveredLooper = null;

@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implements ResultsScreen{
+public final class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implements ResultsScreen{
 
     private Results results;
     private ScreenFragmentTransaction screenFragmentTransaction;
@@ -79,7 +79,7 @@ public class DisplaysResultsAfterPerformsSearchCompletesAcceptanceTest implement
     @Override
     public void setTearDownEventListener(CanListenForScreenTearDownEvents canListenForScreenTearDownEvents) { }
 
-    private class ScreenFragmentTransaction {
+    private final class ScreenFragmentTransaction {
         private final ResultsScreen resultsScreen;
         private final EventBus eventBus;
 

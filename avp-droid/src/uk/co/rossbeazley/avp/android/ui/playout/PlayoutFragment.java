@@ -11,7 +11,7 @@ import uk.co.rossbeazley.avp.android.ui.videoplayer.PlayerScreenAndroidView;
 import uk.co.rossbeazley.avp.android.ui.videoplayer.VideoOutputScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class PlayoutFragment extends Fragment implements InjectableEventBus {
+public final class PlayoutFragment extends Fragment implements InjectableEventBus {
 
     public static final int VIDEOPLAYERSCREEN_LAYOUT_ID = R.layout.videoplayerscreen;
 

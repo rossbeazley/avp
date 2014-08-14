@@ -8,7 +8,7 @@ import uk.co.rossbeazley.avp.android.ui.Screen;
 import uk.co.rossbeazley.avp.android.ui.urlloader.UrlLoaderScreenPresenter;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class UrlLoaderFragmentScreenFactory implements FragmentScreenFactory {
+public final class UrlLoaderFragmentScreenFactory implements FragmentScreenFactory {
     private EventBus bus;
 
     public UrlLoaderFragmentScreenFactory(EventBus bus) {

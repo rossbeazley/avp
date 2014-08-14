@@ -11,7 +11,7 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ResultsScreenPresenterTest {
+public final class ResultsScreenPresenterTest {
 
     private final FakeResultsScreen fakeScreen = new FakeResultsScreen();
 

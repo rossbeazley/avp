@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class CanDispatchSearchQueryTest {
+public final class CanDispatchSearchQueryTest {
 
 
     private final Query ANY_QUERY = Query.fromString("any_query_string");

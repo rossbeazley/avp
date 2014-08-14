@@ -10,7 +10,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 * Time: 15:37
 * To change this template use File | Settings | File Templates.
 */
-public class UrlLoaderFragmentInjector implements DependenciesService.Injector<InjectableUrlLoaderFragment> {
+public final class UrlLoaderFragmentInjector implements DependenciesService.Injector<InjectableUrlLoaderFragment> {
     private EventBus bus;
 
     public UrlLoaderFragmentInjector(EventBus bus) {

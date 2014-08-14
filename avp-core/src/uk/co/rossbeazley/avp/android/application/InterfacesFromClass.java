@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.application;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class InterfacesFromClass {
+final class InterfacesFromClass {
     private Object objectForInjection;
 
     public InterfacesFromClass(Object objectForInjection) {

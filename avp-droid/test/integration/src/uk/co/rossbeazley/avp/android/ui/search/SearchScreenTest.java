@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-public class SearchScreenTest implements SearchScreenAndroid.CanListenForUserSearchEvents {
+public final class SearchScreenTest implements SearchScreenAndroid.CanListenForUserSearchEvents {
 
     private boolean called = false;
     private String query_string = "any_old_query_string";

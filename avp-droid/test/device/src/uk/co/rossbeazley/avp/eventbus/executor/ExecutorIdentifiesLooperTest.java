@@ -8,7 +8,7 @@ import android.test.AndroidTestCase;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
-public class ExecutorIdentifiesLooperTest extends AndroidTestCase {
+public final class ExecutorIdentifiesLooperTest extends AndroidTestCase {
 
     Looper discoveredLooper = null;
     Looper notMainLooper = null;

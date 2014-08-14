@@ -16,7 +16,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
  * Time: 12:31
  * To change this template use File | Settings | File Templates.
  */
-public class ApplicationCore {
+public final class ApplicationCore {
 
 
     public static final String APP_START = "app_start";

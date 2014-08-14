@@ -5,7 +5,7 @@ import uk.co.rossbeazley.avp.android.ui.ScreenStack;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.Function;
 
-public class UrlLoaderNavigationController {
+public final class UrlLoaderNavigationController {
 
     private final ScreenStack screenStack;
 

@@ -10,12 +10,12 @@ import uk.co.rossbeazley.avp.eventbus.executor.ExecutorEventBus;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SearchNoResultsTest {
+public final class SearchNoResultsTest {
 
     private Results announcedResult;
     private EventBus bus;
     private Search search;
-    private Results noResult =  new Results(){public String toString(){return "no result";}};
+    private Results noResult =  new Results();
 
     private static final MediaRepository UNUSED_REPOSITORY = null;
 

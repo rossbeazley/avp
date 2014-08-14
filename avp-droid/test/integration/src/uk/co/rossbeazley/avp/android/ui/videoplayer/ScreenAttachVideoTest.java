@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 
-public class ScreenAttachVideoTest implements CanFindViewById {
+public final class ScreenAttachVideoTest implements CanFindViewById {
 
     private ViewGroup viewGroupAttachedTo = new ViewGroup(Robolectric.application ) {
         protected void onLayout(boolean changed, int l, int t, int r, int b) {}

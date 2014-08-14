@@ -3,7 +3,7 @@ package uk.co.rossbeazley.avp.android.ui.search;
 import uk.co.rossbeazley.avp.android.search.CanDispatchSearchQuery;
 import uk.co.rossbeazley.avp.android.search.Query;
 
-public class SearchScreenPresenter {
+public final class SearchScreenPresenter {
 
     public SearchScreenPresenter(final SearchScreen view, final CanDispatchSearchQuery canDispatchSearchQuery) {
         bindToViewSearchEvent(view, canDispatchSearchQuery);

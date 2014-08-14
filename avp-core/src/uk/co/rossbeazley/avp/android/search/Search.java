@@ -5,7 +5,7 @@ import uk.co.rossbeazley.avp.eventbus.EventBus;
 import uk.co.rossbeazley.avp.eventbus.FunctionWithParameter;
 import uk.co.rossbeazley.avp.eventbus.PayloadFunction;
 
-public class Search implements CurrentSearchResults {
+public final class Search implements CurrentSearchResults {
 
     private final MediaRepository repo;
     private final EventBus bus;
@@ -69,7 +69,7 @@ public class Search implements CurrentSearchResults {
         void announce();
     }
 
-    private class NoResults implements SearchState {
+    private final class NoResults implements SearchState {
 
         @Override
         public void announce() {
@@ -77,7 +77,7 @@ public class Search implements CurrentSearchResults {
         }
     }
 
-    private class ResultsAvailable implements SearchState {
+    private final class ResultsAvailable implements SearchState {
         private final Results results;
         private final EventBus bus;
 

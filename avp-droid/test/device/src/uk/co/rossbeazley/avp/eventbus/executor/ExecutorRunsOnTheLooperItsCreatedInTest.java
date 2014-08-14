@@ -8,7 +8,7 @@ import android.test.AndroidTestCase;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
-public class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
+public final class ExecutorRunsOnTheLooperItsCreatedInTest extends AndroidTestCase {
 
     public static final String THREAD_NAME = "test thread";
     private String threadCalledOn = "WRONG THREAD";

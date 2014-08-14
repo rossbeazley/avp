@@ -7,7 +7,7 @@ import uk.co.rossbeazley.avp.ApplicationCore;
 import uk.co.rossbeazley.avp.android.log.Logger;
 import uk.co.rossbeazley.avp.eventbus.EventBus;
 
-public class IntentToEventDispatcher {
+public final class IntentToEventDispatcher {
 
     private EventBus bus;
     private final Logger logger;
