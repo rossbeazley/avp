@@ -137,7 +137,8 @@ We need a whole new media player view generated to attach to the screen - the cu
  It will still implement RenderedVideoOutput
  It will have a AndroidMediaPlayerVideoOutput
  It will have a VideoScreenAndroidView
- It will need a presenter for the VideoScreen and the VideoOutput
+ It will need the existing presenters for the VideoScreen and the VideoOutput
+ It will need to inflate the videoplayer.xml file
 
 We could do an integrated test of the fragment, assert the view is visible.
 When the event is announced, is that object is attached correctly on the screen.
